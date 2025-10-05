@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- всплывающее окно -->
+{% include 'modal_menu.html' %}
+<!-- меню сайта -->
+<header class="header_section" id="header">
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-1 col-sm-1 col-m title_logo db132 drone_logo_fix title_logo_fix">
+            <a href="/" class=""> <!-- логитип и заголовок веб-страницы -->
+                <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
+                <a href="/" class="webpage_name">{{webpage_name}}</a>
+            </a>
+        </div>
+      <div class="col-lg-11 col-sm-11 fix-w">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid align-content-center ">
+            <div class="db_nao db_yes title_logo ">
+              <a href="/">
+                <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
+              </a>
+            </div>
+            <div class="flex-mob">
+              <button onclick="HeaderFull()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div id="bg_close">
+                </div>
+                <img src="{{url_for('static', filename='img/close_square.svg')}}" alt="" id="img_close">
+              </button>
+            </div>
+            <!-- динамическая загрузка меню -->
+            <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
+              <div class="navbar-nav"  id="links">
+                <div class="edit_btn_fix">
+                    {% for link in links %} 
+                        <div>
+                            <a id='link_webpage{{loop.index}}' class="nav-link header_color" href="{{link[1]}}" onclick="RemoveCol()">
+                                {{link[0]}}
+                            </a>
+                        </div>
+                    {% endfor %}     
+                </div>
+                {% if role == 'administrator' %}
+                <div>
+                    <button class="basic_edit_btn" data-modal="modal_menu_edit" id="modal_link_act_open"></button>
+                </div>
+                {% endif %}
+              </div>
+                <div class="db_nao db_yes telegram_header">
+                  <a href="https://t.me/+YMLvPOIS-YxlNWRi" target="_blank">
+                    <img src="{{url_for('static', filename='img/telegram-svgrepo-com.svg')}}" alt="">
+                  </a>
+                </div>
+            </div>
+            
+          </div>
+            <div class="btn_exit_fix">
+                {% if current_user.is_authenticated == True %}
+                    <a class="nav-link header_color my_a_link" href="/logout" onclick="RemoveCol()">выход</a>
+                    {% else %}
+                    <a class="nav-link header_color my_a_link" data-modal="modal_login" href="#" onclick="RemoveCol()">вход</a>
+                    
+                    {% endif %} 
+            </div>
+      </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- основная подложка для блоков -->
+<section class="main_space basic_bg">
+    <div class="add_new_mainblock" id="add_new_mainblock_act">
+        <p>добавить панель элементов</p>
+        
+    </div>
+</section>
+<section id="modal_menu" class="basic_modal "> 
+    <div class="modal_block">
+        <div class="modal_header">
+            <h2 id="modal_header_title">Модальное окно</h2>
+            <p class="modal_btn_close" id="modal_btn_act_close"></p>
+        </div>
+        <div id="modal_content_div" class="modal_content">
+
+            <p>{{mainblocks_list[0][0]}}</p>
+        <p>
+            {% for mainblock in mainblocks_list %} 
+            <p>{{mainblock}}</p>
+            {% for block in mainblock %}
+            <p>{{block}}</p>
+            {% endfor %}
+            {% endfor %}
+    </p>
+        </div>       
+    </div>
+</section>
+{% endblock %}
+

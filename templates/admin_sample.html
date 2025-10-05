@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="header_section" id="header">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-1 col-sm-1 col-m title_logo db132">
+        <a href="/">
+          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
+        </a>
+      </div>
+      <div class="col-lg-11 col-sm-11 fix-w">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid align-content-center">
+            <div class="db_nao db_yes title_logo">
+              <a href="/">
+                <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
+              </a>
+            </div>
+            <div class="flex-mob">
+              <button onclick="HeaderFull()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div id="bg_close">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <img src="{{url_for('static', filename='img/close_square.svg')}}" alt="" id="img_close">
+
+              </button>
+            </div>
+            <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link header_color" href="/#table" onclick="RemoveCol()">Расписание</a>
+                <a class="nav-link header_color" href="/#media" onclick="RemoveCol()">Медиа</a>
+                <a class="nav-link header_color" href="/#teacher" onclick="RemoveCol()">Преподаватели</a>
+                <a class="nav-link header_color" href="/#faq" onclick="RemoveCol()">FAQ</a>
+                <a class="nav-link header_color" href="/#info" onclick="RemoveCol()">Присоединиться</a>
+                <a class="nav-link header_color" href="/gallery" onclick="RemoveCol()">Галерея</a>
+                <a class="nav-link header_color" href="/build" onclick="RemoveCol()">Сборки</a>
+                <a class="nav-link header_color" href="/doc" onclick="RemoveCol()">Документы</a>
+                <a class="nav-link header_color my_a_link" href="/logout" onclick="RemoveCol()">выход</a>
+              </div>
+              <div class="db_nao db_yes telegram_header">
+                  <a href="https://t.me/+YMLvPOIS-YxlNWRi" target="_blank">
+                    <img src="{{url_for('static', filename='img/telegram-svgrepo-com.svg')}}" alt="">
+                  </a>
+                </div>
+            </div>
+          </div>
+      </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<section  class="my_login">
+    <div class="container">
+      <div class="row fix-mar">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-6" id="content">
+          <div class="card_right">
+            <h2 class="mb-4">Авторизация</h2>
+              <form action="/new_sample" method="post">
+                  <input type="text" name="login">
+                  <input type="text" name="password">
+                  <select name="" id="">
+                    <option value="value1">Значение 1</option>
+                  </select>
+                  <p>'{{role}}'</p>
+                  <p>'{{role}}asdasd'</p>
+                  <input type="submit" value="вход">
+              </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock %}

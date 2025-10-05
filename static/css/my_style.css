@@ -1,0 +1,180 @@
+*{
+    transition-duration: 300ms;
+    transition-property: all;
+    /* outline: 1px solid red; */
+}
+/* перебор стилей сайта */
+
+.basic_bg { /* стандартный фон везде */
+    background: url("../img/bg.svg") center no-repeat;
+}
+
+/* header - меню */
+.header_section{ /* класс меню сайта */
+    padding: 0 10px;
+    background-color: #31123C;
+    height: 6vh;
+}
+.webpage_name{ /* заголовок страницы */
+margin-left: 15%;
+}
+.basic_edit_btn{ /* кнопка редактирования элемента */
+    filter: opacity(30%);
+    background: url(/static/svg/icon_edit_btn.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+    color: white;
+    border: none;
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.editor_hover:hover{
+    outline: 1px solid gray;
+    border-radius: 5px;
+}
+.header_section:hover .basic_edit_btn{
+    filter: opacity(100);
+}
+
+/* поправка ссылки входа в меню сайта */
+.my_a_link{
+margin-left: 30%;
+}
+/* .webpage_links_fix{
+    margin-top: 5%;
+} */
+/* модальное окно */
+.basic_modal{ /* контейнер для всплывающего окна */
+    z-index: 2!important;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    display: flex;
+    align-items: center; /* для родителя по другой оси */
+    justify-content: center; /* для родителя по одной оси */
+    flex-direction: row; 
+
+ 
+    background-color: rgba(0, 0, 0, 0.5);
+    /* filter: blur(5px); */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+.modal_block{ /* блок модального окна */
+    display: flex;
+    flex-direction: column;
+    z-index: 3!important;
+    width: 40%;
+    height: 50%;
+    border-radius: 6px;
+    border: 1px solid #4d1e5e;
+    background: #31123C;
+    box-shadow: 2px 2px 15px 5px #200c27;
+}
+.modal_form_login{
+    text-align: center;
+}
+.modal_header{ /* блок управление модального окна (выход и тп) */
+    padding: 0 5%;
+    display: flex;
+    /* width: 100%; */
+    justify-content: space-between; /* для родителя по другой оси */
+    color: white;
+}
+.modal_btn_close{
+    filter: opacity(30%);
+    cursor: pointer;
+    background: url('/static/svg/exit_icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+.modal_header:hover .modal_btn_close{
+    filter: opacity(100%);
+}
+.modal_content form{
+    display: flex;
+    align-items: center; /* для родителя по другой оси */
+    justify-content: center; /* для родителя по одной оси */
+    flex-direction: column;
+}
+.modal_content form>*{
+    margin-bottom: 2%;
+}
+.modal_content form input:not(.modal_content form input:last-child){
+    border: none;
+    border-radius: 6px;
+    min-height: 50px;
+    max-height: 100px;
+    width: 50%;
+}
+.modal_exit>p{
+    align-self: self-end;
+    margin-left: 10%;
+}
+.modal_exit>*{
+    color: white;
+    cursor: pointer;
+}
+.close_modal{
+    display: none;
+}
+.open_modal{
+    display: flex;
+}
+.modal_elem{
+    width: 90%;
+    margin: 3%;
+    align-self: center;
+}
+.modal_elem:last-child{
+    margin-top: 20%;
+    width: 40%;
+    align-self: flex-start;
+}
+.modal_form>fieldset{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_btn_fix{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.modal_content>*{
+    color: white;
+    /* padding: 5%; */
+}
+/* страница с содержимым */
+.main_space{ /* основная подложка для блоков */
+    height: 84vh;
+}
+.add_new_mainblock{
+    width: 90%;
+    border: 1px solid #4d1e5e;
+    border-radius: 6px;
+    height: 200px;
+    cursor: pointer;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+.footer_item{
+    height: 10vh;
+}
