@@ -1,4 +1,3 @@
-# класс в котором описаны методы управления данными в таблице роли
 from Models.Mainblock import Mainblock 
 
 class MainblockController():

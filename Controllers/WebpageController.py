@@ -1,6 +1,4 @@
-# класс в котором описаны методы управления данными в таблице роли
 from Models.Webpage import Webpage 
-
 class WebpageController():
     @ classmethod
     def add_link(cls):
@@ -16,7 +14,7 @@ class WebpageController():
             type=type_link,
             position=position
         )
-        # delete удаление записи
+
     @classmethod
     def delete(cls, id):
         Webpage.delete().where(Webpage.id == id).execute()
