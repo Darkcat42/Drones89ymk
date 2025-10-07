@@ -61,8 +61,6 @@ addEventListener('click', (evt) => {
                 modal_content_div.innerHTML = html; // Вставляем полученный HTML в контейнер
             });}//3
     }//2
-
-
 })//1
 
 // <!-- Кнопка для загрузки формы -->
