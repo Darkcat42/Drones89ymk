@@ -155,18 +155,31 @@ margin-left: 30%;
 }
 /* страница с содержимым */
 .main_space{ /* основная подложка для блоков */
+    padding: 5vh 10vw;
     height: 84vh;
+    display: flex;
+    justify-content: center;
 }
 .add_new_mainblock{
-    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     border: 1px solid #4d1e5e;
     border-radius: 6px;
-    height: 200px;
+    height: 100px;
     cursor: pointer;
     color: white;
 }
-
-
+.add_new_mainblock p {
+    font-size: 2em;
+    text-align: center;
+}
+.add_new_mainblock:hover p {
+    font-size: 2em;
+    text-align: center;
+    color: red;
+}
 
 
 

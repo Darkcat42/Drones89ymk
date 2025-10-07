@@ -43,7 +43,9 @@ def index(webpage):
         links=webpage_links, 
         webpage_name=webpage_name,
         webpage_url=webpage_url,
-        mainblocks_list=mainblocks_list)
+        mainblocks_list=mainblocks_list,
+        mainblocks=mainblocks
+    )
 @app.route('/edit/<webpage>') 
 @login_required
 def edit(webpage):
@@ -103,31 +105,35 @@ def load_modal_menu_edit():
     modal_menu_edit = """
 """
     return modal_menu_edit
+@app.route('/delete_menu_link/<int:id>', methods=['POST', "GET"])
+def delete_link(id):
+    WebpageController.delete(id)
+    return redirect('/')
+@app.route('/add_menu_link', methods=['POST', 'GET']) # МАРШРУТ на главную
+@login_required
+def popap_add_web_page():
+    url = flask.request.form.get('url')
+    webpage_url = flask.request.form.get('webpage_url')
+    type_link = flask.request.form.get('type_link')
+    position = WebpageController.get_links_order_by_pos()[-1].position
+    if url[0] != '#':
+        url = '/'+str(url)
+    WebpageController.add_link(
+        url=url,
+        type_link=type_link,
+        position=int(position)+1
+    )
+    return redirect(f'/edit/{webpage_url}')
 
-
+# @app.route('/new_mainblock')
+# def load_modal_form_login():
+#     pass
+# @app.route('/empty_mainblock')
+# def load_modal_form_login():
+#     pass
 # маршруты для работы с веб страницами - переработать
 # @login_required
-# @app.route('/delete_link/<int:id>', methods=['POST', "GET"]) # МАРШРУТ функцтя добавления шаблона в БД
-# def delete_link(id):
-#     WebpageController.delete(id)
-#     return redirect('/')
-# @app.route('/popap_add_web_page', methods=['POST', 'GET']) # МАРШРУТ на главную
-# @login_required
-# def popap_add_web_page():
-#     url = flask.request.form.get('url')
-#     name = flask.request.form.get('name')
-#     webpage_url = flask.request.form.get('webpage_url')
-#     type_link = flask.request.form.get('type_link')
-#     position = WebpageController.get_links_order_by_pos()[-1].position
-#     if url[0] != '#':
-#         url = '/'+str(url)
-#     WebpageController.add_link(
-#         name=name,
-#         url=url,
-#         type_link=type_link,
-#         position=int(position)+1
-#     )
-#     return redirect(f'/edit/{webpage_url}')
+
 # @app.route('/popap_edit_web_page/', methods=['POST', 'GET']) # МАРШРУТ на главную
 # @login_required
 # def popap_edit_web_page():

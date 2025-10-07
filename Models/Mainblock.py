@@ -6,7 +6,7 @@ from Models.Webpage import Webpage
 from peewee import ForeignKeyField
 class Mainblock(Base):
     id = PrimaryKeyField()
-    html_id = CharField()
+    html_name_id = CharField()
     title_id = IntegerField()
     paragraph_id = IntegerField()
     media_id = IntegerField()

@@ -40,8 +40,9 @@
                     {% endfor %}     
                 </div>
                 {% if role == 'administrator' %}
+<!--                  кнопка редактирования-->
                 <div>
-                    <button class="basic_edit_btn" data-modal="modal_menu_edit" id="modal_link_act_open"></button>
+                    <button class="basic_edit_btn" data-modal="edit_menu"></button>
                 </div>
                 {% endif %}
               </div>
@@ -57,7 +58,7 @@
                 {% if current_user.is_authenticated == True %}
                     <a class="nav-link header_color my_a_link" href="/logout" onclick="RemoveCol()">выход</a>
                     {% else %}
-                    <a class="nav-link header_color my_a_link" data-modal="modal_login" href="#" onclick="RemoveCol()">вход</a>
+                    <a class="nav-link header_color my_a_link" data-modal="login" href="#" onclick="RemoveCol()">вход</a>
                     
                     {% endif %} 
             </div>
@@ -66,30 +67,54 @@
     </div>
   </div>
 </header>
-<!-- основная подложка для блоков -->
+<!-- секция для вывода блоков с элементами веб-страницы -->
 <section class="main_space basic_bg">
+    <!-- окно для создания нового блока веб-страницы -->
     <div class="add_new_mainblock" id="add_new_mainblock_act">
-        <p>добавить панель элементов</p>
-        
+        <p>добавить блок элементов</p>
     </div>
 </section>
-<section id="modal_menu" class="basic_modal "> 
+
+
+
+
+
+
+
+
+
+
+
+<!--базовый блок к который загружается модальное окно close_modal-->
+<section id="modal_menu" class="basic_modal ">
     <div class="modal_block">
         <div class="modal_header">
             <h2 id="modal_header_title">Модальное окно</h2>
             <p class="modal_btn_close" id="modal_btn_act_close"></p>
         </div>
         <div id="modal_content_div" class="modal_content">
+<!--        зона загрузки модального окна-->
+<!--            нам нужен список блоков текущей страницы-->
+                нам нужен список ссылок модали webpage
+            <form action="/">
 
-            <p>{{mainblocks_list[0][0]}}</p>
-        <p>
-            {% for mainblock in mainblocks_list %} 
-            <p>{{mainblock}}</p>
-            {% for block in mainblock %}
-            <p>{{block}}</p>
-            {% endfor %}
-            {% endfor %}
-    </p>
+            </form>
+
+
+
+
+
+
+
+<!--            <p>{{mainblocks_list[0][0]}}</p>-->
+<!--        <p>-->
+<!--            {% for mainblock in mainblocks_list %} -->
+<!--                <p>{{mainblock}}</p>-->
+<!--            {% for block in mainblock %}-->
+<!--                <p>{{block}}</p>-->
+<!--            {% endfor %}-->
+<!--            {% endfor %}-->
+<!--    </p>-->
         </div>       
     </div>
 </section>

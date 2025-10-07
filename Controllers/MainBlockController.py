@@ -7,7 +7,7 @@ class MainblockController():
         на вход id веб-страницы
         return: объект из бд сортированный по возрастанию по position
         """
-        select = Mainblock.select().where(Mainblock.webpage_id == webpage_id) 
+        select = Mainblock.select().where(Mainblock.webpage_id == webpage_id)
         return select.order_by(Mainblock.position, 'asc')
     @ classmethod
     def get_blocks_order_by_pos(cls, select):
@@ -35,7 +35,7 @@ class MainblockController():
         mainblocks_content = []
         for mainblocks_obj in list_mainblocks:
             mainblock = []
-            mainblock.append(mainblocks_obj.html_id)
+            mainblock.append(mainblocks_obj.html_name_id)
             mainblock.append(mainblocks_obj.title_id)
             mainblock.append(mainblocks_obj.paragraph_id)
             mainblock.append(mainblocks_obj.media_id)

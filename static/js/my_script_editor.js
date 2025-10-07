@@ -35,39 +35,34 @@ addEventListener('click', (evt) => {
         document.body.style.overflow='auto'
         modal_content_div.innerHTML = ''
     }//2
-    if(target.id == 'modal_link_act_open'){
-        modal_menu.classList.remove('close_modal')
-        modal_menu.classList.add('open_modal')
-        document.body.style.overflow='hidden'
+//    if(target.id == 'modal_link_act_open'){
+//        modal_menu.classList.remove('close_modal')
+//        modal_menu.classList.add('open_modal')
+//        document.body.style.overflow='hidden'
     }//2
-    // модальное окно авторизации
+
     if(target.hasAttribute('data-modal') == true){
-        if(target.getAttribute('data-modal') == 'modal_login'){
+        // модальное окно авторизации
+        if(target.getAttribute('data-modal') == 'login'){
             open_modal()
             modal_header_title.textContent = 'Авторизация'
             fetch('/load_modal_form_login') // Делаем AJAX-запрос к серверу
             .then(response => response.text())
             .then(html => {
-                // Вставляем полученный HTML в контейнер
-                modal_content_div.innerHTML = html;
-            });
-            // modal_content_div.innerHTML = '<div class="container"><div class="card_right row fix-mar"><form class="modal_form_login" action="/autorization" method="post"><input id="login" type="text" name="login" placeholder="Введите логин"><input id="password" type="text" name="password" placeholder="Введите пароль"><input type="submit" value="Вход"></form></div></div>'
-        }//3   
-    }//2
-    // модальное окно для редактирования меню
-    if(target.hasAttribute('data-modal') == true){
-        if(target.getAttribute('data-modal') == 'modal_menu_edit'){
+                modal_content_div.innerHTML = html; // Вставляем полученный HTML в контейнер
+            });}//3
+        // модальное окно авторизации
+        if(target.getAttribute('data-modal') == 'edit_menu'){
             open_modal()
             modal_header_title.textContent = 'Авторизация'
-            fetch('/load_modal_form_login') // Делаем AJAX-запрос к серверу
+            fetch('/load_modal_menu_edit') // Делаем AJAX-запрос к серверу
             .then(response => response.text())
             .then(html => {
-                // Вставляем полученный HTML в контейнер
-                modal_content_div.innerHTML = html;
-            });
-            // modal_content_div.innerHTML = '<div class="container"><div class="card_right row fix-mar"><form class="modal_form_login" action="/autorization" method="post"><input id="login" type="text" name="login" placeholder="Введите логин"><input id="password" type="text" name="password" placeholder="Введите пароль"><input type="submit" value="Вход"></form></div></div>'
-        }//3   
+                modal_content_div.innerHTML = html; // Вставляем полученный HTML в контейнер
+            });}//3
     }//2
+
+
 })//1
 
 // <!-- Кнопка для загрузки формы -->
