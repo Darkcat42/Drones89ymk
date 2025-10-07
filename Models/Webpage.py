@@ -1,12 +1,12 @@
-"""
-модель веб-страниц, которые 
-содержат внешние ключи на блоки данных, которые
-содержат заголовки, картинки, текста и тп
-"""
 from peewee import PrimaryKeyField, IntegerField, CharField, TextField
 from Models.Base import *
 
 class Webpage(Base):
+    """
+    модель веб-страниц, которые 
+    содержат внешние ключи на блоки данных, которые
+    содержат заголовки, картинки, текста и тп
+    """
     id = PrimaryKeyField()
     name = CharField()
     url = TextField()

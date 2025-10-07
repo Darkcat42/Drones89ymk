@@ -1,40 +1,38 @@
-import flask
+import flask, flask_login
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
-from flask import Flask, render_template, request, url_for, redirect
-import flask_login
+from flask import Flask, render_template, request, url_for, redirect 
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
 from Controllers.WebpageController import WebpageController
 from Controllers.MainBlockController import MainblockController 
-
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.secret_key = 'jksdhf l;lkj&*~19273l;kaszdfop['
 @login_manager.user_loader
-def load_user(user_id): # загрузка пользователя
+def load_user(user_id): 
+   """функция загрузки пользователя для flask_login"""
    return UsersController.show(int(user_id))
 @login_manager.unauthorized_handler
 def anon():
+    """функция анонимного пользователя"""
     return flask.redirect('/')
-@app.route('/') # МАРШРУТ редирект на главную
+@app.route('/') 
 def main():
+    """функция переадресации на главную"""
     return redirect('/main')
-@app.route('/favicon.ico') # МАРШРУТ редирект на главную
+@app.route('/favicon.ico') 
 def fav_pass():
+    """сброс ошибки переадресации на favicon.ico"""
     return 'favicon'
-
-@app.route('/<webpage>') # МАРШРУТ на страницу
+@app.route('/<webpage>') 
 def index(webpage):
+    """маршрут для гостей на веб-страницы сайта"""
     webpage = str('/')+webpage
     webpage = WebpageController.get_by_url(webpage)
     mainblocks = MainblockController.get_blocks_where_webpage(int(webpage.id))
     mainblocks_list = MainblockController.get_order_by_mainblocks(mainblocks)
-    print(mainblocks_list)
-    print(mainblocks_list)
-    print(mainblocks_list)
-    print(mainblocks_list)
-    print(mainblocks_list)
+    # print(mainblocks_list)
     webpage_links = WebpageController.get_order_by_webpages()
     webpage_name = webpage.name
     webpage_url = webpage.url
@@ -45,12 +43,11 @@ def index(webpage):
         links=webpage_links, 
         webpage_name=webpage_name,
         webpage_url=webpage_url,
-        mainblocks_list=mainblocks_list
-        )
-
-@app.route('/edit/<webpage>') # МАРШРУТ на главную
+        mainblocks_list=mainblocks_list)
+@app.route('/edit/<webpage>') 
 @login_required
 def edit(webpage):
+    """маршрут для авторизованных пользователей на веб-страницы сайта"""
     role_name = RoleController.show(current_user.role).role
     webpage = str('/')+webpage
     webpage = WebpageController.get_by_url(webpage)
@@ -66,17 +63,14 @@ def edit(webpage):
         webpage_name=webpage_name,
         webpage_url=webpage_url,
         mainblocks_list=mainblocks_list)
-        # mainblocks_list.append(mainblocks_obj.html_id)
-        # mainblocks_list.append(mainblocks_obj.title_id)
-        # mainblocks_list.append(mainblocks_obj.paragraph_id)
-        # mainblocks_list.append(mainblocks_obj.media_id)
-        # mainblocks_list.append(mainblocks_obj.position)
-@app.route('/logout') # МАРШРУТ для выхода из аккаунта
+@app.route('/logout') 
 def logout():
+    """маршрут для выхода из авторизации"""
     logout_user()
     return flask.redirect('/main')
-@app.route('/autorization', methods=['POST']) # МАРШРУТ функция авторизации
+@app.route('/autorization', methods=['POST']) 
 def autorization():
+    """маршрут для авторизации из формы"""
     if request.method == "POST":
         login = request.form.get('login')
         passwd = request.form.get('password')
@@ -90,9 +84,9 @@ def autorization():
                 else:
                     flask.redirect('/')
     return 'неправильный пароль или логин'
-
-@app.route('/load_modal_form_login') # модальное окно для авторизации
+@app.route('/load_modal_form_login') 
 def load_modal_form_login():
+    """маршрут для загрузки формы авторизации"""
     modal_form_login = """<div class="container">
     <div class="card_right row fix-mar">
     <form class="modal_form_login" action="/autorization" method="post">
@@ -103,45 +97,46 @@ def load_modal_form_login():
     </div>
     </div>"""
     return modal_form_login
-
-@app.route('/load_modal_menu_edit') # модальное окно для редактирования ссылок меню
+@app.route('/load_modal_menu_edit') 
 def load_modal_menu_edit():
+    """маршрут для загрузки формы редактирования ссылок главного меню"""
     modal_menu_edit = """
-
 """
     return modal_menu_edit
 
-@login_required
-@app.route('/delete_link/<int:id>', methods=['POST', "GET"]) # МАРШРУТ функцтя добавления шаблона в БД
-def delete_link(id):
-    WebpageController.delete(id)
-    return redirect('/')
-@app.route('/popap_add_web_page', methods=['POST', 'GET']) # МАРШРУТ на главную
-@login_required
-def popap_add_web_page():
-    url = flask.request.form.get('url')
-    name = flask.request.form.get('name')
-    webpage_url = flask.request.form.get('webpage_url')
-    type_link = flask.request.form.get('type_link')
-    position = WebpageController.get_links_order_by_pos()[-1].position
-    if url[0] != '#':
-        url = '/'+str(url)
-    WebpageController.add_link(
-        name=name,
-        url=url,
-        type_link=type_link,
-        position=int(position)+1
-    )
-    return redirect(f'/edit/{webpage_url}')
-@app.route('/popap_edit_web_page/', methods=['POST', 'GET']) # МАРШРУТ на главную
-@login_required
-def popap_edit_web_page():
-    data_from_url = flask.request.args.get('query', default=0, type=str)
-    data = data_from_url.split(', ')
-    url = str(data[0])
-    name = str(data[1])
-    str_data = f'{url}, {name}' 
-    return str_data
+
+# маршруты для работы с веб страницами - переработать
+# @login_required
+# @app.route('/delete_link/<int:id>', methods=['POST', "GET"]) # МАРШРУТ функцтя добавления шаблона в БД
+# def delete_link(id):
+#     WebpageController.delete(id)
+#     return redirect('/')
+# @app.route('/popap_add_web_page', methods=['POST', 'GET']) # МАРШРУТ на главную
+# @login_required
+# def popap_add_web_page():
+#     url = flask.request.form.get('url')
+#     name = flask.request.form.get('name')
+#     webpage_url = flask.request.form.get('webpage_url')
+#     type_link = flask.request.form.get('type_link')
+#     position = WebpageController.get_links_order_by_pos()[-1].position
+#     if url[0] != '#':
+#         url = '/'+str(url)
+#     WebpageController.add_link(
+#         name=name,
+#         url=url,
+#         type_link=type_link,
+#         position=int(position)+1
+#     )
+#     return redirect(f'/edit/{webpage_url}')
+# @app.route('/popap_edit_web_page/', methods=['POST', 'GET']) # МАРШРУТ на главную
+# @login_required
+# def popap_edit_web_page():
+#     data_from_url = flask.request.args.get('query', default=0, type=str)
+#     data = data_from_url.split(', ')
+#     url = str(data[0])
+#     name = str(data[1])
+#     str_data = f'{url}, {name}' 
+#     return str_data
 
 
 
