@@ -39,7 +39,7 @@ addEventListener('click', (evt) => {
 //        modal_menu.classList.remove('close_modal')
 //        modal_menu.classList.add('open_modal')
 //        document.body.style.overflow='hidden'
-    }//2
+    }//2 
 
     if(target.hasAttribute('data-modal') == true){
         // модальное окно авторизации
