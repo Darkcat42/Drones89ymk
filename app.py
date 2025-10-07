@@ -109,9 +109,10 @@ def load_modal_menu_edit():
 def delete_link(id):
     WebpageController.delete(id)
     return redirect('/')
-@app.route('/add_menu_link', methods=['POST', 'GET']) # МАРШРУТ на главную
+@app.route('/add_menu_link', methods=['POST', 'GET'])
 @login_required
-def popap_add_web_page():
+def add_web_page():
+переработать только для ссылок, добавить проверку на повтор или недопуск
     url = flask.request.form.get('url')
     webpage_url = flask.request.form.get('webpage_url')
     type_link = flask.request.form.get('type_link')
