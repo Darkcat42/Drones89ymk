@@ -1,11 +1,4 @@
-# IMPORTS
-# from pickle import PROTO
-# from telnetlib import AUTHENTICATION
-# from tokenize import endpats
-
-# import bcrypt
 from Models.Users import *
-# from bcrypt import hashpw, gensalt, checkpw
 class UsersController():
 # CLS METHOD FOR ADD USER
     @classmethod
