@@ -1,4 +1,3 @@
-#класс для таблицы пользователей в бд
 from Models.Base import *
 class Samples(Base):
     id = PrimaryKeyField()

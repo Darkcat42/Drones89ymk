@@ -1,4 +1,3 @@
-
 from peewee import PrimaryKeyField, IntegerField, CharField
 from Models.Base import *
 from Models.Samples import Samples

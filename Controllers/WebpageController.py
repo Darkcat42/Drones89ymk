@@ -14,7 +14,6 @@ class WebpageController():
             type=type_link,
             position=position
         )
-
     @classmethod
     def delete(cls, id):
         Webpage.delete().where(Webpage.id == id).execute()
@@ -32,11 +31,5 @@ class WebpageController():
             link.append(webpage_obj.id)
             webpage_links.append(link)
         return webpage_links
-
-
-# if __name__ == '__main__':
-#     pass
-    # for role in RoleController.get():
-    #     print((role.id, role.name))
 
 

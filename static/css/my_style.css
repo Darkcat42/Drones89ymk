@@ -1,7 +1,11 @@
+/* общие стили */
 *{
     transition-duration: 300ms;
     transition-property: all;
     /* outline: 1px solid red; */
+}
+.My_D_none{
+    display: none;
 }
 /* перебор стилей сайта */
 
@@ -31,7 +35,6 @@ margin-left: 15%;
     margin-top: 10px;
     margin-left: 10px;
 }
-
 .editor_hover:hover{
     outline: 1px solid gray;
     border-radius: 5px;
@@ -39,7 +42,6 @@ margin-left: 15%;
 .header_section:hover .basic_edit_btn{
     filter: opacity(100);
 }
-
 /* поправка ссылки входа в меню сайта */
 .my_a_link{
 margin-left: 30%;
@@ -59,7 +61,6 @@ margin-left: 30%;
     justify-content: center; /* для родителя по одной оси */
     flex-direction: row; 
 
- 
     background-color: rgba(0, 0, 0, 0.5);
     /* filter: blur(5px); */
     backdrop-filter: blur(5px);
@@ -86,6 +87,31 @@ margin-left: 30%;
     justify-content: space-between; /* для родителя по другой оси */
     color: white;
 }
+.modal_content{
+    display: flex;
+    justify-content: center; /* для родителя по одной оси */
+    flex-direction: column;
+}
+.modal_content select{
+    width: 50%;
+    height: 50px;
+    border-radius: 6px;
+}
+.modal_content select:hover{
+    background: black;
+    color: white;
+}
+
+.modal_submit{
+    height: 50px;
+    font-size: 1.5em;
+    width: 25%;
+    border-radius: 6px;
+}
+.modal_submit:hover{
+    background: black;
+    color: white;
+}
 .modal_btn_close{
     filter: opacity(30%);
     cursor: pointer;
@@ -108,6 +134,7 @@ margin-left: 30%;
 .modal_content form>*{
     margin-bottom: 2%;
 }
+
 .modal_content form input:not(.modal_content form input:last-child){
     border: none;
     border-radius: 6px;

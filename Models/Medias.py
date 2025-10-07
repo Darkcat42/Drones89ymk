@@ -1,4 +1,3 @@
-#класс для таблицы пользователей в бд
 from Models.Samples import Samples
 from peewee import ForeignKeyField
 from Models.Base import *

@@ -1,4 +1,3 @@
-#класс для таблицы пользователей в бд
 from Models.Base import *
 class Roles(Base):
     id = PrimaryKeyField()

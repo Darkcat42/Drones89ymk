@@ -35,12 +35,6 @@ addEventListener('click', (evt) => {
         document.body.style.overflow='auto'
         modal_content_div.innerHTML = ''
     }//2
-//    if(target.id == 'modal_link_act_open'){
-//        modal_menu.classList.remove('close_modal')
-//        modal_menu.classList.add('open_modal')
-//        document.body.style.overflow='hidden'
-    }//2
-
     if(target.hasAttribute('data-modal') == true){
         // модальное окно авторизации
         if(target.getAttribute('data-modal') == 'login'){
@@ -51,56 +45,23 @@ addEventListener('click', (evt) => {
             .then(html => {
                 modal_content_div.innerHTML = html; // Вставляем полученный HTML в контейнер
             });}//3
-        // модальное окно авторизации
+        // модальное окно редактирования меню
         if(target.getAttribute('data-modal') == 'edit_menu'){
             open_modal()
-            modal_header_title.textContent = 'Авторизация'
+            modal_header_title.textContent = 'Редактирование меню'
             fetch('/load_modal_menu_edit') // Делаем AJAX-запрос к серверу
             .then(response => response.text())
             .then(html => {
                 modal_content_div.innerHTML = html; // Вставляем полученный HTML в контейнер
             });}//3
     }//2
+    if(target.name == 'select_type'){
 
-
+            if(target.options[1].getAttribute('name') == 'edit_menu_type'){
+            }
+        }
 })//1
 
-// <!-- Кнопка для загрузки формы -->
-// <button id="loadFormBtn">Показать форму подписки</button>
 
-// <!-- Контейнер, куда будет вставлена форма -->
-// <div id="formContainer"></div>
 
-// <script>
-// document.getElementById('loadFormBtn').addEventListener('click', function() {
-//     
-//     fetch('/load-subscribe-form')
-//         .then(response => response.text())
-//         .then(html => {
-//             // Вставляем полученный HTML в контейнер
-//             document.getElementById('formContainer').innerHTML = html;
-//         });
-// });
-// </script>
-
-// function edit_link_webpage(index){
-//     // link = document.getElementById('link_webpage'+index)
-//     // link_href = link.getAttribute('href')
-//     // popap_menu.classList.remove('close_popap')
-//     // popap_menu.classList.add('open_popap')
-//     // popap_url_input = document.getElementById('popap_url')
-//     // popap_title_h2 = document.getElementById('popap_title_h2')
-//     // popap_select = document.getElementById('popap_select')
-//     // popap_submit = document.getElementById('popap_submit')
-//     // popap_form = document.getElementById('popap_form')
-//     // popap_submit.value = 'Изменить'
-//     // popap_select.style.display = 'none';
-//     // popap_title_h2.textContent = 'редактирование маршрута'
-//     // popap_url_input.value = link_href
-//     // popap_name_input = document.getElementById('popap_name')
-//     // popap_name_input.value = link.textContent
-//     // data = '('+link_href+', '+link.textContent+')'
-//     // let url = `${'/popap_edit_web_page'}?query=${encodeURIComponent(data)}`;
-//     // popap_form.action = url
-// }
 
