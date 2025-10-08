@@ -60,7 +60,17 @@ addEventListener('click', (evt) => {
             if(target.options[1].getAttribute('name') == 'edit_menu_type'){
             }
         }
+ 
 })//1
+
+addEventListener('dragstart', (evt) => {
+    target=evt.target
+    target.classList.add(`selected`);
+})
+addEventListener('dragend', (evt) => {
+    target=evt.target
+    target.classList.remove(`selected`);
+})
 
 
 

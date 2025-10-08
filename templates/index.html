@@ -32,10 +32,15 @@
               <div class="navbar-nav"  id="links">
                 <div class="edit_btn_fix">
                     {% for link in links %} 
-                        <div>
-                            <a id='link_webpage{{loop.index}}' class="nav-link header_color" href="{{link[1]}}" onclick="RemoveCol()">
+                        <div  class="menu_link_block" id="menu_link_block{{loop.index}}">
+                            <a draggable="true" id='link_webpage{{loop.index}}' class="nav-link header_color" href="{{link[1]}}" onclick="RemoveCol()">
                                 {{link[0]}}
                             </a>
+                            <div class="edit_tools">
+                              <button class="" id="drugNdrop_btn" data-id="{{loop.index}}">x</button>
+                              <button class="">р</button>
+                              <button class="">у</button>
+                            </div>
                         </div>
                     {% endfor %}     
                 </div>
@@ -57,9 +62,9 @@
             <div class="btn_exit_fix">
                 {% if current_user.is_authenticated == True %}
                     <a class="nav-link header_color my_a_link" href="/logout" onclick="RemoveCol()">выход</a>
+                    <p>{{current_user.FIO}}</p>
                     {% else %}
                     <a class="nav-link header_color my_a_link" data-modal="login" href="#" onclick="RemoveCol()">вход</a>
-                    
                     {% endif %} 
             </div>
       </nav>
@@ -70,7 +75,7 @@
 <!-- секция для вывода блоков с элементами веб-страницы -->
 <section class="main_space basic_bg">
     <!-- окно для создания нового блока веб-страницы -->
-    <div class="add_new_mainblock" id="add_new_mainblock_act">
+    <div class="add_new_mainblock editor_hover" id="add_new_mainblock_act">
         <p>добавить блок элементов</p>
     </div>
 </section>
@@ -86,15 +91,7 @@
         <div id="modal_content_div" class="modal_content">
             
 
-<!--            <p>{{mainblocks_list[0][0]}}</p>-->
-<!--        <p>-->
-<!--            {% for mainblock in mainblocks_list %} -->
-<!--                <p>{{mainblock}}</p>-->
-<!--            {% for block in mainblock %}-->
-<!--                <p>{{block}}</p>-->
-<!--            {% endfor %}-->
-<!--            {% endfor %}-->
-<!--    </p>-->
+
         </div>       
     </div>
 </section>

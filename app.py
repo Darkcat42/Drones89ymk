@@ -107,8 +107,9 @@ def load_modal_menu_edit():
 <form action="/add_menu_link"> 
                 <p>выберите тип ссылки:</p>
                 <select name="select_type" >
-                    <option data-id="1">веб-страница</option>
-                    <option name="edit_menu_type">якорь</option>
+                    <option data-id="1">новая веб-страница</option>
+                    <option name="edit_menu_type">новый якорь</option>
+                    <option name="edit_menu_type">страница сайта</option>
                 </select>
                 <p>выберите маршрут:</p>
                 <select name="menu_edit_content" > 
@@ -117,7 +118,8 @@ def load_modal_menu_edit():
                 <select name="menu_edit_content" class="My_D_none"> 
                     <option>якори будут в цикле из бд</option>
                 </select>
-                    <input  name="" type="text" placeholder="введите текст ссылки">
+                    <input  name="" type="text" placeholder="введите название ссылки">
+                    <input  name="" type="text" placeholder="введите url ссылки">
                     <input  class="modal_submit" name="" type="submit" value="Создать">
             </form>
 """
