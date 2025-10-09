@@ -89,29 +89,49 @@ def autorization():
 @app.route('/load_modal_form_login') 
 def load_modal_form_login():
     """маршрут для загрузки формы авторизации"""
-    modal_form_login = """<div class="container">
-    <div class="card_right row fix-mar">
-    <form class="modal_form_login" action="/autorization" method="post">
-    <input id="login" type="text" name="login" placeholder="Введите логин">
-    <input id="password" type="text" name="password" placeholder="Введите пароль">
-    <input type="submit" value="Вход">
-    </form>
-    </div>
+    modal_form_login = """
+    <div class="container">
+        <div class="card_right row fix-mar">
+            <form class="modal_form_login" action="/autorization" method="post">
+                <input id="login" type="text" name="login" placeholder="Введите логин">
+                <input id="password" type="text" name="password" placeholder="Введите пароль">
+                <input class="modal_submit" type="submit" value="Вход">
+            </form>
+        </div>
     </div>"""
     return modal_form_login
 @app.route('/load_modal_menu_edit') 
 def load_modal_menu_edit():
     """маршрут для загрузки формы редактирования ссылок главного меню"""
     modal_menu_edit = """
+<form action="/add_menu_link"> 
+                <p>выберите тип ссылки:</p>
+                <select name="select_type" >
+                    <option data-id="1">новая веб-страница</option>
+                    <option name="edit_menu_type">новый якорь</option>
+                    <option name="edit_menu_type">страница сайта</option>
+                </select>
+                <p>выберите маршрут:</p>
+                <select name="menu_edit_content" > 
+                    <option>веб-страница будет в цикле из бд</option>
+                </select>
+                <select name="menu_edit_content" class="My_D_none"> 
+                    <option>якори будут в цикле из бд</option>
+                </select>
+                    <input  name="" type="text" placeholder="введите название ссылки">
+                    <input  name="" type="text" placeholder="введите url ссылки">
+                    <input  class="modal_submit" name="" type="submit" value="Создать">
+            </form>
 """
     return modal_menu_edit
 @app.route('/delete_menu_link/<int:id>', methods=['POST', "GET"])
 def delete_link(id):
     WebpageController.delete(id)
     return redirect('/')
-@app.route('/add_menu_link', methods=['POST', 'GET']) # МАРШРУТ на главную
+@app.route('/add_menu_link', methods=['POST', 'GET'])
 @login_required
-def popap_add_web_page():
+def add_web_page():
+# переработать только для ссылок, добавить проверку на повтор или недопуск
     url = flask.request.form.get('url')
     webpage_url = flask.request.form.get('webpage_url')
     type_link = flask.request.form.get('type_link')
@@ -124,7 +144,7 @@ def popap_add_web_page():
         position=int(position)+1
     )
     return redirect(f'/edit/{webpage_url}')
-
+# коммит тест
 # @app.route('/new_mainblock')
 # def load_modal_form_login():
 #     pass

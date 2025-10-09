@@ -1,8 +1,27 @@
+/* общие стили */
 *{
     transition-duration: 300ms;
     transition-property: all;
     /* outline: 1px solid red; */
 }
+.editor_hover{
+    border: 1px solid transparent;
+}
+.editor_hover:hover{
+    /* outline: 1px solid gray; */
+    /* box-shadow: 1px 1px 16px 1px black; */
+    box-shadow: 3px 3px 8px 4px #200c27;
+    border-radius: 6px;
+    transform:scale(1.01, 1.01);
+    text-shadow: 4px 4px 6px black;
+    border: 1px solid #4c1f5e;
+}
+.My_D_none{
+    display: none;
+}
+/* .My_D_block{
+    display: block;
+} */
 /* перебор стилей сайта */
 
 .basic_bg { /* стандартный фон везде */
@@ -32,16 +51,46 @@ margin-left: 15%;
     margin-left: 10px;
 }
 
-.editor_hover:hover{
-    outline: 1px solid gray;
-    border-radius: 5px;
+.dragstart{
+    /* display: none; */
+    /* background: red; */
+    opacity: 50%;
+}
+.dragover{
+    transform: translateX(10px);
+}
+.drug_select{
+    margin-right: 20px;
+    margin-left:  20px;
+}
+.edit_btn_fix{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.menu_link_block:hover .edit_tools{
+    display: flex;
+}
+.edit_tools{ /* всплывающие кнопки для редактирования */
+    flex-direction: row;
+    display: none;
+    position: absolute;
+    margin-top: -50px;
+}
+.edit_tools button{ 
+    width: 25px;
+    height: 25px;
+    background: none;
+    border: none;
+}
+.edit_tools button:hover{
+    color: red;
 }
 .header_section:hover .basic_edit_btn{
     filter: opacity(100);
 }
 
-/* поправка ссылки входа в меню сайта */
-.my_a_link{
+.my_a_link{ /* поправка ссылки входа в меню сайта */
 margin-left: 30%;
 }
 /* .webpage_links_fix{
@@ -59,7 +108,6 @@ margin-left: 30%;
     justify-content: center; /* для родителя по одной оси */
     flex-direction: row; 
 
- 
     background-color: rgba(0, 0, 0, 0.5);
     /* filter: blur(5px); */
     backdrop-filter: blur(5px);
@@ -86,6 +134,31 @@ margin-left: 30%;
     justify-content: space-between; /* для родителя по другой оси */
     color: white;
 }
+.modal_content{
+    display: flex;
+    justify-content: center; /* для родителя по одной оси */
+    flex-direction: column;
+}
+.modal_content select{
+    width: 50%;
+    height: 50px;
+    border-radius: 6px;
+}
+.modal_content select:hover{
+    background: black;
+    color: white;
+}
+
+.modal_submit{
+    height: 50px;
+    font-size: 1.5em;
+    width: 25%;
+    border-radius: 6px;
+}
+.modal_submit:hover{
+    background: black;
+    color: white;
+}
 .modal_btn_close{
     filter: opacity(30%);
     cursor: pointer;
@@ -108,6 +181,18 @@ margin-left: 30%;
 .modal_content form>*{
     margin-bottom: 2%;
 }
+.btn_exit_fix{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.btn_exit_fix p{
+    position: absolute;
+    transform: translateX(180px) translateY(10px);
+    width: max-content;
+}
+
 .modal_content form input:not(.modal_content form input:last-child){
     border: none;
     border-radius: 6px;
@@ -144,11 +229,7 @@ margin-left: 30%;
     flex-direction: column;
 }
 
-.edit_btn_fix{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
+
 .modal_content>*{
     color: white;
     /* padding: 5%; */
@@ -178,7 +259,6 @@ margin-left: 30%;
 .add_new_mainblock:hover p {
     font-size: 2em;
     text-align: center;
-    color: red;
 }
 
 

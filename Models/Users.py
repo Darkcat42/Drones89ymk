@@ -1,4 +1,3 @@
-#класс для таблицы пользователей в бд
 from peewee import PrimaryKeyField, CharField, ForeignKeyField
 from flask_login import UserMixin
 from Models.Base import *

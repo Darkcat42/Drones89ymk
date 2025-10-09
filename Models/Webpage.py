@@ -1,6 +1,5 @@
 from peewee import PrimaryKeyField, IntegerField, CharField, TextField
 from Models.Base import *
-
 class Webpage(Base):
     """
     модель веб-страниц, которые 
