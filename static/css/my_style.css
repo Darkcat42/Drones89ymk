@@ -69,8 +69,13 @@ margin-left: 15%;
     justify-content: space-between;
     flex-direction: row;
 }
-.menu_link_block:hover .edit_tools{
+.editable_block{
+    position: relative;
+}
+.editable_block:hover .edit_tools{
     display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 .edit_tools{ /* всплывающие кнопки для редактирования */
     flex-direction: row;
@@ -84,8 +89,26 @@ margin-left: 15%;
     background: none;
     border: none;
 }
-.edit_tools button:hover{
-    color: red;
+#delete_item_btn{
+    background: url('/static/svg/exit_icon_light.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}
+#move_item_btn{
+    background: url('/static/svg/move_icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}
+#edit_item_btn{
+    background: url('/static/svg/edit_icon_light.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
 }
 .header_section:hover .basic_edit_btn{
     filter: opacity(100);
@@ -105,12 +128,10 @@ margin-left: 30%;
     height: 100vh;
     top: 0px;
     display: flex;
-    align-items: center; /* для родителя по другой оси */
-    justify-content: center; /* для родителя по одной оси */
+    align-items: center; /* для родителя по одной оси */
+    justify-content: center; /* для родителя по второй оси */
     flex-direction: row; 
-
     background-color: rgba(0, 0, 0, 0.5);
-    /* filter: blur(5px); */
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 }
@@ -125,39 +146,13 @@ margin-left: 30%;
     background: #31123C;
     box-shadow: 2px 2px 15px 5px #200c27;
 }
-.modal_form_login{
+.modal_form_align_center{
     text-align: center;
 }
-.modal_header{ /* блок управление модального окна (выход и тп) */
+.modal_header{ /* блок управление модального окна (выход и заголовок) */
     padding: 0 5%;
     display: flex;
-    /* width: 100%; */
-    justify-content: space-between; /* для родителя по другой оси */
-    color: white;
-}
-.modal_content{
-    display: flex;
-    justify-content: center; /* для родителя по одной оси */
-    flex-direction: column;
-}
-.modal_content select{
-    width: 50%;
-    height: 50px;
-    border-radius: 6px;
-}
-.modal_content select:hover{
-    background: black;
-    color: white;
-}
-
-.modal_submit{
-    height: 50px;
-    font-size: 1.5em;
-    width: 25%;
-    border-radius: 6px;
-}
-.modal_submit:hover{
-    background: black;
+    justify-content: space-between; /* разводит элементы по сторонам через центр */
     color: white;
 }
 .modal_btn_close{
@@ -172,6 +167,30 @@ margin-left: 30%;
 }
 .modal_header:hover .modal_btn_close{
     filter: opacity(100%);
+}
+.modal_content{ /* блок с содержимым (зависит от действий пользователя) */
+    display: flex;
+    justify-content: center; 
+    flex-direction: column;
+}
+.modal_content select{
+    width: 50%;
+    height: 50px;
+    border-radius: 6px;
+}
+.modal_content select:hover{
+    background: black;
+    color: white;
+}
+.modal_submit{
+    height: 50px;
+    font-size: 1.5em;
+    width: 25%;
+    border-radius: 6px;
+}
+.modal_submit:hover{
+    background: black;
+    color: white;
 }
 .modal_content form{
     display: flex;
@@ -229,11 +248,34 @@ margin-left: 30%;
     display: flex;
     flex-direction: column;
 }
-
-
 .modal_content>*{
     color: white;
     /* padding: 5%; */
+}
+.modal_message_content>div>button{
+    background: none;
+    border: none;
+    width: 25%;
+    align-self: center;
+}
+.modal_message_content>div>button:hover{
+    color: red;
+}
+.modal_message_content{
+    display: flex;
+    flex-direction: column;
+    z-index: 3!important;
+    width: 40%;
+    height: 30%;
+    border-radius: 6px;
+    border: 1px solid #4d1e5e;
+    background: #31123C;
+    box-shadow: 2px 2px 15px 5px #200c27;
+    justify-content: space-between;
+    align-items: top;
+    color: white;
+    font-size: 2em;
+    text-align: center;
 }
 /* страница с содержимым */
 .main_space{ /* основная подложка для блоков */

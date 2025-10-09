@@ -92,7 +92,7 @@ def load_modal_form_login():
     modal_form_login = """
     <div class="container">
         <div class="card_right row fix-mar">
-            <form class="modal_form_login" action="/autorization" method="post">
+            <form class="modal_form_align_center" action="/autorization" method="post">
                 <input id="login" type="text" name="login" placeholder="Введите логин">
                 <input id="password" type="text" name="password" placeholder="Введите пароль">
                 <input class="modal_submit" type="submit" value="Вход">
@@ -127,8 +127,9 @@ def load_modal_menu_edit():
 @app.route('/delete_menu_link/<int:id>', methods=['POST', "GET"])
 @login_required
 def delete_link(id):
+    print('delete link')
     WebpageController.delete(id)
-    return redirect('/')
+    return 'link was deleted'
 @app.route('/add_menu_link', methods=['POST', 'GET'])
 @login_required
 def add_web_page():
