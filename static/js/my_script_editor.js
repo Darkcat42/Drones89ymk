@@ -4,7 +4,7 @@ function get_real_children(parent){
 }
 function set_editor(elems_id){
     massive_elems_id = elems_id.split(', ')
-    console.log(massive_elems_id)
+    // console.log(massive_elems_id)
     massive_elems_id.forEach((elem, i) => {
         // console.log(elem)
         element = document.getElementById(elem)
@@ -24,7 +24,7 @@ function open_modal(){
 // });
 addEventListener('click', (evt) => {
     target = evt.target
-    console.log(target.id)
+    // console.log(target.id)
     modal_menu = document.getElementById('modal_menu')
     modal_header_title = document.getElementById('modal_header_title')
     modal_content_div = document.getElementById('modal_content_div')
@@ -61,16 +61,74 @@ addEventListener('click', (evt) => {
             }
         }
  
-})//1
+    if(target.id == 'move_item_bnt'){
+        
+    }
 
-addEventListener('dragstart', (evt) => {
-    target=evt.target
-    target.classList.add(`selected`);
-})
-addEventListener('dragend', (evt) => {
-    target=evt.target
-    target.classList.remove(`selected`);
-})
+
+
+})//1 конец: addEventListener - click
+
+let draggedItem = null;
+document.addEventListener('dragstart', (e) => {
+  if (e.target.getAttribute('draggable')){
+    draggedItem = e.target;
+    draggedItem.classList.add('dragstart');
+    draggedItem.parentNode.classList.add('drug_select');
+
+  }
+});
+document.addEventListener('dragover', (e) => {
+  e.preventDefault();
+//   drug_select_node_list = e.target.parentNode.querySelectorAll('.drug_select')
+//   drug_select_real_array = Array.from(drug_select_node_list)
+//    console.log(drug_select_real_array)
+//   if(drug_select_real_array[0].parentNode == e.target.parentNode){
+//     console.log('sdfsdfds')
+//     drug_select_real_array[0].classList.remove('My_D_none')
+//     drug_select_real_array[1].classList.remove('My_D_none')
+//   }
+  
+  
+});
+document.addEventListener('dragenter', (e) => {
+    if(e.target.parentNode === draggedItem.parentNode){
+e.preventDefault();
+  e.target.classList.add('dragover')
+    }
+});
+document.addEventListener('dragleave', (e) => {
+    if(e.target.parentNode === draggedItem.parentNode){
+e.preventDefault();
+  e.target.classList.remove('dragover')
+    }
+});
+document.addEventListener('drop', (e) => {
+  e.preventDefault();
+  e.target.classList.remove('dragover')
+    let container = e.target.parentNode.parentNode; 
+    let allItems = Array.from(container.children);
+    let targetIndex = allItems.indexOf(e.target.parentNode); // индекс под
+    let draggedIndex = allItems.indexOf(draggedItem); // индекс в руках
+    console.log(targetIndex, draggedIndex) // цель тут это то что под курсором!
+    container_id = container.id 
+    draggedItem_p_id = draggedItem.parentNode.id  
+    if(container_id == draggedItem_p_id){
+        if (draggedIndex < targetIndex) // тащим слева на право 0 < 1  
+        container.insertBefore(draggedItem, e.target.parentNode.nextSibling);
+        else if(draggedIndex > targetIndex){
+        container.insertBefore(draggedItem, e.target.parentNode);  
+        }
+    }
+});
+document.addEventListener('dragend', (e) => {
+  if (e.target.getAttribute('draggable')){
+    draggedItem = e.target;
+    draggedItem.classList.remove('dragstart');
+    draggedItem.parentNode.classList.remove('drug_select');
+  }
+});
+
 
 
 

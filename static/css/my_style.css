@@ -19,6 +19,9 @@
 .My_D_none{
     display: none;
 }
+/* .My_D_block{
+    display: block;
+} */
 /* перебор стилей сайта */
 
 .basic_bg { /* стандартный фон везде */
@@ -47,20 +50,18 @@ margin-left: 15%;
     margin-top: 10px;
     margin-left: 10px;
 }
-.edit_tools{
-    flex-direction: row;
-    display: none;
-    position: absolute;
-    margin-top: -5px;
-    outline: 1px solid red;
 
-
-    
+.dragstart{
+    /* display: none; */
+    /* background: red; */
+    opacity: 50%;
 }
-.selected{
-    opacity: 100%;
-    color: red;
-    background: red;
+.dragover{
+    transform: translateX(10px);
+}
+.drug_select{
+    margin-right: 20px;
+    margin-left:  20px;
 }
 .edit_btn_fix{
     display: flex;
@@ -70,16 +71,26 @@ margin-left: 15%;
 .menu_link_block:hover .edit_tools{
     display: flex;
 }
-.edit_tools button{
+.edit_tools{ /* всплывающие кнопки для редактирования */
+    flex-direction: row;
+    display: none;
+    position: absolute;
+    margin-top: -50px;
+}
+.edit_tools button{ 
     width: 25px;
     height: 25px;
-    
+    background: none;
+    border: none;
+}
+.edit_tools button:hover{
+    color: red;
 }
 .header_section:hover .basic_edit_btn{
     filter: opacity(100);
 }
-/* поправка ссылки входа в меню сайта */
-.my_a_link{
+
+.my_a_link{ /* поправка ссылки входа в меню сайта */
 margin-left: 30%;
 }
 /* .webpage_links_fix{

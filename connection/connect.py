@@ -1,18 +1,18 @@
 from peewee import *
-def connect_db():
-    return MySQLDatabase(
-        'drones',
-        user='drones207',
-        password='sakjdfhkjsadfhkjsdfs',
-        host='127.0.0.1',
-        port=3306)
 # def connect_db():
 #     return MySQLDatabase(
 #         'drones',
-#         user='drones',
-#         password='dsfkjlhgsdflkgl90890',
-#         host='192.168.0.102',
+#         user='drones207',
+#         password='sakjdfhkjsadfhkjsdfs',
+#         host='127.0.0.1',
 #         port=3306)
+def connect_db():
+    return MySQLDatabase(
+        'drones',
+        user='drones',
+        password='dsfkjlhgsdflkgl90890',
+        host='192.168.0.102',
+        port=3306)
 # def connect_db():
 #     return MySQLDatabase(
 #         'OnVisp2_drones',

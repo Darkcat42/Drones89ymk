@@ -30,18 +30,22 @@
             <!-- динамическая загрузка меню -->
             <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
               <div class="navbar-nav"  id="links">
-                <div class="edit_btn_fix">
+                <div  id="menu_link_block" class="edit_btn_fix">
                     {% for link in links %} 
-                        <div  class="menu_link_block" id="menu_link_block{{loop.index}}">
-                            <a draggable="true" id='link_webpage{{loop.index}}' class="nav-link header_color" href="{{link[1]}}" onclick="RemoveCol()">
+                        
+                        <div draggable="true" class="menu_link_block" id="menu_link_block{{loop.index}}">
+                            <div data-drug_select="true" class="drug_select"></div>
+                            <a id='link_webpage{{loop.index}}' class="nav-link header_color" href="{{link[1]}}" onclick="RemoveCol()">
                                 {{link[0]}}
                             </a>
                             <div class="edit_tools">
-                              <button class="" id="drugNdrop_btn" data-id="{{loop.index}}">x</button>
-                              <button class="">р</button>
-                              <button class="">у</button>
+                              <button class="move_item_bnt" id="drugNdrop_btn" data-id="{{loop.index}}">П</button>
+                              <button class="">Р</button>
+                              <button id="delete_item_btn" class="">Х</button>
                             </div>
+                            <div data-drug_select="true" class="drug_select"></div>
                         </div>
+                        
                     {% endfor %}     
                 </div>
                 {% if role == 'administrator' %}
@@ -91,7 +95,15 @@
         <div id="modal_content_div" class="modal_content">
             
 
-
+            <a href="" draggable="true" id="drug">asdasd</a>
+            <br>
+            <br>
+            <br>
+            <a href="" id="drop">вторая ссылка</a>
+            <br>
+            <br>
+            <br>
+            <a href="" id="drop">третья ссылка</a>
         </div>       
     </div>
 </section>
