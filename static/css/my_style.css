@@ -54,15 +54,16 @@ margin-left: 15%;
 .dragstart{
     /* display: none; */
     /* background: red; */
-    opacity: 50%;
+    opacity: 20%;
 }
-.dragover{
-    transform: translateX(10px);
+.drug_item_enter{
+    background: red;
 }
 .drug_select{
-    margin-right: 20px;
-    margin-left:  20px;
+    margin-right: 50px;
+    margin-left:  50px;
 }
+
 .edit_btn_fix{
     display: flex;
     justify-content: space-between;

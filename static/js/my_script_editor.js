@@ -55,15 +55,17 @@ addEventListener('click', (evt) => {
                 modal_content_div.innerHTML = html; // Вставляем полученный HTML в контейнер
             });}//3
     }//2
-    if(target.name == 'select_type'){
-
-            if(target.options[1].getAttribute('name') == 'edit_menu_type'){
-            }
-        }
- 
-    if(target.id == 'move_item_bnt'){
-        
+    if(target.id == 'delete_item_btn'){// запрос на удаление ссылки меню
+    delete_id = target.getAttribute('data-delete_id')
+    console.log(delete_id)
+    fetch('/delete_menu_link/'+delete_id) // Делаем AJAX-запрос к серверу
+            .then(response => response.text())
+            .then(if text == 'True'){
+            console.log(html)}
+            });}//3
     }
+ 
+
 
 
 
@@ -80,29 +82,15 @@ document.addEventListener('dragstart', (e) => {
 });
 document.addEventListener('dragover', (e) => {
   e.preventDefault();
-//   drug_select_node_list = e.target.parentNode.querySelectorAll('.drug_select')
-//   drug_select_real_array = Array.from(drug_select_node_list)
-//    console.log(drug_select_real_array)
-//   if(drug_select_real_array[0].parentNode == e.target.parentNode){
-//     console.log('sdfsdfds')
-//     drug_select_real_array[0].classList.remove('My_D_none')
-//     drug_select_real_array[1].classList.remove('My_D_none')
-//   }
-  
-  
 });
 document.addEventListener('dragenter', (e) => {
-    if(e.target.parentNode === draggedItem.parentNode){
-e.preventDefault();
-  e.target.classList.add('dragover')
-    }
+    e.preventDefault();
+    console.log(e.target)
 });
 document.addEventListener('dragleave', (e) => {
-    if(e.target.parentNode === draggedItem.parentNode){
-e.preventDefault();
-  e.target.classList.remove('dragover')
-    }
+    e.preventDefault();
 });
+
 document.addEventListener('drop', (e) => {
   e.preventDefault();
   e.target.classList.remove('dragover')
@@ -119,6 +107,8 @@ document.addEventListener('drop', (e) => {
         else if(draggedIndex > targetIndex){
         container.insertBefore(draggedItem, e.target.parentNode);  
         }
+        e.target.parentNode.classList.remove('drug_item_enter')
+
     }
 });
 document.addEventListener('dragend', (e) => {
@@ -126,6 +116,7 @@ document.addEventListener('dragend', (e) => {
     draggedItem = e.target;
     draggedItem.classList.remove('dragstart');
     draggedItem.parentNode.classList.remove('drug_select');
+
   }
 });
 

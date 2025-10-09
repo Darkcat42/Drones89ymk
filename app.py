@@ -125,6 +125,7 @@ def load_modal_menu_edit():
 """
     return modal_menu_edit
 @app.route('/delete_menu_link/<int:id>', methods=['POST', "GET"])
+@login_required
 def delete_link(id):
     WebpageController.delete(id)
     return redirect('/')
@@ -138,12 +139,12 @@ def add_web_page():
     position = WebpageController.get_links_order_by_pos()[-1].position
     if url[0] != '#':
         url = '/'+str(url)
-    WebpageController.add_link(
-        url=url,
-        type_link=type_link,
-        position=int(position)+1
-    )
-    return redirect(f'/edit/{webpage_url}')
+    # WebpageController.add_link(
+    #     url=url,
+    #     type_link=type_link,
+    #     position=int(position)+1
+    # )
+    # return redirect(f'/edit/{webpage_url}')
 # коммит тест
 # @app.route('/new_mainblock')
 # def load_modal_form_login():
