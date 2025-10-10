@@ -12,9 +12,9 @@
 .icons_social a img:hover{
     transform: scale(0.9);
 }
-.header_color {
+/* .header_color {
     color: white !important;
-}
+} */
 #navbarNavAltMarkup .navbar-nav a:hover {
     color: #e3be5b !important;
 }
@@ -749,10 +749,10 @@
 .show {
     display: block !important;
 }
-#doc .container .row .col-sm-4 .panel .panel-body .nav .nav-link{
+/* #doc .container .row .col-sm-4 .panel .panel-body .nav .nav-link{
     color: #212529;
     text-align: start;
-}
+} */
 #doc .container .row .col-sm-4 .panel .panel-body .nav .active{
     background-color: #31123C !important;
     color: white;

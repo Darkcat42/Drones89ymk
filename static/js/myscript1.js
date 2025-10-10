@@ -85,13 +85,13 @@ function HeaderFull() {
     }
 }
 
-function RemoveCol() {
-    if(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){
-        let el = document.getElementById('navbarNavAltMarkup');
-        el.classList.remove('show');
-        HeaderFull()
-    }   
-}
+// function RemoveCol() {
+//     if(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)){
+//         let el = document.getElementById('navbarNavAltMarkup');
+//         el.classList.remove('show');
+//         HeaderFull()
+//     }   
+// }
 // Навигация для мобильной версии
 
 

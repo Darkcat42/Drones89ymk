@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- всплывающее окно -->
-{% include 'modal_menu.html' %}
-{% include 'message.html' %}
+{% include 'modal_block.html' %}
+{% include 'modal_message.html' %}
+{% include 'modal_warning.html' %}
 <!-- меню сайта -->
 <header class="header_section" id="header">
   <div class="container">
@@ -31,21 +32,20 @@
             <!-- динамическая загрузка меню -->
             <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
               <div class="navbar-nav"  id="links">
-                <div class="edit_btn_fix">
+                <div class="nav_links">
                     {% for link in links %} 
-                        
                         <div draggable="true" class="editable_block" id="menu_link_block{{loop.index}}">
-
                             <a class="nav-link header_color" href="{{link[1]}}" onclick="RemoveCol()">
                                 {{link[0]}}
                             </a>
+                            {% if role == 'administrator' %}
                             <div class="edit_tools">
                               <button id="move_item_btn" class="move_item_bnt" data-id="{{loop.index}}"></button>
                               <button id="edit_item_btn" class=""></button>
                               <button id="delete_item_btn" data-delete_id="{{link[2]}}"></button>
                             </div>
+                            {% endif %}
                         </div>
-                        
                     {% endfor %}     
                 </div>
                 {% if role == 'administrator' %}
@@ -61,47 +61,55 @@
                   </a>
                 </div>
             </div>
-            
           </div>
             <div class="btn_exit_fix">
                 {% if current_user.is_authenticated == True %}
-                    <a class="nav-link header_color my_a_link" id="logout" href="#" onclick="RemoveCol()">выход</a>
-                    <p>{{current_user.FIO}}</p>
-                    {% else %}
-                    <a class="nav-link header_color my_a_link" data-modal="login" href="#" onclick="RemoveCol()">вход</a>
-                    {% endif %} 
+                    <a class="my_a_link" id="logout" href="#">выход</a>
+                    <!-- <p>{{current_user.FIO}}</p> -->
+                {% else %}
+                    <a class="my_a_link" data-modal="login" href="#" onclick="RemoveCol()">вход</a>
+                {% endif %} 
             </div>
       </nav>
       </div>
     </div>
   </div>
 </header>
+{% if current_user.is_authenticated == True %}
 <!-- секция для вывода блоков с элементами веб-страницы -->
 <section class="main_space basic_bg">
     <!-- окно для создания нового блока веб-страницы -->
     <div class="add_new_mainblock editor_hover" id="add_new_mainblock_act">
-        <div class="edit_tools">
-            <button id="move_item_btn" class="move_item_bnt" data-id=""></button>
-            <button id="edit_item_btn" class=""></button>
-            <button id="delete_item_btn" data-delete_id=""></button>
-        </div>
         <p>добавить блок элементов</p>
     </div>
-    
 </section>
-<!--базовый блок к который загружается модальное окно -->
-<section id="modal_menu" class="basic_modal close_modal">
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--базовый блок к который загружается модальное окно (для разработки модальных окон)-->
+<!-- <section id="modal_menu" class="basic_modal close_modal">
     <div class="modal_block">
         <div class="modal_header">
             <h2 id="modal_header_title">Модальное окно</h2>
             <p class="modal_btn_close" id="modal_btn_act_close"></p>
         </div>
         <div id="modal_content_div" class="modal_content">
-            
-
-
         </div>       
     </div>
-</section>
+</section> -->
 {% endblock %}
 

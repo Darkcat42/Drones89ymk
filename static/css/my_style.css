@@ -2,14 +2,15 @@
 *{
     transition-duration: 300ms;
     transition-property: all;
+    color: white!important;
     /* outline: 1px solid red; */
+    /* margin: 0 auto; */
 }
 .editor_hover{
     border: 1px solid transparent;
+    margin-right: 5%;
 }
 .editor_hover:hover{
-    /* outline: 1px solid gray; */
-    /* box-shadow: 1px 1px 16px 1px black; */
     box-shadow: 3px 3px 8px 4px #200c27;
     border-radius: 6px;
     transform:scale(1.01, 1.01);
@@ -24,15 +25,22 @@
 } */
 /* перебор стилей сайта */
 
-.basic_bg { /* стандартный фон везде */
+.basic_bg{ /* стандартный фон везде */
     background: url("../img/bg.svg") center no-repeat;
 }
-
 /* header - меню */
 .header_section{ /* класс меню сайта */
-    padding: 0 10px;
+    /* padding: 0 20vw; */
+    display: flex;
     background-color: #31123C;
     height: 6vh;
+    padding-left: 5vw;
+}
+.header_section>div{
+    margin: 0;
+}
+.header_section>div>div{
+    width: 90vw;
 }
 .webpage_name{ /* заголовок страницы */
 margin-left: 15%;
@@ -44,13 +52,12 @@ margin-left: 15%;
     background-repeat: no-repeat;
     width: 25px;
     height: 25px;
-    color: white;
+    /* color: white; */
     border: none;
     display: block;
     margin-top: 10px;
     margin-left: 10px;
 }
-
 .dragstart{
     /* display: none; */
     /* background: red; */
@@ -64,7 +71,7 @@ margin-left: 15%;
     margin-left:  50px;
 }
 
-.edit_btn_fix{
+.nav_links{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -116,6 +123,8 @@ margin-left: 15%;
 
 .my_a_link{ /* поправка ссылки входа в меню сайта */
 margin-left: 30%;
+text-decoration: none;
+
 }
 /* .webpage_links_fix{
     margin-top: 5%;
@@ -150,10 +159,10 @@ margin-left: 30%;
     text-align: center;
 }
 .modal_header{ /* блок управление модального окна (выход и заголовок) */
-    padding: 0 5%;
+    padding: 2% 6%;
     display: flex;
     justify-content: space-between; /* разводит элементы по сторонам через центр */
-    color: white;
+    font-size: 2em;
 }
 .modal_btn_close{
     filter: opacity(30%);
@@ -170,17 +179,32 @@ margin-left: 30%;
 }
 .modal_content{ /* блок с содержимым (зависит от действий пользователя) */
     display: flex;
-    justify-content: center; 
     flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    justify-content: center;
+    align-items: flex-start;
+    margin: auto;
+    padding: 5% 10%;
+    transform: translateY(-5%);
 }
+.modal_content h4{
+    color: white!important;
+
+}
+
 .modal_content select{
-    width: 50%;
+   
     height: 50px;
     border-radius: 6px;
 }
-.modal_content select:hover{
-    background: black;
-    color: white;
+.modal_content form>*{
+    margin-bottom: 5%;
+    width: 100%;
+}
+
+.modal_content select:hover, .modal_submit:hover{
+    color: goldenrod!important;
 }
 .modal_submit{
     height: 50px;
@@ -188,19 +212,13 @@ margin-left: 30%;
     width: 25%;
     border-radius: 6px;
 }
-.modal_submit:hover{
-    background: black;
-    color: white;
-}
 .modal_content form{
     display: flex;
     align-items: center; /* для родителя по другой оси */
     justify-content: center; /* для родителя по одной оси */
     flex-direction: column;
 }
-.modal_content form>*{
-    margin-bottom: 2%;
-}
+
 .btn_exit_fix{
     display: flex;
     justify-content: center;
@@ -212,13 +230,15 @@ margin-left: 30%;
     transform: translateX(180px) translateY(10px);
     width: max-content;
 }
-
+.modal_content *{
+    color: black!important;
+}
 .modal_content form input:not(.modal_content form input:last-child){
     border: none;
     border-radius: 6px;
     min-height: 50px;
     max-height: 100px;
-    width: 50%;
+    width: 100%;
 }
 .modal_exit>p{
     align-self: self-end;
@@ -229,11 +249,9 @@ margin-left: 30%;
     cursor: pointer;
 }
 .close_modal{
-    display: none;
+    display: none!important;
 }
-.open_modal{
-    display: flex;
-}
+
 .modal_elem{
     width: 90%;
     margin: 3%;
@@ -247,35 +265,37 @@ margin-left: 30%;
 .modal_form>fieldset{
     display: flex;
     flex-direction: column;
+    border: none;
+    background: none;
 }
-.modal_content>*{
-    color: white;
-    /* padding: 5%; */
-}
-.modal_message_content>div>button{
+
+.modal_message_content button{
     background: none;
     border: none;
-    width: 25%;
-    align-self: center;
 }
-.modal_message_content>div>button:hover{
-    color: red;
+.modal_message_content button:hover{
+    color:goldenrod !important;
+    
 }
 .modal_message_content{
+    padding: 1% 10%;
     display: flex;
     flex-direction: column;
     z-index: 3!important;
-    width: 40%;
-    height: 30%;
+    width: fit-content;
+    height: fit-content;
     border-radius: 6px;
     border: 1px solid #4d1e5e;
     background: #31123C;
     box-shadow: 2px 2px 15px 5px #200c27;
-    justify-content: space-between;
-    align-items: top;
-    color: white;
     font-size: 2em;
-    text-align: center;
+    
+}
+.modal_message_content>div>div{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 /* страница с содержимым */
 .main_space{ /* основная подложка для блоков */
@@ -303,14 +323,6 @@ margin-left: 30%;
     font-size: 2em;
     text-align: center;
 }
-
-
-
-
-
-
-
-
 .footer_item{
     height: 10vh;
 }
