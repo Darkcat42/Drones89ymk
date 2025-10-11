@@ -44,23 +44,33 @@ addEventListener('click', (evt) => {
     }//2 
     if(target.id == 'delete_item_btn'){// запрос на удаление ссылки меню
         delete_id = target.getAttribute('data-delete_id')
-    if(target.getAttribute('href') != '/main'){
-        fetch('/delete_menu_link/'+delete_id) // AJAX-запрос
-            .then(response => {
-                if(response.status == 200){
-                    open_message('ссылка удалена')    
-                }}, // условие если запрос неудачный
-                () => {alert(console.log('ошибка!'))})}}//2 конец: if - delete_item_btn
+        if(target.getAttribute('href') != '/main'){
+            open_message('ссылка удалена')
+//            fetch('/delete_menu_link/'+delete_id) // AJAX-запрос
+//                .then(response => {
+//                    if(response.status == 200){
+//                        open_message('ссылка удалена')
+//                    }}, // условие если запрос неудачный
+//                    () => {alert(console.log('ошибка!'))})
+                    }
+        else{
+            open_warning('удалить ссылку на главную?', '/delete_menu_link/'+delete_id)
+        }
+                }//2 конец: if - delete_item_btn
 })//1 конец: addEventListener - click
 let draggedItem = null; // переменная для временной записи объекта который мы тащим курсором
 document.addEventListener('dragstart', (e) => {
+    console.log(draggedItem)
+    console.log(e.target)
     /*
     общий прослушиватель старта события drag_and_drop
     */
     if (e.target.getAttribute('draggable')){
         draggedItem = e.target;
         draggedItem.classList.add('dragstart');
-        draggedItem.parentNode.classList.add('drug_select');}});
+        draggedItem.parentNode.classList.add('drug_select');
+        }
+         });
 document.addEventListener('dragover', (e) => {
     /*
     общий прослушиватель события drag_and_drop - "над целью"
@@ -87,10 +97,11 @@ document.addEventListener('drop', (e) => {
     let allItems = Array.from(target_container.children);
     let targetIndex = allItems.indexOf(e.target.parentNode); // индекс под
     let draggedIndex = allItems.indexOf(draggedItem); // индекс в руках
-    // (targetIndex, draggedIndex) // цель тут это то что под курсором!  
-    if(target_container == draggedItem.parentNode){
-            console.log(target_container)
+    // (targetIndex, draggedIndex) // цель тут это то что под курсором!
+    console.log(target_container)
             console.log(draggedItem.parentNode)
+    if(target_container == draggedItem.parentNode){
+
             if (draggedIndex < targetIndex) // тащим слева на право 0 < 1  
                 target_container.insertBefore(draggedItem, e.target.parentNode.nextSibling);
             else if(draggedIndex > targetIndex){
