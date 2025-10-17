@@ -1,4 +1,16 @@
 
+
+
+.header_section {
+    padding: 0 10px;
+    /*position: sticky;*/
+    /*top: 0;*/
+    /*z-index: 4000;*/
+    background-color: #31123C;
+}
+/* body {
+    background:#f6f6f6 !important;
+} */
 .icons_social {
     display: flex;
     align-items: start;
@@ -12,9 +24,9 @@
 .icons_social a img:hover{
     transform: scale(0.9);
 }
-/* .header_color {
+.header_color {
     color: white !important;
-} */
+}
 #navbarNavAltMarkup .navbar-nav a:hover {
     color: #e3be5b !important;
 }
@@ -63,8 +75,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /*border: 1px solid white;*/
     padding: 10px;
     color: white;
+    /*border-radius: 20px;*/
     min-height: 400px;
 }
 .card_right p{
@@ -86,9 +100,6 @@
     width: 30px;
     height: 30px;
     margin-right: 10px;
-}
-.drone_logo_fix{
-    z-index: 1!important;
 }
 .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
@@ -158,6 +169,10 @@
     margin-bottom: 0;
     border-radius: 20px;
 }
+
+/*#media .container .row div img:hover{*/
+/*    cursor: pointer;*/
+/*}*/
 .video-container {
     padding-bottom: 1.5rem!important;
     height: 100%;
@@ -176,6 +191,7 @@
 .fix-h-3 {
     height:580px;
 }
+
 .img_diplom {
     height: 26%;
     /*width: 100%;*/
@@ -186,6 +202,7 @@
     z-index: 9999;
     text-align: center;
 }
+
 .modal-dialog {
     max-width: none;
 }
@@ -373,8 +390,8 @@
     .navbar-toggler {
         margin-left: 10px;
     }
-    
-    
+
+
 }
 @media (max-width: 575px) {
     .fix-mar {
@@ -409,6 +426,7 @@
         margin-left: 2px;
     }
 }
+
 /* Расписание */
 #table {
     padding: 100px 0;
@@ -444,6 +462,7 @@
 #galerry {
     padding: 60px 5%;
 }
+
 .photos div{
     padding-bottom:20px;
 }
@@ -523,20 +542,22 @@
     text-decoration: underline;
     color: #2C133E;
 }
+
 .info_build_drone table tbody tr th, .info_build_drone table tbody tr td {
-    text-align: center; 
+    text-align: center;
     vertical-align: middle;
 }
 .c{
-    text-align: center !important; 
+    text-align: center !important;
 }
 .cv {
-    text-align: start !important; 
+    text-align: start !important;
 }
 .sum_bg th{
     background-color: #2C133E !important;
     color: white !important;
 }
+
 @media (max-width: 700px) {
     .scroll_x {
         display: block;
@@ -555,6 +576,7 @@
     top: 15px;
     right: 15px;
 }
+
 .dropmen {
     position: relative;
 }
@@ -589,6 +611,7 @@
     margin-bottom: 0;
 }
 /* Стрница Сборки */
+
 /* Страница Документы */
 #sol {
     padding: 60px 0;
@@ -630,13 +653,15 @@
 }
 
 .type-document{
-    width:100%; 
+    width:100%;
     margin-bottom:20px;
 }
+
 .tabs-panel .panel-body {
   padding: 20px 15px 15px 15px;
   font-size: 14px;
 }
+
 .tab-content {
   background-color: #fff;
   border-radius: 4px;
@@ -644,6 +669,8 @@
   border-top-left-radius: 0;
   border-top: none;
 }
+
+
 .document {
   float: left;
   width: calc(33% - 20px);
@@ -652,26 +679,31 @@
   border-radius: 3px;
   border: 1px solid #dce2e9;
 }
+
 .document .document-body {
   height: 130px;
   text-align: center;
   border-radius: 3px 3px 0 0;
   background-color: #fdfdfe;
 }
+
 .document .document-body i {
   font-size: 45px;
   line-height: 120px;
 }
+
 .document .document-body img {
   width: 100%;
   height: 100%;
 }
+
 .document .document-footer {
   border-top: 1px solid #ebf1f5;
   height: 46px;;
   padding: 5px 12px;
   border-radius: 0 0 2px 2px;
 }
+
 .document .document-footer .document-name {
   display: block;
   margin-bottom: 0;
@@ -683,6 +715,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .document .document-footer .document-description {
   display: block;
   margin-top: -1px;
@@ -695,23 +728,29 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .document.word .document-footer >*, .document.excel .document-footer >*,
 .document.power .document-footer >*, .document.pdf .document-footer >*,
 .document.other .document-footer >* {
   color: #fff;
 }
+
 .document.word .document-footer, .icon-name .word {
   background-color: #2da9e9;
 }
+
 .document.excel .document-footer, .icon-name .excel {
   background-color: #0ec8a2;
 }
+
 .document.power .document-footer, .icon-name .power {
   background-color: #ff9e2a;
 }
+
 .document.pdf .document-footer, .icon-name .pdf{
   background-color: #f95858;
 }
+
 .document.other .document-footer, .icon-name .other{
   background-color: #314557;
 }
@@ -740,6 +779,7 @@
     max-width: none;
   }
 }
+
 .bg_show {
     box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
 }
@@ -749,14 +789,16 @@
 .show {
     display: block !important;
 }
-/* #doc .container .row .col-sm-4 .panel .panel-body .nav .nav-link{
+
+#doc .container .row .col-sm-4 .panel .panel-body .nav .nav-link{
     color: #212529;
     text-align: start;
-} */
+}
 #doc .container .row .col-sm-4 .panel .panel-body .nav .active{
     background-color: #31123C !important;
     color: white;
 }
+
 @media screen and (max-width: 575px) {
     .fix_pd  {
       padding: 0 !important;
@@ -765,11 +807,13 @@
 .goof {
   width: 50px;
   height: 50px;
-
 }
+
+
 .documents .panel-body .tab-pane a:hover .document{
     transform: scale(0.9);
 }
+
 .telegram_header a{
     background-color: white !important;
     padding: 5px;

@@ -1,4 +1,4 @@
-from Models.Webpage import Webpage 
+from Models.Webpages import Webpage
 class WebpageController():
     @ classmethod
     def add_link(cls):
@@ -19,7 +19,7 @@ class WebpageController():
         Webpage.delete().where(Webpage.id == id).execute()
     @classmethod
     def get_by_url(cls, url):
-        return Webpage.get_or_none(Webpage.url == url) 
+        return Webpage.get_or_none(Webpage.url == url)
     @classmethod
     def get_order_by_webpages(cls):
         list_webpages = cls.get_links_order_by_pos()

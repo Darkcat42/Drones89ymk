@@ -1,4 +1,4 @@
-from Models.Mainblock import Mainblock 
+from Models.old.Mainblock import Mainblock
 class MainblockController():
     """модуль для управления блоками элементов на страницах сайта
         блок содержит: заголовки, текста, медиа-ресурсы, таблицы и тп

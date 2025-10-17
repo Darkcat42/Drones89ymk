@@ -1,7 +1,6 @@
-from peewee import PrimaryKeyField, IntegerField, CharField
 from Models.Base import *
-from Models.Samples import Samples
-from Models.Webpage import Webpage 
+from Models.old.Samples import Samples
+from Models.Webpages import Webpage
 from peewee import ForeignKeyField
 class Mainblock(Base):
     id = PrimaryKeyField()

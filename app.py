@@ -1,10 +1,10 @@
 import flask, flask_login
-from flask_login import LoginManager, login_user, login_required, current_user, logout_user
-from flask import Flask, render_template, request, url_for, redirect 
+from flask_login import LoginManager, login_required, current_user, logout_user
+from flask import Flask, render_template, request
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
-from Controllers.WebpageController import WebpageController
-from Controllers.MainBlockController import MainblockController 
+# from Controllers.old.WebpageController import WebpageController
+
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -17,61 +17,40 @@ def load_user(user_id):
 def anon():
     """функция анонимного пользователя"""
     return flask.redirect('/')
-@app.route('/') 
-def main():
-    """функция переадресации на главную"""
-    return redirect('/main')
+# @app.route('/')
+# def main():
+#     """функция переадресации на главную"""
+#     return redirect('/main')
 @app.route('/favicon.ico') 
 def fav_pass():
     """сброс ошибки переадресации на favicon.ico"""
     return 'favicon'
-@app.route('/<webpage>') 
-def index(webpage):
-    """маршрут для гостей на веб-страницы сайта"""
-    webpage = str('/')+webpage
-    webpage = WebpageController.get_by_url(webpage)
-    mainblocks = MainblockController.get_blocks_where_webpage(int(webpage.id))
-    mainblocks_list = MainblockController.get_order_by_mainblocks(mainblocks)
-    # print(mainblocks_list)
-    webpage_links = WebpageController.get_order_by_webpages()
-    webpage_name = webpage.name
-    webpage_url = webpage.url
-    if current_user.is_authenticated == True:
-        return redirect(f'/edit/{webpage_url}')
-    return render_template(
-        'index.html', 
-        links=webpage_links, 
-        webpage_name=webpage_name,
-        webpage_url=webpage_url,
-        mainblocks_list=mainblocks_list,
-        mainblocks=mainblocks
-    )
-@app.route('/edit/<webpage>') 
-@login_required
-def edit(webpage):
-    """маршрут для авторизованных пользователей на веб-страницы сайта"""
-    role_name = RoleController.show(current_user.role).role
-    webpage = str('/')+webpage
-    webpage = WebpageController.get_by_url(webpage)
-    mainblocks = MainblockController.get_blocks_where_webpage(int(webpage.id))
-    mainblocks_list = MainblockController.get_order_by_mainblocks(mainblocks)
-    webpage_links = WebpageController.get_order_by_webpages()
-    webpage_name = webpage.name
-    webpage_url = webpage.url
-    return render_template(
-        'index.html', 
-        links=webpage_links, 
-        role=role_name, 
-        webpage_name=webpage_name,
-        webpage_url=webpage_url,
-        mainblocks_list=mainblocks_list)
-@app.route('/logout') 
-def logout():
-    """маршрут для выхода из авторизации"""
-    logout_user()
-    return flask.redirect('/main')
-@app.route('/autorization', methods=['POST']) 
-def autorization():
+
+"""Маршруты приложения"""
+
+app.route('/doc') # МАРШРУТ doc.html
+def doc():
+    return render_template('doc.html')
+@app.route('/gallery') # МАРШРУТ gallery.html
+def gallery():
+    return render_template('gallery.html')
+@app.route('/policy') # МАРШРУТ policy.html
+def policy():
+    return render_template('policy.html')
+@app.route('/build') # МАРШРУТ build.html
+def build():
+    return render_template('build.html')
+
+
+
+
+
+@app.route('/') # МАРШРУТ build.html
+def index():
+    return render_template('index.html')
+
+@app.route('/login', methods=['POST'])
+def login():
     """маршрут для авторизации из формы"""
     if request.method == "POST":
         login = request.form.get('login')
@@ -81,18 +60,19 @@ def autorization():
             if user.password == passwd:
                 flask_login.login_user(user)
                 role_name = RoleController.show(current_user.role).role
-                if role_name == 'administrator':
-                    return flask.redirect('/edit/main')
-                else:
-                    flask.redirect('/')
+                # if role_name == 'administrator':
+                #     render_template(/)
+                # else:
+                #     flask.redirect('/')
     return 'неправильный пароль или логин'
-@app.route('/load_modal_form_login') 
+
+@app.route('/load_modal_form_login')
 def load_modal_form_login():
     """маршрут для загрузки формы авторизации"""
     modal_form_login = """
     <div class="container">
         <div class="card_right row fix-mar">
-            <form class="modal_form_align_center" action="/autorization" method="post">
+            <form class="modal_form_align_center" action="/login" method="post">
                 <input id="login" type="text" name="login" placeholder="Введите логин">
                 <input id="password" type="text" name="password" placeholder="Введите пароль">
                 <input class="modal_submit" type="submit" value="Вход">
@@ -100,7 +80,57 @@ def load_modal_form_login():
         </div>
     </div>"""
     return modal_form_login
-@app.route('/load_modal_menu_edit') 
+
+
+
+# @app.route('/<webpage>')
+# def index(webpage):
+#     """маршрут для гостей на веб-страницы сайта"""
+#     webpage = str('/')+webpage
+#     webpage = WebpageController.get_by_url(webpage)
+#     mainblocks = MainblockController.get_blocks_where_webpage(int(webpage.id))
+#     mainblocks_list = MainblockController.get_order_by_mainblocks(mainblocks)
+#     # print(mainblocks_list)
+#     webpage_links = WebpageController.get_order_by_webpages()
+#     webpage_name = webpage.name
+#     webpage_url = webpage.url
+#     if current_user.is_authenticated == True:
+#         return redirect(f'/edit/{webpage_url}')
+#     return render_template(
+#         'index.html',
+#         links=webpage_links,
+#         webpage_name=webpage_name,
+#         webpage_url=webpage_url,
+#         mainblocks_list=mainblocks_list,
+#         mainblocks=mainblocks
+#     )
+# @app.route('/edit/<webpage>')
+# @login_required
+# def edit(webpage):
+#     """маршрут для авторизованных пользователей на веб-страницы сайта"""
+#     role_name = RoleController.show(current_user.role).role
+#     webpage = str('/')+webpage
+#     webpage = WebpageController.get_by_url(webpage)
+#     mainblocks = MainblockController.get_blocks_where_webpage(int(webpage.id))
+#     mainblocks_list = MainblockController.get_order_by_mainblocks(mainblocks)
+#     webpage_links = WebpageController.get_order_by_webpages()
+#     webpage_name = webpage.name
+#     webpage_url = webpage.url
+#     return render_template(
+#         'index.html',
+#         links=webpage_links,
+#         role=role_name,
+#         webpage_name=webpage_name,
+#         webpage_url=webpage_url,
+#         mainblocks_list=mainblocks_list)
+@app.route('/logout') 
+def logout():
+    """маршрут для выхода из авторизации"""
+    logout_user()
+    return flask.redirect('/main')
+
+
+@app.route('/load_modal_menu_edit')
 def load_modal_menu_edit():
     """маршрут для загрузки формы редактирования ссылок главного меню"""
     modal_menu_edit = """
