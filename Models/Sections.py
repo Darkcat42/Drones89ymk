@@ -1,6 +1,6 @@
 from peewee import PrimaryKeyField, IntegerField, CharField, TextField
 from Models.Base import *
-from Models.Schedule_table import Schedule_table
+from Models.time_table import Schedule_table
 class Sections(Base):
     """
     модель веб-страниц, которые

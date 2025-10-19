@@ -33,6 +33,13 @@ addEventListener('click', (evt) => {
                 modal_message.classList.add('close_modal')
                 modal_warning.classList.add('close_modal')
                 break
+            case 'time_table_add_day':
+                // fetch('/add_day')
+                // .then(response => response.text())
+                // .then(html => {
+                //     modal_content.innerHTML = html; 
+                // });
+                break
         }
     }
     if(target.hasAttribute('data-action') == true){

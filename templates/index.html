@@ -34,9 +34,9 @@
   <div class="container">
     <div class="row">
       <div class="text-center">
-        <h2 class="mb-3">Расписание</h2>
+        <h2 class="mb-3">{{table_rows[0]['title']}}</h2>
         <hr class="hr-line">
-        <p class="custom_p">На базе нашего колледжа открыт кружок по занятиям БПЛА. В этом кружке вы сможете погрузиться в захватывающий<br> мир беспилотных дронов и научиться основам их управления. Ниже представлено расписание занятий</p>
+        <p class="custom_p">{{table_rows[0]['description']}}</p>
         <table class="table_rasp">
           <tr>
             <th></th>
@@ -44,31 +44,19 @@
             <th>Время конца занятия</th>
             <th>Место проведения</th>
           </tr>
-
+        {% for item in table_rows %}
             <tr>
-                <th>Вторник</th>
-                <td>18:00</td>
-                <td>20:00</td>
-                <td>Спорт комплекс ЯМК - 1 этаж - зал №2</td>
+                <th>{{item['day']}}</th>
+                <td>{{item['start']}}</td>
+                <td>{{item['end']}}</td>
+                <td>{{item['location']}}</td>
             </tr>
-
-<!--          <tr>-->
-<!--            <th>Вторник</th>-->
-<!--            <td>18:00</td>-->
-<!--            <td>20:00</td>-->
-<!--            <td>Спорт комплекс ЯМК - 1 этаж - зал №2</td>-->
-<!--          </tr>-->
-<!--          <tr>-->
-<!--            <th>Четверг</th>-->
-<!--            <td>18:00</td>-->
-<!--            <td>20:00</td>-->
-<!--            <td>Спорт комплекс ЯМК - 1 этаж - зал №2</td>-->
-<!--          </tr>-->
+        {% endfor %}
           <tr>
             <td colspan="4" class="fix_bord"></td>
           </tr>
           <tr>
-            <td colspan="4" class="info_rasp_dop">С собой сменную обувь&#128095;, теплую кофточку&#129404;, пропуск&#128278; и хорошее настроение&#128512;</td>
+            <td colspan="4" class="info_rasp_dop">{{table_rows[0]['requirements']}}</td>
           </tr>
         </table>
       </div>

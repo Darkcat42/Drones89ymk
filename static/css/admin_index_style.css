@@ -1,5 +1,98 @@
 /* стили переопределения для страницы admin_index.html  */
 /* общие стили */
+/* общие стили */
+*{
+    transition-duration: 300ms;
+    transition-property: all;
+    /* color: white!important; */
+    /* outline: 1px solid red; */
+    /* margin: 0 auto; */
+}
 .admin_header{
     filter: hue-rotate(60deg);
+}
+/* tr{position: relative !important;} */
+td.td_hover{
+    opacity: 40%;
+    background-color: #491c5a;
+    transform: translateX(10px);
+    font-weight: 200; 
+    /* background: url(/static/svg/edit_icon_light.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 80%; */
+}
+#table:hover td.td_hover{
+    opacity: 100%;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px 4px #200c27;
+    transform:scale(0.9, 0.9) translateX(20px);
+    
+}
+td.td_hover:hover{
+    filter: brightness(2);
+}
+td.td_hover:active{
+    transition-duration: 10ms;
+    background: #380505;
+}
+tr.time_table_add_btn, tr.time_table_add_btn>td{
+    border: 1px solid transparent!important;
+    opacity: 40%;
+    background-color: #491c5a;
+    color: white;
+    transform: scale(0.89, 1); 
+    font-weight: 200; 
+    letter-spacing: 4px;
+}
+
+#table:hover tr.time_table_add_btn, tr.time_table_add_btn>td{
+    box-shadow: 3px 3px 8px 4px #200c27;
+    transform:scale(1.01, 1.01) ;
+    opacity: 100%;
+    cursor: pointer;
+    
+    
+}
+tr.time_table_add_btn:hover{
+    filter: brightness(2);
+    
+    
+}
+tr.time_table_add_btn:active>*{
+    transition-duration: 10ms;
+    background: #380505!important;
+}
+.none_border_left_top_bottom{
+    /* background: transparent!important; */
+    border: 1px solid transparent!important;
+    width: 50px;
+    border-right: 1px solid white!important;
+}
+.none_border_right_top_bottom{
+    /* background: transparent!important; */
+    border: 1px solid transparent!important;
+    width: 50px;
+    border-left: 1px solid white!important;
+}
+
+
+
+
+
+
+
+
+
+
+.editor_hover{
+    border: 1px solid transparent;
+    margin-right: 5%;
+}
+ .editor_hover:hover{
+    box-shadow: 3px 3px 8px 4px #200c27;
+    border-radius: 6px;
+    transform:scale(1.01, 1.01);
+    text-shadow: 4px 4px 6px black;
+    border: 1px solid #4c1f5e;
 }

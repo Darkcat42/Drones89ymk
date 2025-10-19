@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 # импорт контроллеров
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
+from Controllers.TableController import Time_tableController
 
 """создание и настройка приложения"""
 app = Flask(__name__)
@@ -32,7 +33,10 @@ def logout():
 @app.route('/') 
 def index():
     """маршрут на главную"""
-    return render_template('index.html')
+    return render_template(
+        'index.html',
+        table_rows=Time_tableController.get_table_rows()
+        )
 @app.route('/doc') 
 def doc():
     """маршрут страницу документов"""
@@ -60,7 +64,7 @@ def load_modal_form_login():
 def login(): 
     """маршрут для авторизации пользователя"""
     if request.method == "POST":
-        try:
+        # try:
             login_form = request.form.get('login')
             user = UsersController.get_by_login(login_form)
             if login_form == user.login:
@@ -68,20 +72,19 @@ def login():
                 if passwd_form == user.password:
                     flask_login.login_user(user)
                     role_name = RoleController.show(current_user.role).role
-                    print(role_name)
                     if role_name == 'administrator':
                         """маршрут на главную с функционалом администратора"""
                         return render_template(
                             'admin_index.html', 
-                            table_rows=table_rows
+                            table_rows=Time_tableController.get_table_rows()
                             )
                     elif role_name == 'editor':
                         """задел под роль редактора и тп"""
                         pass
                 else:
                     return 'неверный логин или пароль'
-        except:
-            pass
+        # except:
+        #     print('ошибка')
     return flask.redirect('/')
 
 @app.route('/admin_index')
