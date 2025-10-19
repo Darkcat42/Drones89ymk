@@ -9,7 +9,9 @@ class Schedule_table(Base):
     id = PrimaryKeyField()
     name = CharField()
     location = CharField()
+    day = CharField()
     start = CharField()
     end = CharField()
+    description = TextField()
 if __name__ == '__main__':
     connect_db().create_tables([Schedule_table])

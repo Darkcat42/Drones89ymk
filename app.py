@@ -1,10 +1,12 @@
+# импорты пайтон и тп
 import flask, flask_login
 from flask_login import LoginManager, login_required, current_user, logout_user
 from flask import Flask, render_template, request
+# импорт контроллеров
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
-# from Controllers.old.WebpageController import WebpageController
 
+"""создание и настройка приложения"""
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -17,72 +19,92 @@ def load_user(user_id):
 def anon():
     """функция анонимного пользователя"""
     return flask.redirect('/')
-# @app.route('/')
-# def main():
-#     """функция переадресации на главную"""
-#     return redirect('/main')
 @app.route('/favicon.ico') 
 def fav_pass():
     """сброс ошибки переадресации на favicon.ico"""
     return 'favicon'
-
-"""Маршруты приложения"""
-
-app.route('/doc') # МАРШРУТ doc.html
-def doc():
-    return render_template('doc.html')
-@app.route('/gallery') # МАРШРУТ gallery.html
-def gallery():
-    return render_template('gallery.html')
-@app.route('/policy') # МАРШРУТ policy.html
-def policy():
-    return render_template('policy.html')
-@app.route('/build') # МАРШРУТ build.html
-def build():
-    return render_template('build.html')
-
-
-
-
-
-@app.route('/') # МАРШРУТ build.html
+"""маршруты приложения"""
+@app.route('/logout') 
+def logout():
+    """маршрут для выхода из авторизации"""
+    logout_user()
+    return flask.redirect('/')
+@app.route('/') 
 def index():
+    """маршрут на главную"""
     return render_template('index.html')
-
-@app.route('/login', methods=['POST'])
-def login():
-    """маршрут для авторизации из формы"""
-    if request.method == "POST":
-        login = request.form.get('login')
-        passwd = request.form.get('password')
-        if UsersController.get_by_login(login) != None or '':
-            user = UsersController.get_by_login(login)
-            if user.password == passwd:
-                flask_login.login_user(user)
-                role_name = RoleController.show(current_user.role).role
-                # if role_name == 'administrator':
-                #     render_template(/)
-                # else:
-                #     flask.redirect('/')
-    return 'неправильный пароль или логин'
-
+@app.route('/doc') 
+def doc():
+    """маршрут страницу документов"""
+    return render_template('doc.html')
+@app.route('/gallery') 
+def gallery():
+    """маршрут на страницу с галереей"""
+    return render_template('gallery.html')
+# @app.route('/policy') 
+# def policy():
+#     """маршрут policy.html"""
+#     return render_template('policy.html')
+@app.route('/build') 
+def build():
+    """маршрут на страницу сборок с дронами"""
+    return render_template('build.html')
 @app.route('/load_modal_form_login')
 def load_modal_form_login():
     """маршрут для загрузки формы авторизации"""
-    modal_form_login = """
-    <div class="container">
-        <div class="card_right row fix-mar">
-            <form class="modal_form_align_center" action="/login" method="post">
-                <input id="login" type="text" name="login" placeholder="Введите логин">
-                <input id="password" type="text" name="password" placeholder="Введите пароль">
-                <input class="modal_submit" type="submit" value="Вход">
-            </form>
-        </div>
-    </div>"""
+    with open('templates/modal_login.html', 'r') as html:
+        modal_form_login = html.read()
+        html.close()
     return modal_form_login
+@app.route('/login', methods=['POST'])
+def login(): 
+    """маршрут для авторизации пользователя"""
+    if request.method == "POST":
+        try:
+            login_form = request.form.get('login')
+            user = UsersController.get_by_login(login_form)
+            if login_form == user.login:
+                passwd_form = request.form.get('password')
+                if passwd_form == user.password:
+                    flask_login.login_user(user)
+                    role_name = RoleController.show(current_user.role).role
+                    print(role_name)
+                    if role_name == 'administrator':
+                        """маршрут на главную с функционалом администратора"""
+                        return render_template(
+                            'admin_index.html', 
+                            table_rows=table_rows
+                            )
+                    elif role_name == 'editor':
+                        """задел под роль редактора и тп"""
+                        pass
+                else:
+                    return 'неверный логин или пароль'
+        except:
+            pass
+    return flask.redirect('/')
+
+@app.route('/admin_index')
+@login_required
+def admin_index():
+    return render_template('admin_index.html', role='role_name')
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True) 
 # @app.route('/<webpage>')
 # def index(webpage):
 #     """маршрут для гостей на веб-страницы сайта"""
@@ -123,59 +145,6 @@ def load_modal_form_login():
 #         webpage_name=webpage_name,
 #         webpage_url=webpage_url,
 #         mainblocks_list=mainblocks_list)
-@app.route('/logout') 
-def logout():
-    """маршрут для выхода из авторизации"""
-    logout_user()
-    return flask.redirect('/main')
-
-
-@app.route('/load_modal_menu_edit')
-def load_modal_menu_edit():
-    """маршрут для загрузки формы редактирования ссылок главного меню"""
-    modal_menu_edit = """
-<form action="/add_menu_link"> 
-                    <select name="select_type" >
-                        <option data-id="1">выберите тип ссылки:</option>
-                        <option data-id="1">новая веб-страница</option>
-                        <option name="edit_menu_type">новый якорь</option>
-                        <option name="edit_menu_type">страница сайта</option>
-                    </select>
-                    <select name="menu_edit_content" > 
-                        <option>выберите маршрут:</option>
-                        <option>веб-страница будет в цикле из бд</option>
-                    </select>
-                    <select name="menu_edit_content" class="My_D_none"> 
-                        <option>якори будут в цикле из бд</option>
-                    </select>
-                    <input  name="" type="text" placeholder="введите название ссылки">
-                    <input  name="" type="text" placeholder="введите url ссылки">
-                    <input  class="modal_submit" name="" type="submit" value="Создать">
-            </form>
-"""
-    return modal_menu_edit
-@app.route('/delete_menu_link/<int:id>', methods=['POST', "GET"])
-@login_required
-def delete_link(id):
-    print('delete link')
-    WebpageController.delete(id)
-    return 'link was deleted'
-@app.route('/add_menu_link', methods=['POST', 'GET'])
-@login_required
-def add_web_page():
-# переработать только для ссылок, добавить проверку на повтор или недопуск
-    url = flask.request.form.get('url')
-    webpage_url = flask.request.form.get('webpage_url')
-    type_link = flask.request.form.get('type_link')
-    position = WebpageController.get_links_order_by_pos()[-1].position
-    if url[0] != '#':
-        url = '/'+str(url)
-    # WebpageController.add_link(
-    #     url=url,
-    #     type_link=type_link,
-    #     position=int(position)+1
-    # )
-    # return redirect(f'/edit/{webpage_url}')
 # коммит тест
 # @app.route('/new_mainblock')
 # def load_modal_form_login():
@@ -195,28 +164,42 @@ def add_web_page():
 #     name = str(data[1])
 #     str_data = f'{url}, {name}' 
 #     return str_data
+# @app.route('/load_modal_menu_edit')
+# def load_modal_menu_edit():
+#     """маршрут для загрузки формы редактирования ссылок главного меню"""
+#     modal_menu_edit = """
+# <form action="/add_menu_link"> 
+#                     <select name="select_type" >
+#                         <option data-id="1">выберите тип ссылки:</option>
+#                         <option data-id="1">новая веб-страница</option>
+#                         <option name="edit_menu_type">новый якорь</option>
+#                         <option name="edit_menu_type">страница сайта</option>
+#                     </select>
+#                     <select name="menu_edit_content" > 
+#                         <option>выберите маршрут:</option>
+#                         <option>веб-страница будет в цикле из бд</option>
+#                     </select>
+#                     <select name="menu_edit_content" class="My_D_none"> 
+#                         <option>якори будут в цикле из бд</option>
+#                     </select>
+#                     <input  name="" type="text" placeholder="введите название ссылки">
+#                     <input  name="" type="text" placeholder="введите url ссылки">
+#                     <input  class="modal_submit" name="" type="submit" value="Создать">
+#             </form>
+# """
+#     return modal_menu_edit
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == '__main__':
-    app.run(debug=True) 
+# @app.route('/delete_menu_link/<int:id>', methods=['POST', "GET"])
+# @login_required
+# def delete_link(id):
+#     print('delete link')
+#     return 'link was deleted'
+# @app.route('/add_menu_link', methods=['POST', 'GET'])
+# @login_required
+# def add_web_page():
+# # переработать только для ссылок, добавить проверку на повтор или недопуск
+#     url = flask.request.form.get('url')
+#     webpage_url = flask.request.form.get('webpage_url')
+#     type_link = flask.request.form.get('type_link')
+#     if url[0] != '#':
+#         url = '/'+str(url)

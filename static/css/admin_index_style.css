@@ -1,0 +1,5 @@
+/* стили переопределения для страницы admin_index.html  */
+/* общие стили */
+.admin_header{
+    filter: hue-rotate(60deg);
+}

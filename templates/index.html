@@ -1,9 +1,7 @@
-<!--<?php  include 'header.php'; ?>-->
 {% extends 'base.html' %}
 {% block content %}
-{% include 'modal_block.html' %}
-{% include 'modal_message.html' %}
-{% include 'modal_warning.html' %}
+{% include 'modal_base.html' %}
+
 <!--Секция опросник-->
   <section  id="slider">
     <div class="container pad_section_slider">
@@ -11,31 +9,23 @@
         <div class="col-lg-5">
           <img src="{{url_for('static', filename='img/drone-slider.webp')}}" alt="" class="img-fluid animated">
         </div>
-        <!-- <div class="col-lg-1"></div> -->
-        <!-- начало шаблона текста -->
-        {% if paragraphs is defined %}
+        <div class="col-lg-1"></div>
         <div class="col-lg-6" id="content" data-id="">
           <div class="card_right">
-            <!-- <h2 class="mb-4">Рады тебя видеть!</h2> -->
+
             <h2 class="mb-4">Рады тебя видеть!</h2>
             <p></p>
-            <!-- <p>Ямальский многопрофильный колледж открывает направление FPV-дронов</p>
+            <p>Ямальский многопрофильный колледж открывает направление FPV-дронов</p>
             <p>Тема FPV-дронов достаточно актуальна на сегоднейший день, мы хотим попробывать дать нашим студентам навыки и скиллы, которые в будущем будут им полезны</p>
-            <p>Пожалуйста, пройди опрос по кнопке ниже</p> -->
+            <p>Пожалуйста, пройди опрос по кнопке ниже</p>
             </div>
           <button type="button" class="custom_btn" onclick="poll()">Пройти короткий опрос</button>
         </div>
-            {% else %}
-            <h2 class="mb-4">нет данных для записи</h2>
-            <p>нет данных для записи</p>
           </div>
-          <button type="button" class="custom_btn" onclick="poll()">Пройти короткий опрос</button>
         </div>
-        {% endif %}
-
-        <div class="col-lg-6" id="form">
+        <!-- <div class="col-lg-6" id="form">
           <iframe src="https://forms.yandex.ru/u/650c8a4ec417f386d49b9320/?iframe=1" frameborder="0" name="ya-form-650c8a4ec417f386d49b9320" onclick="poll()" class="form_yandex" style="height: 545px;"></iframe>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -54,14 +44,14 @@
             <th>Время конца занятия</th>
             <th>Место проведения</th>
           </tr>
-            {% for%}
+
             <tr>
                 <th>Вторник</th>
                 <td>18:00</td>
                 <td>20:00</td>
                 <td>Спорт комплекс ЯМК - 1 этаж - зал №2</td>
             </tr>
-            {% endfor%}
+
 <!--          <tr>-->
 <!--            <th>Вторник</th>-->
 <!--            <td>18:00</td>-->
@@ -100,6 +90,7 @@
             data-src="{{url_for('static', filename='img/img1.webp')}}"
             class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
             alt="Waves at Sea"
+
             onclick="LinkFull(this.src)"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"

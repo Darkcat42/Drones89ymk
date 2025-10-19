@@ -8,16 +8,11 @@
   <title>FPV | YMK</title>
   <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/style5.css')}}">
-<!--  <link rel="stylesheet" href="{{url_for('static', filename='css/my_style.css')}}">-->
+ <link rel="stylesheet" href="{{url_for('static', filename='css/my_style.css')}}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
 <body>
-{% if current_user.is_authenticated == True %}
-<body onload="set_editor('links', '{{current_user.is_authenticated}}')">
-{% else %}
-<body>
-{% endif%}
 <header class="header_section" id="header">
   <div class="container">
     <div class="row justify-content-center">
@@ -51,15 +46,15 @@
             </div>
             <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link header_color" href="/#table" onclick="RemoveCol()">Расписание</a>
-                <a class="nav-link header_color" href="/#media" onclick="RemoveCol()">Медиа</a>
-                <a class="nav-link header_color" href="/#teacher" onclick="RemoveCol()">Преподаватели</a>
-                <a class="nav-link header_color" href="/#faq" onclick="RemoveCol()">FAQ</a>
-                <a class="nav-link header_color" href="/#info" onclick="RemoveCol()">Присоединиться</a>
-                <a class="nav-link header_color" href="/gallery" onclick="RemoveCol()">Галерея</a>
-                <a class="nav-link header_color" href="/build" onclick="RemoveCol()">Сборки</a>
-                <a class="nav-link header_color" href="/doc" onclick="RemoveCol()">Документы</a>
-                <a class="nav-link header_color my_a_link" data-modal="login" href="#" onclick="RemoveCol()">вход</a>
+                <a class="nav-link header_color" href="/#table"     >Расписание     </a>
+                <a class="nav-link header_color" href="/#media"     >Медиа          </a>
+                <a class="nav-link header_color" href="/#teacher"   >Преподаватели  </a>
+                <a class="nav-link header_color" href="/#faq"       >FAQ            </a>
+                <a class="nav-link header_color" href="/#info"      >Присоединиться </a>
+                <a class="nav-link header_color" href="/gallery"    >Галерея        </a>
+                <a class="nav-link header_color" href="/build"      >Сборки         </a>
+                <a class="nav-link header_color" href="/doc"        >Документы      </a>
+                <a class="nav-link header_color" data-modal="login" href="#">вход</a>
               </div>
 
               <div class="db_nao db_yes telegram_header">
@@ -92,8 +87,6 @@
     <p>© ГБПОУ ЯНАО «Ямальский многопрофильный колледж». Все права защищены. <a href="policy.php" class="link_policy">Пользовательское соглашение</a></p>
   </div>
 </footer>
-
-
     <!-- Модальное окно -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -113,24 +106,9 @@
 <!--      <img src="img/telegram.svg" alt="" width="30px" height="auto">-->
 <!--    </a>-->
 <!--Значок телеграмма-->
-    <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script>
-
+    <!-- <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script> -->
     <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/myscript1.js')}}"></script>
-    <script src="{{url_for('static', filename='js/my_script_editor.js')}}"></script>
-    <script>
-    let paragraphCounter = "{{initial_count}}"; // Начальное значение, переданное из Flask
-
-    function addParagraph(paragraphs) {
-        paragraphCounter++;
-        const newParagraphHtml = `
-            <div class="paragraph-block">
-                <h2>${paragraphs[paragraphCounter].title}</h2>
-                <p>${paragraphs[paragraphCounter].content}</p>
-            </div>
-        `;
-        // ... вставка newParagraphHtml в контейнер на странице ...
-    }
-    </script>
+    <script src="{{url_for('static', filename='js/my_script_client.js')}}"></script>
 </body>
 </html>

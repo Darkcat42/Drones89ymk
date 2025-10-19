@@ -2,21 +2,34 @@
 *{
     transition-duration: 300ms;
     transition-property: all;
-    color: white!important;
+    /* color: white!important; */
     /* outline: 1px solid red; */
     /* margin: 0 auto; */
 }
-.editor_hover{
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .editor_hover{
     border: 1px solid transparent;
     margin-right: 5%;
-}
-.editor_hover:hover{
+} */
+/* .editor_hover:hover{
     box-shadow: 3px 3px 8px 4px #200c27;
     border-radius: 6px;
     transform:scale(1.01, 1.01);
     text-shadow: 4px 4px 6px black;
     border: 1px solid #4c1f5e;
-}
+} */
 .My_D_none{
     display: none;
 }
@@ -26,8 +39,7 @@
 /* перебор стилей сайта */
 
 .basic_bg{ /* стандартный фон везде */
-    background: url("../img/bg.svg") center no-repeat;
-}
+    background: url("../img/bg.svg") center no-repeat;}
 /* header - меню */
 .header_section{ /* класс меню сайта */
     /* padding: 0 20vw; */
@@ -124,9 +136,8 @@ margin-left: 15%;
 }
 
 .my_a_link{ /* поправка ссылки входа в меню сайта */
-margin-left: 30%;
-text-decoration: none;
-
+/* margin-left: 30%; */
+/* text-decoration: none; */
 }
 /* .webpage_links_fix{
     margin-top: 5%;
@@ -301,13 +312,13 @@ text-decoration: none;
 }
 /* страница с содержимым */
 .main_space{ /* основная подложка для блоков */
-    padding: 5vh 10vw;
+    /* padding: 5vh 10vw;
     height: 84vh;
     display: flex;
-    justify-content: center;
+    justify-content: center; */
 }
 .add_new_mainblock{
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -315,15 +326,15 @@ text-decoration: none;
     border-radius: 6px;
     height: 100px;
     cursor: pointer;
-    color: white;
+    color: white; */
 }
 .add_new_mainblock p {
-    font-size: 2em;
-    text-align: center;
+    /* font-size: 2em;
+    text-align: center; */
 }
 .add_new_mainblock:hover p {
-    font-size: 2em;
-    text-align: center;
+    /* font-size: 2em;
+    text-align: center; */
 }
 .footer_item{
     height: 10vh;
