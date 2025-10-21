@@ -36,6 +36,7 @@ addEventListener('click', (evt) => {
     по нажатию
     */
     target = evt.target
+    console.log(target) // тесты
     if(target.id != null){ // отлов кликабельных элементов
         switch(target.id){
             case 'logout': open_warning('выйти из системы?', 'logout');

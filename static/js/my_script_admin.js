@@ -20,6 +20,7 @@ addEventListener('click', (evt) => {
     по нажатию
     */
     target = evt.target
+    console.log(target) // тесты
     if(target.id != null){ // отлов кликабельных элементов
         switch(target.id){
             case 'logout': open_warning('выйти из системы?', 'logout');
@@ -40,6 +41,8 @@ addEventListener('click', (evt) => {
                 //     modal_content.innerHTML = html; 
                 // });
                 break
+            case 'del_table_row':
+                del_table_row(target)
         }
     }
     if(target.hasAttribute('data-action') == true){
@@ -50,3 +53,6 @@ addEventListener('click', (evt) => {
             }
         }//2 
 })//1 конец: addEventListener - click
+function del_table_row(target){
+    
+}

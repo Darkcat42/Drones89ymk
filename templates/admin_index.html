@@ -54,7 +54,8 @@
                 <td>{{item['start']}}</td>
                 <td>{{item['end']}}</td>
                 <td>{{item['location']}} </td>
-                <td class="none_border_right_top_bottom td_hover">ред</td>
+                <td class="none_border_right_top_bottom td_hover" id="edit_table_row">ред</td>
+                <td class="none_border_right_top_bottom td_hover" id="del_table_row" >del</td>
             </tr>
           
         {% endfor %}
@@ -89,16 +90,12 @@
         <p class="mb-5 custom_p">Наши преподаватели ездили на закрытый аэродром Российского высшего учебного заведения "Московский авиационный институт".
           <br> Ниже представлены фотогалерея и медиа с курсов повышения квалификации преподавателей</p>
       </div>
+      <!-- зона теста-->
+
+      <!--  -->
+      
       <div class="row">
         <div class="col-lg-4 mb-lg-0">
-          <img
-            data-src="{{url_for('static', filename='img/img1.webp')}}"
-            class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
-            alt="Waves at Sea"
-            onclick="LinkFull(this.src)"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
           <img
 
             data-src="{{url_for('static', filename='img/img2.webp')}}"

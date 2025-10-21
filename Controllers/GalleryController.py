@@ -1,5 +1,5 @@
 
-from Models.time_table import *
+from Models.Media_gallery import *
 class Time_tableController():
     @classmethod
     def add(cls, title, location, day, start, end, requirements, description):
@@ -15,26 +15,25 @@ class Time_tableController():
     @classmethod
     def get(cls):
         return time_table.select()
-    @classmethod
-    def get_table_rows(cls):
-        """:return: массив строк таблицы time_table"""
-        table_obj = Time_tableController.get()
-        rows_mass = []
-        for row in table_obj:
-            check = True
-            while check == True:
-                new_row = {}
-                new_row['title'] = row.title
-                new_row['location'] = row.location
-                new_row['day'] = row.day
-                new_row['start'] = row.start
-                new_row['end'] = row.end
-                new_row['requirements'] = row.requirements
-                new_row['description'] = row.description
-                rows_mass.append(new_row)
-                check = False
-        return rows_mass
-    
+    # @classmethod
+    # def get_table_rows(cls):
+    #     """:return: массив строк таблицы time_table"""
+    #     table_obj = Time_tableController.get()
+    #     rows_mass = []
+    #     for row in table_obj:
+    #         check = True
+    #         while check == True:
+    #             new_row = {}
+    #             new_row['title'] = row.title
+    #             new_row['location'] = row.location
+    #             new_row['day'] = row.day
+    #             new_row['start'] = row.start
+    #             new_row['end'] = row.end
+    #             new_row['requirements'] = row.requirements
+    #             new_row['description'] = row.description
+    #             rows_mass.append(new_row)
+    #             check = False
+    #     return rows_mass
     # @classmethod
     # def get_by_login(cls, search_login):
     #     return Users.get_or_none(Users.login==search_login)

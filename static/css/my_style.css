@@ -124,14 +124,6 @@ margin-left: 15%;
 .header_section:hover .basic_edit_btn{
     filter: opacity(100);
 }
-
-.my_a_link{ /* поправка ссылки входа в меню сайта */
-/* margin-left: 30%; */
-/* text-decoration: none; */
-}
-/* .webpage_links_fix{
-    margin-top: 5%;
-} */
 /* модальное окно */
 .basic_modal{ /* контейнер для всплывающего окна */
     z-index: 2!important;
@@ -158,14 +150,27 @@ margin-left: 15%;
     background: #31123C;
     box-shadow: 2px 2px 15px 5px #200c27;
 }
-.modal_form_align_center{
+#login_form{
     text-align: center;
+}
+#login_form input:not(input:last-child){
+    width: 200%;
+}
+#login_form input:last-child{
+    margin-top: 15%;
+}
+.modal_content form input:not(.modal_content form input:last-child){
+    border: none;
+    border-radius: 6px;
+    min-height: 50px;
+    max-height: 100px;
 }
 .modal_header{ /* блок управление модального окна (выход и заголовок) */
     padding: 2% 6%;
     display: flex;
     justify-content: space-between; /* разводит элементы по сторонам через центр */
     font-size: 2em;
+    color: white!important;
 }
 .modal_btn_close{
     filter: opacity(30%);
@@ -180,12 +185,13 @@ margin-left: 15%;
 .modal_header:hover .modal_btn_close{
     filter: opacity(100%);
 }
+
 .modal_content{ /* блок с содержимым (зависит от действий пользователя) */
     display: flex;
     flex-direction: column;
     width: fit-content;
     height: fit-content;
-    justify-content: center;
+    justify-content: start;
     align-items: flex-start;
     margin: auto;
     padding: 5% 10%;
@@ -236,13 +242,7 @@ margin-left: 15%;
 .modal_content *{
     color: black!important;
 }
-.modal_content form input:not(.modal_content form input:last-child){
-    border: none;
-    border-radius: 6px;
-    min-height: 50px;
-    max-height: 100px;
-    width: 100%;
-}
+
 .modal_exit>p{
     align-self: self-end;
     margin-left: 10%;
@@ -299,33 +299,4 @@ margin-left: 15%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-/* страница с содержимым */
-.main_space{ /* основная подложка для блоков */
-    /* padding: 5vh 10vw;
-    height: 84vh;
-    display: flex;
-    justify-content: center; */
-}
-.add_new_mainblock{
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border: 1px solid #4d1e5e;
-    border-radius: 6px;
-    height: 100px;
-    cursor: pointer;
-    color: white; */
-}
-.add_new_mainblock p {
-    /* font-size: 2em;
-    text-align: center; */
-}
-.add_new_mainblock:hover p {
-    /* font-size: 2em;
-    text-align: center; */
-}
-.footer_item{
-    height: 10vh;
 }
