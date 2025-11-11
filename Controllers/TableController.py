@@ -49,7 +49,24 @@ class Time_tableController():
     # def delete(cls, id):
     #     Users.delete().where(Users.id == id).execute()
 if __name__ == '__main__':
-    pass
+    Time_tableController.add(
+        title='Расписание',
+        location='спорт комплекс ЯМК 2 зал',
+        day='Понедельник',
+        start='16:00',
+        end='18:00',
+        requirements='требования - иметь сменную обувь',
+        description='расписание наших занятий'
+    )
+    Time_tableController.add(
+        title='',
+        location='ОТП ЯМК 216 кабинет второй этаж',
+        day='вторник',
+        start='16:00',
+        end='18:00',
+        requirements='',
+        description=''
+    )
 
 
 

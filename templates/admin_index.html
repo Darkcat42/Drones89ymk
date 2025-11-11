@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="col-lg-6" id="form">
-          <iframe src="https://forms.yandex.ru/u/650c8a4ec417f386d49b9320/?iframe=1" frameborder="0" name="ya-form-650c8a4ec417f386d49b9320" onclick="poll()" class="form_yandex" style="height: 545px;"></iframe>
+<!--          <iframe src="https://forms.yandex.ru/u/650c8a4ec417f386d49b9320/?iframe=1" frameborder="0" name="ya-form-650c8a4ec417f386d49b9320" onclick="poll()" class="form_yandex" style="height: 545px;"></iframe>-->
         </div>
       </div>
     </div>
@@ -46,6 +46,7 @@
             <th>Время конца занятия</th>
             <th>Место проведения</th>
             <th class="none_border_right_top_bottom"></th>
+              <th class="none_border_right_top_bottom"></th>
           </tr>
         {% for item in table_rows %}
             <tr>
@@ -57,9 +58,7 @@
                 <td class="none_border_right_top_bottom td_hover" id="edit_table_row">ред</td>
                 <td class="none_border_right_top_bottom td_hover" id="del_table_row" >del</td>
             </tr>
-          
         {% endfor %}
-            
           <tr>
             <td colspan="6" class="fix_bord"></td>
           </tr>
@@ -68,17 +67,9 @@
             <td colspan="4" class="info_rasp_dop ">{{table_rows[0]['requirements']}}</td>
             <td class="none_border_right_top_bottom"></td>
           </tr>
-          <tr>
-            <td colspan="6" class="fix_bord"></td>
-          </tr>
-          <tr  class="time_table_add_btn">
-            <td class="none_border_right_top_bottom"></td>
-            <td id="time_table_add_day" colspan="4" class="info_rasp_dop">добавить день</td>
-            <td class="none_border_left_top_bottom"></td>
-          </tr>
         </table>
+          <button class="time_table_add_btn">добавить день</button>
       </div>
-      
   </div>
 </section>
 <!--   Секция медиа-->
@@ -91,6 +82,38 @@
           <br> Ниже представлены фотогалерея и медиа с курсов повышения квалификации преподавателей</p>
       </div>
       <!-- зона теста-->
+<div class="row">
+        <div class="col-lg-6 mb-lg-0">
+            <img
+            data-src="{{url_for('static', filename='img/img1.webp')}}"
+            class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
+            alt="Waves at Sea"
+            onclick="LinkFull(this.src)"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          />
+        </div>
+        <div class="col-lg-4 mb-lg-0">
+            <img
+            data-src="{{url_for('static', filename='img/img1.webp')}}"
+            class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
+            alt="Waves at Sea"
+            onclick="LinkFull(this.src)"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          />
+        </div>
+        <div class="col-lg-6 mb-lg-0">
+            <img
+            data-src="{{url_for('static', filename='img/img1.webp')}}"
+            class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
+            alt="Waves at Sea"
+            onclick="LinkFull(this.src)"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          />
+        </div>
+      </div>
 
       <!--  -->
       
