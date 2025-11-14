@@ -5,7 +5,7 @@ from flask import Flask, render_template, request
 # импорт контроллеров
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
-from Controllers.TableController import Time_tableController
+from Controllers.ScheduleController import ScheduleController
 
 """создание и настройка приложения"""
 app = Flask(__name__)
@@ -35,7 +35,7 @@ def index():
     """маршрут на главную"""
     return render_template(
         'index.html',
-        table_rows=Time_tableController.get_table_rows()
+        ScheduleDays=ScheduleController.get_ScheduleDays()
         )
 @app.route('/doc') 
 def doc():
@@ -75,8 +75,8 @@ def login():
                     if role_name == 'administrator':
                         """маршрут на главную с функционалом администратора"""
                         return render_template(
-                            'admin_index.html', 
-                            table_rows=Time_tableController.get_table_rows()
+                            'admin_panel.html',
+                            scheduleDays=ScheduleController.get_ScheduleDays()
                             )
                     elif role_name == 'editor':
                         """задел под роль редактора и тп"""
@@ -87,10 +87,10 @@ def login():
         #     print('ошибка')
     return flask.redirect('/')
 
-@app.route('/admin_index')
-@login_required
-def admin_index():
-    return render_template('admin_index.html', role='role_name')
+# @app.route('/admin_index')
+# @login_required
+# def admin_index():
+#     return render_template('admin_panel.html', role='role_name')
 
 
 

@@ -34,9 +34,9 @@
   <div class="container">
     <div class="row">
       <div class="text-center">
-        <h2 class="mb-3">{{table_rows[0]['title']}}</h2>
+        <h2 class="mb-3">затычка - доделать контроллер таблиц</h2>
         <hr class="hr-line">
-        <p class="custom_p">{{table_rows[0]['description']}}</p>
+        <p class="custom_p">затычка - доделать контроллер таблиц</p>
         <table class="table_rasp">
           <tr>
             <th></th>
@@ -44,19 +44,19 @@
             <th>Время конца занятия</th>
             <th>Место проведения</th>
           </tr>
-        {% for item in table_rows %}
+        {% for item in scheduleDays %}
             <tr>
-                <th>{{item['day']}}</th>
-                <td>{{item['start']}}</td>
-                <td>{{item['end']}}</td>
-                <td>{{item['location']}}</td>
+                <th>{{day['day']}}</th>
+                <td>{{day['start']}}</td>
+                <td>{{day['end']}}</td>
+                <td>{{day['location']}}</td>
             </tr>
         {% endfor %}
           <tr>
             <td colspan="4" class="fix_bord"></td>
           </tr>
           <tr>
-            <td colspan="4" class="info_rasp_dop">{{table_rows[0]['requirements']}}</td>
+            <td colspan="4" class="info_rasp_dop">затычка - доделать контроллер таблиц</td>
           </tr>
         </table>
       </div>

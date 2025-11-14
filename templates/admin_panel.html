@@ -35,9 +35,9 @@
   <div class="container">
     <div class="row">
       <div class="text-center">
-        <h2 class="mb-3">{{table_rows[0]['title']}}</h2>
+        <h2 class="mb-3">затычка - доделать контроллер таблиц</h2>
         <hr class="hr-line">
-        <p class="custom_p">{{table_rows[0]['description']}}</p>
+        <p class="custom_p">затычка - доделать контроллер таблиц</p>
         <table class="table_rasp">
           <tr>
             <th class="none_border_left_top_bottom"></th>
@@ -48,13 +48,13 @@
             <th class="none_border_right_top_bottom"></th>
               <th class="none_border_right_top_bottom"></th>
           </tr>
-        {% for item in table_rows %}
+        {% for day in scheduleDays %}
             <tr>
                 <td class="none_border_left_top_bottom"></td>
-                <td>{{item['day']}}</td>
-                <td>{{item['start']}}</td>
-                <td>{{item['end']}}</td>
-                <td>{{item['location']}} </td>
+                <td>{{day['day']}}</td>
+                <td>{{day['start']}}</td>
+                <td>{{day['end']}}</td>
+                <td>{{day['location']}} </td>
                 <td class="none_border_right_top_bottom td_hover" id="edit_table_row">ред</td>
                 <td class="none_border_right_top_bottom td_hover" id="del_table_row" >del</td>
             </tr>
@@ -64,7 +64,7 @@
           </tr>
           <tr class="">
             <td class="none_border_left_top_bottom "></td>
-            <td colspan="4" class="info_rasp_dop ">{{table_rows[0]['requirements']}}</td>
+            <td colspan="4" class="info_rasp_dop ">затычка - доделать контроллер таблиц</td>
             <td class="none_border_right_top_bottom"></td>
           </tr>
         </table>
@@ -81,42 +81,8 @@
         <p class="mb-5 custom_p">Наши преподаватели ездили на закрытый аэродром Российского высшего учебного заведения "Московский авиационный институт".
           <br> Ниже представлены фотогалерея и медиа с курсов повышения квалификации преподавателей</p>
       </div>
-      <!-- зона теста-->
-<div class="row">
-        <div class="col-lg-6 mb-lg-0">
-            <img
-            data-src="{{url_for('static', filename='img/img1.webp')}}"
-            class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
-            alt="Waves at Sea"
-            onclick="LinkFull(this.src)"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
-        </div>
-        <div class="col-lg-4 mb-lg-0">
-            <img
-            data-src="{{url_for('static', filename='img/img1.webp')}}"
-            class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
-            alt="Waves at Sea"
-            onclick="LinkFull(this.src)"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
-        </div>
-        <div class="col-lg-6 mb-lg-0">
-            <img
-            data-src="{{url_for('static', filename='img/img1.webp')}}"
-            class="w-100 shadow-1-strong rounded mb-4 fsi lazy"
-            alt="Waves at Sea"
-            onclick="LinkFull(this.src)"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
-        </div>
-      </div>
-
-      <!--  -->
-      
+      <!-- зона теста начало-->
+      <!-- зона теста конец-->
       <div class="row">
         <div class="col-lg-4 mb-lg-0">
           <img

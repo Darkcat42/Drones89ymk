@@ -1,7 +1,5 @@
-from peewee import PrimaryKeyField, IntegerField, CharField, TextField
 from Models.Base import *
-from Models.Base import *
-from Models.Sections import Sections
+# from Models.old.Sections import Sections
 class Webpages(Base):
     """
     модель веб-страниц, которые 
@@ -10,6 +8,5 @@ class Webpages(Base):
     """
     id = PrimaryKeyField()
     name = CharField()
-    sections_id = ForeignKeyField(Sections)
 if __name__ == '__main__':
-    connect_db().create_tables([Webpages, Sections])
+    connect_db().create_tables([Webpages])
