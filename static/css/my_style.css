@@ -7,19 +7,6 @@
     /* margin: 0 auto; */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .My_D_none{
     display: none;
 }
@@ -127,7 +114,7 @@ margin-left: 15%;
 /* модальное окно */
 .basic_modal{ /* контейнер для всплывающего окна */
     z-index: 2!important;
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     top: 0px;

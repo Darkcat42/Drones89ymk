@@ -19,8 +19,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-1 col-sm-1 col-m title_logo db132">
-        <a href="/">
-          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК админ режим
+        <a href="/" >
+          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="160px" height="20px" class="drone_logo">ЯМК Админ Панель
 
         </a>
       </div>
@@ -48,6 +48,7 @@
             </div>
             <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
               <div class="navbar-nav">
+                <a class="nav-link header_color" href="/news">Новости</a>
                 <a class="nav-link header_color" href="/#table">Расписание</a>
                 <a class="nav-link header_color" href="/#media">Медиа</a>
                 <a class="nav-link header_color" href="/#teacher">Преподаватели</a>
@@ -56,7 +57,7 @@
                 <a class="nav-link header_color" href="/gallery">Галерея</a>
                 <a class="nav-link header_color" href="/build">Сборки</a>
                 <a class="nav-link header_color" href="/doc">Документы</a>
-                <a class="nav-link header_color" data-action="logout" href="#">выход</a>
+                <a class="nav-link header_color" data-action="logout">выход</a>
               </div>
 
               <div class="db_nao db_yes telegram_header">
@@ -111,6 +112,7 @@
     <!-- <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script> -->
     <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/myscript1.js')}}"></script>
-    <script src="{{url_for('static', filename='js/my_script_admin.js')}}"></script>
+    <script src="{{url_for('static', filename='js/my_script_client.js')}}"></script>
+
 </body>
 </html>

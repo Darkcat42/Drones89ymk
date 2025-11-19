@@ -97,10 +97,11 @@
     align-items: center;
 }
 .drone_logo {
-    width: 30px;
+    width: 60px;
     height: 30px;
     margin-right: 10px;
 }
+
 .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }

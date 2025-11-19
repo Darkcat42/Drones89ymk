@@ -11,18 +11,24 @@ document.addEventListener('submit', (evt) => {
     */
     evt.preventDefault(); 
     target = evt.target
-    console.log(target.id)
+
     if(target.id != null){ // отлов кликабельных элементов
+        console.log('отлов кликабельных элементов')
         switch(target.id){
             case 'login_form': check_login_form();
-            console.log('asdasdasd')
+                break;
+            case 'scheduleDay_form': createScheduleDay();
                 break;
         }
     }
 });
+function createScheduleDay(){
+    let form = document.getElementById('scheduleDay_form')
+    form.submit();
+}
 function check_login_form(){
     let login_input = document.getElementById('login')
-    let passwd_input = document.getElementById('login')
+    let passwd_input = document.getElementById('password')
     if(login_input.value != ''){
         let form = document.getElementById('login_form')
         form.submit();
@@ -39,10 +45,6 @@ addEventListener('click', (evt) => {
     console.log(target) // тесты
     if(target.id != null){ // отлов кликабельных элементов
         switch(target.id){
-            case 'logout': open_warning('выйти из системы?', 'logout');
-                break;
-            case 'modal_btn_action': open_warning('выйти из системы?');
-                break;
             case 'modal_btn_close':
                 modal_base.classList.add('close_modal')
                 break
@@ -50,10 +52,19 @@ addEventListener('click', (evt) => {
     }
     if(target.hasAttribute('data-modal') == true){
         switch(target.getAttribute('data-modal')){
-            case 'login'    : open_modal('Авторизация', 'load_modal_form_login');
+            case 'login'    : open_modal('Авторизация', '/loadModalBlock_anon/login');
             break; // модальное окно авторизации
+            case 'schedule'    : open_modal('Добавить день', '/loadModalBlock_user/schedule');
+            break; // модальное окно добавления нового дня в расписание
         }
     }//2
+    if(target.hasAttribute('data-action') == true){
+            action = target.getAttribute('data-action')
+            switch(action){
+                case 'logout': to_url(action)
+                break;
+            }
+        }//2
 })//1 конец: addEventListener - click
 // мои функции для клиентской части
 function to_url(url){
@@ -84,7 +95,6 @@ function open_modal(text, url){
             modal_content.innerHTML = html; 
         });
     modal_base.classList.remove('close_modal')
-    document.body.style.overflow='hidden' 
 }
 function open_message(text){
     /*
@@ -94,7 +104,7 @@ function open_message(text){
     let parag = document.getElementById('parag')
     parag.textContent = text
     modal_message.classList.remove('close_modal')
-    document.body.style.overflow = 'hidden' 
+//    document.body.style.overflow = 'hidden'
 }
 function open_warning(text, action){
     /*

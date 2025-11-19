@@ -55,13 +55,27 @@ def gallery():
 def build():
     """маршрут на страницу сборок с дронами"""
     return render_template('build.html')
-@app.route('/load_modal_form_login')
-def load_modal_form_login():
-    """маршрут для загрузки формы авторизации"""
-    with open('templates/html_modal_blocks/modal_login.html', 'r') as html:
-        modal_form_login = html.read()
-        html.close()
-    return modal_form_login
+
+def open_file(src):
+    with open(src, 'r') as html:
+        return html.read()
+@app.route('/loadModalBlock_anon/<blockName>')
+def loadModalBlock_anon(blockName):
+    """маршрут для загрузки модальных блоков неавторизоавнных пользователей"""
+    match blockName:
+        case 'login':
+            return open_file('templates/html_modal_blocks/login.html')
+
+
+@app.route('/loadModalBlock_user/<blockName>')
+@login_required
+def loadModalBlock_user(blockName):
+    """маршрут для загрузки модальных блоков для пользователей прошедших авторизацию"""
+    match blockName:
+        case 'schedule':
+            return open_file('templates/html_modal_blocks/schedule.html')
+
+
 @app.route('/login', methods=['POST'])
 def login(): 
     """маршрут для авторизации пользователя"""
@@ -91,10 +105,26 @@ def login():
         #     print('ошибка')
     return flask.redirect('/')
 
-# @app.route('/admin_index')
+
+@app.route('/createScheduleDay')
 # @login_required
-# def admin_index():
-#     return render_template('admin_panel.html', role='role_name')
+def createScheduleDay():
+    # if request.method == "POST":
+        location = request.form.get('location')
+        day = request.form.get('day')
+        start = request.form.get('start')
+        end = request.form.get('end')
+        try:
+            ScheduleController.addDay(
+                location=location,
+                day=day,
+                start=start,
+                end=end
+            )
+            return flask.redirect('/')
+        except:
+            return 'ошибка при работе с базой данных'
+
 
 
 

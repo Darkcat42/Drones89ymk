@@ -10,7 +10,7 @@ class Sections(Base):
     sectionDesc = TextField()
     sectionReq = CharField()
 if __name__ == '__main__':
-    connect_db().create_tables([Sections, TableBlocks])
+    connect_db().create_tables([Sections])
 
     
 
