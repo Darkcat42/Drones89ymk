@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
 from Controllers.ScheduleController import ScheduleController
-
+from Controllers.SectionsController import SectionsController
 """создание и настройка приложения"""
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -35,7 +35,9 @@ def index():
     """маршрут на главную"""
     return render_template(
         'index.html',
-        ScheduleDays=ScheduleController.get_ScheduleDays()
+        scheduleDays=ScheduleController.get_ScheduleDays(),
+        scheduleInfo=SectionsController.get_section_info('schedule'),
+        edit_tools = False
         )
 @app.route('/doc') 
 def doc():
@@ -56,7 +58,7 @@ def build():
 @app.route('/load_modal_form_login')
 def load_modal_form_login():
     """маршрут для загрузки формы авторизации"""
-    with open('templates/modal_login.html', 'r') as html:
+    with open('templates/html_modal_blocks/modal_login.html', 'r') as html:
         modal_form_login = html.read()
         html.close()
     return modal_form_login
@@ -71,12 +73,14 @@ def login():
                 passwd_form = request.form.get('password')
                 if passwd_form == user.password:
                     flask_login.login_user(user)
-                    role_name = RoleController.show(current_user.role).role
+                    role_name = RoleController.show(current_user.role_id).role_id
                     if role_name == 'administrator':
                         """маршрут на главную с функционалом администратора"""
                         return render_template(
                             'admin_panel.html',
-                            scheduleDays=ScheduleController.get_ScheduleDays()
+                            scheduleDays=ScheduleController.get_ScheduleDays(),
+                            scheduleInfo=SectionsController.get_section_info('schedule'),
+                            edit_tools = True
                             )
                     elif role_name == 'editor':
                         """задел под роль редактора и тп"""

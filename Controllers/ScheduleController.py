@@ -1,5 +1,8 @@
 from Models.Schedule import *
 class ScheduleController():
+    """
+        управление данными таблицы расписание
+    """
     @classmethod
     def addDay(cls, location, day, start, end):
         Schedule.create(

@@ -1,10 +1,11 @@
 from peewee import PrimaryKeyField, IntegerField, CharField, TextField
 from Models.Base import *
+
+
+
 class Schedule(Base):
     """
-    модель веб-страниц, которые
-    содержат внешние ключи на блоки данных, которые
-    содержат заголовки, картинки, текста и тп
+    модель таблицы расписания
     """
     id = PrimaryKeyField()
     location = CharField()
