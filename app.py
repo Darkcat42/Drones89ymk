@@ -106,137 +106,41 @@ def login():
     return flask.redirect('/')
 
 
-@app.route('/createScheduleDay')
-# @login_required
+@app.route('/createScheduleDay', methods=['POST'])
+@login_required
 def createScheduleDay():
     # if request.method == "POST":
-        location = request.form.get('location')
-        day = request.form.get('day')
-        start = request.form.get('start')
-        end = request.form.get('end')
-        try:
-            ScheduleController.addDay(
-                location=location,
-                day=day,
-                start=start,
-                end=end
-            )
-            return flask.redirect('/')
-        except:
-            return 'ошибка при работе с базой данных'
+    data = request.get_json()
+    location = data['location']
+    day = data['day']
+    start = data['start']
+    end = data['end']
+    print(data, location)
+    try:
+        ScheduleController.addDay(
+            location=location,
+            day=day,
+            start=start,
+            end=end
+        )
+    except:
+        return 'ошибка при работе с базой данных'
+    current_day = ScheduleController.showLast() 
+    current_day = {
+        'id' : current_day.id,
+        'day' : current_day.day,
+        'start' : current_day.start,
+        'end' : current_day.end,
+        'location' : current_day.location
+    }
+    return current_day
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@app.route('/deleteScheduleDay/<id>', methods=['GET'])
+@login_required
+def deleteScheduleDay(id):
+    ScheduleController.delete(id=id)
+    if ScheduleController.show(id) == None:
+        return id
 
 if __name__ == '__main__':
     app.run(debug=True) 
-# @app.route('/<webpage>')
-# def index(webpage):
-#     """маршрут для гостей на веб-страницы сайта"""
-#     webpage = str('/')+webpage
-#     webpage = WebpageController.get_by_url(webpage)
-#     mainblocks = MainblockController.get_blocks_where_webpage(int(webpage.id))
-#     mainblocks_list = MainblockController.get_order_by_mainblocks(mainblocks)
-#     # print(mainblocks_list)
-#     webpage_links = WebpageController.get_order_by_webpages()
-#     webpage_name = webpage.name
-#     webpage_url = webpage.url
-#     if current_user.is_authenticated == True:
-#         return redirect(f'/edit/{webpage_url}')
-#     return render_template(
-#         'index.html',
-#         links=webpage_links,
-#         webpage_name=webpage_name,
-#         webpage_url=webpage_url,
-#         mainblocks_list=mainblocks_list,
-#         mainblocks=mainblocks
-#     )
-# @app.route('/edit/<webpage>')
-# @login_required
-# def edit(webpage):
-#     """маршрут для авторизованных пользователей на веб-страницы сайта"""
-#     role_name = RoleController.show(current_user.role).role
-#     webpage = str('/')+webpage
-#     webpage = WebpageController.get_by_url(webpage)
-#     mainblocks = MainblockController.get_blocks_where_webpage(int(webpage.id))
-#     mainblocks_list = MainblockController.get_order_by_mainblocks(mainblocks)
-#     webpage_links = WebpageController.get_order_by_webpages()
-#     webpage_name = webpage.name
-#     webpage_url = webpage.url
-#     return render_template(
-#         'index.html',
-#         links=webpage_links,
-#         role=role_name,
-#         webpage_name=webpage_name,
-#         webpage_url=webpage_url,
-#         mainblocks_list=mainblocks_list)
-# коммит тест
-# @app.route('/new_mainblock')
-# def load_modal_form_login():
-#     pass
-# @app.route('/empty_mainblock')
-# def load_modal_form_login():
-#     pass
-# маршруты для работы с веб страницами - переработать
-# @login_required
-
-# @app.route('/popap_edit_web_page/', methods=['POST', 'GET']) # МАРШРУТ на главную
-# @login_required
-# def popap_edit_web_page():
-#     data_from_url = flask.request.args.get('query', default=0, type=str)
-#     data = data_from_url.split(', ')
-#     url = str(data[0])
-#     name = str(data[1])
-#     str_data = f'{url}, {name}' 
-#     return str_data
-# @app.route('/load_modal_menu_edit')
-# def load_modal_menu_edit():
-#     """маршрут для загрузки формы редактирования ссылок главного меню"""
-#     modal_menu_edit = """
-# <form action="/add_menu_link"> 
-#                     <select name="select_type" >
-#                         <option data-id="1">выберите тип ссылки:</option>
-#                         <option data-id="1">новая веб-страница</option>
-#                         <option name="edit_menu_type">новый якорь</option>
-#                         <option name="edit_menu_type">страница сайта</option>
-#                     </select>
-#                     <select name="menu_edit_content" > 
-#                         <option>выберите маршрут:</option>
-#                         <option>веб-страница будет в цикле из бд</option>
-#                     </select>
-#                     <select name="menu_edit_content" class="My_D_none"> 
-#                         <option>якори будут в цикле из бд</option>
-#                     </select>
-#                     <input  name="" type="text" placeholder="введите название ссылки">
-#                     <input  name="" type="text" placeholder="введите url ссылки">
-#                     <input  class="modal_submit" name="" type="submit" value="Создать">
-#             </form>
-# """
-#     return modal_menu_edit
-
-# @app.route('/delete_menu_link/<int:id>', methods=['POST', "GET"])
-# @login_required
-# def delete_link(id):
-#     print('delete link')
-#     return 'link was deleted'
-# @app.route('/add_menu_link', methods=['POST', 'GET'])
-# @login_required
-# def add_web_page():
-# # переработать только для ссылок, добавить проверку на повтор или недопуск
-#     url = flask.request.form.get('url')
-#     webpage_url = flask.request.form.get('webpage_url')
-#     type_link = flask.request.form.get('type_link')
-#     if url[0] != '#':
-#         url = '/'+str(url)

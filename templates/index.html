@@ -2,42 +2,17 @@
 {% block content %}
 {% include 'html_modal_blocks/base.html' %}
 
-<!--Секция опросник-->
-  <section  id="slider">
-    <div class="container pad_section_slider">
-      <div class="row fix-mar">
-        <div class="col-lg-5">
-          <img src="{{url_for('static', filename='img/drone-slider.webp')}}" alt="" class="img-fluid animated">
-        </div>
-        <div class="col-lg-1"></div>
-        <div class="col-lg-6" id="content" data-id="">
-          <div class="card_right">
-
-            <h2 class="mb-4">Рады тебя видеть!</h2>
-            <p></p>
-            <p>Ямальский многопрофильный колледж открывает направление FPV-дронов</p>
-            <p>Тема FPV-дронов достаточно актуальна на сегоднейший день, мы хотим попробывать дать нашим студентам навыки и скиллы, которые в будущем будут им полезны</p>
-            <p>Пожалуйста, пройди опрос по кнопке ниже</p>
-            </div>
-          <button type="button" class="custom_btn" onclick="poll()">Пройти короткий опрос</button>
-        </div>
-          </div>
-        </div>
-        <!-- <div class="col-lg-6" id="form">
-          <iframe src="https://forms.yandex.ru/u/650c8a4ec417f386d49b9320/?iframe=1" frameborder="0" name="ya-form-650c8a4ec417f386d49b9320" onclick="poll()" class="form_yandex" style="height: 545px;"></iframe>
-        </div> -->
-      </div>
-    </div>
-  </section>
-<!--Секция опросник-->
+<!--Секция расписание-->
 {% include 'html_blocks/index/schedule_block.html' %}
-<!--   Секция медиа-->
+<!--Секция медиа-->
 {% include 'html_blocks/index/media_index_block.html' %}
-<!--    Секция преподователи-->
+<!--Секция преподователи-->
 {% include 'html_blocks/index/teachers_block.html' %} 
-<!--    Секция faq-->
+<!--Секция опросник-->
+{% include 'html_blocks/index/quiz_block.html' %}
+<!--Секция faq-->
 {% include 'html_blocks/index/faq_block.html' %}
-<!--    Секция join-->
+<!--Секция join-->
 {% include 'html_blocks/index/join_block.html' %}
 {% endblock %}
 

@@ -8,7 +8,7 @@
         <table class="table_rasp">
           <tr>
             <th class="none_border_left_top_bottom"></th>
-            <th class=""></th>
+            <th class="">День недели</th>
             <th>Время начала занятия</th>
             <th>Время конца занятия</th>
             <th>Место проведения</th>
@@ -16,16 +16,16 @@
               <th class="none_border_right_top_bottom"></th>
           </tr>
         {% for day in scheduleDays %}
-            <tr>
+            <tr data-scheduleDay-id="{{day['id']}}">
                 <td class="none_border_left_top_bottom"></td>
-                <td>{{day['day']}}</td>
-                <td>{{day['start']}}</td>
-                <td>{{day['end']}}</td>
-                <td>{{day['location']}} </td>
-<!--                инстурменты администратора для данного блока-->
+                <td id="scheduleDayName">{{day['day']}}</td>
+                <td id="scheduleStart">{{day['start']}}</td>
+                <td id="scheduleEnd">{{day['end']}}</td>
+                <td id="scheduleLocation">{{day['location']}} </td>
+<!--             инстурменты администратора для данного блока-->
                 {% if edit_tools == True %}
-                <td class="none_border_right_top_bottom td_hover" id="edit_table_row">ред</td>
-                <td class="none_border_right_top_bottom td_hover" id="del_table_row" >del</td>
+                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_editBtn">ред</td>
+                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_delBtn" >del</td>
                 {% endif %}
             </tr>
         {% endfor %}
@@ -39,7 +39,7 @@
           </tr>
         </table>
         {% if edit_tools == True %}
-        <button class="time_table_add_btn" data-modal="schedule">добавить день</button>
+        <button class="time_table_add_btn" data-modal="scheduleDay_add">добавить день</button>
         {% endif %}  
       </div>
   </div>

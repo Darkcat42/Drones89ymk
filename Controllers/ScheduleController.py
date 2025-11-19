@@ -15,6 +15,15 @@ class ScheduleController():
     def get(cls):
         return Schedule.select()
     @classmethod
+    def show(cls, id):
+        return Schedule.get_or_none(Schedule.id == id)
+    @classmethod
+    def showLast(cls):
+        return Schedule.select().order_by(Schedule.id.desc()).get()
+    @classmethod
+    def delete(cls, id):
+        return Schedule.delete().where(Schedule.id == id).execute()
+    @classmethod
     def get_ScheduleDays(cls):
         """
         метод для перебора объекта в массив
@@ -25,6 +34,7 @@ class ScheduleController():
         scheduleDays = []
         for day in schedule:
             day_dict = {}
+            day_dict['id'] = day.id
             day_dict['location'] = day.location
             day_dict['day'] = day.day
             day_dict['start'] = day.start
