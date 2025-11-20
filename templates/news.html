@@ -1,0 +1,45 @@
+{% if current_user.is_authenticated %}
+    {% extends 'admin_base.html' %}
+{% else %}
+    {% extends 'base.html' %}
+{% endif %}
+
+{% block content %}
+{% include 'html_modal_blocks/base.html' %}
+<!--Секция новости-->
+<section class="container"> 
+    <div class="row" style="margin: 1%; border: 1px solid black;display: none;">
+        <div class="col">
+            <img src="/static/img/news/news_placeholder.jpg" class="" alt="...">
+        </div>
+        <div class="col">
+            <h5 class="card-title">Заголовок новости</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.</p>
+            <p style="border: 1px solid black; width: fit-content; padding: 0 20px;">25.01.2024</p>
+            <a href="/news" class="btn btn-light">Узнать больше</a>
+        </div>
+    </div>
+
+        <div class="row" style="margin: 1%; border: 1px solid black;">
+            <div class="col">
+                <img src="" class="" alt="...">
+            </div>
+            <div class="col">
+                <h5 class="card-title">Заголовок новости</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.</p>
+                <p style="border: 1px solid black; width: fit-content; padding: 0 20px;">25.01.2024</p>
+                <a href="/news" class="btn btn-light">Узнать больше</a>
+            </div>
+        </div>
+        <div class="row align-content-center">
+            <button class="my_add_btn_static" data-modal="news_add">добавить новость</button>
+        </div>
+
+  </section>
+{% endblock %}

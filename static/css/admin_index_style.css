@@ -36,7 +36,19 @@ td.td_hover:active{
     transition-duration: 10ms;
     background: #380505;
 }
-.time_table_add_btn{
+
+.my_add_btn_static{
+    border: 1px solid transparent!important;
+    background-color: #491c5a;
+    color: white !important;
+    transform: scale(0.89, 1);
+    font-weight: 200;
+    letter-spacing: 4px;
+    margin: 2% auto;
+    padding: 1%;
+    width: 50%
+}
+.my_add_btn_dynamic{
     border: 1px solid transparent!important;
     opacity: 40%;
     background-color: #491c5a;
@@ -49,16 +61,16 @@ td.td_hover:active{
     width: 50%
 }
 
-#table:hover button.time_table_add_btn{
+#table:hover button.my_add_btn_dynamic{
     box-shadow: 3px 3px 8px 4px #200c27;
     transform:scale(1.01, 1.01) ;
     opacity: 100%;
     cursor: pointer;
 }
-button.time_table_add_btn:hover{
+button.my_add_btn_dynamic:hover, button.my_add_btn_static:hover{
     filter: brightness(2);
 }
-button.time_table_add_btn:active{
+button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     transition-duration: 10ms;
     background: #380505!important;
 }

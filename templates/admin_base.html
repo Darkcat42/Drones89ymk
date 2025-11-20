@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-1 col-sm-1 col-m title_logo db132">
-        <a href="/" >
+        <a href="/login" method="post" >
           <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="160px" height="20px" class="drone_logo">ЯМК Админ Панель
 
         </a>
@@ -28,7 +28,7 @@
           <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid align-content-center">
             <div class="db_nao db_yes title_logo">
-              <a href="/">
+              <a href="/login">
                 <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
               </a>
             </div>
@@ -49,11 +49,11 @@
             <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-link header_color" href="/news">Новости</a>
-                <a class="nav-link header_color" href="/#table">Расписание</a>
-                <a class="nav-link header_color" href="/#media">Медиа</a>
-                <a class="nav-link header_color" href="/#teacher">Преподаватели</a>
-                <a class="nav-link header_color" href="/#faq">FAQ</a>
-                <a class="nav-link header_color" href="/#info">Присоединиться</a>
+                <a class="nav-link header_color" href="#table">Расписание</a>
+                <a class="nav-link header_color" href="/login/#media">Медиа</a>
+                <a class="nav-link header_color" href="/login/#teacher">Преподаватели</a>
+                <a class="nav-link header_color" href="/login/#faq">FAQ</a>
+                <a class="nav-link header_color" href="/login/#info">Присоединиться</a>
                 <a class="nav-link header_color" href="/gallery">Галерея</a>
                 <a class="nav-link header_color" href="/build">Сборки</a>
                 <a class="nav-link header_color" href="/doc">Документы</a>
@@ -113,6 +113,8 @@
     <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/myscript1.js')}}"></script>
     <script src="{{url_for('static', filename='js/my_script_client.js')}}"></script>
+    <script src="{{url_for('static', filename='js/schedule_block.js')}}"></script>
+    <script src="{{url_for('static', filename='js/news_webpage.js')}}"></script>
 
 </body>
 </html>

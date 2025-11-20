@@ -10,11 +10,23 @@
             <th class="none_border_left_top_bottom"></th>
             <th class="">День недели</th>
             <th>Время начала занятия</th>
-            <th>Время конца занятия</th>
+            <th>Время завершения занятия</th>
             <th>Место проведения</th>
             <th class="none_border_right_top_bottom"></th>
               <th class="none_border_right_top_bottom"></th>
           </tr>
+          <tr id="empty_schedule" class="empty_schedule">
+                <td class="none_border_left_top_bottom"></td>
+                <td id="scheduleDayName"></td>
+                <td id="scheduleStart"></td>
+                <td id="scheduleEnd"></td>
+                <td id="scheduleLocation"></td>
+<!--             инстурменты администратора для данного блока-->
+                {% if edit_tools == True %}
+                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_editBtn">ред</td>
+                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_delBtn" >del</td>
+                {% endif %}
+            </tr>
         {% for day in scheduleDays %}
             <tr data-scheduleDay-id="{{day['id']}}">
                 <td class="none_border_left_top_bottom"></td>
@@ -28,7 +40,15 @@
                 <td class="none_border_right_top_bottom td_hover" id="scheduleDay_delBtn" >del</td>
                 {% endif %}
             </tr>
+            
         {% endfor %}
+            {% if edit_tools == True %}
+            <tr> 
+                 <!-- блок для пустого расписания  -->
+                <td class="none_border_left_top_bottom" ></td>
+                <td colspan="4" class="" ><button class="my_add_btn_dynamic" data-modal="scheduleDay_add">добавить день</button></td>
+            </tr>
+            {% endif %}
           <tr>
             <td colspan="6" class="fix_bord"></td>
           </tr>
@@ -38,9 +58,6 @@
             <td class="none_border_right_top_bottom"></td>
           </tr>
         </table>
-        {% if edit_tools == True %}
-        <button class="time_table_add_btn" data-modal="scheduleDay_add">добавить день</button>
-        {% endif %}  
       </div>
   </div>
 </section>

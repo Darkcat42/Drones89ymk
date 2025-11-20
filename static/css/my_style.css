@@ -7,7 +7,7 @@
     /* margin: 0 auto; */
 }
 
-.My_D_none{
+.My_D_none, .empty_schedule{
     display: none;
 }
 /* .My_D_block{
@@ -31,6 +31,12 @@
 .header_section>div>div{
     width: 90vw;
 }
+
+
+
+
+
+
 .webpage_name{ /* заголовок страницы */
 margin-left: 15%;
 }

@@ -47,6 +47,10 @@ def doc():
 def gallery():
     """маршрут на страницу с галереей"""
     return render_template('gallery.html')
+@app.route('/news') 
+def news():
+    """маршрут на страницу с галереей"""
+    return render_template('news.html')
 # @app.route('/policy') 
 # def policy():
 #     """маршрут policy.html"""
@@ -74,6 +78,8 @@ def loadModalBlock_user(blockName):
     match blockName:
         case 'schedule':
             return open_file('templates/html_modal_blocks/schedule.html')
+        case 'news':
+            return open_file('templates/html_modal_blocks/news.html')
 
 
 @app.route('/login', methods=['POST'])
