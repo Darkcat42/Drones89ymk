@@ -18,11 +18,26 @@ class ScheduleController():
     def show(cls, id):
         return Schedule.get_or_none(Schedule.id == id)
     @classmethod
-    def showLast(cls):
-        return Schedule.select().order_by(Schedule.id.desc()).get()
-    @classmethod
     def delete(cls, id):
         return Schedule.delete().where(Schedule.id == id).execute()
+    @classmethod
+    def update(cls, id, **filds):
+        for key, value in filds.items():
+            Schedule.update({key:value}).where(Schedule.id == id).execute()
+    @classmethod
+    def showLast(cls):
+        return Schedule.select().order_by(Schedule.id.desc()).get()
+    
+    @classmethod
+    def get_currentScheduleDay(cls, id):
+        day = ScheduleController.show(id)
+        day_dict = {}
+        day_dict['id'] = day.id
+        day_dict['location'] = day.location
+        day_dict['day'] = day.day
+        day_dict['start'] = day.start
+        day_dict['end'] = day.end
+        return day_dict
     @classmethod
     def get_ScheduleDays(cls):
         """

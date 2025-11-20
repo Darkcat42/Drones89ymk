@@ -106,6 +106,26 @@ def login():
     return flask.redirect('/')
 
 
+@app.route('/showScheduleDay/<id>', methods=['GET'])
+@login_required
+def showScheduleDay(id):
+    return ScheduleController.get_currentScheduleDay(id)
+
+@app.route('/updateScheduleDay/<id>', methods=['POST'])
+@login_required
+def updateScheduleDay(id):
+    day_id = id
+    data = request.get_json()
+    ScheduleController.update(
+        day_id, 
+        location=data['location'],
+        day = data['day'],
+        start = data['start'],
+        end = data['end']
+        )
+    data = ScheduleController.get_currentScheduleDay(day_id)
+    
+    return data
 @app.route('/createScheduleDay', methods=['POST'])
 @login_required
 def createScheduleDay():
@@ -115,7 +135,6 @@ def createScheduleDay():
     day = data['day']
     start = data['start']
     end = data['end']
-    print(data, location)
     try:
         ScheduleController.addDay(
             location=location,

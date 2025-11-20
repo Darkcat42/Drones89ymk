@@ -11,7 +11,6 @@ addEventListener('click', (evt) => {
     по нажатию
     */
     target = evt.target
-    console.log(target) // тесты
     if(target.id != null){ // отлов кликабельных элементов
         switch(target.id){
             case 'modal_btn_close':
@@ -20,15 +19,14 @@ addEventListener('click', (evt) => {
             case 'scheduleDay_addBtn': createScheduleDay();
                 break;
             case 'scheduleDay_editBtn': 
-                editScheduleDay(target.parentNode.getAttribute('data-scheduleDay-id'));
+                showScheduleDay(target.parentNode.getAttribute('data-scheduleDay-id'));
                 break;
-            case 'scheduleDay_editBtn_finally':
-                alert('затычка, scheduleDay_editBtn_finally')
+            case 'scheduleDay_UpdateBtn':
+                updateScheduleDay()
                 break;
             case 'scheduleDay_delBtn':
                 deleteScheduleDay(target.parentNode.getAttribute('data-scheduleDay-id'));
                 break;
-            
         }
     }
     if(target.hasAttribute('data-modal') == true){
@@ -53,7 +51,6 @@ document.addEventListener('submit', (evt) => {
     */
     evt.preventDefault(); 
     target = evt.target
-
     if(target.id != null){ // отлов кликабельных элементов
         console.log('отлов кликабельных элементов')
         switch(target.id){
@@ -71,39 +68,99 @@ function deleteScheduleDay(id){
         elem.remove()
     })
 }
-async function editScheduleDay(id){
-    response = await open_modal('Редактировать день', '/loadModalBlock_user/schedule');
-    let day = document.getElementById('day')
-                // console.log(day)
-    let start = document.getElementById('start')
-    let end = document.getElementById('end')
-    let location = document.getElementById('location')
-
+function editModal_ScheduleDay(idVal, dayVal, startVal, endVal, locationVal){
+    let idObj = document.getElementById('day_id')
+    idObj.value = idVal
+    let dayObj = document.getElementById('day')
+    let startObj = document.getElementById('start')
+    let endObj = document.getElementById('end')
+    let locationObj = document.getElementById('location')
     document.getElementById('scheduleDay_addBtn').value = 'Изменить день'
-    document.getElementById('scheduleDay_addBtn').id = 'scheduleDay_editBtn_finally'
-    
-
-    target = document.querySelector('[data-scheduleDay-id="'+id+'"]')
+    document.getElementById('scheduleDay_addBtn').id = 'scheduleDay_UpdateBtn'
+    let attrStr = '[data-scheduleDay-id="'+idVal+'"]'
+    target = document.querySelector(attrStr)
     let all_td_ScheduleDay = target.children
         Array.from(all_td_ScheduleDay).forEach(elem => {
             if(elem.id == 'scheduleDayName'){
-                // console.log(elem.textContent)
-                
-                
-                day.value = elem.textContent
+                dayObj.value = dayVal
             }
             if(elem.id == 'scheduleStart'){
-                start.value = elem.textContent 
-                // console.log(elem)
+                startObj.value = startVal
             }
             if(elem.id == 'scheduleEnd'){
-                end.value = elem.textContent
+                endObj.value = endVal
             }
             if(elem.id == 'scheduleLocation'){
-                location.value = elem.textContent
+                locationObj.value = locationVal
             }
-
         });  
+}
+async function showScheduleDay(id){
+    await open_modal('Редактировать день', '/loadModalBlock_user/schedule');
+    let url =  '/showScheduleDay/'+id
+    console.log(url)
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        let day_id = data['id']
+        let day = data['day']
+        let start = data['start']
+        let end = data['end']
+        let location = data['location']   
+        editModal_ScheduleDay(day_id, day, start, end, location)
+    })
+}
+async function updateScheduleDay(){
+    let day_id = document.getElementById('day_id')
+    let location = document.getElementById('location')
+    let day = document.getElementById('day')
+    let start = document.getElementById('start')
+    let end = document.getElementById('end')
+    let scheduleDay = {
+        'location' : location.value,  
+        'day' : day.value,  
+        'start' : start.value,  
+        'end' : end.value
+    }
+    let url =  '/updateScheduleDay/'+day_id.value
+
+    fetch(url, { // отправляем запрос
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(scheduleDay)
+    })
+    .then(response => response.json()) // получаем ответ
+    .then(data => {
+        let id = data['id']
+        let day = data['day']
+        let start = data['start']
+        let end = data['end']
+        let location = data['location']  
+        edit_day(id, day, start, end, location) 
+        // editModal_ScheduleDay(id, day, start, end, location)
+    })
+}
+function edit_day(idVal, dayVal, startVal, endVal, locationVal){
+    let attrStr = '[data-scheduleDay-id="'+idVal+'"]'
+    target = document.querySelector(attrStr)
+    let all_td_ScheduleDay = target.children
+        Array.from(all_td_ScheduleDay).forEach(elem => {
+            if(elem.id == 'scheduleDayName'){
+                elem.innerHTML = dayVal
+            }
+            if(elem.id == 'scheduleStart'){
+                elem.innerHTML = startVal
+            }
+            if(elem.id == 'scheduleEnd'){
+                elem.innerHTML = endVal
+            }
+            if(elem.id == 'scheduleLocation'){
+                elem.innerHTML = locationVal
+            }
+        });
+        modal_base.classList.add('close_modal')
 }
 function createScheduleDay(){
     // /*
@@ -119,7 +176,7 @@ function createScheduleDay(){
         'start' : start.value,  
         'end' : end.value
     }
-    let response = fetch('/createScheduleDay', { // отправляем новый день и получаем его в json
+    fetch('/createScheduleDay', { // отправляем новый день и получаем его в json
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -152,8 +209,7 @@ function createScheduleDay(){
         });
         last_tr_ScheduleDay.insertAdjacentElement('afterend', clone_tr);
         modal_base.classList.add('close_modal')
-    });
-// function  
+    }); 
 }
 function check_login_form(){
     let login_input = document.getElementById('login')
@@ -165,7 +221,6 @@ function check_login_form(){
          alert('заполните все поля')
     }
 }
-
 // мои функции для клиентской части
 function to_url(url){
     /*
