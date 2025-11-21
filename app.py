@@ -78,8 +78,8 @@ def loadModalBlock_user(blockName):
     match blockName:
         case 'schedule':
             return open_file('templates/html_modal_blocks/schedule.html')
-        case 'news':
-            return open_file('templates/html_modal_blocks/news.html')
+        case 'news_modal':
+            return open_file('templates/html_modal_blocks/news_modal.html')
 
 @app.route('/admin_panel')
 @login_required
@@ -113,6 +113,7 @@ def login():
                 else:
                     return 'неверный логин или пароль'
     return flask.redirect('/')
+# маршруты для блока расписания главной страницы
 @app.route('/showScheduleDay/<id>', methods=['GET'])
 @login_required
 def showScheduleDay(id):
@@ -130,7 +131,6 @@ def updateScheduleDay(id):
         end = data['end']
         )
     data = ScheduleController.get_currentScheduleDay(day_id)
-    
     return data
 @app.route('/createScheduleDay', methods=['POST'])
 @login_required
@@ -165,5 +165,17 @@ def deleteScheduleDay(id):
     ScheduleController.delete(id=id)
     if ScheduleController.show(id) == None:
         return id
+# маршруты для страницы новости
+@app.route('/createNews', methods=['POST'])
+@login_required
+def createNews():
+    if request.method == "POST":
+        # data = request['json']
+        file = request.files['file']
+        print(request.args)
+        print(file)
+
+        return 'затычка'
+
 if __name__ == '__main__':
     app.run(debug=True) 

@@ -10,7 +10,7 @@ document.addEventListener('click', (evt) => {
             break; // модальное окно авторизации
             case 'scheduleDay_add'    : open_modal('Добавить день', '/loadModalBlock_user/schedule');
             break; // модальное окно добавления нового дня в расписание
-            case 'news_add'    : open_modal('Добавить новость', '/loadModalBlock_user/news');
+            case 'news_add'    : open_modal('Добавить новость', '/loadModalBlock_user/news_modal');
             break; // модальное окно добавления нового дня в расписание
         }
     }//2
@@ -23,6 +23,7 @@ document.addEventListener('click', (evt) => {
         }//2
     if(target.id != null){ 
         switch(target.id){
+            // блок расписание главная страница
             case 'modal_btn_close':
                 modal_base.classList.add('close_modal')
                 break;
@@ -36,6 +37,10 @@ document.addEventListener('click', (evt) => {
                 break;
             case 'scheduleDay_delBtn':
                 deleteScheduleDay(target.parentNode.getAttribute('data-scheduleDay-id'));
+                break;
+            // страница новости
+            case 'news_addBtn':
+                createNews()
                 break;
         }
     }//2
