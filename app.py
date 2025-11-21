@@ -81,12 +81,19 @@ def loadModalBlock_user(blockName):
         case 'news':
             return open_file('templates/html_modal_blocks/news.html')
 
-
+@app.route('/admin_panel')
+@login_required
+def admin_panel():
+    return render_template(
+        'admin_panel.html',
+        scheduleDays=ScheduleController.get_ScheduleDays(),
+        scheduleInfo=SectionsController.get_section_info('schedule'),
+        edit_tools = True
+        )
 @app.route('/login', methods=['POST'])
 def login(): 
     """маршрут для авторизации пользователя"""
     if request.method == "POST":
-        # try:
             login_form = request.form.get('login')
             user = UsersController.get_by_login(login_form)
             if login_form == user.login:
@@ -96,27 +103,20 @@ def login():
                     role_name = RoleController.show(current_user.role_id).role_id
                     if role_name == 'administrator':
                         """маршрут на главную с функционалом администратора"""
-                        return render_template(
-                            'admin_panel.html',
-                            scheduleDays=ScheduleController.get_ScheduleDays(),
-                            scheduleInfo=SectionsController.get_section_info('schedule'),
-                            edit_tools = True
-                            )
+                        return flask.redirect('/admin_panel')
                     elif role_name == 'editor':
-                        """задел под роль редактора и тп"""
+                        """задел под роль редактора"""
+                        pass
+                    elif role_name == 'student':
+                        """задел под роль студента"""
                         pass
                 else:
                     return 'неверный логин или пароль'
-        # except:
-        #     print('ошибка')
     return flask.redirect('/')
-
-
 @app.route('/showScheduleDay/<id>', methods=['GET'])
 @login_required
 def showScheduleDay(id):
     return ScheduleController.get_currentScheduleDay(id)
-
 @app.route('/updateScheduleDay/<id>', methods=['POST'])
 @login_required
 def updateScheduleDay(id):
@@ -135,37 +135,35 @@ def updateScheduleDay(id):
 @app.route('/createScheduleDay', methods=['POST'])
 @login_required
 def createScheduleDay():
-    # if request.method == "POST":
-    data = request.get_json()
-    location = data['location']
-    day = data['day']
-    start = data['start']
-    end = data['end']
-    try:
-        ScheduleController.addDay(
-            location=location,
-            day=day,
-            start=start,
-            end=end
-        )
-    except:
-        return 'ошибка при работе с базой данных'
-    current_day = ScheduleController.showLast() 
-    current_day = {
-        'id' : current_day.id,
-        'day' : current_day.day,
-        'start' : current_day.start,
-        'end' : current_day.end,
-        'location' : current_day.location
-    }
-    return current_day
-
+    if request.method == "POST":
+        data = request.get_json()
+        location = data['location']
+        day = data['day']
+        start = data['start']
+        end = data['end']
+        try:
+            ScheduleController.addDay(
+                location=location,
+                day=day,
+                start=start,
+                end=end
+            )
+        except:
+            return 'ошибка при работе с базой данных'
+        current_day = ScheduleController.showLast() 
+        current_day = {
+            'id' : current_day.id,
+            'day' : current_day.day,
+            'start' : current_day.start,
+            'end' : current_day.end,
+            'location' : current_day.location
+        }
+        return current_day
 @app.route('/deleteScheduleDay/<id>', methods=['GET'])
 @login_required
 def deleteScheduleDay(id):
     ScheduleController.delete(id=id)
     if ScheduleController.show(id) == None:
         return id
-
 if __name__ == '__main__':
     app.run(debug=True) 

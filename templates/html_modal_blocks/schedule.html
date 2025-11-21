@@ -3,10 +3,19 @@
             <form>
                 <input id="day_id" type="hidden" name="day_id">
                 <input id="location" type="text" name="location" placeholder="Введите локацию">
-                <input id="day" type="text" name="day" placeholder="Введите день недели">
-                <input id="start" type="text" name="start" placeholder="Введите время начала">
-                <input id="end" type="text" name="end" placeholder="Введите время завершения">
-                <input id='scheduleDay_addBtn' class="modal_submit" type="button" value="добавить день">
+                <select name="day" id="day">
+                    <option value="select_day">Введите день недели</option>
+                    <option value="Понедельник">Понедельник</option>
+                    <option value="Вторник">Вторник</option>
+                    <option value="Среда">Среда</option>
+                    <option value="Четверг">Четверг</option>
+                    <option value="Пятница">Пятница</option>
+                    <option value="Суббота">Суббота</option>
+                    <option value="Воскресенье">Воскресенье</option>
+                </select>
+                <input id="start" type="time" name="start" placeholder="Введите время начала"> 
+                <input id="end" type="time" name="end" placeholder="Введите время завершения">
+                <input id='scheduleDay_addBtn' class="modal_submit" type="button" value="добавить">
             </form>
         </div>
 </div>

@@ -1,0 +1,54 @@
+.dragstart{
+    opacity: 20%;
+}
+.drug_item_enter{
+    background: red;
+}
+.drug_select{
+    margin-right: 50px;
+    margin-left:  50px;
+}
+#move_item_btn{
+    z-index: -1;
+}
+.editable_block{
+    position: relative;
+}
+.editable_block:hover .edit_tools{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.edit_tools{ /* всплывающие кнопки для редактирования */
+    flex-direction: row;
+    display: none;
+    position: absolute;
+    margin-top: -50px;
+}
+.edit_tools button{ 
+    width: 25px;
+    height: 25px;
+    background: none;
+    border: none;
+}
+#delete_item_btn{
+    background: url('/static/svg/exit_icon_light.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}
+#move_item_btn{
+    background: url('/static/svg/move_icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}
+#edit_item_btn{
+    background: url('/static/svg/edit_icon_light.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+}

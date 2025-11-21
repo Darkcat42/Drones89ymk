@@ -1,0 +1,26 @@
+.icons_social {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+}
+.icons_social a{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.icons_social a img:hover{
+    transform: scale(0.9);
+}
+.burger{
+    margin-bottom: 2px;
+    display: flex;
+    border-bottom: 2px solid white;
+    height: 5px;
+    width: 25px;
+}
+.burger:last-child{
+    margin-bottom: 0;
+}
+.fsi:hover {
+    cursor: pointer;
+}

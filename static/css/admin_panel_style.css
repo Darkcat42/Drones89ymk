@@ -1,12 +1,8 @@
-/* стили переопределения для страницы admin_index.html  */
-/* общие стили */
+/* стили-переопределения general_css для страницы admin_panel.html  */
 /* общие стили */
 *{
     transition-duration: 300ms;
     transition-property: all;
-    /* color: white!important; */
-    /* outline: 1px solid red; */
-    /* margin: 0 auto; */
 }
 .admin_header{
     filter: hue-rotate(60deg);
