@@ -40,7 +40,7 @@ document.addEventListener('click', (evt) => {
                 break;
             // страница новости
             case 'news_addBtn':
-                createNews()
+                createNewNews()
                 break;
         }
     }//2

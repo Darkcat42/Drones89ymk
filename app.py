@@ -53,8 +53,8 @@ def gallery():
     return render_template('gallery.html')
 @app.route('/news') 
 def news():
-    """маршрут на страницу с галереей"""
-    return render_template('news.html')
+    news_list = NewsController.getNews()
+    return render_template('news.html', news=news_list, edit_tools=True)
 # @app.route('/policy') 
 # def policy():
 #     """маршрут policy.html"""
@@ -192,9 +192,17 @@ def createNews():
             date=datetime.datetime.today().strftime('%Y-%m-%d'),
             image_id=image_id,
         )
-        print(image_id.id)
+        new = NewsController.showLast()
+        image_src = ImagesController.show_id(new.image_id).src
 
-        return 'затычка'
+        new_data = {
+            'id': new.id,
+            'day': new.title,
+            'start': new.news_desc,
+            'end': new.data,
+            'image_src': image_src
+        }
+        return new_data
 
 if __name__ == '__main__':
     app.run(debug=True)

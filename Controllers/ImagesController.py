@@ -18,6 +18,10 @@ class ImagesController(ConverterWeb):
     def show(cls, filename):
         return Images.get_or_none(Images.filename == filename)
 
+    @classmethod
+    def show_id(cls, id):
+        return Images.get_or_none(Images.id == id)
+
     
         
     # @classmethod
