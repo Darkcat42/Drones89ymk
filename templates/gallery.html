@@ -6,6 +6,9 @@
 {% block content %}
 <!--Секция опросник-->
 <section  id="galerry">
+        <div class="row align-content-center">
+            <button class="my_add_btn_static" data-modal="gallary_add">добавить событие</button>
+        </div>
         <p class="lessons_data">25.01.2024</p>
         <div class="row photos">
             <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/25012024/1.webp')}}"></div>

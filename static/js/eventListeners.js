@@ -1,3 +1,15 @@
+
+document.addEventListener('change', (evt) => {
+    let target = evt.target
+    let target_files = target.files;
+    if(target.id != null){ 
+        switch(target.id){
+            case 'news_file':
+                let new_image = news_file.files[0]
+                newsPreview_load(new_image);
+                
+        }}
+})
 document.addEventListener('click', (evt) => {
     /*
     общий прослушиватель события click для отлова элементов   

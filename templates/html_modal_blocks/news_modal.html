@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="flex-row d-flex">
         <div>
             <form>
                 <input id="day_id" type="hidden" name="day_id">
@@ -14,7 +15,14 @@
                     <p class="col">текст новости</p>
                     <textarea id="news_text" class="col" name=""></textarea>
                 </div>
-                <input id='news_addBtn' class="modal_submit" type="button" value="Создать">
             </form>
         </div>
+        <div id="images_preview" class="flex-row mb-3 d-flex ">
+            <img id="news_placeholder" src="/static/img/placeholders/news_placeholder.jpg" alt="">
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <input id='news_addBtn' class="modal_submit" type="button" value="Создать">
+    </div>
+        
 </div>

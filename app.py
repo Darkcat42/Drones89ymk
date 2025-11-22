@@ -199,7 +199,7 @@ def createNews():
             'id': new.id,
             'day': new.title,
             'start': new.news_desc,
-            'end': new.data,
+            'end': new.date,
             'image_src': image_src
         }
         return new_data
