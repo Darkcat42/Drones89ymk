@@ -2,11 +2,15 @@
 import flask, flask_login
 from flask_login import LoginManager, login_required, current_user, logout_user
 from flask import Flask, render_template, request
+from pathlib import Path
+import datetime
+from Controllers.NewsController import NewsController
 # импорт контроллеров
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
 from Controllers.ScheduleController import ScheduleController
 from Controllers.SectionsController import SectionsController
+from Controllers.ImagesController import ImagesController
 """создание и настройка приложения"""
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -170,12 +174,27 @@ def deleteScheduleDay(id):
 @login_required
 def createNews():
     if request.method == "POST":
-        # data = request['json']
+        title = request.form.get('title')
+        text = request.form.get('text')
         file = request.files['file']
-        print(request.args)
-        print(file)
+        filename = file.filename
+        src = f'static/temp/img/{filename}'
+        file.save(src)
+        webp_src = ImagesController.convertImage(src)
+        filename = str(Path(filename).stem)+'.webp'
+        ImagesController.add(
+            filename=filename,
+            src=webp_src)
+        image_id = ImagesController.show(filename)
+        NewsController.addNews(
+            title=title,
+            news_desc=text,
+            date=datetime.datetime.today().strftime('%Y-%m-%d'),
+            image_id=image_id,
+        )
+        print(image_id.id)
 
         return 'затычка'
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)

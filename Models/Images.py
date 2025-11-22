@@ -5,6 +5,7 @@ class Images(Base):
     модель таблицы изображения
     """
     id = PrimaryKeyField()
+    filename = CharField()
     src = TextField()
     alt = TextField()
 if __name__ == '__main__':

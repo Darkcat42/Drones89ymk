@@ -24,7 +24,7 @@
     background: #31123C;
     box-shadow: 2px 2px 15px 5px #200c27;
 }
-.modal_content > *  
+
 .modal_content form input:not(.modal_content form input:last-child){
     border: none;
     border-radius: 6px;
@@ -91,10 +91,16 @@
 .modal_content *{
     color: black!important;
 }
+.modal_content form>div>*:not(
+.modal_content form>div>input,
+.modal_content form>div>textarea) {
+    color: white!important;
+}
 .modal_exit>p{
     align-self: self-end;
     margin-left: 10%;
 }
+
 .modal_exit>*{
     color: white;
     cursor: pointer;

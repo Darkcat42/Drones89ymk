@@ -1,5 +1,6 @@
 from Models.Images import *
-class ImagesController():
+from Controllers.converterWeb import ConverterWeb
+class ImagesController(ConverterWeb):
     """
         управление картинками
     """
@@ -7,14 +8,16 @@ class ImagesController():
     def get(cls):
         return Images.select()
     @classmethod
-    def load(cls):
-        pass
+    def add(cls, filename, src, alt='' ):
+        return Images.create(
+            filename=filename,
+            src=src,
+            alt=alt
+        )
     @classmethod
-    def convertTo_webp():
-        pass
-    @classmethod
-    def show(cls, id):
-        pass
+    def show(cls, filename):
+        return Images.get_or_none(Images.filename == filename)
+
     
         
     # @classmethod

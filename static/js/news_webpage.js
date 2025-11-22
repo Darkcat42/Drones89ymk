@@ -1,20 +1,15 @@
 async function createNews() {
     let news_file = document.getElementById('news_file')
-    let image1 = news_file.files[0]
-    let image2 = news_file.files[1]
+    let image = news_file.files[0]
     let news_title = document.getElementById('news_title')
     let title = news_title.value
     let news_text = document.getElementById('news_text')
-    let text = news_text.textContent
-    news_data = {
-        'title' : title,
-        'text' : text
-    }
+    let text = news_text.value
     let url = 'createNews'
     let formData = new FormData()
-    formData.append('file1', image1)
-    formData.append('file2', image2)
-    formData.append('json', news_data)
+    formData.append('file', image)
+    formData.append('title', title)
+    formData.append('text', text)
     responce = await fetch(url, { // отправляем запрос
         method: 'POST',
         body: formData
@@ -25,10 +20,10 @@ async function createNews() {
         let title = data['title']
         let text = data['text']
         let image_src = data['image_src']
-        add_HTMLnews(news_id, title, text, image_src)
+        news_insert_html(news_id, title, text, image_src)
     })
 }
-function add_HTMLnews(idVal, titleVal, textVal, imageSrc){
+function news_insert_html(idVal, titleVal, textVal, imageSrc){
     // тут будем динамически вставлять новую новость
     alert('затычка, доделать вставку новости после создания')
 }

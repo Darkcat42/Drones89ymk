@@ -1,94 +1,30 @@
-from Models.Schedule import *
-class ScheduleController():
+from Models.News import *
+class NewsController():
     """
         управление данными таблицы расписание
     """
     @classmethod
-    def addDay(cls, location, day, start, end):
-        Schedule.create(
-            location=location,
-            day=day,
-            start=start,
-            end=end
+    def addNews(cls, title, news_desc, date, image_id):
+        News.create(
+            title=title,
+            news_desc=news_desc,
+            date=date,
+            image_id=image_id
         )
+
     @classmethod
-    def get(cls):
-        return Schedule.select()
-    @classmethod
-    def show(cls, id):
-        return Schedule.get_or_none(Schedule.id == id)
-    @classmethod
-    def delete(cls, id):
-        return Schedule.delete().where(Schedule.id == id).execute()
-    @classmethod
-    def update(cls, id, **filds):
-        for key, value in filds.items():
-            Schedule.update({key:value}).where(Schedule.id == id).execute()
-    @classmethod
-    def showLast(cls):
-        return Schedule.select().order_by(Schedule.id.desc()).get()
-    
-    @classmethod
-    def get_currentScheduleDay(cls, id):
-        day = ScheduleController.show(id)
-        day_dict = {}
-        day_dict['id'] = day.id
-        day_dict['location'] = day.location
-        day_dict['day'] = day.day
-        day_dict['start'] = day.start
-        day_dict['end'] = day.end
-        return day_dict
-    @classmethod
-    def get_ScheduleDays(cls):
-        """
-        метод для перебора объекта в массив
-        для передачи его в шаблонизатор внутри
-        html
-        :return: массив строк таблицы time_table"""
-        schedule = cls.get()
-        scheduleDays = []
-        for day in schedule:
-            day_dict = {}
-            day_dict['id'] = day.id
-            day_dict['location'] = day.location
-            day_dict['day'] = day.day
-            day_dict['start'] = day.start
-            day_dict['end'] = day.end
-            scheduleDays.append(day_dict)
-        return scheduleDays
-    # @classmethod
-    # def get_by_login(cls, search_login):
-    #     return Users.get_or_none(Users.login==search_login)
-    # @classmethod
-    # def show(cls, id):
-    #     return Users.get_or_none(id)
-    # @classmethod
-    # def update(cls, id, **filds):
-    #     for key, value in filds.items():
-    #         Users.update({key:value}).where(Users.id == id).execute()
-    # @classmethod
-    # def delete(cls, id):
-    #     Users.delete().where(Users.id == id).execute()
-if __name__ == '__main__':
-    print(ScheduleController.get_ScheduleDays())
-    # Time_tableController.add(
-    #     title='Расписание',
-    #     location='спорт комплекс ЯМК 2 зал',
-    #     day='Понедельник',
-    #     start='16:00',
-    #     end='18:00',
-    #     requirements='требования - иметь сменную обувь',
-    #     description='расписание наших занятий'
-    # )
-    # Time_tableController.add(
-    #     title='',
-    #     location='ОТП ЯМК 216 кабинет второй этаж',
-    #     day='вторник',
-    #     start='16:00',
-    #     end='18:00',
-    #     requirements='',
-    #     description=''
-    # )
+    def get_news(cls):
+        news = cls.get()
+        news_list = []
+        for new in news:
+            new_dict = {}
+            new_dict['id'] = new.id
+            new_dict['title'] = new.title
+            new_dict['news_desc'] = new.news_desc
+            new_dict['data'] = new.data
+            new_dict['image_id'] = new.image_id
+            news_list.append(new_dict)
+        return new_dict
 
 
 
