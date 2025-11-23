@@ -190,7 +190,16 @@ def createNews():
         filename = file.filename
         src = f'static/temp/img/{filename}'
         file.save(src)
-        webp_src = ImagesController.convertImage(src)
+        data_dir_name = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
+        title_dir_name = str(title.replace(' ', '_'))
+        dir_name_src = f'static/webp/{data_dir_name}'
+        if os.path.isdir(dir_name_src) != True:
+            os.mkdir(dir_name_src)
+        dir_name_src = f'static/webp/{data_dir_name}/{title_dir_name}'
+        if os.path.isdir(dir_name_src) != True:
+            os.mkdir(dir_name_src)
+        dir_name = f'{data_dir_name}/{title_dir_name}'
+        webp_src = ImagesController.convertImage(src, dir_name)
         filename = str(Path(filename).stem)+'.webp'
         ImagesController.add(
             filename=filename,
