@@ -11,6 +11,8 @@ from Controllers.RoleController import RoleController
 from Controllers.ScheduleController import ScheduleController
 from Controllers.SectionsController import SectionsController
 from Controllers.ImagesController import ImagesController
+from Controllers.GalleryEventsController import GalleryEventsController
+from Controllers.GalleryEvents_imagesController import GalleryEvents_imagesController 
 """создание и настройка приложения"""
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -47,14 +49,6 @@ def index():
 def doc():
     """маршрут страницу документов"""
     return render_template('doc.html')
-@app.route('/gallery') 
-def gallery():
-    """маршрут на страницу с галереей"""
-    return render_template('gallery.html')
-@app.route('/news') 
-def news():
-    news_list = NewsController.getNews()
-    return render_template('news.html', news=news_list, edit_tools=True)
 # @app.route('/policy') 
 # def policy():
 #     """маршрут policy.html"""
@@ -84,7 +78,9 @@ def loadModalBlock_user(blockName):
             return open_file('templates/html_modal_blocks/schedule.html')
         case 'news_modal':
             return open_file('templates/html_modal_blocks/news_modal.html')
-
+        case 'galleryEvent_modal':
+            return open_file('templates/html_modal_blocks/galleryEvent_modal.html')
+        
 @app.route('/admin_panel')
 @login_required
 def admin_panel():
@@ -170,6 +166,10 @@ def deleteScheduleDay(id):
     if ScheduleController.show(id) == None:
         return id
 # маршруты для страницы новости
+@app.route('/news') 
+def news():
+    news_list = NewsController.getNews()
+    return render_template('news.html', news=news_list, edit_tools=True)
 @app.route('/createNews', methods=['POST'])
 @login_required
 def createNews():
@@ -203,6 +203,44 @@ def createNews():
             'image_src': image_src
         }
         return new_data
+# маршруты для страницы галерея
+@app.route('/gallery') 
+def gallery():
+    """маршрут на страницу с галереей"""
+    return render_template(
+        'gallery.html',
+        list_of_gallerys = GalleryEvents_imagesController.get_all_gallerys()
+        )
+
+@app.route('/addGalleryEvent', methods=['POST']) 
+def addGalleryEvent():
+    if request.method == "POST":
+        date = request.form.get('date')
+        title = request.form.get('title')
+        images = request.files.getlist('files') # множественная загрузка
+    galleryEvent = GalleryEventsController.add(
+        date=date,
+        title=title
+    )
+    for file in images:
+        filename = file.filename
+        if Path(filename).suffix != '.webp':
+            src = f'static/temp/img/{filename}'
+            file.save(src)
+            webp_src = ImagesController.convertImage(src)
+            filename = str(Path(filename).stem)+'.webp'
+        else:
+            src = f'static/webp/{filename}'
+            file.save(src)
+            webp_src = src
+        image = ImagesController.add(
+            filename=filename,
+            src=webp_src)
+        GalleryEvents_imagesController.add(
+            image_id=image.id,
+            galleryEvent_id=galleryEvent.id
+        )
+    return GalleryEvents_imagesController.get_cur_gallery(galleryEvent)
 
 if __name__ == '__main__':
     app.run(debug=True)

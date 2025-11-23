@@ -4,19 +4,38 @@
     {% extends 'base.html' %}
 {% endif %}
 {% block content %}
-<!--Секция опросник-->
+{% include 'html_modal_blocks/modal_base.html' %}
+<!--Секция галерея-->
 <section  id="galerry">
         <div class="row align-content-center">
-            <button class="my_add_btn_static" data-modal="gallary_add">добавить событие</button>
+            <button class="my_add_btn_static" data-modal="galleryEvent_add">добавить событие</button>
         </div>
-        <p class="lessons_data">25.01.2024</p>
+    {% for current_gallery in list_of_gallerys %} 
+        <div class="d-flex flex-row justify-content-start">
+            <div>
+                <p id="galleryEvent_date" class="lessons_data">{{current_gallery['date']}}</p>
+            </div>
+            <div style="width: 1%;"></div>
+            <div class="d-flex flex-row">
+                <p class="lessons_data bg-secondary" id="galleryEvent_title">{{current_gallery['title']}}</p>
+                <div><button class="basis_edit_btn" data-modal="galleryEvent_edit"></button></div>
+            </div>
+        </div>
+        
         <div class="row photos">
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/25012024/1.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/25012024/2.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/25012024/3.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/25012024/4.webp')}}"></div>
+            <!-- список со списком и в цикле -->
+             {% for image in current_gallery['images'] %} 
+            
+            <div class="col-sm-6 col-md-4 col-lg-3 item">
+                <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{image}}">
+            </div>
+            {% endfor %}
         </div>
-        <p class="lessons_data">23.01.2024</p>
+    {% endfor %}
+
+
+        
+        <!-- <p class="lessons_data">23.01.2024</p>
         <div class="row photos">
             <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/1.webp')}}"></div>
             <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/2.webp')}}"></div>
@@ -34,7 +53,7 @@
             <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/10.webp')}}"></div>
             <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/11.webp')}}"></div>
             <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/12.webp')}}"></div>
-        </div>
+        </div> -->
   </section>
 <!--Секция опросник-->
 {% endblock %}

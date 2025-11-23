@@ -3,11 +3,21 @@
     transition-duration: 300ms;
     transition-property: all;
 }
+.border_test{
+    outline: 1px solid red;
+}
 .empty_schedule{
     display: none;
 }
-.db_none {
-    display: none;
+.db_none{
+    display: none !important;
+}
+.pos_absolute{
+    position: absolute;
+}
+.pos_relative{
+    position: relative;
+    text-align: right;
 }
 #img_close {
     display: none;
@@ -16,6 +26,40 @@
     background: url("../img/bg.svg") center no-repeat;}
 
 /* стили кнопок */
+.basis_close_btn{
+    filter: opacity(30%);
+    cursor: pointer;
+    background: url('/static/svg/icon_exit_darkPurple.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-top: 5%;
+    margin-right: 10%;
+    border: none;
+}
+.basis_edit_btn{
+    filter: opacity(30%);
+    cursor: pointer;
+    background: url('/static/svg/icon_edit_darkPurple.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: 10px;
+    border: none;
+}
+
+/* определение для страницы галерея */
+div.photos>div:hover>button.basis_close_btn,
+/* обычные ховера */
+button.basis_edit_btn:hover,
+button.basis_close_btn:hover
+{
+    filter: opacity(100%);
+}
+/* стили страниц */
 
 /* перебор стилей style5.css */
 /*Слайдер*/

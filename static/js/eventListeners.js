@@ -1,13 +1,12 @@
 
 document.addEventListener('change', (evt) => {
     let target = evt.target
-    let target_files = target.files;
     if(target.id != null){ 
         switch(target.id){
             case 'news_file':
-                let new_image = news_file.files[0]
-                newsPreview_load(new_image);
-                
+                newsPreview_load(target.files[0]);
+            case 'galleryEvent_files':       
+                galleryEventPreview_load(target.files);
         }}
 })
 document.addEventListener('click', (evt) => {
@@ -23,7 +22,9 @@ document.addEventListener('click', (evt) => {
             case 'scheduleDay_add'    : open_modal('Добавить день', '/loadModalBlock_user/schedule');
             break; // модальное окно добавления нового дня в расписание
             case 'news_add'    : open_modal('Добавить новость', '/loadModalBlock_user/news_modal');
-            break; // модальное окно добавления нового дня в расписание
+            break; // модальное окно добавления новой новости
+            case 'galleryEvent_add'    : open_modal('Добавить событие', '/loadModalBlock_user/galleryEvent_modal');
+            break; // модальное окно добавления нового события в галерею
         }
     }//2
     if(target.hasAttribute('data-action') == true){
@@ -54,6 +55,8 @@ document.addEventListener('click', (evt) => {
             case 'news_addBtn':
                 createNewNews()
                 break;
+            case 'galleryEvent_addBtn':
+                createGalleryEvent()
         }
     }//2
 })//1 конец: addEventListener - click

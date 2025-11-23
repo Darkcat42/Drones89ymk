@@ -14,7 +14,7 @@ class NewsController():
             date=date,
             image_id=image_id
         )
-
+    
     @classmethod
     def getNews(cls):
         news = cls.get()
