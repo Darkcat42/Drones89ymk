@@ -21,7 +21,8 @@ class GalleryEvents_imagesController():
         galleryEvents_images = GalleryEvents_images.select().where(GalleryEvents_images.galleryEvent_id == galleryEvents.id)
         list_of_images = []
         for gallery_image in galleryEvents_images:
-            list_of_images.append(gallery_image.image_id)
+            image = ImagesController.show_id(gallery_image.image_id)
+            list_of_images = [image.id, image.src]
         current_gallery = {}
         current_gallery['title'] = galleryEvents.title
         current_gallery['date'] = galleryEvents.date
@@ -36,7 +37,7 @@ class GalleryEvents_imagesController():
             list_of_images = []
             for gallery_image in galleryEvents_images:
                 image = ImagesController.show_id(gallery_image.image_id)
-                list_of_images.append(image.src)
+                list_of_images.append([image.id, image.src])
             current_gallery = {}
             current_gallery['title'] = gallery.title
             current_gallery['date'] = gallery.date

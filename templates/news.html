@@ -3,28 +3,17 @@
 {% else %}
     {% extends 'base.html' %}
 {% endif %}
-
 {% block content %}
 {% include 'html_modal_blocks/modal_base.html' %}
 <!--Секция новости-->
 <section id="news" class="container"> 
-    
-    <!-- <div class="row" style="margin: 1%; border: 1px solid black;display: none;">
-        <div class="col">
-            <img src="/static/img/news/news_placeholder.jpg" class="" alt="...">
-        </div>
-        <div class="col">
-            <h5 class="card-title">Заголовок новости</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Nullam suscipit feugiat nunc, vel maximus arcu aliquet ut.</p>
-            <p style="border: 1px solid black; width: fit-content; padding: 0 20px;">25.01.2024</p>
-            <a href="/news" class="btn btn-light">Узнать больше</a>
-        </div>
-    </div> -->
+    {% if edit_tools == True %}
+    <!--инстурменты администратора для данного блока-->
+    <div class="row align-content-center">
+        <button class="my_add_btn_static" data-modal="news_add">добавить новость</button>
+    </div>
+    {% endif %}
     {% for new in news %}
-<!--             инстурменты администратора для данного блока-->
         <div class="row" style="margin: 1%; border: 1px solid black;">
             <div class="col" data-image_id="{{new['id']}}" >
                 <img src="{{new['image_src']}}" class="" alt="..." width="200px">
@@ -36,14 +25,6 @@
                 <a href="/news" class="btn btn-light">Узнать больше</a>
             </div>
         </div>
-
     {% endfor %}
-    {% if edit_tools == True %}
-        <div class="row align-content-center">
-            <button class="my_add_btn_static" data-modal="news_add">добавить новость</button>
-        </div>
-        {% endif %}
-
-
   </section>
 {% endblock %}

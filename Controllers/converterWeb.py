@@ -18,9 +18,9 @@ class ConverterWeb():
     #     image = Image.open(file_path) # метод бибы PIL (pillow) - открываем картину 
     #     image.save(output, 'webp')     # метод бибы PIL - закрываем в формате веба
 
-    def convertImage(cls, img_src, quality=80, method=4, lossless=False, exact=False):
+    def convertImage(cls, img_src, dir_name, quality=80, method=4, lossless=False, exact=False):
         file = Path(img_src).stem+'.webp'
-        output = f'static/webp/{file}'
+        output = f'static/webp/{dir_name}/{file}'
         image = Image.open(img_src) # метод бибы PIL (pillow) - открываем картину 
         image.save(output, 'webp')     # метод бибы PIL - закрываем в формате веба
         return output

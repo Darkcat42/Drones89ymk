@@ -7,9 +7,11 @@
 {% include 'html_modal_blocks/modal_base.html' %}
 <!--Секция галерея-->
 <section  id="galerry">
+    {% if edit_tools == True %}
         <div class="row align-content-center">
             <button class="my_add_btn_static" data-modal="galleryEvent_add">добавить событие</button>
         </div>
+    {% endif %}
     {% for current_gallery in list_of_gallerys %} 
         <div class="d-flex flex-row justify-content-start">
             <div>
@@ -18,42 +20,18 @@
             <div style="width: 1%;"></div>
             <div class="d-flex flex-row">
                 <p class="lessons_data bg-secondary" id="galleryEvent_title">{{current_gallery['title']}}</p>
+                {% if edit_tools == True %}
                 <div><button class="basis_edit_btn" data-modal="galleryEvent_edit"></button></div>
+                {% endif %}
             </div>
         </div>
-        
         <div class="row photos">
-            <!-- список со списком и в цикле -->
              {% for image in current_gallery['images'] %} 
-            
             <div class="col-sm-6 col-md-4 col-lg-3 item">
-                <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{image}}">
+                <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" data-img-id="{{image[0]}}" src="{{image[1]}}">
             </div>
             {% endfor %}
         </div>
     {% endfor %}
-
-
-        
-        <!-- <p class="lessons_data">23.01.2024</p>
-        <div class="row photos">
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/1.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/2.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/3.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/4.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/13.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/14.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/15.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/16.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/5.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/6.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/7.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/8.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/9.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/10.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/11.webp')}}"></div>
-            <div class="col-sm-6 col-md-4 col-lg-3 item"><img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{url_for('static', filename='img/23012024/12.webp')}}"></div>
-        </div> -->
   </section>
-<!--Секция опросник-->
 {% endblock %}

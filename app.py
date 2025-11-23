@@ -1,5 +1,5 @@
 # импорты пайтон и тп
-import flask, flask_login
+import flask, flask_login, os
 from flask_login import LoginManager, login_required, current_user, logout_user
 from flask import Flask, render_template, request
 from pathlib import Path
@@ -100,7 +100,7 @@ def login():
                 passwd_form = request.form.get('password')
                 if passwd_form == user.password:
                     flask_login.login_user(user)
-                    role_name = RoleController.show(current_user.role_id).role_id
+                    role_name = current_user.role_id.role
                     if role_name == 'administrator':
                         """маршрут на главную с функционалом администратора"""
                         return flask.redirect('/admin_panel')
@@ -168,8 +168,18 @@ def deleteScheduleDay(id):
 # маршруты для страницы новости
 @app.route('/news') 
 def news():
+    edit_tools = False
+    try:
+        role_name = current_user.role_id.role
+        if role_name == 'administrator':
+            edit_tools = True
+    except:
+        pass
     news_list = NewsController.getNews()
-    return render_template('news.html', news=news_list, edit_tools=True)
+    return render_template(
+        'news.html', 
+        news=news_list, 
+        edit_tools=edit_tools)
 @app.route('/createNews', methods=['POST'])
 @login_required
 def createNews():
@@ -194,7 +204,6 @@ def createNews():
         )
         new = NewsController.showLast()
         image_src = ImagesController.show_id(new.image_id).src
-
         new_data = {
             'id': new.id,
             'day': new.title,
@@ -207,12 +216,20 @@ def createNews():
 @app.route('/gallery') 
 def gallery():
     """маршрут на страницу с галереей"""
+    edit_tools = False
+    try:
+        role_name = current_user.role_id.role
+        if role_name == 'administrator':
+            edit_tools = True
+    except:
+        pass
     return render_template(
         'gallery.html',
-        list_of_gallerys = GalleryEvents_imagesController.get_all_gallerys()
+        list_of_gallerys = GalleryEvents_imagesController.get_all_gallerys(),
+        edit_tools=edit_tools
         )
-
 @app.route('/addGalleryEvent', methods=['POST']) 
+@login_required
 def addGalleryEvent():
     if request.method == "POST":
         date = request.form.get('date')
@@ -222,15 +239,24 @@ def addGalleryEvent():
         date=date,
         title=title
     )
+    data_dir_name = str(date.replace('-', '_'))
+    title_dir_name = str(title.replace(' ', '_'))
+    dir_name_src = f'static/webp/{data_dir_name}'
+    if os.path.isdir(dir_name_src) != True:
+        os.mkdir(dir_name_src)
+    dir_name_src = f'static/webp/{data_dir_name}/{title_dir_name}'
+    if os.path.isdir(dir_name_src) != True:
+        os.mkdir(dir_name_src)
+    dir_name = f'{data_dir_name}/{title_dir_name}'
     for file in images:
         filename = file.filename
         if Path(filename).suffix != '.webp':
             src = f'static/temp/img/{filename}'
             file.save(src)
-            webp_src = ImagesController.convertImage(src)
+            webp_src = ImagesController.convertImage(src, dir_name=dir_name)
             filename = str(Path(filename).stem)+'.webp'
         else:
-            src = f'static/webp/{filename}'
+            src = f'static/webp/{dir_name}/{filename}'
             file.save(src)
             webp_src = src
         image = ImagesController.add(
@@ -241,6 +267,5 @@ def addGalleryEvent():
             galleryEvent_id=galleryEvent.id
         )
     return GalleryEvents_imagesController.get_cur_gallery(galleryEvent)
-
 if __name__ == '__main__':
     app.run(debug=True)
