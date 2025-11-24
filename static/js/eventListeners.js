@@ -25,6 +25,8 @@ document.addEventListener('click', (evt) => {
             break; // модальное окно добавления новой новости
             case 'galleryEvent_add'    : open_modal('Добавить событие', '/loadModalBlock_user/galleryEvent_modal');
             break; // модальное окно добавления нового события в галерею
+            case 'build_modal_more_info_btn'    : open_modal('Информация о сборке', '/loadModalBlock_user/build_modal_more_info');
+            break; // модальное окно добавления нового события в галерею
         }
     }//2
     if(target.hasAttribute('data-action') == true){

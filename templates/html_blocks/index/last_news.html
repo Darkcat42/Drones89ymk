@@ -1,0 +1,16 @@
+<!--Секция новости-->
+<div class="lastNews">
+<section id="news" class="container "> 
+        <div class="row d-flex justify-content-center">
+            <div class="col-2" data-image_id="{{lastNews['id']}}" >
+                <img src="{{lastNews['image_src']}}" class="img-fluid" alt="..." >
+            </div>
+            <div class="col-3">
+                <h5 class="card-title">{{lastNews['title']}}</h5>
+                <p class="card-text">{{lastNews['news_desc']}}</p>
+                <p class="lastNews_date">{{lastNews['date']}}</p>
+                <a href="/news" class="btn btn-light">Узнать больше</a>
+            </div>
+        </div>
+  </section>
+</div>

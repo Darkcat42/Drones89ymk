@@ -12,12 +12,18 @@ from Controllers.ScheduleController import ScheduleController
 from Controllers.SectionsController import SectionsController
 from Controllers.ImagesController import ImagesController
 from Controllers.GalleryEventsController import GalleryEventsController
-from Controllers.GalleryEvents_imagesController import GalleryEvents_imagesController 
-"""создание и настройка приложения"""
+from Controllers.GalleryEvents_imagesController import GalleryEvents_imagesController
+# функции приложения
+def open_file(src):
+    """читает файл и возвращает результат, упрощает общий вид кода"""
+    with open(src, 'r') as html:
+        return html.read()
+# создание и настройка приложения
 app = Flask(__name__)
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.secret_key = 'jksdhf l;lkj&*~19273l;kaszdfop['
+# функциональные маршруты приложения 
 @login_manager.user_loader
 def load_user(user_id): 
    """функция загрузки пользователя для flask_login"""
@@ -30,7 +36,25 @@ def anon():
 def fav_pass():
     """сброс ошибки переадресации на favicon.ico"""
     return 'favicon'
-"""маршруты приложения"""
+@app.route('/loadModalBlock_anon/<blockName>')
+def loadModalBlock_anon(blockName):
+    """маршрут для загрузки модальных блоков неавторизоавнных пользователей"""
+    match blockName:
+        case 'login':
+            return open_file('templates/html_modal_blocks/login.html')
+        case 'build_modal_more_info':
+            return open_file('templates/html_modal_blocks/build_modal_more_info.html')
+@app.route('/loadModalBlock_user/<blockName>')
+@login_required
+def loadModalBlock_user(blockName):
+    """маршрут для загрузки модальных блоков для пользователей прошедших авторизацию"""
+    match blockName:
+        case 'schedule':
+            return open_file('templates/html_modal_blocks/schedule.html')
+        case 'news_modal':
+            return open_file('templates/html_modal_blocks/news_modal.html')
+        case 'galleryEvent_modal':
+            return open_file('templates/html_modal_blocks/galleryEvent_modal.html') 
 @app.route('/logout') 
 def logout():
     """маршрут для выхода из авторизации"""
@@ -43,44 +67,25 @@ def index():
         'index.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
         scheduleInfo=SectionsController.get_section_info('schedule'),
+        lastNews=NewsController.getLast_dict(),
         edit_tools = False
         )
-@app.route('/doc') 
-def doc():
-    """маршрут страницу документов"""
-    return render_template('doc.html')
-# @app.route('/policy') 
-# def policy():
-#     """маршрут policy.html"""
-#     return render_template('policy.html')
+# маршруты для страницы сборок
 @app.route('/build') 
 def build():
     """маршрут на страницу сборок с дронами"""
     return render_template('build.html')
-
-def open_file(src):
-    with open(src, 'r') as html:
-        return html.read()
-@app.route('/loadModalBlock_anon/<blockName>')
-def loadModalBlock_anon(blockName):
-    """маршрут для загрузки модальных блоков неавторизоавнных пользователей"""
-    match blockName:
-        case 'login':
-            return open_file('templates/html_modal_blocks/login.html')
+@app.route('/doc') 
+def doc():
+    """маршрут страницу документов"""
+    return render_template('doc.html')
+@app.route('/policy') 
+def policy():
+    """маршрут policy.html"""
+    return render_template('policy.html')
 
 
-@app.route('/loadModalBlock_user/<blockName>')
-@login_required
-def loadModalBlock_user(blockName):
-    """маршрут для загрузки модальных блоков для пользователей прошедших авторизацию"""
-    match blockName:
-        case 'schedule':
-            return open_file('templates/html_modal_blocks/schedule.html')
-        case 'news_modal':
-            return open_file('templates/html_modal_blocks/news_modal.html')
-        case 'galleryEvent_modal':
-            return open_file('templates/html_modal_blocks/galleryEvent_modal.html')
-        
+    
 @app.route('/admin_panel')
 @login_required
 def admin_panel():
@@ -88,6 +93,7 @@ def admin_panel():
         'admin_panel.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
         scheduleInfo=SectionsController.get_section_info('schedule'),
+        lastNews=NewsController.getLast_dict(),
         edit_tools = True
         )
 @app.route('/login', methods=['POST'])

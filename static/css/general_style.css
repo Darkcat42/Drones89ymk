@@ -3,6 +3,9 @@
     transition-duration: 300ms;
     transition-property: all;
 }
+
+
+
 .border_test{
     outline: 1px solid red;
 }
@@ -50,7 +53,33 @@
     margin-left: 10px;
     border: none;
 }
-
+/* блок с преподавателями */
+#teacher{
+    padding: 120px 0;
+    margin: 0;
+    background-color: #2C133E;
+    color: white;
+    
+}
+div.card{
+    border: none;
+    font-size: 1.2em;
+}
+div.card h2{
+    font-size: 1.8em;
+}
+.image_teacher{
+    transform: translateX(-15px);
+}
+.teacher_base_card{
+    background: white;
+    width: 100%;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid white;
+    margin-bottom: 2%;
+}
 /* определение для страницы галерея */
 div.photos>div:hover>button.basis_close_btn,
 /* обычные ховера */
@@ -67,17 +96,35 @@ button.basis_close_btn:hover
     background: url("../img/bg.svg") center no-repeat;
 }
 .pad_section_slider {
-    padding: 120px 0;
+    padding: 5% 0;
 }
 /*медиа блок*/
 #media {
     padding: 120px 0;
 }
-/*преподаватели блок*/
-#teacher {
-    padding: 120px 0;
+/* последняя новость блок */
+.lastNews { 
     background-color: #2C133E;
+    padding: 1%;
     color: white;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+.lastNews>*{
+margin: 0 auto;
+
+}
+.lastNews_date{
+    border: 1px solid black;
+    width: fit-content;
+    padding: 0 20px;
+    background: white;
+    color: black;
+}
+.lastNews img.img-fluid{
+    /* width: 200px; */
+    height: 80%;
+    border-radius: 6px;
 }
 /*вопросы блок*/
 #faq {

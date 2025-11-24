@@ -4,8 +4,6 @@
     {% extends 'base.html' %}
 {% endif %}
 {% block content %}
-
-<!--Секция опросник-->
   <section  id="build">
        <div class="info_build">
             <p>Добро пожаловать на страницу по сборке дронов. Данный раздел предназначен для предоставления элементов деталей для конструирования своего собственного FPV-дрона. Здесь вы найдете для себя идея и элементы оборудования для готовых сборок себе в копилку, в том числе примерный ценовой диапозон и магазины покупки деталей</p>
@@ -14,7 +12,9 @@
             <p>Цены на товары могут меняться ежедневно в связи с изменением курса доллара $</p>
         </div>
        <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6">
+        
+        <!-- тут начало карточки дрона -->
+        <div class="col-sm-10 col-md-10 col-lg-4">
           <div class="info_build_drone">
             <div class="limp">
               <div class="dropmen">
@@ -28,6 +28,109 @@
             <img src="{{url_for('static', filename='img/photodrone/photodrone1.webp')}}" alt="" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)">
 
             <table class="table table-bordered scroll_x">
+              <thead>
+                <tr>
+                  <th>Дюйм</th>
+                  <td colspan="4">5</td>
+                </tr>
+                <tr>
+                  <th>Описание</th>
+                  <td colspan="4">Шустрый дрон, предназначеный для гонок. По скорости похож на тот, который мы собирали в МАИ. Подойдет для полетов на улице, но не для полетов в зале, таким дроном можно и убить :D</td>
+                </tr>
+                <!-- <tr>
+                  <th scope="col" class="c">№</th>
+                  <th scope="col">Оборудование</th>
+                  <th scope="col" class="c">Кол-во</th>
+                  <th scope="col" class="c">~Цена</th>
+                  <th scope="col" class="c">Магазин</th>
+                </tr> -->
+              </thead>
+              <!-- <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td class="cv">Рама</td>
+                  <td>1 шт</td>
+                  <td>4303 ₽</td>
+                  <td><a target="_blank" href="https://aliexpress.ru/item/1005006451488951.html?sku_id=12000037222412887&spm=a2g2w.productlist.search_results.17.4ae61f72eSDxQ8" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td class="cv">Полетный контроллер</td>
+                  <td rowspan="2">1 шт</td>
+                  <td rowspan="2">5853 ₽</td>
+                  <td rowspan="2"><a target="_blank" href="https://aliexpress.ru/item/1005004784221464.html?sku_id=12000030474645786&spm=a2g2w.productlist.search_results.19.55d733ae6hveFS" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td class="cv">Регулятор скорости</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td class="cv">Видеопередатчик</td>
+                  <td rowspan="2">1 шт</td>
+                  <td rowspan="2">1941 ₽</td>
+                  <td rowspan="2"><a target="_blank" href="https://aliexpress.ru/item/1005005991871374.html?srcSns=sns_WhatsApp&businessType=ProductDetail&spreadType=socialShare&tt=MG&utm_medium=sharing&sku_id=12000035210877240" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td class="cv">Камера</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td class="cv">Очки</td>
+                  <td>1 шт</td>
+                  <td>8500 ₽</td>
+                  <td><a target="_blank" href="https://aliexpress.ru/item/1005006020006582.html?sku_id=12000035353704010&spm=a2g2w.productlist.search_results.16.59782cc7NmnnB3" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td class="cv">Движки</td>
+                  <td>1 шт</td>
+                  <td>4919 ₽</td>
+                  <td><a target="_blank" href="https://aliexpress.ru/item/4000282492041.html?sku_id=12000029032234048&spm=a2g2w.productlist.search_results.6.b4004278X4R2ds" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td class="cv">Пропелеры</td>
+                  <td>1 шт</td>
+                  <td>816 ₽</td>
+                  <td><a target="_blank" href="https://aliexpress.ru/item/1005005739543695.html?sku_id=12000034172178644&spm=a2g2w.productlist.search_results.18.6c0b6968aNCkU8" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td class="cv">АКБ</td>
+                  <td>2 шт</td>
+                  <td>4554 ₽</td>
+                  <td><a target="_blank" href="https://aliexpress.ru/item/1005004506878592.html?srcSns=sns_WhatsApp&businessType=ProductDetail&spreadType=socialShare&tt=MG&utm_medium=sharing&sku_id=12000029404464951" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td class="cv">Радиопередатчик Erls</td>
+                  <td>1 шт</td>
+                  <td>1796 ₽</td>
+                  <td><a target="_blank" href="https://aliexpress.ru/item/1005004155327051.html?sku_id=12000028219495769&spm=a2g2w.productlist.search_results.8.66515c9dnJyUtJ" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">11</th>
+                  <td class="cv">Балансировщик АКБ</td>
+                  <td>1 шт</td>
+                  <td>12380 ₽</td>
+                  <td><a target="_blank" href="https://aliexpress.ru/item/1005002822875165.html?srcSns=sns_WhatsApp&businessType=ProductDetail&spreadType=socialShare&tt=MG&utm_medium=sharing&sku_id=12000022353104336" class="link_det">Aliexpress</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td class="cv">Программное обеспечение</td>
+                  <td>1 шт</td>
+                  <td>0 ₽</td>
+                  <td><a target="_blank" href="https://github.com/betaflight/betaflight-configurator/releases/tag/10.9.0" class="link_det">Github</a></td>
+                </tr>
+                <tr class="sum_bg">
+                  <th class="" scope="row" colspan="3">Общая сумма</th>
+                  <th class="c" colspan="2">~ 45062 ₽</th>
+                </tr>
+              </tbody> -->
+            </table>
+            <!-- <table class="table table-bordered scroll_x">
               <thead>
                 <tr>
                   <th>Дюйм</th>
@@ -129,14 +232,17 @@
                   <th class="c" colspan="2">~ 45062 ₽</th>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
             <p class="authors_build">*Авторы сборки: Преподаватели ЯМК, Сергей Артамохин</p>
+            <div class="d-flex justify-content-center">
+                <button data-modal="build_modal_more_info_btn" class="btn btn-primary">узнать больше</button>
+            </div>
             </div>
         </div>
 
 
 
-
+<!-- 
 
         <div class="col-sm-12 col-md-12 col-lg-6">
           <div class="info_build_drone">
@@ -367,10 +473,10 @@
                 </tbody>
               </table>
             </div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-6">
+          </div> -->
+          <!-- <div class="col-sm-12 col-md-12 col-lg-6">
 
-          </div>
+          </div> -->
       </div>
   </section>
 <!--Секция опросник-->
