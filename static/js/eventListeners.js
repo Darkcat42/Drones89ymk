@@ -57,6 +57,11 @@ document.addEventListener('click', (evt) => {
                 break;
             case 'galleryEvent_addBtn':
                 createGalleryEvent()
+                break;
+            case 'gallery_image_input_del':
+                gallery_image_input_del(target)
+                break;
+
         }
     }//2
 })//1 конец: addEventListener - click

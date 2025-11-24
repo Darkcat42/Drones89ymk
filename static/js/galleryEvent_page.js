@@ -1,4 +1,4 @@
-let counter = 1
+//let counter = 0
 let input_files_obj = {}
 let input_files_list = []
 async function createGalleryEvent(){
@@ -24,6 +24,12 @@ async function createGalleryEvent(){
     // })
     window.location.reload()
 }
+function MakeCounter(){
+    var count = 0
+    return () => {
+        return count = count + 1}
+}
+let counter = MakeCounter()
 function galleryEventPreview_load(new_input_images){
     let images_modal_preview = document.getElementById('images_modal_preview')
     let img_container = document.getElementById('img_container')
@@ -32,12 +38,18 @@ function galleryEventPreview_load(new_input_images){
         input_files_list.push(input_img)
         let new_img = img_container.cloneNode(true)
         new_img.querySelectorAll('p')[0].innerHTML = input_img['name']
-        console.log(new_img.querySelectorAll('p'))
+        new_img.querySelectorAll('p')[0].id = 'img_filename'+counter()
         new_img.removeAttribute('id')
         new_img.classList.remove('db_none')
         images_modal_preview.appendChild(new_img)
     });
-}    
+}
+function gallery_image_input_del(target){
+    target.parentNode.classList.add('db_none')
+    let index = input_files_list.indexOf(input_files_obj[target.parentNode.querySelector('p').textContent])
+    input_files_list.splice(index, 1)
+
+}
 // function createHTMLgalleryEvent(titleVal, dateVal, imagesList){
 //     let last_tr_ScheduleDay
 //     let all_tr_ScheduleDays = document.querySelectorAll('[data-scheduleDay-id]')
