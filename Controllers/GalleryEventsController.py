@@ -12,8 +12,6 @@ class GalleryEventsController():
             date=date,
             title=title
         )
-         
-
     @classmethod
     def getGalleryEvents(cls):
         pass
@@ -28,7 +26,6 @@ class GalleryEventsController():
         #     new_dict['image_src'] = new.image_id.src
         #     news_list.append(new_dict)
         # return news_list
-
     @classmethod
     def showLast(cls):
         return GalleryEvents.select().order_by(GalleryEvents.id.desc()).get()

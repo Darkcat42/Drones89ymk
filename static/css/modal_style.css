@@ -1,10 +1,10 @@
 #images_modal_preview{
-    /* overflow-y: scroll; */
-    /* overflow-x:hidden; */
+    overflow-y: scroll;
     width: 90%;
     background: white;
     border-radius: 12px;
     margin: 0 auto;
+    max-height: 500px;
 }
 #img_container{
     width: 100% !important;
