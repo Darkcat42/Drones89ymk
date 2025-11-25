@@ -1,11 +1,12 @@
 # импорты пайтон и тп
-import flask, flask_login, os
+import pathlib
+
+import flask, flask_login, os, datetime
+from pathlib import Path
 from flask_login import LoginManager, login_required, current_user, logout_user
 from flask import Flask, render_template, request
-from pathlib import Path
-import datetime
-from Controllers.NewsController import NewsController
 # импорт контроллеров
+from Controllers.NewsController import NewsController
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
 from Controllers.ScheduleController import ScheduleController
@@ -13,11 +14,40 @@ from Controllers.SectionsController import SectionsController
 from Controllers.ImagesController import ImagesController
 from Controllers.GalleryEventsController import GalleryEventsController
 from Controllers.GalleryEvents_imagesController import GalleryEvents_imagesController
-# функции приложения
-def open_file(src):
-    """читает файл и возвращает результат, упрощает общий вид кода"""
-    with open(src, 'r') as html:
-        return html.read()
+class App_contorller():
+    """класс для сторонних функций и данных приложения"""
+    @staticmethod
+    def open_file(src):
+        """читает файл и возвращает результат, упрощает общий вид кода"""
+        with open(src, 'r') as html:
+            return html.read()
+
+    @staticmethod
+    def check_dir(src):
+        """проверка директории, если такоговой нет то создает ее"""
+        if os.path.isdir(src) != True:
+            os.mkdir(src)
+        else:
+            print(src, 'директория найдена')
+    @staticmethod
+    def mkdir_cat_dir(cat_dir):
+        save_path = pathlib.Path('static/webp')
+        print(save_path)
+        calendar_date = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
+        checkMake_dir = lambda in_path: print('mkdir неудача', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.mkdir(in_path)
+        checkMakes_dirs = lambda in_path: print('mkdir неудача', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.makedirs(in_path)
+
+        save_path = os.path.join(save_path, calendar_date, cat_dir)
+        print(save_path)
+        checkMakes_dirs(save_path)
+
+        cur_dir_name = cat_dir + str(len(os.listdir(save_path)))
+        save_path = os.path.join(save_path, cur_dir_name)
+        print(save_path)
+        checkMake_dir(save_path)
+
+        return save_path
+
 # создание и настройка приложения
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -41,25 +71,26 @@ def loadModalBlock_anon(blockName):
     """маршрут для загрузки модальных блоков неавторизоавнных пользователей"""
     match blockName:
         case 'login':
-            return open_file('templates/html_modal_blocks/login.html')
+            return App_contorller.open_file('templates/html_modal_blocks/login.html')
         case 'build_modal_more_info':
-            return open_file('templates/html_modal_blocks/build_modal_more_info.html')
+            return App_contorller.open_file('templates/html_modal_blocks/build_modal_more_info.html')
 @app.route('/loadModalBlock_user/<blockName>')
 @login_required
 def loadModalBlock_user(blockName):
     """маршрут для загрузки модальных блоков для пользователей прошедших авторизацию"""
     match blockName:
         case 'schedule':
-            return open_file('templates/html_modal_blocks/schedule.html')
+            return App_contorller.open_file('templates/html_modal_blocks/schedule.html')
         case 'news_modal':
-            return open_file('templates/html_modal_blocks/news_modal.html')
+            return App_contorller.open_file('templates/html_modal_blocks/news_modal.html')
         case 'galleryEvent_modal':
-            return open_file('templates/html_modal_blocks/galleryEvent_modal.html') 
+            return App_contorller.open_file('templates/html_modal_blocks/galleryEvent_modal.html')
 @app.route('/logout') 
 def logout():
     """маршрут для выхода из авторизации"""
     logout_user()
     return flask.redirect('/')
+# точки входа в приложение
 @app.route('/') 
 def index():
     """маршрут на главную"""
@@ -70,22 +101,6 @@ def index():
         lastNews=NewsController.getLast_dict(),
         edit_tools = False
         )
-# маршруты для страницы сборок
-@app.route('/build') 
-def build():
-    """маршрут на страницу сборок с дронами"""
-    return render_template('build.html')
-@app.route('/doc') 
-def doc():
-    """маршрут страницу документов"""
-    return render_template('doc.html')
-@app.route('/policy') 
-def policy():
-    """маршрут policy.html"""
-    return render_template('policy.html')
-
-
-    
 @app.route('/admin_panel')
 @login_required
 def admin_panel():
@@ -97,7 +112,7 @@ def admin_panel():
         edit_tools = True
         )
 @app.route('/login', methods=['POST'])
-def login(): 
+def login():
     """маршрут для авторизации пользователя"""
     if request.method == "POST":
             login_form = request.form.get('login')
@@ -171,8 +186,23 @@ def deleteScheduleDay(id):
     ScheduleController.delete(id=id)
     if ScheduleController.show(id) == None:
         return id
+# маршруты для страницы сборок
+@app.route('/build')
+def build():
+    """маршрут на страницу сборок с дронами"""
+    return render_template('build.html')
+# маршруты для страницы документов с правилами
+@app.route('/doc')
+def doc():
+    """маршрут страницу документов"""
+    return render_template('doc.html')
+# маршруты для страницы политики обработки персональных данных
+@app.route('/policy')
+def policy():
+    """маршрут policy.html"""
+    return render_template('policy.html')
 # маршруты для страницы новости
-@app.route('/news') 
+@app.route('/news')
 def news():
     edit_tools = False
     try:
@@ -181,10 +211,11 @@ def news():
             edit_tools = True
     except:
         pass
-    news_list = NewsController.getNews()
+    news = NewsController.get()
+    news_list = NewsController.getNews(news)
     return render_template(
-        'news.html', 
-        news=news_list, 
+        'news.html',
+        news=news_list,
         edit_tools=edit_tools)
 @app.route('/createNews', methods=['POST'])
 @login_required
@@ -194,18 +225,19 @@ def createNews():
         text = request.form.get('text')
         file = request.files['file']
         filename = file.filename
-        src = f'static/temp/img/{filename}'
-        file.save(src)
-        data_dir_name = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
-        title_dir_name = str(title.replace(' ', '_'))
-        dir_name_src = f'static/webp/{data_dir_name}'
-        if os.path.isdir(dir_name_src) != True:
-            os.mkdir(dir_name_src)
-        dir_name_src = f'static/webp/{data_dir_name}/{title_dir_name}'
-        if os.path.isdir(dir_name_src) != True:
-            os.mkdir(dir_name_src)
-        dir_name = f'{data_dir_name}/{title_dir_name}'
-        webp_src = ImagesController.convertImage(src, dir_name)
+        # src = f'static/temp/img/{filename}'
+        file.save(src) # сохраняем файл во временную папку
+        # data_dir_name = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
+        # title_dir_name = str(title.replace(' ', '_'))
+        # dir_name_src = f'static/webp/{data_dir_name}'
+        # if os.path.isdir(dir_name_src) != True:
+        #     os.mkdir(dir_name_src)
+        # dir_name_src = f'static/webp/{data_dir_name}/{title_dir_name}'
+        # if os.path.isdir(dir_name_src) != True:
+        #     os.mkdir(dir_name_src)
+        # dir_name = f'{data_dir_name}/{title_dir_name}'
+        dir_name = App_contorller.mkdir_cat_dir('news')
+        webp_src = ImagesController.convertImage(dir_name)
         filename = str(Path(filename).stem)+'.webp'
         ImagesController.add(
             filename=filename,
@@ -283,4 +315,7 @@ def addGalleryEvent():
         )
     return GalleryEvents_imagesController.get_cur_gallery(galleryEvent)
 if __name__ == '__main__':
+    App_contorller.check_dir('static/webp')
+    App_contorller.check_dir('static/temp')
+    App_contorller.check_dir('static/temp/img')
     app.run(debug=True)
