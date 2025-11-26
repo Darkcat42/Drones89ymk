@@ -52,7 +52,7 @@
     color: white!important;
     
 }
-.modal_btn_close{
+.modalHeader_btnClose{
     filter: opacity(30%);
     cursor: pointer;
     background: url('/static/svg/exit_icon.svg');
@@ -62,7 +62,7 @@
     height: 30px;
     margin-top: 10px;
 }
-.modal_header:hover .modal_btn_close{
+.modal_header:hover .modalHeader_btnClose{
     filter: opacity(100%);
 }
 .modal_content{ /* блок с содержимым (зависит от действий пользователя) */
@@ -123,9 +123,9 @@
     color: white;
     cursor: pointer;
 }
-.close_modal{
+/* .close_modal{
     display: none!important;
-}
+} */
 .modal_elem{
     width: 90%;
     margin: 3%;

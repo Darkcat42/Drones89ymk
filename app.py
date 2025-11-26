@@ -16,26 +16,47 @@ from Controllers.GalleryEventsController import GalleryEventsController
 from Controllers.GalleryEvents_imagesController import GalleryEvents_imagesController
 class App_contorller():
     """класс для сторонних функций и данных приложения"""
+    def __init__(self):
+        self.checkMake_dir('static/webp')
+        self.checkMake_dir('static/temp')
+        self.checkMake_dir('static/temp/img') 
+        self._dir_tempImg = f'static/temp/img'
+        self._dir_webpImg = f'static/webp' 
+    @property
+    def dir_tempImg(self):
+        """геттер для директории временных картинок"""
+        return self._dir_tempImg
+    @dir_tempImg.setter
+    def dir_tempImg(self, value):
+        """сеттер"""
+        self._dir_tempImg = value
+    @property
+    def dir_webpImg(self):
+        """геттер для директории webp картинок"""
+        return self._dir_webpImg
+    @dir_webpImg.setter
+    def dir_webpImg(self, value):
+        """сеттер"""
+        self._dir_webpImg = value
     @staticmethod
     def open_file(src):
         """читает файл и возвращает результат, упрощает общий вид кода"""
         with open(src, 'r') as html:
             return html.read()
-
     @staticmethod
-    def check_dir(src):
-        """проверка директории, если такоговой нет то создает ее"""
+    def checkMake_dir(src):
+        """проверка директории, если таковой нет то создает ее"""
         if os.path.isdir(src) != True:
             os.mkdir(src)
         else:
-            print(src, 'директория найдена')
+            print(src, 'директория существует')
     @staticmethod
     def mkdir_cat_dir(cat_dir):
         save_path = pathlib.Path('static/webp')
         print(save_path)
         calendar_date = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
-        checkMake_dir = lambda in_path: print('mkdir неудача', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.mkdir(in_path)
-        checkMakes_dirs = lambda in_path: print('mkdir неудача', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.makedirs(in_path)
+        checkMake_dir = lambda in_path: print('mkdir false', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.mkdir(in_path)
+        checkMakes_dirs = lambda in_path: print('mkdir false', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.makedirs(in_path)
 
         save_path = os.path.join(save_path, calendar_date, cat_dir)
         print(save_path)
@@ -225,20 +246,15 @@ def createNews():
         text = request.form.get('text')
         file = request.files['file']
         filename = file.filename
-        # src = f'static/temp/img/{filename}'
-        file.save(src) # сохраняем файл во временную папку
-        # data_dir_name = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
-        # title_dir_name = str(title.replace(' ', '_'))
-        # dir_name_src = f'static/webp/{data_dir_name}'
-        # if os.path.isdir(dir_name_src) != True:
-        #     os.mkdir(dir_name_src)
-        # dir_name_src = f'static/webp/{data_dir_name}/{title_dir_name}'
-        # if os.path.isdir(dir_name_src) != True:
-        #     os.mkdir(dir_name_src)
-        # dir_name = f'{data_dir_name}/{title_dir_name}'
-        dir_name = App_contorller.mkdir_cat_dir('news')
-        webp_src = ImagesController.convertImage(dir_name)
-        filename = str(Path(filename).stem)+'.webp'
+        if Path(filename).suffix != '.webp':
+            fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+            file.save(fileSrc) # сохраняем файл во временную папку
+            dir_name = App_contorller.mkdir_cat_dir('news')
+            webp_src = ImagesController.convertImage(fileSrc, dir_name) 
+            filename = str(Path(filename).stem)+'.webp'
+        else:
+            webp_src = os.path.join(AppСontorller.dir_webpImg, filename) 
+            file.save(webp_src)
         ImagesController.add(
             filename=filename,
             src=webp_src)
@@ -286,26 +302,17 @@ def addGalleryEvent():
         date=date,
         title=title
     )
-    data_dir_name = str(date.replace('-', '_'))
-    title_dir_name = str(title.replace(' ', '_'))
-    dir_name_src = f'static/webp/{data_dir_name}'
-    if os.path.isdir(dir_name_src) != True:
-        os.mkdir(dir_name_src)
-    dir_name_src = f'static/webp/{data_dir_name}/{title_dir_name}'
-    if os.path.isdir(dir_name_src) != True:
-        os.mkdir(dir_name_src)
-    dir_name = f'{data_dir_name}/{title_dir_name}'
+    dir_name = App_contorller.mkdir_cat_dir('galleryEvent')
     for file in images:
         filename = file.filename
         if Path(filename).suffix != '.webp':
-            src = f'static/temp/img/{filename}'
-            file.save(src)
-            webp_src = ImagesController.convertImage(src, dir_name=dir_name)
+            fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+            file.save(fileSrc) # сохраняем файл во временную папку
+            webp_src = ImagesController.convertImage(fileSrc, dir_name=dir_name)
             filename = str(Path(filename).stem)+'.webp'
         else:
-            src = f'static/webp/{dir_name}/{filename}'
-            file.save(src)
-            webp_src = src
+            webp_src = os.path.join(AppСontorller.dir_webpImg, filename) 
+            file.save(webp_src)
         image = ImagesController.add(
             filename=filename,
             src=webp_src)
@@ -315,7 +322,5 @@ def addGalleryEvent():
         )
     return GalleryEvents_imagesController.get_cur_gallery(galleryEvent)
 if __name__ == '__main__':
-    App_contorller.check_dir('static/webp')
-    App_contorller.check_dir('static/temp')
-    App_contorller.check_dir('static/temp/img')
+    AppСontorller = App_contorller()
     app.run(debug=True)

@@ -44,7 +44,7 @@ function galleryEventPreview_load(new_input_images){
         images_modal_preview.appendChild(new_img)
     });
 }
-function gallery_image_input_del(target){
+function galleryEventImg_deLInput(target){
     target.parentNode.classList.add('db_none')
     let index = input_files_list.indexOf(input_files_obj[target.parentNode.querySelector('p').textContent])
     input_files_list.splice(index, 1)

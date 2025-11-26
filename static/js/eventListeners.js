@@ -1,5 +1,5 @@
-
 document.addEventListener('change', (evt) => {
+    /*    общий прослушиватель события change для отлова элементов   */
     let target = evt.target
     if(target.id != null){ 
         switch(target.id){
@@ -16,65 +16,75 @@ document.addEventListener('click', (evt) => {
     */
     target = evt.target
     if(target.hasAttribute('data-modal') == true){
+        /*    действия для модальных окон   */
         switch(target.getAttribute('data-modal')){
-            case 'login'    : open_modal('Авторизация', '/loadModalBlock_anon/login');
-            break; // модальное окно авторизации
-            case 'scheduleDay_add'    : open_modal('Добавить день', '/loadModalBlock_user/schedule');
-            break; // модальное окно добавления нового дня в расписание
-            case 'news_add'    : open_modal('Добавить новость', '/loadModalBlock_user/news_modal');
-            break; // модальное окно добавления новой новости
-            case 'galleryEvent_add'    : open_modal('Добавить событие', '/loadModalBlock_user/galleryEvent_modal');
-            break; // модальное окно добавления нового события в галерею
-            case 'build_modal_more_info_btn'    : open_modal('Информация о сборке', '/loadModalBlock_user/build_modal_more_info');
-            break; // модальное окно добавления нового события в галерею
-        }
+            case 'login' : // модальное окно авторизации
+                open_modal('Авторизация', '/loadModalBlock_anon/login');
+                break; 
+            case 'scheduleDay_add' : // модальное окно добавления нового дня в расписание 
+                open_modal('Добавить день', '/loadModalBlock_user/schedule');
+                break; 
+            case 'news_add' : // модальное окно добавления новой новости
+                open_modal('Добавить новость', '/loadModalBlock_user/news_modal');
+                break; 
+            case 'galleryEvent_add' :  // модальное окно добавления нового события в галерею
+                open_modal('Добавить событие', '/loadModalBlock_user/galleryEvent_modal');
+                break;
+            case 'buildMoreInfo_btnShow' :  // модальное окно добавления нового события в галерею
+                open_modal('Информация о сборке', '/loadModalBlock_user/build_modal_more_info');
+                break;
+            case 'modalHeader_btnClose' : // закрыть модальное окно
+                modal_base.classList.add('db_none')
+                break; 
+        }//3
     }//2
     if(target.hasAttribute('data-action') == true){
-            action = target.getAttribute('data-action')
-            switch(action){
-                case 'logout': document.location.href=action
+        /*    функции сайта   */
+        action = target.getAttribute('data-action')
+        switch(action){
+            case 'logout': // выход из системы
+                document.location.href=action
                 break;
-            }
+            }//3
         }//2
     if(target.id != null){ 
+        /*    действия по id элемента   */
         switch(target.id){
-            // блок расписание главная страница
-            case 'modal_btn_close':
-                modal_base.classList.add('close_modal')
+            case 'modalHeader_btnClose': // закрыть модальное окно
+                modal_base.classList.add('db_none')
                 break;
-            case 'scheduleDay_addBtn': createDataScheduleDay();
+            /*    страница - расписание   */
+            case 'scheduleDay_addBtn': // добавить день в расписание
+                createDataScheduleDay();
                 break;
-            case 'scheduleDay_editBtn': 
+            case 'scheduleDay_editBtn': // изменить день в расписании (выбор дня)
                 showScheduleDay(target.parentNode.getAttribute('data-scheduleDay-id'));
                 break;
-            case 'scheduleDay_UpdateBtn':
+            case 'scheduleDay_UpdateBtn': // изменить день в расписании (изменение дня)
                 updateScheduleDay()
                 break;
-            case 'scheduleDay_delBtn':
+            case 'scheduleDay_delBtn': // удалить день в расписании
                 deleteScheduleDay(target.parentNode.getAttribute('data-scheduleDay-id'));
                 break;
-            // страница новости
-            case 'news_addBtn':
+            /*    страница - новости   */
+            case 'news_addBtn': // добавить новость
                 createNewNews()
                 break;
-            case 'galleryEvent_addBtn':
+            /*    страница - галерея   */
+            case 'galleryEvent_addBtn': // добавить галерею событий
                 createGalleryEvent()
                 break;
-            case 'gallery_image_input_del':
-                gallery_image_input_del(target)
+            case 'galleryEventImg_deLInput': // удалить изображение из вставки при создании галереи
+                galleryEventImg_deLInput(target)
                 break;
-
         }
     }//2
 })//1 конец: addEventListener - click
 document.addEventListener('submit', (evt) => {
-    /*
-    прослушиватель события тега form инпут с типом submit
-    */
+    /*  прослушиватель события тега form для input type="submit"    */
     evt.preventDefault(); 
     target = evt.target
     if(target.id != null){ // отлов кликабельных элементов
-        console.log('отлов кликабельных элементов')
         switch(target.id){
             case 'login_form': check_login_form();
                 break;

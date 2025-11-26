@@ -1,6 +1,6 @@
 // мои функции для клиентской части
 // получаем элементы со страницы
-let btn_act_close = document.getElementById('modal_btn_close');
+let btn_act_close = document.getElementById('modalHeader_btnClose');
 let modal_base = document.getElementById('modal_base');
 let modal_message = document.getElementById('modal_message');
 let modal_warning = document.getElementById('modal_warning');
@@ -31,7 +31,7 @@ async function open_modal(text, url){
     .then(html => {
             modal_content.innerHTML = html; 
         });
-    modal_base.classList.remove('close_modal')
+    modal_base.classList.remove('db_none')
     return true
 }
 // function open_message(text){
@@ -41,7 +41,7 @@ async function open_modal(text, url){
 //     */
 //     let parag = document.getElementById('parag')
 //     parag.textContent = text
-//     modal_message.classList.remove('close_modal')
+//     modal_message.classList.remove('db_none')
 // //    document.body.style.overflow = 'hidden'
 // }
 // function open_warning(text, action){
@@ -53,7 +53,7 @@ async function open_modal(text, url){
 //     let modal_warning_btn_action = document.getElementById('modal_warning_btn_action')
 //     modal_warning_btn_action.setAttribute('data-action', action)
 //     warning_paragraf.textContent = text
-//     modal_warning.classList.remove('close_modal')
+//     modal_warning.classList.remove('db_none')
 //     document.body.style.overflow='hidden'
 // }
 

@@ -353,12 +353,7 @@
     }
 }
 
-/* Расписание */
-#table {
-    padding: 100px 0;
-    background-color: #2C133E;
-    color: white;
-}
+
 .table_rasp {
     display: flex;
     justify-content: center;

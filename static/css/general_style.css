@@ -3,9 +3,6 @@
     transition-duration: 300ms;
     transition-property: all;
 }
-
-
-
 .border_test{
     outline: 1px solid red;
 }
@@ -102,17 +99,30 @@ button.basis_close_btn:hover
 #media {
     padding: 120px 0;
 }
+/* Расписание */
+#table {
+    padding: 100px 0;
+    /* background-color: #2C133E; */
+    background-color: none;
+    color: white;
+}
 /* последняя новость блок */
+.purple_gradient{
+    background: linear-gradient(to top, #4b2067, #331648, #2C133E)
+}
 .lastNews { 
-    background-color: #2C133E;
+    background-color: none;
+    /* background-color: #3f1c58; */
+    /* background-color: #2C133E; */
+    /* background-color: white; */
     padding: 1%;
     color: white;
-    border-bottom: 1px solid white;
-    border-top: 1px solid white;
+    
+
 }
 .lastNews>*{
 margin: 0 auto;
-
+ /* color: black; */
 }
 .lastNews_date{
     border: 1px solid black;
@@ -123,7 +133,7 @@ margin: 0 auto;
 }
 .lastNews img.img-fluid{
     /* width: 200px; */
-    height: 80%;
+    height: 120%;
     border-radius: 6px;
 }
 /*вопросы блок*/
