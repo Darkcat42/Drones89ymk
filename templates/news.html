@@ -9,14 +9,15 @@
 <section id="news" class="container"> 
     {% if edit_tools == True %}
     <!--инстурменты администратора для данного блока-->
-    <div class="row align-content-center">
-        <button class="my_add_btn_static" data-modal="news_add">добавить новость</button>
+    <div class="row">
+        <button class="my_add_btn_static" data-modal="add_news">добавить новость</button>
     </div>
     {% endif %}
-    {% for new in news %}
-        <div class="row" style="margin: 1%; border: 1px solid black;">
-            <div class="col" data-image_id="{{new['id']}}" >
-                <img src="{{new['image_src']}}" class="" alt="..." width="300px">
+    <div class="d-flex flex-column">
+        {% for new in news %}
+        <div class="row" data-new_id="{{new['id']}}" style="margin: 1%;padding: 1%; border: 1px solid black;">
+            <div id="news_image" class="col-4"  >
+                <img src="{{new['image_src']}}" alt="..." width="300px">
             </div>
             <div class="col">
                 <h5 class="card-title">{{new['title']}}</h5>
@@ -24,7 +25,14 @@
                 <p style="border: 1px solid black; width: fit-content; padding: 0 20px;">{{new['date']}}</p>
                 <a href="/news" class="btn btn-light">Узнать больше</a>
             </div>
+            {% if edit_tools == True %}
+            <div class="d-flex flex-row">
+                <button class="my_add_btn_static" data-modal="edit_news">изменить новость</button>
+                <button class="my_add_btn_static" data-modal="del_news">удалить новость</button>
+            </div>
+            {% endif %}
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
   </section>
 {% endblock %}

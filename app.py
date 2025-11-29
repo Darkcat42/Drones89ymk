@@ -17,9 +17,9 @@ from Controllers.GalleryEvents_imagesController import GalleryEvents_imagesContr
 class App_contorller():
     """класс для сторонних функций и данных приложения"""
     def __init__(self):
-        self.checkMake_dir('static/webp')
-        self.checkMake_dir('static/temp')
-        self.checkMake_dir('static/temp/img') 
+        self.checkMake_oneDir('static/webp')
+        self.checkMake_oneDir('static/temp')
+        self.checkMake_oneDir('static/temp/img') 
         self._dir_tempImg = f'static/temp/img'
         self._dir_webpImg = f'static/webp' 
     @property
@@ -44,28 +44,35 @@ class App_contorller():
         with open(src, 'r') as html:
             return html.read()
     @staticmethod
-    def checkMake_dir(src):
+    def checkMake_oneDir(src):
         """проверка директории, если таковой нет то создает ее"""
         if os.path.isdir(src) != True:
             os.mkdir(src)
         else:
             print(src, 'директория существует')
     @staticmethod
-    def mkdir_cat_dir(cat_dir):
+    def checkMake_recurDirs(src):
+        """проверка директории, если таковой нет то создает ее"""
+        if os.path.isdir(src) != True:
+            os.makedirs(src)
+        else:
+            print(src, 'директория существует')
+    @classmethod
+    def mkdir_cat_dir(cls, cat_dir):
         save_path = pathlib.Path('static/webp')
         print(save_path)
         calendar_date = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
-        checkMake_dir = lambda in_path: print('mkdir false', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.mkdir(in_path)
-        checkMakes_dirs = lambda in_path: print('mkdir false', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.makedirs(in_path)
+        # checkMake_dir = lambda in_path: print('mkdir false', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.mkdir(in_path)
+        # checkMakes_dirs = lambda in_path: print('mkdir false', os.path.isdir(in_path)) if os.path.isdir(in_path) else os.makedirs(in_path)
 
         save_path = os.path.join(save_path, calendar_date, cat_dir)
         print(save_path)
-        checkMakes_dirs(save_path)
+        cls.checkMake_recurDirs(save_path)
 
         cur_dir_name = cat_dir + str(len(os.listdir(save_path)))
         save_path = os.path.join(save_path, cur_dir_name)
         print(save_path)
-        checkMake_dir(save_path)
+        cls.checkMake_oneDir(save_path)
 
         return save_path
 
@@ -138,7 +145,9 @@ def login():
     if request.method == "POST":
             login_form = request.form.get('login')
             user = UsersController.get_by_login(login_form)
-            if login_form == user.login:
+            if user != None:
+                # проверка на длину 
+                
                 passwd_form = request.form.get('password')
                 if passwd_form == user.password:
                     flask_login.login_user(user)
@@ -163,26 +172,24 @@ def showScheduleDay(id):
 @app.route('/updateScheduleDay/<id>', methods=['POST'])
 @login_required
 def updateScheduleDay(id):
-    day_id = id
-    data = request.get_json()
-    ScheduleController.update(
-        day_id, 
-        location=data['location'],
-        day = data['day'],
-        start = data['start'],
-        end = data['end']
-        )
-    data = ScheduleController.get_currentScheduleDay(day_id)
-    return data
+    if request.method == "POST":
+        day_id = id
+        ScheduleController.update(
+            day_id, 
+            location = request.form.get('location'),
+            day = request.form.get('day'),
+            start = request.form.get('start'),
+            end = request.form.get('end')
+            )
+        return flask.redirect('/admin_panel#table')
 @app.route('/createScheduleDay', methods=['POST'])
 @login_required
 def createScheduleDay():
     if request.method == "POST":
-        data = request.get_json()
-        location = data['location']
-        day = data['day']
-        start = data['start']
-        end = data['end']
+        location = request.form.get('location')
+        day = request.form.get('day')
+        start = request.form.get('start')
+        end = request.form.get('end')
         try:
             ScheduleController.addDay(
                 location=location,
@@ -200,13 +207,12 @@ def createScheduleDay():
             'end' : current_day.end,
             'location' : current_day.location
         }
-        return current_day
+        return flask.redirect('/admin_panel#table')
 @app.route('/deleteScheduleDay/<id>', methods=['GET'])
 @login_required
 def deleteScheduleDay(id):
-    ScheduleController.delete(id=id)
-    if ScheduleController.show(id) == None:
-        return id
+    result = ScheduleController.delete(id=id)
+    return flask.redirect('/admin_panel#table')
 # маршруты для страницы сборок
 @app.route('/build')
 def build():
@@ -223,6 +229,27 @@ def policy():
     """маршрут policy.html"""
     return render_template('policy.html')
 # маршруты для страницы новости
+@app.route('/updateNews/<id>', methods=['POST'])
+@login_required
+def updateNews(id):
+    if request.method == "POST":
+        day_id = id
+        ScheduleController.update(
+            day_id, 
+            location = request.form.get('location'),
+            day = request.form.get('day'),
+            start = request.form.get('start'),
+            end = request.form.get('end')
+            )
+        return flask.redirect('/news')
+@app.route('/show_news/<id>')
+@login_required
+def show_news(id):
+    return NewsController.getNew_dict(id)
+@app.route('/del_news/<id>')
+@login_required
+def del_news(id):
+    return NewsController.getNew_dict(id)
 @app.route('/news')
 def news():
     edit_tools = False
@@ -238,6 +265,7 @@ def news():
         'news.html',
         news=news_list,
         edit_tools=edit_tools)
+
 @app.route('/createNews', methods=['POST'])
 @login_required
 def createNews():
@@ -255,26 +283,26 @@ def createNews():
         else:
             webp_src = os.path.join(AppСontorller.dir_webpImg, filename) 
             file.save(webp_src)
-        ImagesController.add(
+        image = ImagesController.add(
             filename=filename,
             src=webp_src)
-        image_id = ImagesController.show(filename)
+        image_id = image.id
         NewsController.addNews(
             title=title,
             news_desc=text,
             date=datetime.datetime.today().strftime('%Y-%m-%d'),
             image_id=image_id,
         )
-        new = NewsController.showLast()
-        image_src = ImagesController.show_id(new.image_id).src
-        new_data = {
-            'id': new.id,
-            'day': new.title,
-            'start': new.news_desc,
-            'end': new.date,
-            'image_src': image_src
-        }
-        return new_data
+        # new = NewsController.showLast()
+        # image_src = ImagesController.show_id(new.image_id).src
+        # new_data = {
+        #     'id': new.id,
+        #     'day': new.title,
+        #     'start': new.news_desc,
+        #     'end': new.date,
+        #     'image_src': image_src
+        # }
+        return flask.redirect('/news')
 # маршруты для страницы галерея
 @app.route('/gallery') 
 def gallery():

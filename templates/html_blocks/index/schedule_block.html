@@ -21,10 +21,10 @@
                 <td id="scheduleStart"></td>
                 <td id="scheduleEnd"></td>
                 <td id="scheduleLocation"></td>
-<!--             инстурменты администратора для данного блока-->
+<!--             инстурменты редактирования для данного блока-->
                 {% if edit_tools == True %}
-                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_editBtn">ред</td>
-                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_delBtn" >del</td>
+                <td class="none_border_right_top_bottom td_hover" data-action="edit_scheduleDay">ред</td>
+                <td class="none_border_right_top_bottom td_hover"><a href="/admin_panel#table"></a></td>
                 {% endif %}
             </tr>
         {% for day in scheduleDays %}
@@ -34,10 +34,10 @@
                 <td id="scheduleStart">{{day['start']}}</td>
                 <td id="scheduleEnd">{{day['end']}}</td>
                 <td id="scheduleLocation">{{day['location']}} </td>
-<!--             инстурменты администратора для данного блока-->
+<!--             инстурменты редактирования для данного блока-->
                 {% if edit_tools == True %}
-                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_editBtn">ред</td>
-                <td class="none_border_right_top_bottom td_hover" id="scheduleDay_delBtn" >del</td>
+                <td class="none_border_right_top_bottom td_hover" data-action="edit_scheduleDay">ред</td>
+                <td class="none_border_right_top_bottom td_hover"><a href="/deleteScheduleDay/{{day['id']}}">del</a></td>
                 {% endif %}
             </tr>
             

@@ -1,8 +1,12 @@
+html {
+    scroll-behavior: auto !important;
+}
 /* общие стили */
 *{
     transition-duration: 300ms;
     transition-property: all;
 }
+
 .border_test{
     outline: 1px solid red;
 }

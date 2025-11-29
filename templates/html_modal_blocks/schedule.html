@@ -1,6 +1,6 @@
 <div class="container">
         <div>
-            <form>
+            <form id="scheduleDay_form" action="/createScheduleDay" method="post">
                 <input id="day_id" type="hidden" name="day_id">
                 <input id="location" type="text" name="location" placeholder="Введите локацию">
                 <select name="day" id="day">
@@ -15,7 +15,7 @@
                 </select>
                 <input id="start" type="time" name="start" placeholder="Введите время начала"> 
                 <input id="end" type="time" name="end" placeholder="Введите время завершения">
-                <input id='scheduleDay_addBtn' class="modal_submit" type="button" value="добавить">
+                <input id='scheduleDay_submit' class="modal_submit" type="submit" value="добавить">
             </form>
         </div>
 </div>
