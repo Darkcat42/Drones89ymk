@@ -94,52 +94,13 @@ def anon():
 def fav_pass():
     """сброс ошибки переадресации на favicon.ico"""
     return 'favicon'
-@app.route('/loadModalBlock_anon/<blockName>')
-def loadModalBlock_anon(blockName):
-    """маршрут для загрузки модальных блоков неавторизоавнных пользователей"""
-    match blockName:
-        case 'login':
-            return App_contorller.open_file('templates/html_modal_blocks/login.html')
-        case 'build_modal_more_info':
-            return App_contorller.open_file('templates/html_modal_blocks/build_modal_more_info.html')
-@app.route('/loadModalBlock_user/<blockName>')
-@login_required
-def loadModalBlock_user(blockName):
-    """маршрут для загрузки модальных блоков для пользователей прошедших авторизацию"""
-    match blockName:
-        case 'schedule':
-            return App_contorller.open_file('templates/html_modal_blocks/schedule.html')
-        case 'news_modal':
-            return App_contorller.open_file('templates/html_modal_blocks/news_modal.html')
-        case 'galleryEvent_modal':
-            return App_contorller.open_file('templates/html_modal_blocks/galleryEvent_modal.html')
-@app.route('/logout') 
-def logout():
-    """маршрут для выхода из авторизации"""
-    logout_user()
-    return flask.redirect('/')
-# точки входа в приложение
-@app.route('/') 
-def index():
-    """маршрут на главную"""
-    return render_template(
-        'index.html',
-        scheduleDays=ScheduleController.get_ScheduleDays(),
-        scheduleInfo=SectionsController.get_section_info('schedule'),
-        lastNews=NewsController.getLast_dict(),
-        edit_tools = False
-        )
-@app.route('/admin_panel')
-@login_required
-def admin_panel():
-    return render_template(
-        'admin_panel.html',
-        scheduleDays=ScheduleController.get_ScheduleDays(),
-        scheduleInfo=SectionsController.get_section_info('schedule'),
-        lastNews=NewsController.getLast_dict(),
-        edit_tools = True
-        )
-@app.route('/login', methods=['POST'])
+# авторизация в приложение
+@app.route('/login_page', methods=['GET'])
+def login_page():
+    return flask.render_template(
+        'login/login.html'
+    )
+@app.route('/login_action', methods=['POST'])
 def login():
     """маршрут для авторизации пользователя"""
     if request.method == "POST":
@@ -164,12 +125,42 @@ def login():
                 else:
                     return 'неверный логин или пароль'
     return flask.redirect('/')
-# маршруты для блока расписания главной страницы
-@app.route('/showScheduleDay/<id>', methods=['GET'])
+@app.route('/logout') 
+def logout():
+    """маршрут для выхода из авторизации"""
+    logout_user()
+    return flask.redirect('/')
+@app.route('/') 
+def index():
+    """маршрут на главную"""
+    return render_template(
+        'main/index.html',
+        scheduleDays=ScheduleController.get_ScheduleDays(),
+        scheduleInfo=SectionsController.get_section_info('schedule'),
+        lastNews=NewsController.getLast_dict(),
+        edit_tools = False
+        )
+@app.route('/admin_panel')
 @login_required
-def showScheduleDay(id):
-    return ScheduleController.get_currentScheduleDay(id)
-@app.route('/updateScheduleDay/<id>', methods=['POST'])
+def admin_panel():
+    return render_template(
+        'main/admin_panel.html',
+        scheduleDays=ScheduleController.get_ScheduleDays(),
+        scheduleInfo=SectionsController.get_section_info('schedule'),
+        lastNews=NewsController.getLast_dict(),
+        edit_tools = True
+        )
+
+# маршруты для блока расписания главной страницы
+@app.route('/updateSchedule_page/<id>', methods=['GET'])
+@login_required
+def updateSchedule_page(id):
+        return flask.render_template(
+            'schedule/actions_schedule.html',
+            edit_schedule = True,
+            day = ScheduleController.get_currentScheduleDay(id)
+        )
+@app.route('/updateSchedule_action/<id>', methods=['POST'])
 @login_required
 def updateScheduleDay(id):
     if request.method == "POST":
@@ -181,8 +172,16 @@ def updateScheduleDay(id):
             start = request.form.get('start'),
             end = request.form.get('end')
             )
-        return flask.redirect('/admin_panel#table')
-@app.route('/createScheduleDay', methods=['POST'])
+        return flask.redirect('/admin_panel#schedule')
+@app.route('/createSchedule_page', methods=['GET'])
+@login_required
+def createSchedule_page():
+        return flask.render_template(
+            'schedule/actions_schedule.html',
+            edit_schedule = False,
+            day = None
+        )
+@app.route('/createSchedule_action', methods=['POST'])
 @login_required
 def createScheduleDay():
     if request.method == "POST":
@@ -207,17 +206,17 @@ def createScheduleDay():
             'end' : current_day.end,
             'location' : current_day.location
         }
-        return flask.redirect('/admin_panel#table')
+        return flask.redirect('/admin_panel#schedule')
 @app.route('/deleteScheduleDay/<id>', methods=['GET'])
 @login_required
 def deleteScheduleDay(id):
     result = ScheduleController.delete(id=id)
-    return flask.redirect('/admin_panel#table')
+    return flask.redirect('/admin_panel#schedule')
 # маршруты для страницы сборок
 @app.route('/build')
 def build():
     """маршрут на страницу сборок с дронами"""
-    return render_template('build.html')
+    return render_template('build/build.html')
 # маршруты для страницы документов с правилами
 @app.route('/doc')
 def doc():
@@ -229,27 +228,51 @@ def policy():
     """маршрут policy.html"""
     return render_template('policy.html')
 # маршруты для страницы новости
-@app.route('/updateNews/<id>', methods=['POST'])
+@app.route('/updateNews_page/<id>', methods=['GET', 'POST'])
 @login_required
-def updateNews(id):
+def updateNews_page(id):
+        return flask.render_template(
+            'news/actions_news.html',
+            edit_news = True,
+            news = NewsController.getNew_dict(id)
+        )
+@app.route('/updateNews_action/<id>', methods=['POST'])
+@login_required
+def updateNews_action(id):
     if request.method == "POST":
-        day_id = id
-        ScheduleController.update(
-            day_id, 
-            location = request.form.get('location'),
-            day = request.form.get('day'),
-            start = request.form.get('start'),
-            end = request.form.get('end')
-            )
+        title = request.form.get('news_title')
+        text = request.form.get('news_text')
+        try:
+            file = request.files['news_file']
+            filename = file.filename
+            if Path(filename).suffix != '.webp':
+                fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+                file.save(fileSrc) # сохраняем файл во временную папку
+                dir_name = App_contorller.mkdir_cat_dir('news')
+                webp_src = ImagesController.convertImage(fileSrc, dir_name) 
+                filename = str(Path(filename).stem)+'.webp'
+            else:
+                webp_src = os.path.join(AppСontorller.dir_webpImg, filename) 
+                file.save(webp_src)
+            image = ImagesController.add(
+                filename=filename,
+                src=webp_src)
+            image_id = image.id
+        except:
+            image_id = ImagesController.get()[0].id
+        NewsController.update(
+            id, 
+            title=title,
+            news_desc=text,
+            date='доделать контроллер',
+            image_id=image_id,
+        )
         return flask.redirect('/news')
-@app.route('/show_news/<id>')
+@app.route('/deleteNews_action/<id>')
 @login_required
-def show_news(id):
-    return NewsController.getNew_dict(id)
-@app.route('/del_news/<id>')
-@login_required
-def del_news(id):
-    return NewsController.getNew_dict(id)
+def deleteNews_action(id):
+    NewsController.delete(id)
+    return flask.redirect('/news')
 @app.route('/news')
 def news():
     edit_tools = False
@@ -262,46 +285,47 @@ def news():
     news = NewsController.get()
     news_list = NewsController.getNews(news)
     return render_template(
-        'news.html',
+        'news/news.html',
         news=news_list,
         edit_tools=edit_tools)
-
-@app.route('/createNews', methods=['POST'])
+@app.route('/createNews_page', methods=['GET'])
 @login_required
-def createNews():
+def createNews_page():
+        return flask.render_template(
+            'news/actions_news.html',
+            edit_news = False,
+            news = None
+        )
+@app.route('/createNews_action', methods=['POST'])
+@login_required
+def createNews_action():
     if request.method == "POST":
-        title = request.form.get('title')
-        text = request.form.get('text')
-        file = request.files['file']
-        filename = file.filename
-        if Path(filename).suffix != '.webp':
-            fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
-            file.save(fileSrc) # сохраняем файл во временную папку
-            dir_name = App_contorller.mkdir_cat_dir('news')
-            webp_src = ImagesController.convertImage(fileSrc, dir_name) 
-            filename = str(Path(filename).stem)+'.webp'
-        else:
-            webp_src = os.path.join(AppСontorller.dir_webpImg, filename) 
-            file.save(webp_src)
-        image = ImagesController.add(
-            filename=filename,
-            src=webp_src)
-        image_id = image.id
+        title = request.form.get('news_title')
+        text = request.form.get('news_text')
+        try:
+            file = request.files['news_file']
+            filename = file.filename
+            if Path(filename).suffix != '.webp':
+                fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+                file.save(fileSrc) # сохраняем файл во временную папку
+                dir_name = App_contorller.mkdir_cat_dir('news')
+                webp_src = ImagesController.convertImage(fileSrc, dir_name) 
+                filename = str(Path(filename).stem)+'.webp'
+            else:
+                webp_src = os.path.join(AppСontorller.dir_webpImg, filename) 
+                file.save(webp_src)
+            image = ImagesController.add(
+                filename=filename,
+                src=webp_src)
+            image_id = image.id
+        except:
+            image_id = ImagesController.get()[0].id
         NewsController.addNews(
             title=title,
             news_desc=text,
             date=datetime.datetime.today().strftime('%Y-%m-%d'),
             image_id=image_id,
         )
-        # new = NewsController.showLast()
-        # image_src = ImagesController.show_id(new.image_id).src
-        # new_data = {
-        #     'id': new.id,
-        #     'day': new.title,
-        #     'start': new.news_desc,
-        #     'end': new.date,
-        #     'image_src': image_src
-        # }
         return flask.redirect('/news')
 # маршруты для страницы галерея
 @app.route('/gallery') 
@@ -315,7 +339,7 @@ def gallery():
     except:
         pass
     return render_template(
-        'gallery.html',
+        'gallery/gallery.html',
         list_of_gallerys = GalleryEvents_imagesController.get_all_gallerys(),
         edit_tools=edit_tools
         )

@@ -1,12 +1,11 @@
 {% if current_user.is_authenticated %}
-    {% extends 'admin_base.html' %}
+    {% extends 'base/admin_base.html' %}
 {% else %}
-    {% extends 'base.html' %}
+    {% extends 'base/base.html' %}
 {% endif %}
 {% block content %}
-{% include 'html_modal_blocks/modal_base.html' %}
 <!--Секция галерея-->
-<section  id="galerry">
+<section class="galleryEvent basic_bg w-100">
     {% if edit_tools == True %}
         <div class="row align-content-center">
             <button class="my_add_btn_static" data-modal="galleryEvent_add">добавить событие</button>

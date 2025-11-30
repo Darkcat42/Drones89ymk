@@ -1,4 +1,4 @@
-<section id="table">
+<section id="schedule">
   <div class="container">
     <div class="row">
       <div class="text-center">
@@ -15,18 +15,6 @@
             <th class="none_border_right_top_bottom"></th>
               <th class="none_border_right_top_bottom"></th>
           </tr>
-          <tr id="empty_schedule" class="empty_schedule">
-                <td class="none_border_left_top_bottom"></td>
-                <td id="scheduleDayName"></td>
-                <td id="scheduleStart"></td>
-                <td id="scheduleEnd"></td>
-                <td id="scheduleLocation"></td>
-<!--             инстурменты редактирования для данного блока-->
-                {% if edit_tools == True %}
-                <td class="none_border_right_top_bottom td_hover" data-action="edit_scheduleDay">ред</td>
-                <td class="none_border_right_top_bottom td_hover"><a href="/admin_panel#table"></a></td>
-                {% endif %}
-            </tr>
         {% for day in scheduleDays %}
             <tr data-scheduleDay-id="{{day['id']}}">
                 <td class="none_border_left_top_bottom"></td>
@@ -36,17 +24,16 @@
                 <td id="scheduleLocation">{{day['location']}} </td>
 <!--             инстурменты редактирования для данного блока-->
                 {% if edit_tools == True %}
-                <td class="none_border_right_top_bottom td_hover" data-action="edit_scheduleDay">ред</td>
+                <td class="none_border_right_top_bottom td_hover"><a href="/updateSchedule_page/{{day['id']}}">ред</a></td>
                 <td class="none_border_right_top_bottom td_hover"><a href="/deleteScheduleDay/{{day['id']}}">del</a></td>
                 {% endif %}
             </tr>
-            
         {% endfor %}
             {% if edit_tools == True %}
             <tr> 
                  <!-- блок для пустого расписания  -->
                 <td class="none_border_left_top_bottom" ></td>
-                <td colspan="4" class="" ><button class="my_add_btn_dynamic" data-modal="scheduleDay_add">добавить день</button></td>
+                <td colspan="4" class="" ><a class="my_add_btn_dynamic" href="/createSchedule_page">добавить день</a></td>
             </tr>
             {% endif %}
           <tr>

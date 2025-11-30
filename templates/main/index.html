@@ -1,17 +1,14 @@
-{% extends 'admin_base.html' %}
+{% extends 'base/base.html' %}
 {% block content %}
-{% include 'html_modal_blocks/modal_base.html' %}
+
 <!--2 Секция опросник-->
 {% include 'html_blocks/index/quiz_block.html' %}
-
 <div class="purple_gradient">
     <!--1 Секция последняя новость-->
-{% include 'html_blocks/index/last_news.html' %}
-
+{% include 'news/last_news.html' %}
 <!--3 Секция расписание-->
-{% include 'html_blocks/index/schedule_block.html' %}
+{% include 'schedule/schedule_block.html' %}
 </div>
-
 <!--4 Секция медиа-->
 {% include 'html_blocks/index/media_index_block.html' %}
 <!--5 Секция преподователи-->

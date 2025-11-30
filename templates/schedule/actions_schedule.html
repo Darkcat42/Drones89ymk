@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="schedule basic_bg w-100">
+        <div class="container">
+            <!-- заголовок окна действия -->
+            {% if edit_schedule == False %}
+                <h1>Создание нового дня</h1>
+                <form class="align-items-start w-50 m-auto d-flex flex-column p-5" action="/createSchedule_action" method="post">
+            {% else %}
+                <h1>Редактирование дня</h1>
+                <form class="align-items-start w-50 m-auto d-flex flex-column p-5" action="/updateSchedule_action/{{day['id']}}" method="post">
+            {% endif %}
+                <div>
+                    <!-- действие с локацией -->
+                    {% if edit_schedule == False %}
+                        <p>Введите локацию</p>
+                        <input class="mb-5" name="location" type="text">
+                    {% else %}
+                        <p>Измените локацию</p>
+                        <input class="mb-5" name="location" type="text" value="{{day['location']}}">
+                    {% endif %}
+                </div>
+                <div>
+                    <!-- действие с днем недели -->
+                    {% if edit_schedule == False %}
+                        <p>Выберите день недели</p>
+                        <select class="mb-5" name="day">
+                            <option value="Понедельник">Понедельник</option>
+                    {% else %}
+                        <p>Измените день недели</p>
+                        <select class="mb-5" name="day">
+                            <option value="{{day['day']}}">{{day['day']}}</option>
+                    {% endif %}
+                            <option value="Понедельник">Понедельник</option>
+                            <option value="Вторник">Вторник</option>
+                            <option value="Среда">Среда</option>
+                            <option value="Четверг">Четверг</option>
+                            <option value="Пятница">Пятница</option>
+                            <option value="Суббота">Суббота</option>
+                            <option value="Воскресенье">Воскресенье</option>
+                        </select> 
+                </div>
+                <!-- действие с временем начала занятий -->
+                {% if edit_schedule == False %}
+                <div>
+                    <p>Введите время начала</p>
+                    <input name="start" type="time"> 
+                </div>
+                {% else %}
+                <div>
+                    <p>Введите время начала</p>
+                    <input name="start" type="time"> 
+                </div>
+                {% endif %}
+                <!-- действие с временем завершения занятий -->
+                {% if edit_schedule == False %}
+                <div>
+                    <p>Введите время завершения</p>
+                    <input name="end" type="time">
+                </div>
+                {% else %}
+                <div>
+                    <p>Введите время завершения</p>
+                    <input name="end" type="time">
+                </div>
+                {% endif %}
+                <!-- действие с кнопкой формы -->
+                {% if edit_schedule == False %}
+                <input class="modal_submit" type="submit" value="добавить">
+                {% else %}
+                <input class="modal_submit" type="submit" value="изменить">
+                {% endif %}
+            </form>
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base/admin_base.html' %}
+{% block content %}
+<section class="galleryEvent basic_bg w-100">
+    <div class="container">
+        <div class="flex-row d-flex align-items-center justify-content-center">
+                <form>
+                    <input id="galleryEvent_id" type="hidden">
+                    <div class="row">
+                        <p class="col">Укажите дату</p>
+                        <input id="galleryEvent_date" class="col" type="date">
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите заголовок</p>
+                        <input id="galleryEvent_title" class="col" type="text">
+                    </div>
+                    <div class="row">
+                        <p class="col">добавить фото</p>
+                        <input id="galleryEvent_files" class="col text-light" style="width: 500px !important; color: white!important"  multiple type="file">
+                    </div>
+                </form>
+                <div class="d-flex justify-content-center">
+                    <input id='galleryEvent_addBtn' class="modal_submit" type="button" value="Создать">
+                </div>
+            <!-- </div> -->
+        </div>  
+    </div>
+    <div class="container ">
+        <!-- список со списком и в цикле -->
+        <div id="images_modal_preview" class="flex-column d-flex">
+            <div id="img_container" class="db_none flex-row item d-flex justify-content-start align-items-center">
+                <p></p>
+                <!-- <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src=""> -->
+                <button id="galleryEventImg_deLInput" class="basis_close_btn"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}   

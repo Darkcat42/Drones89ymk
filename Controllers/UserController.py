@@ -16,7 +16,7 @@ class UsersController():
         return Users.get_or_none(Users.login==search_login)
     @classmethod
     def show(cls, id):
-        return Users.get_or_none(id)
+        return Users.get_or_none(Users.id)
     @classmethod
     def update(cls, id, **filds):
         for key, value in filds.items():

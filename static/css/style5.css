@@ -173,6 +173,7 @@
     background-color: #2C133E;
     color: white;
     padding: 20px 0;
+    height: 8vh;
 }
 .flex_footer_cen {
     display: flex;

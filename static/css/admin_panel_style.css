@@ -1,9 +1,9 @@
 /* стили-переопределения general_css для страницы admin_panel.html  */
 /* общие стили */
-/* *{
+*{
     transition-duration: 300ms;
     transition-property: all;
-} */
+}
 .admin_header{
     filter: hue-rotate(60deg);
 }

@@ -6,13 +6,20 @@ html {
     transition-duration: 300ms;
     transition-property: all;
 }
-
+a{
+    text-decoration: none;
+    color: white;
+}
+body{
+    padding: 0 !important;
+    margin: 0 !important;
+}
 .border_test{
     outline: 1px solid red;
 }
-.empty_schedule{
+/* .empty_schedule{
     display: none;
-}
+} */
 .db_none{
     display: none !important;
 }
@@ -104,11 +111,28 @@ button.basis_close_btn:hover
     padding: 120px 0;
 }
 /* Расписание */
-#table {
+#schedule {
     padding: 100px 0;
     /* background-color: #2C133E; */
     background-color: none;
     color: white;
+}
+.schedule{
+    color: white;
+    font-size: 1.5em;
+    height: 86vh;
+}
+.news{
+    height: 86vh;
+}
+.galleryEvent{
+    height: 86vh;
+}
+
+
+.news  div.row > div{
+    background: white;
+
 }
 /* последняя новость блок */
 .purple_gradient{
@@ -212,15 +236,5 @@ margin-left: 15%;
     margin-top: 15%;
 }
 
-/* .btn_exit_fix{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-.btn_exit_fix p{
-    position: absolute;
-    transform: translateX(180px) translateY(10px);
-    width: max-content;
-} */
+
 

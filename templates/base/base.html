@@ -8,26 +8,24 @@
   <title>FPV | YMK</title>
   <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{url_for('static', filename='css/style5.css')}}">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/general_style.css')}}">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/admin_panel_style.css')}}">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/modal_style.css')}}">
+ <link rel="stylesheet" href="{{url_for('static', filename='css/general_style.css')}}">
+ <link rel="stylesheet" href="{{url_for('static', filename='css/modal_style.css')}}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-<header class="header_section admin_header" id="header">
+<header class="header_section" id="header">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-1 col-sm-1 col-m title_logo db132">
-        <a href="/admin_panel" method="post" >
-          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="160px" height="20px" class="drone_logo">ЯМК Админ Панель
-
+        <a href="/">
+          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
         </a>
       </div>
       <div class="col-lg-11 col-sm-11 fix-w">
           <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid align-content-center">
             <div class="db_nao db_yes title_logo">
-              <a href="/admin_panel">
+              <a href="/">
                 <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
               </a>
             </div>
@@ -47,25 +45,27 @@
             </div>
             <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link header_color" href="/news">Новости</a>
-                <a class="nav-link header_color" href="/admin_panel#table">Расписание</a>
-                <a class="nav-link header_color" href="/admin_panel#media">Медиа</a>
-                <a class="nav-link header_color" href="/admin_panel#teacher">Преподаватели</a>
-                <a class="nav-link header_color" href="/admin_panel#faq">FAQ</a>
-                <a class="nav-link header_color" href="/admin_panel#info">Присоединиться</a>
-                <a class="nav-link header_color" href="/gallery">Галерея</a>
-                <a class="nav-link header_color" href="/build">Сборки</a>
-                <a class="nav-link header_color" href="/doc">Документы</a>
-                <a class="nav-link header_color" data-action="logout">выход</a>
+                <a class="nav-link header_color" href="/news"     >Новости     </a>
+                <a class="nav-link header_color" href="/#schedule"     >Расписание     </a>
+                <a class="nav-link header_color" href="/#media"     >Медиа          </a>
+                <a class="nav-link header_color" href="/#teacher"   >Преподаватели  </a>
+                <a class="nav-link header_color" href="/#faq"       >FAQ            </a>
+                <a class="nav-link header_color" href="/#info"      >Присоединиться </a>
+                <a class="nav-link header_color" href="/gallery"    >Галерея        </a>
+                <a class="nav-link header_color" href="/build"      >Сборки         </a>
+                <a class="nav-link header_color" href="/doc"        >Документы      </a>
+                <a class="nav-link header_color" href="/login_page">вход</a>
               </div>
 
               <div class="db_nao db_yes telegram_header">
                   <a href="https://t.me/+YMLvPOIS-YxlNWRi" target="_blank">
                     <img src="{{url_for('static', filename='img/telegram-svgrepo-com.svg')}}" alt="">
+
                     <!-- <img src="img/telegram.svg" alt="" width="30px" height="auto"> -->
                     Telegram
                   </a>
                 </div>
+
             </div>
           </div>
       </nav>
@@ -109,8 +109,6 @@
     <!-- <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script> -->
     <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/myscript1.js')}}"></script>
-    <script src="{{url_for('static', filename='js/generalScript_client.js')}}"></script>
-
 
 </body>
 </html>

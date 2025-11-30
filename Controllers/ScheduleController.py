@@ -44,7 +44,7 @@ class ScheduleController():
         метод для перебора объекта в массив
         для передачи его в шаблонизатор внутри
         html
-        :return: массив строк таблицы time_table"""
+        :return: массив строк таблицы"""
         schedule = cls.get()
         scheduleDays = []
         for day in schedule:

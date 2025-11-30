@@ -1,0 +1,68 @@
+{% extends 'base/admin_base.html' %}
+{% block content %}
+<div class="schedule basic_bg w-100">
+    <div class="container">
+        <!-- заголовок окна действия -->
+        {% if edit_news == False %}
+            <h1>Создание новой новости</h1>
+            <form id="news_form" action="/createNews_action" method="post" enctype="multipart/form-data">
+        {% else %}
+            <h1>Редактирование новости</h1>
+            <form id="news_form" action="/updateNews_action/{{news['id']}}" method="post" enctype="multipart/form-data">
+        {% endif %}
+        <div class="flex-row d-flex">
+            <div> 
+                <!-- действие с изображением -->
+                {% if edit_news == False %}
+                <div class="row">
+                    <p class="col">Выберите изображение</p>
+                    <input class="col" type="file" multiple  name="news_file">
+                </div>
+                {% else %}
+                <div class="row">
+                    <p class="col">Изменить изображение</p>
+                    <input class="col" type="file" multiple  name="news_file" value="{{news['image_src']}}">
+                </div>
+                {% endif %}
+                <!-- действие с заголовком -->
+                {% if edit_news == False %}
+                <div class="row">
+                    <p class="col">Задать заголовок новости</p>
+                    <input class="col" id="" type="text" name="news_title">
+                </div>
+                {% else %}
+                <div class="row">
+                    <p class="col">Изменить заголовок новости</p>
+                    <input class="col" id="" type="text" name="news_title" value="{{news['title']}}">
+                </div>
+                {% endif %}
+                <!-- действие с текстом новости -->
+                {% if edit_news == False %}
+                <div class="row">
+                    <p  class="col">текст новости</p>
+                    <textarea  id="" class="col" name="news_text"></textarea>
+                </div>
+                {% else %}
+                <div class="row">
+                    <p  class="col">текст новости</p>
+                    <textarea  id="" class="col" name="news_text">{{news['news_desc']}}</textarea>
+                </div>
+                {% endif %}
+            </div>
+            <!-- <div id="images_preview" class="flex-row mb-3 d-flex ">
+                <img id="news_placeholder" src="/static/img/placeholders/news_placeholder.jpg" alt="">
+            </div> -->
+        </div>
+        {% if edit_news == False %}
+        <div class="d-flex justify-content-center">
+            <input class="modal_submit" type="submit" value="Создать">
+        </div>
+        {% else %}
+        <div class="d-flex justify-content-center">
+            <input class="modal_submit" type="submit" value="Изменить">
+        </div>
+        {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
