@@ -156,7 +156,7 @@ def admin_panel():
 @login_required
 def updateSchedule_page(id):
         return flask.render_template(
-            'schedule/actions_schedule.html',
+            'schedule/updateSchedule_action.html',
             edit_schedule = True,
             day = ScheduleController.get_currentScheduleDay(id)
         )
@@ -177,7 +177,7 @@ def updateScheduleDay(id):
 @login_required
 def createSchedule_page():
         return flask.render_template(
-            'schedule/actions_schedule.html',
+            'schedule/createSchedule_action.html',
             edit_schedule = False,
             day = None
         )
@@ -232,8 +232,7 @@ def policy():
 @login_required
 def updateNews_page(id):
         return flask.render_template(
-            'news/actions_news.html',
-            edit_news = True,
+            'news/updateNews_action.html',
             news = NewsController.getNew_dict(id)
         )
 @app.route('/updateNews_action/<id>', methods=['POST'])
@@ -292,8 +291,7 @@ def news():
 @login_required
 def createNews_page():
         return flask.render_template(
-            'news/actions_news.html',
-            edit_news = False,
+            'news/createNews_action.html',
             news = None
         )
 @app.route('/createNews_action', methods=['POST'])
