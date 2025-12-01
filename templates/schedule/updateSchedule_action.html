@@ -1,23 +1,17 @@
-{% extends 'base/base.html' %}
+{% extends 'base/admin_base.html' %}
 {% block content %}
 <div class="schedule basic_bg w-100">
-        <div class="container">
-            
+        <div class="container">            
                 <h1>Редактирование дня</h1>
                 <form class="align-items-start w-50 m-auto d-flex flex-column p-5" action="/updateSchedule_action/{{day['id']}}" method="post">
-           
                 <div>
-                   
                         <p>Измените локацию</p>
                         <input class="mb-5" name="location" type="text" value="{{day['location']}}">
-                    
                 </div>
                 <div>
-                   
                         <p>Измените день недели</p>
                         <select class="mb-5" name="day">
                             <option value="{{day['day']}}">{{day['day']}}</option>
-                   
                             <option value="Понедельник">Понедельник</option>
                             <option value="Вторник">Вторник</option>
                             <option value="Среда">Среда</option>
@@ -27,19 +21,15 @@
                             <option value="Воскресенье">Воскресенье</option>
                         </select> 
                 </div>
-               
                 <div>
                     <p>Введите время начала</p>
                     <input name="start" type="time"> 
                 </div>
-               
                 <div>
                     <p>Введите время завершения</p>
                     <input name="end" type="time">
                 </div>
-               
                 <input class="modal_submit" type="submit" value="изменить">
-               
             </form>
         </div>
 </div>

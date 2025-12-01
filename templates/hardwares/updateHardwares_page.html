@@ -1,0 +1,34 @@
+{% extends 'base/admin_base.html' %}
+{% block content %}
+<section class=" basic_bg w-100">
+    <div class="container">
+        <div class="flex-row d-flex align-items-center justify-content-center">
+                <form action="/updateHardwares_action/{{hardware['id']}}" method="post">
+                    <div class="row">
+                        <p class="col">Измените название</p>
+                        <input name="name" class="col" type="text" value="{{hardware['name']}}">
+                    </div>
+                    <div class="row">
+                        <p class="col">Измените стоимость</p>
+                        <input name="cost" class="col" type="number" value="{{hardware['count']}}">
+                    </div>
+                    <div class="row">
+                        <p class="col">Измените количество</p>
+                        <input name="count" class="col" type="number" value="{{hardware['cost']}}">
+                    </div>
+                    <div class="row">
+                        <p class="col">Измените название ресурса</p>
+                        <input name="sourceName" class="col" type="text" value="{{hardware['sourceName']}}">
+                    </div>
+                    <div class="row">
+                        <p class="col">Измените ссылку на ресурс</p>
+                        <input name="sourceUrl" class="col" type="text" value="{{hardware['sourceUrl']}}">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input class="modal_submit" type="submit" value="Изменить">
+                    </div>
+                </form>
+        </div>  
+    </div>
+</section>
+{% endblock %}   

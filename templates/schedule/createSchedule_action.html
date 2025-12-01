@@ -1,23 +1,17 @@
-{% extends 'base/base.html' %}
+{% extends 'base/admin_base.html' %}
 {% block content %}
 <div class="schedule basic_bg w-100">
         <div class="container">
-
                 <h1>Создание нового дня</h1>
                 <form class="align-items-start w-50 m-auto d-flex flex-column p-5" action="/createSchedule_action" method="post">
-            
                 <div>
-                   
                         <p>Введите локацию</p>
                         <input class="mb-5" name="location" type="text">
-                    
                 </div>
                 <div>
-                    
                         <p>Выберите день недели</p>
                         <select class="mb-5" name="day">
                             <option value="Понедельник">Понедельник</option>
-                    
                             <option value="Понедельник">Понедельник</option>
                             <option value="Вторник">Вторник</option>
                             <option value="Среда">Среда</option>
@@ -27,21 +21,15 @@
                             <option value="Воскресенье">Воскресенье</option>
                         </select> 
                 </div>
-                
                 <div>
                     <p>Введите время начала</p>
                     <input name="start" type="time"> 
                 </div>
-                
-               
                 <div>
                     <p>Введите время завершения</p>
                     <input name="end" type="time">
                 </div>
-               
-                
                 <input class="modal_submit" type="submit" value="добавить">
-                
             </form>
         </div>
 </div>

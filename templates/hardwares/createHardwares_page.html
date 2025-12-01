@@ -1,0 +1,61 @@
+{% extends 'base/admin_base.html' %}
+{% block content %}
+<section class=" basic_bg w-100">
+    <div class="container">
+        <div class="flex-row d-flex align-items-center justify-content-center">
+   
+                <form action="/createHardwares_action" method="post">
+                    
+                    <div class="row">
+                        <p class="col">Укажите название</p>
+                        <input name="name" class="col" type="text">
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите категорию</p>
+                        <select name="cat" >
+                            <option value="frames">рамы от дронов</option>
+                            <option value="periphery">периферийные устройства</option>
+                            <option value="flighters">полетные контроллеры</option>
+                            <option value="engines">двигатери</option>
+                            <option value="consumables">расходники</option>
+                            <option value="software">программное обеспечение</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите стоимость</p>
+                        <input name="cost" class="col" type="number">
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите количество</p>
+                        <input name="count" class="col" type="number">
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите название ресурса</p>
+                        <input name="sourceName" class="col" type="text">
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите ссылку на ресурс</p>
+                        <input name="sourceUrl" class="col" type="text">
+                    </div>
+                   
+                    <div class="d-flex justify-content-center">
+                        <input class="modal_submit" type="submit" value="Добавить">
+                    </div>
+                </form>
+                
+
+        </div>  
+    </div>
+    <!-- <div class="container "> -->
+        <!-- список со списком и в цикле -->
+        <!-- <div id="images_modal_preview" class="flex-column d-flex">
+            <div id="img_container" class="db_none flex-row item d-flex justify-content-start align-items-center">
+                <p></p> -->
+                <!-- <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src=""> -->
+                <!-- <button id="galleryEventImg_deLInput" class="basis_close_btn"></button>
+            </div>
+        </div>
+    </div> -->
+</section>
+
+{% endblock %}   

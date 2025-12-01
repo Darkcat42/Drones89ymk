@@ -1,0 +1,86 @@
+{% extends 'base/admin_base.html' %}
+{% block content %}
+<section class="galleryEvent basic_bg w-100">
+    <div class="container">
+        <div class="flex-row d-flex align-items-center justify-content-center">
+                <form action="/createBuilds_action" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <p class="col">Укажите размер</p>
+                        <input name="inch" class="col" type="number">
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите описание сборки</p>
+                        <input name="build_desc" class="col" type="text">
+                    </div>
+                    <div class="row">
+                        <p class="col">Укажите автора сборки</p>
+                        <select name="author">
+                            {% for author in persons %}
+                            <option value="{{author['id']}}">{{author['firstName']}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row">
+                        <p class="col">добавить фото</p>
+                        <input name="file" class="col text-light"  type="file">
+                    </div>
+                    <div class="row">
+                        <p class="col">добавить оборудование</p>
+                    <table class="table table-bordered scroll_x">
+                    <!-- заголовки таблицы -->
+                    <thead>
+                        <tr>
+                        <th scope="col" class="c">выбор</th>
+                        <th scope="col" class="c">№</th>
+                        <th scope="col">Оборудование</th>
+                        <th scope="col" class="c">Кол-во</th>
+                        <th scope="col" class="c">~Цена</th>
+                        <th scope="col" class="c">Магазин</th>
+                        <th scope="col" class="c">изменить</th>
+                        <th scope="col" class="c">удалить</th>
+                        </tr>
+                    </thead>
+                    {% for hardware_category in hardwares %}
+                    <thead>
+                        <tr>
+                            <td colspan="8"><h2>{{hardware_category[0]}}</h2></td>
+                        </tr>
+                        
+                    </thead>
+                    <!-- содержимое таблицы -->
+                    <tbody>
+                        {% for hardware in hardware_category[1] %}
+                        <tr>
+                        <th scope="row"><input name="hardwares_id" type="checkbox" value="{{hardware['id']}}"></th>
+                        <th scope="row">{{loop.index}}</th>
+                        <td class="cv">{{hardware['name']}}</td>
+                        <td>{{hardware['count']}}</td>
+                        <td>{{hardware['cost']}}</td>
+                        <td><a target="_blank" href="{{hardware['sourceUrl']}}" class="link_det">{{hardware['sourceName']}}</a></td>
+                        <td><a href="/updateHardwares_page/{{hardware['id']}}">edit</a></td>
+                        <td><a href="/deleteHardwares_action/{{hardware['id']}}">del</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    {% endfor %}
+                    </table>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <input class="modal_submit" type="submit" value="Создать">
+                    </div>
+                </form>
+            </div>  
+        </div>
+    <!-- <div class="container "> -->
+        <!-- список со списком и в цикле -->
+        <!-- <div id="images_modal_preview" class="flex-column d-flex">
+            <div id="img_container" class="db_none flex-row item d-flex justify-content-start align-items-center">
+                <p></p> -->
+                <!-- <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src=""> -->
+                <!-- <button id="galleryEventImg_deLInput" class="basis_close_btn"></button>
+            </div>
+        </div>
+    </div> -->
+</section>
+
+{% endblock %}   

@@ -1,0 +1,43 @@
+{% if current_user.is_authenticated %}
+    {% extends 'base/admin_base.html' %}
+{% else %}
+    {% extends 'base/base.html' %}
+{% endif %}
+{% block content %}
+<!--Секция новости-->
+<section id="news" class="basic_bg news"> 
+    <div class="container">
+        {% if current_user.is_authenticated %}
+        <!--инстурменты администратора для данного блока-->
+        <div class="row">
+            <button class="my_add_btn_static"><a href="/createPersons_page">добавить персону</a></button>
+        </div>
+        {% endif %}
+        <div class="d-flex flex-column">
+            {% for person in persons %}
+            <div class="row d-flex align-items-center teacher_base_card flex-row">
+                <div class="col-3 image_teacher">
+                    <img  data-src="{{person['images_src']}}" alt="a snow-capped mountain range" class="img-fluid fsi lazy"/>
+                </div>
+                <div class="col ">
+                    <div class="card">
+                        <div class="card-body card_fix_body card_body_teacher">
+                            <h2 class="card-title">{{person['firstName']}}</h2>
+                         
+                            <h2 class="card-title">{{person['lastName']}}</h2>
+                            <p class="card-text">{{person['person_desc']}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% if current_user.is_authenticated %}
+                <div class="">
+                    <button class="my_add_btn_static"><a href="updatePersons_page/{{person['id']}}">изменить персону</a></button>
+                    <button class="my_add_btn_static"><a href="deletePersons_action/{{person['id']}}">удалить персону</a></button>
+                </div>  
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+{% endblock %}

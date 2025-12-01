@@ -1,0 +1,55 @@
+{% if current_user.is_authenticated %}
+    {% extends 'base/admin_base.html' %}
+{% else %}
+    {% extends 'base/base.html' %}
+{% endif %}
+{% block content %}
+  <section>
+        <!--инстурменты администратора для данного блока-->
+        {% if edit_tools == True %}
+        <div class="row">
+            <button class="my_add_btn_static"><a href="/createHardwares_page">добавить оборудование</a></button>
+        </div>
+        {% endif %}
+       <div class="row">
+        <!-- тут начало карточки дрона -->
+        <div class="col-sm-10 col-md-10 col-lg-4">
+          <div class="info_build_drone">
+            <table class="table table-bordered scroll_x">
+            <!-- заголовки таблицы -->
+              <thead>
+                <tr>
+                  <th scope="col" class="c">№</th>
+                  <th scope="col">Оборудование</th>
+                  <th scope="col" class="c">Кол-во</th>
+                  <th scope="col" class="c">~Цена</th>
+                  <th scope="col" class="c">Магазин</th>
+                  <th scope="col" class="c">изменить</th>
+                  <th scope="col" class="c">удалить</th>
+                </tr>
+              </thead>
+              <!-- содержимое таблицы -->
+              <tbody>
+                {% for hardware in hardwares %}
+                <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td class="cv">{{hardware['name']}}</td>
+                  <td>{{hardware['count']}}</td>
+                  <td>{{hardware['cost']}}</td>
+                  <td><a target="_blank" href="{{hardware['sourceUrl']}}" class="link_det">{{hardware['sourceName']}}</a></td>
+                  <td><a href="/updateHardwares_page/{{hardware['id']}}">edit</a></td>
+                  <td><a href="/deleteHardwares_action/{{hardware['id']}}">del</a></td>
+             
+                 
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            </div>
+        </div>
+      </div>
+  </section>
+{% endblock %}
+
+
+

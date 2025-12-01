@@ -1,0 +1,55 @@
+{% extends 'base/admin_base.html' %}
+{% block content %}
+<section class="galleryEvent basic_bg w-100">
+    <div class="container">
+        <div class="flex-row d-flex align-items-center justify-content-center">
+   
+                <form id="galleryEvent_form" action="/updateGalleryEvent_action/{{gallery['id']}}" method="post" enctype="multipart/form-data">
+               
+                    <input name="" type="hidden" value="{{gallery['id']}}">
+                    <input name="" type="hidden" value="{{gallery['image_id']}}">
+
+                    <div class="row">
+                        <p class="col">Укажите дату</p>
+                        <input name="date" class="col" type="date" value="{{gallery['date']}}">
+                    </div>
+ 
+                    <div class="row">
+                        <p class="col">Укажите заголовок</p>
+                        <input name="title" class="col" type="text" value="{{gallery['title']}}">
+                    </div>
+                    <div class="row">
+                        <p class="col">добавить фото</p>
+                        <input name="files" class="col text-light"  multiple type="file">
+                    </div>
+                    
+                    <div class="row photos">
+                        {% for images in gallery['images'] %}
+                        <div class="col-sm-6 col-md-4 col-lg-3 item">
+                            <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{images[1]}}">
+                            <a href="#images[0]">edit</a>
+                            <a href="#images[0]">del</a>
+                        </div>
+                        {% endfor %}
+                    <div class="d-flex justify-content-center">
+                        <input class="modal_submit" type="submit" value="Изменить">
+                    </div>
+                </form>
+                
+                
+            <!-- </div> -->
+        </div>  
+    </div>
+    <!-- <div class="container "> -->
+        <!-- список со списком и в цикле -->
+        <!-- <div id="images_modal_preview" class="flex-column d-flex">
+            <div id="img_container" class="db_none flex-row item d-flex justify-content-start align-items-center">
+                <p></p> -->
+                <!-- <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src=""> -->
+                <!-- <button id="galleryEventImg_deLInput" class="basis_close_btn"></button>
+            </div>
+        </div>
+    </div> -->
+</section>
+
+{% endblock %}   

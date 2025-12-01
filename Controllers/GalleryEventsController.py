@@ -13,19 +13,15 @@ class GalleryEventsController():
             title=title
         )
     @classmethod
-    def getGalleryEvents(cls):
-        pass
-        # news = cls.get()
-        # news_list = []
-        # for new in news:
-        #     new_dict = {}
-        #     new_dict['id'] = new.id
-        #     new_dict['title'] = new.title
-        #     new_dict['news_desc'] = new.news_desc
-        #     new_dict['date'] = new.date
-        #     new_dict['image_src'] = new.image_id.src
-        #     news_list.append(new_dict)
-        # return news_list
+    def delete(cls, id):
+        return GalleryEvents.delete().where(GalleryEvents.id == id).execute()
+    @classmethod
+    def update(cls, id, **filds):
+        for key, value in filds.items():
+            GalleryEvents.update({key:value}).where(GalleryEvents.id == id).execute()
+    @classmethod
+    def show(cls, id):
+        return GalleryEvents.get_or_none(GalleryEvents.id == id)
     @classmethod
     def showLast(cls):
         return GalleryEvents.select().order_by(GalleryEvents.id.desc()).get()

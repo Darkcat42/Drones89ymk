@@ -6,9 +6,9 @@
 {% block content %}
 <!--Секция галерея-->
 <section class="galleryEvent basic_bg w-100">
-    {% if edit_tools == True %}
+    {% if current_user.is_authenticated %}
         <div class="row align-content-center">
-            <button class="my_add_btn_static" data-modal="galleryEvent_add">добавить событие</button>
+            <button class="my_add_btn_static" ><a href="/createGalleryEvent_page">добавить событие</a></button>
         </div>
     {% endif %}
     {% for current_gallery in list_of_gallerys %} 
@@ -19,17 +19,18 @@
             <div style="width: 1%;"></div>
             <div class="d-flex flex-row">
                 <p class="lessons_data bg-secondary" id="galleryEvent_title">{{current_gallery['title']}}</p>
-                {% if edit_tools == True %}
-                <div><button class="basis_edit_btn" data-modal="galleryEvent_edit"></button></div>
+                {% if current_user.is_authenticated %}
+                <div><button class="basis_edit_btn"><a href="updateGalleryEvent_page/{{current_gallery['id']}}">Изменить галерею</a></button></div>
+                <div><button class="basis_edit_btn"><a href="deleteGalleryEvent_page/{{current_gallery['id']}}">Удалить галерею</a></button></div>
                 {% endif %}
             </div>
         </div>
         <div class="row photos">
              {% for image in current_gallery['images'] %} 
             <div class="col-sm-6 col-md-4 col-lg-3 item">
-                <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" data-img-id="{{image[0]}}" src="{{image[1]}}">
+                <img class="img-fluid" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)" src="{{image[1]}}">
             </div>
-            {% endfor %}
+        {% endfor %}
         </div>
     {% endfor %}
   </section>

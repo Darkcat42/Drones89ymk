@@ -15,6 +15,13 @@ class ImagesController(ConverterWeb):
             alt=alt
         )
     @classmethod
+    def delete(cls, id):
+        return Images.delete().where(Images.id == id).execute()
+    @classmethod
+    def update(cls, id, **filds):
+        for key, value in filds.items():
+            Images.update({key:value}).where(Images.id == id).execute()
+    @classmethod
     def show(cls, filename):
         return Images.get_or_none(Images.filename == filename)
     @classmethod

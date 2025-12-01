@@ -7,7 +7,7 @@
 <!--Секция новости-->
 <section id="news" class="basic_bg news"> 
     <div class="container">
-        {% if edit_tools == True %}
+        {% if current_user.is_authenticated %}
         <!--инстурменты администратора для данного блока-->
         <div class="row">
             <button class="my_add_btn_static"><a href="/createNews_page">добавить новость</a></button>

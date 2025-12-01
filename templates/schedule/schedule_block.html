@@ -23,13 +23,13 @@
                 <td id="scheduleEnd">{{day['end']}}</td>
                 <td id="scheduleLocation">{{day['location']}} </td>
 <!--             инстурменты редактирования для данного блока-->
-                {% if edit_tools == True %}
+                {% if current_user.is_authenticated %}
                 <td class="none_border_right_top_bottom td_hover"><a href="/updateSchedule_page/{{day['id']}}">ред</a></td>
                 <td class="none_border_right_top_bottom td_hover"><a href="/deleteScheduleDay/{{day['id']}}">del</a></td>
                 {% endif %}
             </tr>
         {% endfor %}
-            {% if edit_tools == True %}
+            {% if current_user.is_authenticated %}
             <tr> 
                  <!-- блок для пустого расписания  -->
                 <td class="none_border_left_top_bottom" ></td>
