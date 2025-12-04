@@ -5,19 +5,19 @@
 {% endif %}
 {% block content %}
 <!--Секция новости-->
-<section id="news" class="basic_bg news"> 
+<section id="" class="static_h basic_bg"> 
     <div class="container">
         {% if current_user.is_authenticated %}
         <!--инстурменты администратора для данного блока-->
         <div class="row">
-            <button class="my_add_btn_static"><a href="/createPersons_page">добавить персону</a></button>
+            <button class="my_add_btn_static"><a href="/createPersons_page">добавить автора</a></button>
         </div>
         {% endif %}
         <div class="d-flex flex-column">
             {% for person in persons %}
             <div class="row d-flex align-items-center teacher_base_card flex-row">
                 <div class="col-3 image_teacher">
-                    <img  data-src="{{person['images_src']}}" alt="a snow-capped mountain range" class="img-fluid fsi lazy"/>
+                    <img src="{{person['images_src']}}" style="width: 300px;">
                 </div>
                 <div class="col ">
                     <div class="card">
@@ -30,9 +30,9 @@
                     </div>
                 </div>
                 {% if current_user.is_authenticated %}
-                <div class="">
-                    <button class="my_add_btn_static"><a href="updatePersons_page/{{person['id']}}">изменить персону</a></button>
-                    <button class="my_add_btn_static"><a href="deletePersons_action/{{person['id']}}">удалить персону</a></button>
+                <div class="col news_edit_tools">
+                    <button class="basis_edit_btn"><a href="updatePersons_page/{{person['id']}}">изменить персону</a></button>
+                    <button class="basis_close_btn"><a href="deletePersons_action/{{person['id']}}">удалить персону</a></button>
                 </div>  
                 {% endif %}
             </div>

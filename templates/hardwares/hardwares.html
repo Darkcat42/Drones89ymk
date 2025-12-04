@@ -4,13 +4,13 @@
     {% extends 'base/base.html' %}
 {% endif %}
 {% block content %}
-  <section>
-        <!--инстурменты администратора для данного блока-->
-        {% if edit_tools == True %}
-        <div class="row">
-            <button class="my_add_btn_static"><a href="/createHardwares_page">добавить оборудование</a></button>
-        </div>
-        {% endif %}
+  <section class="static_h basic_bg">
+        {% if current_user.is_authenticated %}
+            <!--инстурменты администратора для данного блока-->
+            <div class="row">
+                <button class="my_add_btn_static"><a href="/createHardwares_page">добавить оборудование</a></button>
+            </div>
+            {% endif %}
        <div class="row">
         <!-- тут начало карточки дрона -->
         <div class="col-sm-10 col-md-10 col-lg-4">
@@ -37,10 +37,8 @@
                   <td>{{hardware['count']}}</td>
                   <td>{{hardware['cost']}}</td>
                   <td><a target="_blank" href="{{hardware['sourceUrl']}}" class="link_det">{{hardware['sourceName']}}</a></td>
-                  <td><a href="/updateHardwares_page/{{hardware['id']}}">edit</a></td>
-                  <td><a href="/deleteHardwares_action/{{hardware['id']}}">del</a></td>
-             
-                 
+                  <td><a href="/updateHardwares_page/{{hardware['id']}}" class="link_det">edit</a></td>
+                  <td><a href="/deleteHardwares_action/{{hardware['id']}}" class="link_det">del</a></td>
                 </tr>
                 {% endfor %}
               </tbody>

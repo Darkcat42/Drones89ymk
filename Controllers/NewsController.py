@@ -47,6 +47,7 @@ class NewsController():
         new_dict['news_desc'] = new.news_desc
         new_dict['date'] = new.date
         new_dict['image_src'] = new.image_id.src
+        new_dict['image_id'] = new.image_id
         return new_dict
     @classmethod
     def show(cls, id):

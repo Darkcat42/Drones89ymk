@@ -11,7 +11,7 @@ class PersonsController():
     @classmethod
     def add(cls, persons_types_id, images_id, firstName, lastName, person_desc):
         Persons.create(  
-            persons_types_id = persons_types_id,
+            persons_types_id = int(persons_types_id),
             images_id = images_id,
             firstName = firstName,
             lastName = lastName,

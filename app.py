@@ -107,21 +107,21 @@ def login():
     """маршрут для авторизации пользователя"""
     if request.method == "POST":
             login_form = request.form.get('login')
-            if login_form == '':
-                return flask.redirect(f'/login_page/{'Заполните форму!'}') 
+            passwd_form = request.form.get('password')
+            if login_form == '' and passwd_form == '':
+                return flask.redirect('/login_page/Заполните форму!') 
             else:
                 user = UsersController.get_by_login(login_form)
                 if user != None:
-                    passwd_form = request.form.get('password')
                     if passwd_form == user.password:
                         flask_login.login_user(user)
                         role_name = current_user.role_id.role
                         if role_name == 'administrator':
                             """маршрут на главную с функционалом администратора"""
                             return flask.redirect('/admin_panel')
-                else:
-                    return flask.redirect(f'/login_page/{'неверный логин или пароль'}') 
-    return flask.redirect('/login_page')
+                    else:
+                        return flask.redirect(f'/login_page/неверный логин или пароль') 
+    return flask.redirect(f'/login_page/неверный логин или пароль')
 @app.route('/logout') 
 def logout():
     """маршрут для выхода из авторизации"""
@@ -216,7 +216,7 @@ def policy():
     """маршрут policy.html"""
     return render_template('policy.html')
 # маршруты для страницы новости
-@app.route('/deleteNews_action/<id>')
+@app.route('/actions_news/delete/<id>')
 @login_required
 def deleteNews_action(id):
     NewsController.delete(id)
@@ -229,26 +229,34 @@ def news():
         'news/news.html',
         news=news_list,
         )
-@app.route('/createNews_page', methods=['GET'])
+@app.route('/actions_news/<action>', methods=['GET'])
 @login_required
-def createNews_page():
+def action_news(action):
+    return flask.redirect(f'/actions_news/{action}')
+@app.route('/actions_news/create/<msg>', methods=['GET'])
+@login_required
+def createNews_page(msg):
         return flask.render_template(
-            'news/createNews_action.html'
+            'news/add_news.html',
+            msg = msg
         )
-@app.route('/createNews_action', methods=['POST'])
+@app.route('/actions_news/create/submit', methods=['POST'])
 @login_required
-def createNews_action():
+def addNews_action():
     if request.method == "POST":
         title = request.form.get('news_title')
         text = request.form.get('news_text')
+        if title == '' and text == '':
+            return flask.redirect('/actions_news/create/Заполните поля!')
         try:
             file = request.files['news_file']
             filename = file.filename
+            if filename == '':
+                return flask.redirect('/actions_news/create/Установите изображение!')
             dir_name = App_contorller.mkdir_cat_dir('news')
             if Path(filename).suffix != '.webp':
                 fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
                 file.save(fileSrc) # сохраняем файл во временную папку
-                
                 webp_src = ImagesController.convertImage(fileSrc, dir_name) 
                 filename = str(Path(filename).stem)+'.webp'
             else:
@@ -267,44 +275,51 @@ def createNews_action():
             image_id=image_id,
         )
         return flask.redirect('/news')
-@app.route('/updateNews_page/<id>', methods=['GET', 'POST'])
+@app.route('/actions_news/update/<msg>/<id>', methods=['GET', 'POST'])
 @login_required
-def updateNews_page(id):
+def updateNews_page(id, msg):
         return flask.render_template(
-            'news/updateNews_action.html',
-            news = NewsController.getNew_dict(id)
+            'news/update_news.html',
+            news = NewsController.getNew_dict(id),
+            msg = msg
         )
-@app.route('/updateNews_action/<id>', methods=['POST'])
+@app.route('/actions_news/update/submit/<id>', methods=['POST'])
 @login_required
 def updateNews_action(id):
+    cur_news = NewsController.getNew_dict(id)
     if request.method == "POST":
         title = request.form.get('news_title')
         text = request.form.get('news_text')
+        date = request.form.get('news_date')
+        if date == '':
+            date=cur_news['date']
         file = request.files['news_file']
-        try:
-            
-            filename = file.filename
-            dir_name = App_contorller.mkdir_cat_dir('news')
-            if Path(filename).suffix != '.webp':
-                fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
-                file.save(fileSrc) # сохраняем файл во временную папку
-                
-                webp_src = ImagesController.convertImage(fileSrc, dir_name) 
-                filename = str(Path(filename).stem)+'.webp'
-            else:
-                webp_src = os.path.join(dir_name, filename) 
-                file.save(webp_src)
-            image = ImagesController.add(
-                filename=filename,
-                src=webp_src)
-            image_id = image.id
-        except:
-            image_id = ImagesController.get()[0].id
+        if file.filename != "":
+            try:
+                filename = file.filename
+                dir_name = App_contorller.mkdir_cat_dir('news')
+                if Path(filename).suffix != '.webp':
+                    fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+                    file.save(fileSrc) # сохраняем файл во временную папку
+                    
+                    webp_src = ImagesController.convertImage(fileSrc, dir_name) 
+                    filename = str(Path(filename).stem)+'.webp'
+                else:
+                    webp_src = os.path.join(dir_name, filename) 
+                    file.save(webp_src)
+                image = ImagesController.add(
+                    filename=filename,
+                    src=webp_src)
+                image_id = image.id
+            except:
+                image_id = ImagesController.get()[0].id
+        else:
+            image_id = cur_news['image_id']
         NewsController.update(
             id, 
             title=title,
             news_desc=text,
-            date='доделать контроллер',
+            date=date,
             image_id=image_id,
         )
         return flask.redirect('/news')

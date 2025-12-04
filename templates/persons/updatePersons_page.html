@@ -1,15 +1,11 @@
 {% extends 'base/admin_base.html' %}
 {% block content %}
-<div class="persons basic_bg w-100">
+<div class="static_h basic_bg">
     <div class="container">
-
-        
             <h1>Редактирование новой персоны</h1>
             <form id="news_form" action="/updatePerson_action/{{person['id']}}" method="post" enctype="multipart/form-data">
-        
         <div class="flex-row d-flex">
-            <div> 
-                
+            <div>  
                 <div class="row">
                     <p class="col">Выберите изображение</p>
                     <input name="file" class="col" type="file" multiple  >
@@ -21,7 +17,6 @@
                     <option value="3">Организация</option>
                     <option value="4">Коллектив авторов</option>
                 </select>
-                
                 <div class="row">
                     <p class="col">Введите наименование персоны</p>
                     <input name="firstName" class="col" id="" type="text" value="{{person['firstName']}}">
@@ -30,23 +25,18 @@
                     <p class="col">Укажите дополнительное название</p>
                     <input name="lastName" class="col"  type="text" value="{{person['lastName']}}">
                 </div>
-                
-                
                 <div class="row">
                     <p  class="col">Введите описание персоны</p>
                     <textarea name="person_desc" id="" class="col">{{person['person_desc']}}</textarea>
                 </div>
-                
             </div>
             <!-- <div id="images_preview" class="flex-row mb-3 d-flex ">
                 <img id="news_placeholder" src="/static/img/placeholders/news_placeholder.jpg" alt="">
             </div> -->
         </div>
-        
         <div class="d-flex justify-content-center">
             <input class="modal_submit" type="submit" value="Изменить">
         </div>
-        
         </form>
     </div>
 </div>

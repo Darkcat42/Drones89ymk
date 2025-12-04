@@ -1,30 +1,25 @@
 {% extends 'base/admin_base.html' %}
 {% block content %}
-<section class="galleryEvent basic_bg w-100">
+<section class="static_h basic_bg">
     <div class="container">
-        <div class="flex-row d-flex align-items-center justify-content-center">
-   
-                <form action="/createGalleryEvent_action" method="post" enctype="multipart/form-data">
-                    <div class="row">
-                        <p class="col">Укажите дату</p>
-                        <input name="date" class="col" type="date">
-                    </div>
-                    
-                    <div class="row">
-                        <p class="col">Укажите заголовок</p>
-                        <input name="title" class="col" type="text">
-                    </div>
-                   
-                    <div class="row">
-                        <p class="col">добавить фото</p>
-                        <input name="files" class="col text-light"  multiple type="file">
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <input class="modal_submit" type="submit" value="Создать">
-                    </div>
-                </form>
-                
-
+        <div class="pt-5">
+            <form action="/createGalleryEvent_action" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <p class="col">Укажите дату</p>
+                    <input name="date" class="col" type="date">
+                </div>
+                <div class="row">
+                    <p class="col">Укажите заголовок</p>
+                    <input name="title" class="col" type="text">
+                </div>
+                <div class="row">
+                    <p class="col">добавить фото</p>
+                    <input name="files" class="col text-light"  multiple type="file">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input class="modal_submit" type="submit" value="Создать">
+                </div>
+            </form>
         </div>  
     </div>
     <!-- <div class="container "> -->
@@ -38,5 +33,4 @@
         </div>
     </div> -->
 </section>
-
 {% endblock %}   

@@ -1,41 +1,35 @@
 {% extends 'base/admin_base.html' %}
 {% block content %}
-<div class="schedule basic_bg w-100">
+<div class="schedule basic_bg">
     <div class="container">
-       
-        
             <h1>Редактирование новости</h1>
-            <form id="news_form" action="/updateNews_action/{{news['id']}}" method="post" enctype="multipart/form-data">
-        
+            <form id="news_form" action="/actions_news/update/submit/{{news['id']}}" method="post" enctype="multipart/form-data">
         <div class="flex-row d-flex">
             <div> 
-               
-                
                 <div class="row">
-                    <p class="col">Изменить изображение</p>
+                    <p class="col">Изображение новости</p>
                     <input class="col" type="file" multiple  name="news_file" value="{{news['image_src']}}">
                 </div>
-                
                 <div class="row">
-                    <p class="col">Изменить заголовок новости</p>
-                    <input class="col" id="" type="text" name="news_title" value="{{news['title']}}">
+                    <p class="col">Заголовок новости</p>
+                    <input class="col" type="text" name="news_title" value="{{news['title']}}">
                 </div>
-                
                 <div class="row">
-                    <p  class="col">текст новости</p>
-                    <textarea  id="" class="col" name="news_text">{{news['news_desc']}}</textarea>
-                </div>
-               
+                    <p  class="col">Текст новости</p>
+                    <textarea name="news_text" class="col" >{{news['news_desc']}}</textarea>
+                </div> 
+                <div class="row">
+                    <p  class="col">Дата новости</p>
+                    <input name="news_date" class="col" type="date" value="{{news['news_date']}}">
+                </div> 
             </div>
             <!-- <div id="images_preview" class="flex-row mb-3 d-flex ">
                 <img id="news_placeholder" src="/static/img/placeholders/news_placeholder.jpg" alt="">
             </div> -->
         </div>
-        
         <div class="d-flex justify-content-center">
             <input class="modal_submit" type="submit" value="Изменить">
         </div>
-        
         </form>
     </div>
 </div>

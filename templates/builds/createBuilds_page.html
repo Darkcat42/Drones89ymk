@@ -1,8 +1,15 @@
 {% extends 'base/admin_base.html' %}
 {% block content %}
-<section class="galleryEvent basic_bg w-100">
+<section class="static_h basic_bg pt-5">
     <div class="container">
+        {% if current_user.is_authenticated %}
+        <!--инстурменты администратора для данного блока-->
+        <div class="row">
+            <button class="my_add_btn_static"><a href="/hardwares">оборудование</a></button>
+        </div>
+        {% endif %}
         <div class="flex-row d-flex align-items-center justify-content-center">
+            
                 <form action="/createBuilds_action" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <p class="col">Укажите размер</p>

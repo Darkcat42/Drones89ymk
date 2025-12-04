@@ -10,7 +10,7 @@
                 <h1>Авторизация</h1>
                 <h2 class="login_msg">{{msg}}</h2>
                 {% endif %}
-                <input name="login" type="text"  placeholder="Введите логин">
+                <input name="login" minlength="5" type="text"  placeholder="Введите логин">
                 <input name="password" minlength="8" type="password"  placeholder="Введите пароль">
                 <input class="modal_submit" type="submit" value="Вход">
             </form>
