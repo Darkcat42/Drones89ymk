@@ -1,7 +1,7 @@
+/* общие стили */
 html {
     scroll-behavior: auto !important;
 }
-/* общие стили */
 *{
     transition-duration: 300ms;
     transition-property: all;
@@ -14,7 +14,7 @@ body{
     padding: 0 !important;
     margin: 0 !important;
 }
-.border_test{
+.b_test, .b_test>*, .b_test>*>*, .b_test>*>*>*, .b_test>*>*>*>*{
     outline: 1px solid red;
 }
 /* .empty_schedule{
@@ -122,9 +122,7 @@ button.basis_close_btn:hover
     font-size: 1.5em;
     height: 86vh;
 }
-.news{
-    height: 86vh;
-}
+
 .galleryEvent{
     height: 86vh;
 }
@@ -192,19 +190,9 @@ margin-left: 15%;
 #navbarNavAltMarkup .navbar-nav a:hover {
     color: #e3be5b !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+.static_h{
+    height: 86vh;
+}
 .basic_edit_btn{ 
     filter: opacity(30%);
     background: url(/static/svg/icon_edit_btn.svg);
@@ -228,12 +216,29 @@ margin-left: 15%;
 
 #login_form{
     text-align: center;
+    color: white;
+    padding-top: 10%;
+    
 }
-#login_form input:not(input:last-child){
-    width: 200%;
+#login_form .login_msg{
+    color: rgb(255, 0, 0);
+    height: 50px;
+    margin: 2% auto;
+}
+#login_form input{margin: auto;}
+#login_form input:not(#login_form input:last-child){ 
+    margin-bottom: 2%;
+    width: 50%;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 12px;
+    border: none;
 }
 #login_form input:last-child{
-    margin-top: 15%;
+    margin-top: 5%;
+    width: 20%;
+    letter-spacing: 5px;
+    font-size: 1.5em;
 }
 
 

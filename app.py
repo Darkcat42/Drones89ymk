@@ -93,35 +93,35 @@ def fav_pass():
     """сброс ошибки переадресации на favicon.ico"""
     return 'favicon'
 # авторизация в приложении
-@app.route('/login_page', methods=['GET'])
-def login_page():
+@app.route('/login', methods=['GET'])
+def login_redirect():
+    return flask.redirect(f'/login_page/{'login'}')
+@app.route('/login_page/<msg>', methods=['GET'])
+def login_page_msg(msg = ''):
     return flask.render_template(
-        'login/login.html'
+        'login/login.html',
+        msg = msg
     )
 @app.route('/login_action', methods=['POST'])
 def login():
     """маршрут для авторизации пользователя"""
     if request.method == "POST":
             login_form = request.form.get('login')
-            user = UsersController.get_by_login(login_form)
-            if user != None:
-                # проверка на длину - доделать
-                passwd_form = request.form.get('password')
-                if passwd_form == user.password:
-                    flask_login.login_user(user)
-                    role_name = current_user.role_id.role
-                    if role_name == 'administrator':
-                        """маршрут на главную с функционалом администратора"""
-                        return flask.redirect('/admin_panel')
-                    elif role_name == 'editor':
-                        """задел под роль редактора"""
-                        pass
-                    elif role_name == 'student':
-                        """задел под роль студента"""
-                        pass
+            if login_form == '':
+                return flask.redirect(f'/login_page/{'Заполните форму!'}') 
+            else:
+                user = UsersController.get_by_login(login_form)
+                if user != None:
+                    passwd_form = request.form.get('password')
+                    if passwd_form == user.password:
+                        flask_login.login_user(user)
+                        role_name = current_user.role_id.role
+                        if role_name == 'administrator':
+                            """маршрут на главную с функционалом администратора"""
+                            return flask.redirect('/admin_panel')
                 else:
-                    return 'неверный логин или пароль'
-    return flask.redirect('/')
+                    return flask.redirect(f'/login_page/{'неверный логин или пароль'}') 
+    return flask.redirect('/login_page')
 @app.route('/logout') 
 def logout():
     """маршрут для выхода из авторизации"""

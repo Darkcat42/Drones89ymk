@@ -1,13 +1,21 @@
 {% extends 'base/base.html' %}
 {% block content %}
-
-<div class="container">
-        <div>
-            <form id='login_form' action="/login_action" method="post">
-                <input id="login" type="text" name="login" placeholder="Введите логин">
-                <input id="password" type="text" name="password" placeholder="Введите пароль">
+<div class="static_h basic_bg">
+        <div class="container">
+            <form id='login_form' class="d-flex flex-column" action="/login_action" method="post">
+                {% if msg == 'login' %}
+                <h1>Авторизация</h1>
+                <h2 class="login_msg"></h2>
+                {% else %}
+                <h1>Авторизация</h1>
+                <h2 class="login_msg">{{msg}}</h2>
+                {% endif %}
+                <input name="login" type="text"  placeholder="Введите логин">
+                <input name="password" minlength="8" type="password"  placeholder="Введите пароль">
                 <input class="modal_submit" type="submit" value="Вход">
             </form>
         </div>
 </div>
 {% endblock %}
+
+
