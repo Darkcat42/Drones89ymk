@@ -18,7 +18,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-1 col-sm-1 col-m title_logo db132">
         <a href="/">
-          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
+          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo">ЯМК
         </a>
       </div>
       <div class="col-lg-11 col-sm-11 fix-w">
@@ -26,13 +26,13 @@
           <div class="container-fluid align-content-center">
             <div class="db_nao db_yes title_logo">
               <a href="/">
-                <img src="{{url_for('static', filename='img/drone-logo.svg')}}" alt="" width="20px" height="20px" class="drone_logo">ЯМК
+                <img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo">ЯМК
               </a>
             </div>
             <div class="flex-mob">
-              <!-- <a href="https://t.me/+YMLvPOIS-YxlNWRi" class="db_nao db_yes">
-                <img src="img/telegram.svg" alt="" width="30px" height="auto">
-              </a> -->
+              <a href="https://t.me/+YMLvPOIS-YxlNWRi" class="db_nao db_yes">
+                <img src="{{url_for('static', filename='img/telegram.svg')}}" alt="" width="30px" height="auto">
+              </a>
               <button onclick="HeaderFull()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <div id="bg_close">
                   <span></span>
@@ -40,7 +40,6 @@
                   <span></span>
                 </div>
                 <img src="{{url_for('static', filename='img/close_square.svg')}}" alt="" id="img_close">
-
               </button>
             </div>
             <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">

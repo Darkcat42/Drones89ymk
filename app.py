@@ -45,8 +45,8 @@ class App_contorller():
     @staticmethod
     def open_file(src):
         """читает файл и возвращает результат, упрощает общий вид кода"""
-        with open(src, 'r') as html:
-            return html.read()
+        with open(src, 'r') as file:
+            return file.read()
     @staticmethod
     def checkMake_oneDir(src):
         """проверка директории, если таковой нет то создает ее"""
@@ -93,7 +93,7 @@ def fav_pass():
     """сброс ошибки переадресации на favicon.ico"""
     return 'favicon'
 # авторизация в приложении
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['GET']) 
 def login_redirect():
     return flask.redirect(f'/login_page/{'login'}')
 @app.route('/login_page/<msg>', methods=['GET'])
@@ -671,6 +671,7 @@ def updateBuilds_page(id):
 def deleteBuilds_action(id):
     BuildController.delete(id)
     return flask.redirect('/build')
+
 if __name__ == '__main__':
     AppСontorller = App_contorller()
     app.run(debug=True)

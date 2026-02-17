@@ -7,42 +7,33 @@
         <p class="custom_p">{{scheduleInfo['sectionDesc']}}</p>
         <table class="table_rasp">
           <tr>
-            <th class="none_border_left_top_bottom"></th>
-            <th class="">День недели</th>
+            <th colspan="2">День недели</th>
             <th>Время начала занятия</th>
             <th>Время завершения занятия</th>
-            <th>Место проведения</th>
-            <th class="none_border_right_top_bottom"></th>
-              <th class="none_border_right_top_bottom"></th>
+            <th colspan="2">Место проведения</th>
           </tr>
         {% for day in scheduleDays %}
             <tr data-scheduleDay-id="{{day['id']}}">
-                <td class="none_border_left_top_bottom"></td>
-                <td id="scheduleDayName">{{day['day']}}</td>
+                <td colspan="2" id="scheduleDayName">{{day['day']}}</td>
                 <td id="scheduleStart">{{day['start']}}</td>
                 <td id="scheduleEnd">{{day['end']}}</td>
-                <td id="scheduleLocation">{{day['location']}} </td>
-<!--             инстурменты редактирования для данного блока-->
-                {% if current_user.is_authenticated %}
+                <td colspan="2" id="scheduleLocation">{{day['location']}} </td>
+                {% if current_user.is_authenticated %} <!-- инстурменты редактирования для данного блока -->
                 <td class="none_border_right_top_bottom td_hover"><a href="/updateSchedule_page/{{day['id']}}">ред</a></td>
-                <td class="none_border_right_top_bottom td_hover"><a href="/deleteScheduleDay/{{day['id']}}">del</a></td>
+                <td class="none_border_right_top_bottom td_hover basis_close_btn"><a href="/deleteScheduleDay/{{day['id']}}"></a></td>
                 {% endif %}
             </tr>
         {% endfor %}
             {% if current_user.is_authenticated %}
             <tr> 
-                 <!-- блок для пустого расписания  -->
-                <td class="none_border_left_top_bottom" ></td>
-                <td colspan="4" class="" ><a class="my_add_btn_dynamic" href="/createSchedule_page">добавить день</a></td>
+                <td colspan="5" class="" ><a class="my_add_btn_dynamic" href="/createSchedule_page">добавить день</a></td>
             </tr>
             {% endif %}
           <tr>
             <td colspan="6" class="fix_bord"></td>
           </tr>
-          <tr class="">
-            <td class="none_border_left_top_bottom "></td>
-            <td colspan="4" class="info_rasp_dop ">{{scheduleInfo['sectionReq']}}</td>
-            <td class="none_border_right_top_bottom"></td>
+          <tr>
+            <td colspan="5" class="info_rasp_dop ">{{scheduleInfo['sectionReq']}}</td>
           </tr>
         </table>
       </div>

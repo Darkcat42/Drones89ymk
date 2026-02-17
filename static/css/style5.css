@@ -25,11 +25,7 @@
     color: white;
     align-items: center;
 }
-.drone_logo {
-    width: 60px;
-    height: 30px;
-    margin-right: 10px;
-}
+
 
 .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
@@ -329,9 +325,7 @@
     .db_none {
         display: block
     }
-    .title_logo {
-        justify-content: center;
-    }
+    
     .pad_section_slider {
         padding: 10px 0 120px 0;
     }
