@@ -2,9 +2,7 @@ from Models.Persons import *
 from Models.Persons_types import *
 from Controllers.ImagesController import ImagesController
 class PersonsController():
-    """
-        управление данными таблицы расписание
-    """
+    """управление данными персон"""
     @classmethod
     def get(cls):
         return Persons.select()

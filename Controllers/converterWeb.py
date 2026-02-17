@@ -1,8 +1,6 @@
 # ИМПОРТЫ
-from os import listdir, path
 from pathlib import Path
 from PIL import Image
-import shutil
 class ConverterWeb():
     """
     Для записи WebP-формата доступны:

@@ -1,8 +1,6 @@
 from Models.Hardwares import *
 class HardwaresController():
-    """
-        управление данными таблицы расписание
-    """
+    """управление данными оборудования"""
     @classmethod
     def get(cls):
         return Hardwares.select()

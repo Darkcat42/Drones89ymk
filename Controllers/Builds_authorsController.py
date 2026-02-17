@@ -3,9 +3,7 @@ from Models.Hardwares import *
 from Models.Builds_authors import *
 from Controllers.PersonsController import *
 class Builds_authorsController():
-    """
-        управление данными таблицы расписание
-    """
+    """управление данными персон"""
     @classmethod
     def get(cls):
         return Builds_authors.select()
@@ -21,14 +19,19 @@ class Builds_authorsController():
         try:
             return PersonsController.get_cur_Person(builds_author.persons_id)['firstName']
         except AttributeError:
-            pass
+            return PersonsController.get_cur_Person(builds_author.persons_id)['lastName']
+        except:
+            print('ошибка: Builds_authorsController - неудачный опрос атрибута PersonsController.get_cur_Person(builds_author.persons_id)')
     @classmethod
     def delete(cls, id):
         return Builds_authors.delete().where(Builds_authors.id == id).execute()
     @classmethod
-    def update(cls, id, **filds):
-        for key, value in filds.items():
-            Builds_authors.update({key:value}).where(Builds_authors.id == id).execute()
+    def update(cls, id, **kwargs):
+        Builds_authors.update(**kwargs).where(Builds_authors.id == id).execute()
+    # @classmethod
+    # def update(cls, id, **filds):
+    #     for key, value in filds.items():
+    #         Builds_authors.update({key:value}).where(Builds_authors.id == id).execute()
 
 
     

@@ -1,9 +1,7 @@
 from Models.Images import *
 from Controllers.converterWeb import ConverterWeb
 class ImagesController(ConverterWeb):
-    """
-        управление картинками
-    """
+    """управление картинками"""
     @classmethod
     def get(cls):
         return Images.select()

@@ -1,9 +1,7 @@
 from Models.News import *
 import datetime
 class NewsController():
-    """
-        управление данными таблицы расписание
-    """
+    """управление данными новостей"""
     @classmethod
     def get(cls):
         return News.select()

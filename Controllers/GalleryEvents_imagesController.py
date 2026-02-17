@@ -4,9 +4,7 @@ from Models.GalleryEvents_images import *
 from Controllers.ImagesController import ImagesController
 from Controllers.GalleryEventsController import GalleryEventsController
 class GalleryEvents_imagesController():
-    """
-        управление данными таблицы расписание
-    """
+    """управление наборами картинок для конкретной галереи (каждой галереи)"""
     @classmethod
     def get(cls):
         return GalleryEvents_images.select()
@@ -17,16 +15,15 @@ class GalleryEvents_imagesController():
     def delete(cls, id):
         return GalleryEvents_images.delete().where(GalleryEvents_images.galleryEvent_id == id).execute()
     @classmethod
-    def add(cls, image_id, galleryEvent_id):
-        return GalleryEvents_images.create(
-            image_id=image_id,
-            galleryEvent_id=galleryEvent_id
-        )
+    def add(cls, **kwargs):
+        return GalleryEvents_images.create(**kwargs)
     @classmethod
-    def update(cls, id, **filds):
-        for key, value in filds.items():
-            GalleryEvents_images.update({key:value}).where(GalleryEvents_images.id == id).execute()
-
+    def update(cls, id, **kwargs):
+        GalleryEvents_images.update(**kwargs).where(GalleryEvents_images.id == id).execute()
+    # @classmethod
+    # def update(cls, id, **kwargs):
+    #     for key, value in kwargs.items():
+    #         GalleryEvents_images.update({key:value}).where(GalleryEvents_images.id == id).execute()
     @classmethod
     def get_cur_gallery(cls, id):
         galleryEvents = GalleryEventsController.show(id)
@@ -59,8 +56,6 @@ class GalleryEvents_imagesController():
             current_gallery['images'] = list_of_images
             list_of_gallerys.append(current_gallery)
         return list_of_gallerys
-if __name__ == '__main__':
-    pass
 
 
 

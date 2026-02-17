@@ -1,8 +1,6 @@
 from Models.Persons_types import *
 class Persons_typesController():
-    """
-        управление данными таблицы расписание
-    """
+    """управление типом персон (как роли пользователей но тут юр физ коллектив и тп)"""
     @classmethod
     def get(cls):
         return Persons_types.select()

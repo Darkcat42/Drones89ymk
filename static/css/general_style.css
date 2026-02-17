@@ -422,7 +422,6 @@ td.td_hover:active{
     padding: 1%;
     width: 50%
 }
-
 #table:hover button.my_add_btn_dynamic{
     box-shadow: 3px 3px 8px 4px #200c27;
     transform:scale(1.01, 1.01) ;

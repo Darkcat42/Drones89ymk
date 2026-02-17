@@ -1,8 +1,6 @@
 from Models.Sections import Sections
 class SectionsController():
-    """
-        управление данными о таблицах
-    """
+    """управление секциями, позже понять необходимость в данном коде!"""
     @classmethod
     def get_section_info(cls, section):
         sectionInfo = Sections.get_or_none(Sections.sectionName == section)

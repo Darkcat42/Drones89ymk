@@ -1,8 +1,6 @@
 from Models.GalleryEvents import *
 class GalleryEventsController():
-    """
-        управление данными таблицы 
-    """
+    """управление галереями"""
     @classmethod
     def get(cls):
         return GalleryEvents.select()
@@ -16,9 +14,12 @@ class GalleryEventsController():
     def delete(cls, id):
         return GalleryEvents.delete().where(GalleryEvents.id == id).execute()
     @classmethod
-    def update(cls, id, **filds):
-        for key, value in filds.items():
-            GalleryEvents.update({key:value}).where(GalleryEvents.id == id).execute()
+    def update(cls, id, **kwargs):
+        GalleryEvents.update(**kwargs).where(GalleryEvents.id == id).execute()
+    # @classmethod
+    # def update(cls, id, **filds):
+    #     for key, value in filds.items():
+    #         GalleryEvents.update({key:value}).where(GalleryEvents.id == id).execute()
     @classmethod
     def show(cls, id):
         return GalleryEvents.get_or_none(GalleryEvents.id == id)
