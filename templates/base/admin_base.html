@@ -13,103 +13,100 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
-<header class="header_section admin_header" id="header">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-1 col-sm-1 col-m title_logo db132">
-        <a href="/admin_panel">
-          <img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo">ЯМК
-        </a>
-      </div>
-      <div class="col-lg-2 col-sm-2 col-m title_logo db132">
-        <a href="/admin_panel">
-             Админ Панель
-        </a>
-      </div>
-      <div class="col-lg-9 col-sm-9 fix-w">
-          <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container-fluid align-content-center">
-            <div class="db_nao db_yes title_logo">
-              <a href="/admin_panel">
-                <img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo">ЯМК
-              </a>
-            </div>
-            <div class="flex-mob">
-              <a href="https://t.me/+YMLvPOIS-YxlNWRi" class="db_nao db_yes">
-                <img src="{{url_for('static', filename='img/telegram.svg')}}" alt="" width="30px" height="auto">
-              </a> 
-              <button onclick="HeaderFull()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <div id="bg_close">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+    <header class="header_section admin_header" id="header">
+    <div class="container">
+        <div class="row justify-content-center">
+        <div class="col-lg-1 col-sm-1 col-m title_logo db132">
+            <a href="/admin_panel">
+            <img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo">ЯМК
+            </a>
+        </div>
+        <div class="col-lg-2 col-sm-2 col-m title_logo db132">
+            <a href="/admin_panel">
+                Админ Панель
+            </a>
+        </div>
+        <div class="col-lg-9 col-sm-9 fix-w">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid align-content-center">
+                <div class="db_nao db_yes title_logo">
+                <a href="/admin_panel">
+                    <img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo">ЯМК
+                </a>
                 </div>
-                <img src="{{url_for('static', filename='img/close_square.svg')}}" alt="" id="img_close">
-              </button>
-            </div>
-            <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link header_color" href="/news">Новости</a>
-                    <a class="nav-link header_color" href="/admin_panel#schedule">Расписание</a>
-                    <a class="nav-link header_color" href="/admin_panel#media">Медиа</a>
-                    <a class="nav-link header_color" href="/admin_panel#teacher">Преподаватели</a>
-                    <a class="nav-link header_color" href="/admin_panel#faq">FAQ</a>
-                    <a class="nav-link header_color" href="/admin_panel#info">Присоединиться</a>
-                    <a class="nav-link header_color" href="/gallery">Галерея</a>
-                    <a class="nav-link header_color" href="/build">Сборки</a>
-                    <a class="nav-link header_color" href="/doc">Документы</a>
-                    <a class="nav-link header_color" href="/logout">выход</a>
+                <div class="flex-mob">
+                <a href="https://t.me/+YMLvPOIS-YxlNWRi" class="db_nao db_yes">
+                    <img src="{{url_for('static', filename='img/telegram.svg')}}" alt="" width="30px" height="auto">
+                </a> 
+                <button onclick="HeaderFull()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div id="bg_close">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    </div>
+                    <img src="{{url_for('static', filename='img/close_square.svg')}}" alt="" id="img_close">
+                </button>
                 </div>
-              <div class="db_nao db_yes telegram_header">
-                  <a href="https://t.me/+YMLvPOIS-YxlNWRi" target="_blank">
-                    <img src="{{url_for('static', filename='img/telegram-svgrepo-com.svg')}}" alt="">
-                    <!-- <img src="img/telegram.svg" alt="" width="30px" height="auto"> -->
-                    Telegram
-                  </a>
+                <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link header_color" href="/news">Новости</a>
+                        <a class="nav-link header_color" href="/admin_panel#schedule">Расписание</a>
+                        <a class="nav-link header_color" href="/admin_panel#media">Медиа</a>
+                        <a class="nav-link header_color" href="/admin_panel#teacher">Преподаватели</a>
+                        <a class="nav-link header_color" href="/admin_panel#faq">FAQ</a>
+                        <a class="nav-link header_color" href="/admin_panel#info">Присоединиться</a>
+                        <a class="nav-link header_color" href="/gallery">Галерея</a>
+                        <a class="nav-link header_color" href="/build">Сборки</a>
+                        <a class="nav-link header_color" href="/doc">Документы</a>
+                        <a class="nav-link header_color" href="/logout">выход</a>
+                    </div>
+                <div class="db_nao db_yes telegram_header">
+                    <a href="https://t.me/+YMLvPOIS-YxlNWRi" target="_blank">
+                        <img src="{{url_for('static', filename='img/telegram-svgrepo-com.svg')}}" alt="">
+                        <!-- <img src="img/telegram.svg" alt="" width="30px" height="auto"> -->
+                        Telegram
+                    </a>
+                    </div>
                 </div>
             </div>
-          </div>
-      </nav>
-      </div>
-      <!-- <div class="col-lg-3 col-sm-1 icons_social db132">
-        <a href="https://t.me/+YMLvPOIS-YxlNWRi">
-          <img src="img/telegram.svg" alt="" width="30px" height="auto">
-        </a>
-      </div> -->
+        </nav>
+        </div>
+        <!-- <div class="col-lg-3 col-sm-1 icons_social db132">
+            <a href="https://t.me/+YMLvPOIS-YxlNWRi">
+            <img src="img/telegram.svg" alt="" width="30px" height="auto">
+            </a>
+        </div> -->
+        </div>
     </div>
-  </div>
-</header>
-{% block content %}
-<!--основаная часть страницы-->
-{% endblock %}
-<footer class="footer_item">
-  <div class="container flex_footer_cen">
-    <p>© ГБПОУ ЯНАО «Ямальский многопрофильный колледж». Все права защищены. <a href="/policy" class="link_policy">Пользовательское соглашение</a></p>
-  </div>
-</footer>
-<!-- Модальное окно -->
+    </header>
+    {% block content %}
+    <!--основаная часть страницы-->
+    {% endblock %}
+    <footer class="footer_item">
+    <div class="container flex_footer_cen">
+        <p>© ГБПОУ ЯНАО «Ямальский многопрофильный колледж». Все права защищены. <a href="/policy" class="link_policy">Пользовательское соглашение</a></p>
+    </div>
+    </footer>
+    <!-- Модальное окно -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
         <div class="modal-body" id="linkJsImg">
         </div>
-      </div>
+        </div>
     </div>
-<!-- Модальное окно -->
-<!--Кнопка наверх-->
- <button type="button" class="btn btn-lg" id="btn-back-to-top">
-      <img src="{{url_for('static', filename='img/arrow-up.svg')}}" alt="">
-
+    <!-- Модальное окно -->
+    <!--Кнопка наверх-->
+    <button type="button" class="btn btn-lg" id="btn-back-to-top">
+        <img src="{{url_for('static', filename='img/arrow-up.svg')}}" alt="">
     </button>
-<!--Кнопка наверх-->
-<!--Значок телеграмма-->
-<!--    <a href="https://t.me/+YMLvPOIS-YxlNWRi" class="telega_down">-->
-<!--      <img src="img/telegram.svg" alt="" width="30px" height="auto">-->
-<!--    </a>-->
-<!--Значок телеграмма-->
+    <!--Кнопка наверх-->
+    <!--Значок телеграмма-->
+    <a href="https://t.me/+YMLvPOIS-YxlNWRi" class="telega_down">
+        <img src="img/telegram.svg" alt="" width="30px" height="auto">
+    </a>
+    <!--Значок телеграмма-->
     <!-- <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script> -->
     <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/myscript1.js')}}"></script>
-    
-
 </body>
 </html>

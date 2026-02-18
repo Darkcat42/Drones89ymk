@@ -80,3 +80,9 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     text-shadow: 4px 4px 6px black;
     border: 1px solid #4c1f5e;
 }
+.footer_item {
+    filter: hue-rotate(60deg);
+    /* color: white;
+    padding: 20px 0;
+    height: 8vh; */
+}

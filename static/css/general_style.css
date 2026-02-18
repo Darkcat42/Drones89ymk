@@ -99,9 +99,10 @@ body {
         width: fit-content;
     }
 /* верхнее меню при админ панеле */
-.admin_header{
+.admin_header, .footer_item{
     filter: hue-rotate(60deg);
 }
+
 /* блок с преподавателями */
 #teacher{
     padding: 120px 0;
@@ -398,17 +399,26 @@ td.td_hover:active{
     /* transition-duration: 10ms; */
     background: #380505;
 }
-
+/* меню кнопок для админ панели */
+.admin_tools{
+    position: fixed;
+    margin-bottom: 20px;
+    height: 50px;
+    margin: 20px;
+}
+#news > .container{
+    padding-top: 50px;
+}
 .my_add_btn_static{
     border: 1px solid transparent!important;
     background-color: #491c5a;
     color: white !important;
-    transform: scale(0.89, 1);
+    /* transform: scale(0.89, 1); */
     font-weight: 200;
-    letter-spacing: 4px;
-    margin: 2% auto;
-    padding: 1%;
-    width: 50%
+    letter-spacing: 2px;
+    /* margin: 2% auto; */
+    /* padding: 1%; */
+    width: 10%
 }
 .my_add_btn_dynamic{
     border: 1px solid transparent!important;

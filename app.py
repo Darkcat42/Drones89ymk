@@ -1,4 +1,4 @@
-# импорты пайтон и тп
+# импорты сторонних библиотек 
 import pathlib
 import flask, flask_login, os, datetime
 from pathlib import Path
@@ -19,7 +19,7 @@ from Controllers.BuildController import BuildController
 from Controllers.Builds_authorsController import Builds_authorsController
 from Controllers.Builds_hardwaresController import Builds_hardwaresController
 class App_contorller():
-    """класс для сторонних функций и данных приложения"""
+    """класс для функций и данных приложения"""
     def __init__(self):
         self.checkMake_oneDir('static/webp')
         self.checkMake_oneDir('static/temp')

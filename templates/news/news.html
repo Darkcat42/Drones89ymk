@@ -6,13 +6,13 @@
 {% block content %}
 <!--Секция новости-->
 <section id="news" class="static_h basic_bg"> 
+    {% if current_user.is_authenticated %}
+    <!--инстурменты администратора для данного блока-->
+    <div class="admin_tools">
+        <button class="my_add_btn_static"><a href="/actions_news/create/msg">добавить новость</a></button>
+    </div>
+    {% endif %}
     <div class="container">
-        {% if current_user.is_authenticated %}
-        <!--инстурменты администратора для данного блока-->
-        <div class="row">
-            <button class="my_add_btn_static"><a href="/actions_news/create/msg">добавить новость</a></button>
-        </div>
-        {% endif %}
         <div class="d-flex flex-column">
             {% for new in news %}
             <div class="row" data-new_id="{{new['id']}}">
