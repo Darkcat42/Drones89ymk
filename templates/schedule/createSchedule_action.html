@@ -2,7 +2,11 @@
 {% block content %}
 <div class="schedule basic_bg w-100">
         <div class="container">
+                {% if msg == 'create' %}
                 <h1>Создание нового дня</h1>
+                {% else %}
+                <h1 class="actionNews_msg">{{msg}}</h1>
+                {% endif %}
                 <form class="align-items-start w-50 m-auto d-flex flex-column p-5" action="/createSchedule_action" method="post">
                 <div>
                         <p>Введите локацию</p>

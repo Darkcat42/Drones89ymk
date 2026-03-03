@@ -77,7 +77,7 @@ def index():
         'main/index.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
         # scheduleInfo=SectionsController.get_section_info('schedule'),
-        scheduleInfo='расписание',
+        scheduleInfo='[расписание]',
         lastNews=NewsController.getLast_dict()
         )
 @app.route('/admin_panel')
@@ -111,13 +111,19 @@ def updateScheduleDay(id):
             end = request.form.get('end')
             )
         return flask.redirect('/admin_panel#schedule')
+
 @app.route('/createSchedule_page', methods=['GET'])
+@login_required # переделать!
+def redirect_to_createSchedule_page():
+    return flask.redirect('/createSchedule_page/create')
+@app.route('/createSchedule_page/<msg>', methods=['GET'])
 @login_required
-def createSchedule_page():
+def createSchedule_page(msg):
         return flask.render_template(
             'schedule/createSchedule_action.html',
             edit_schedule = False,
-            day = None
+            day = None,
+            msg = msg
         )
 @app.route('/createSchedule_action', methods=['POST'])
 @login_required
@@ -127,6 +133,8 @@ def createScheduleDay():
         day = request.form.get('day')
         start = request.form.get('start')
         end = request.form.get('end')
+        if location == '' or day == '' or start == '' or end == '':
+            return flask.redirect('/createSchedule_page/Заполните поля!')
         try:
             ScheduleController.addDay(
                 location=location,

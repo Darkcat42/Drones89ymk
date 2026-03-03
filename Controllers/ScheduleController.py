@@ -68,7 +68,7 @@ class ScheduleController():
     # def delete(cls, id):
     #     Users.delete().where(Users.id == id).execute()
 if __name__ == '__main__':
-    print(ScheduleController.get_ScheduleDays())
+    print(ScheduleController.get_ScheduleDays()[0])
     # Time_tableController.add(
     #     title='Расписание',
     #     location='спорт комплекс ЯМК 2 зал',
