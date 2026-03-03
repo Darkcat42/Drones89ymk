@@ -1,10 +1,9 @@
-# импорты сторонних библиотек 
-import pathlib
+# импорты системных библиотек
 import flask, flask_login, os, datetime
 from pathlib import Path
 from flask_login import LoginManager, login_required, current_user, logout_user
 from flask import Flask, render_template, request
-# импорт контроллеров
+# импорт классов приложения
 from Controllers.NewsController import NewsController
 from Controllers.UserController import UsersController
 from Controllers.RoleController import RoleController
@@ -18,64 +17,9 @@ from Controllers.HardwaresController import HardwaresController
 from Controllers.BuildController import BuildController
 from Controllers.Builds_authorsController import Builds_authorsController
 from Controllers.Builds_hardwaresController import Builds_hardwaresController
-class App_contorller():
-    """класс для функций и данных приложения"""
-    def __init__(self):
-        self.checkMake_oneDir('static/webp')
-        self.checkMake_oneDir('static/temp')
-        self.checkMake_oneDir('static/temp/img') 
-        self._dir_tempImg = f'static/temp/img'
-        self._dir_webpImg = f'static/webp' 
-    @property
-    def dir_tempImg(self):
-        """геттер для директории временных картинок"""
-        return self._dir_tempImg
-    @dir_tempImg.setter
-    def dir_tempImg(self, value):
-        """сеттер"""
-        self._dir_tempImg = value
-    @property
-    def dir_webpImg(self):
-        """геттер для директории webp картинок"""
-        return self._dir_webpImg
-    @dir_webpImg.setter
-    def dir_webpImg(self, value):
-        """сеттер"""
-        self._dir_webpImg = value
-    @staticmethod
-    def open_file(src):
-        """читает файл и возвращает результат, упрощает общий вид кода"""
-        with open(src, 'r') as file:
-            return file.read()
-    @staticmethod
-    def checkMake_oneDir(src):
-        """проверка директории, если таковой нет то создает ее"""
-        if os.path.isdir(src) != True:
-            os.mkdir(src)
-        else:
-            print(src, 'директория существует')
-    @staticmethod
-    def checkMake_recurDirs(src):
-        """проверка директории, если таковой нет то создает ее"""
-        if os.path.isdir(src) != True:
-            os.makedirs(src)
-        else:
-            print(src, 'директория существует')
-    @classmethod
-    def mkdir_cat_dir(cls, cat_dir):
-        save_path = pathlib.Path('static/webp')
-        print(save_path)
-        calendar_date = str(datetime.datetime.today().strftime('%Y-%m-%d').replace('-', '_'))
-        save_path = os.path.join(save_path, calendar_date, cat_dir)
-        print(save_path)
-        cls.checkMake_recurDirs(save_path)
-        cur_dir_name = cat_dir + str(len(os.listdir(save_path)))
-        save_path = os.path.join(save_path, cur_dir_name)
-        print(save_path)
-        cls.checkMake_oneDir(save_path)
-        return save_path
+from main import App_contorller
 # создание и настройка приложения
-app = Flask(__name__)
+app = Flask(__name__) 
 login_manager = LoginManager()
 login_manager.init_app(app)
 app.secret_key = 'jksdhf l;lkj&*~19273l;kaszdfop['
@@ -86,7 +30,7 @@ def load_user(user_id):
    return UsersController.show(int(user_id))
 @login_manager.unauthorized_handler
 def anon():
-    """функция анонимного пользователя"""
+    """функция анонимного пользователя""" 
     return flask.redirect('/')
 @app.route('/favicon.ico') 
 def fav_pass():
@@ -100,8 +44,7 @@ def login_redirect():
 def login_page_msg(msg = ''):
     return flask.render_template(
         'login/login.html',
-        msg = msg
-    )
+        msg = msg)
 @app.route('/login_action', methods=['POST'])
 def login():
     """маршрут для авторизации пользователя"""
@@ -248,26 +191,31 @@ def addNews_action():
         text = request.form.get('news_text')
         if title == '' and text == '':
             return flask.redirect('/actions_news/create/Заполните поля!')
-        try:
-            file = request.files['news_file']
-            filename = file.filename
-            if filename == '':
-                return flask.redirect('/actions_news/create/Установите изображение!')
-            dir_name = App_contorller.mkdir_cat_dir('news')
-            if Path(filename).suffix != '.webp':
-                fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
-                file.save(fileSrc) # сохраняем файл во временную папку
-                webp_src = ImagesController.convertImage(fileSrc, dir_name) 
-                filename = str(Path(filename).stem)+'.webp'
-            else:
-                webp_src = os.path.join(dir_name, filename) 
-                file.save(webp_src)
-            image = ImagesController.add(
-                filename=filename,
-                src=webp_src)
-            image_id = image.id
-        except:
-            image_id = ImagesController.get()[0].id
+        # try:
+        file = request.files['news_file']
+        filename = file.filename
+        if filename == '':
+            return flask.redirect('/actions_news/create/Установите изображение!')
+        dir_name = appСontorller.make_categoryDir('news')
+        print(dir_name)
+        print(dir_name)
+        print(dir_name)
+        if Path(filename).suffix != '.webp':
+            fileSrc = os.path.join(appСontorller.tempImg, filename)
+            print(fileSrc)
+            file.save(fileSrc) # сохраняем файл во временную папку
+            webp_src = ImagesController.convertImage(fileSrc, dir_name) 
+            filename = str(Path(filename).stem)+'.webp'
+        else:
+            webp_src = os.path.join(dir_name, filename) 
+            file.save(webp_src)
+        image = ImagesController.add(
+            filename=filename,
+            src=webp_src)
+        image_id = image.id
+        # except:
+        #     image_id = ImagesController.get()[0].id
+        #     print('ошибка привязки изображения к новости')
         NewsController.addNews(
             title=title,
             news_desc=text,
@@ -297,9 +245,9 @@ def updateNews_action(id):
         if file.filename != "":
             try:
                 filename = file.filename
-                dir_name = App_contorller.mkdir_cat_dir('news')
+                dir_name = appСontorller.make_categoryDir('news')
                 if Path(filename).suffix != '.webp':
-                    fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+                    fileSrc = os.path.join(appСontorller.tempImg, filename)
                     file.save(fileSrc) # сохраняем файл во временную папку
                     
                     webp_src = ImagesController.convertImage(fileSrc, dir_name) 
@@ -354,11 +302,11 @@ def createGalleryEvent_action():
         date=date,
         title=title
     )
-    dir_name = App_contorller.mkdir_cat_dir('galleryEvent')
+    dir_name = appСontorller.make_categoryDir('galleryEvent')
     for file in images:
         filename = file.filename
         if Path(filename).suffix != '.webp':
-            fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+            fileSrc = os.path.join(appСontorller.tempImg, filename)
             file.save(fileSrc) # сохраняем файл во временную папку
             webp_src = ImagesController.convertImage(fileSrc, dir_name=dir_name)
             filename = str(Path(filename).stem)+'.webp'
@@ -425,9 +373,9 @@ def createPersons_action():
         file = request.files['file']
     try:
         filename = file.filename
-        dir_name = App_contorller.mkdir_cat_dir('persons')
+        dir_name = appСontorller.make_categoryDir('persons')
         if Path(filename).suffix != '.webp':
-            fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+            fileSrc = os.path.join(appСontorller.tempImg, filename)
             file.save(fileSrc) # сохраняем файл во временную папку
             
             webp_src = ImagesController.convertImage(fileSrc, dir_name) 
@@ -458,9 +406,9 @@ def updatePersons_action(id):
         try:
             file = request.files.getlist('file') # множественная загрузка
             filename = file.filename
-            dir_name = App_contorller.mkdir_cat_dir('persons')
+            dir_name = appСontorller.make_categoryDir('persons')
             if Path(filename).suffix != '.webp':
-                fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+                fileSrc = os.path.join(appСontorller.tempImg, filename)
                 file.save(fileSrc) # сохраняем файл во временную папку
                 
                 webp_src = ImagesController.convertImage(fileSrc, dir_name) 
@@ -592,9 +540,9 @@ def createBuilds_action():
         file = request.files['file'] 
         try:
             filename = file.filename
-            dir_name = App_contorller.mkdir_cat_dir('builds')
+            dir_name = appСontorller.make_categoryDir('builds')
             if Path(filename).suffix != '.webp':
-                fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+                fileSrc = os.path.join(appСontorller.tempImg, filename)
                 file.save(fileSrc) # сохраняем файл во временную папку
                 webp_src = ImagesController.convertImage(fileSrc, dir_name) 
                 filename = str(Path(filename).stem)+'.webp'
@@ -635,9 +583,9 @@ def updateBuilds_action(id):
         try:
             # file = request.files.getlist('file') # множественная загрузка
             filename = file.filename
-            dir_name = App_contorller.mkdir_cat_dir('builds')
+            dir_name = appСontorller.make_categoryDir('builds')
             if Path(filename).suffix != '.webp':
-                fileSrc = os.path.join(AppСontorller.dir_tempImg, filename)
+                fileSrc = os.path.join(appСontorller.tempImg, filename)
                 file.save(fileSrc) # сохраняем файл во временную папку
                 
                 webp_src = ImagesController.convertImage(fileSrc, dir_name) 
@@ -673,5 +621,5 @@ def deleteBuilds_action(id):
     return flask.redirect('/build')
 
 if __name__ == '__main__':
-    AppСontorller = App_contorller()
+    appСontorller = App_contorller()
     app.run(debug=True)
