@@ -3,20 +3,20 @@ from functools import cached_property
 class App_contorller():
     """класс для функций и данных приложения"""
     def __init__(self):
-        self._rootDir = __file__
+        # self._rootDir = __file__
         self._tempImg = [r'static', r'temp', r'img']
         self._webpImg = [r'static', r'webp'] 
-    @cached_property
-    def rootDir(self):
-        return os.path.dirname(os.path.realpath(__file__))
+    # @cached_property
+    # def rootDir(self):
+    #     return os.path.dirname(os.path.realpath(__file__))
     @cached_property
     def tempImg(self):
         """геттер пути temp для картинок"""
-        return os.path.join(self.rootDir, *self._tempImg)
+        return os.path.join(*self._tempImg)
     @cached_property
     def webpImg(self):
         """геттер пути webp для веб-картинок"""
-        return os.path.join(self.rootDir, *self._webpImg)
+        return os.path.join(*self._webpImg)
     @staticmethod
     def open_file(src):
         """читает файл и возвращает результат, упрощает общий вид кода"""
@@ -52,8 +52,5 @@ class App_contorller():
     def make_categoryDir(self, category):
         savePath = self.make_recurDirs(os.path.join(self.webpImg, self.get_curDate(), category)) # создаем папки
         cur_dir_name = category + self.countListdir(savePath) # нумеруем категорию
-        print(cur_dir_name)
-        print(savePath)
-        print(cur_dir_name)
         return self.make_Dir(os.path.join(savePath, cur_dir_name))
     

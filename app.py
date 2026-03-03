@@ -39,7 +39,7 @@ def fav_pass():
 # авторизация в приложении
 @app.route('/login', methods=['GET']) 
 def login_redirect():
-    return flask.redirect(f'/login_page/{'login'}')
+    return flask.redirect('/login_page/login')
 @app.route('/login_page/<msg>', methods=['GET'])
 def login_page_msg(msg = ''):
     return flask.render_template(
@@ -76,7 +76,8 @@ def index():
     return render_template(
         'main/index.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
-        scheduleInfo=SectionsController.get_section_info('schedule'),
+        # scheduleInfo=SectionsController.get_section_info('schedule'),
+        scheduleInfo='расписание',
         lastNews=NewsController.getLast_dict()
         )
 @app.route('/admin_panel')
@@ -85,7 +86,8 @@ def admin_panel():
     return render_template(
         'main/admin_panel.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
-        scheduleInfo=SectionsController.get_section_info('schedule'),
+        # scheduleInfo=SectionsController.get_section_info('schedule'),
+        scheduleInfo='расписание',
         lastNews=NewsController.getLast_dict()
         )
 # маршруты для блока расписания главной страницы
@@ -197,18 +199,19 @@ def addNews_action():
         if filename == '':
             return flask.redirect('/actions_news/create/Установите изображение!')
         dir_name = appСontorller.make_categoryDir('news')
-        print(dir_name)
-        print(dir_name)
-        print(dir_name)
         if Path(filename).suffix != '.webp':
             fileSrc = os.path.join(appСontorller.tempImg, filename)
-            print(fileSrc)
+            appСontorller.make_recurDirs(appСontorller.tempImg)
             file.save(fileSrc) # сохраняем файл во временную папку
-            webp_src = ImagesController.convertImage(fileSrc, dir_name) 
+            webp_src = ImagesController.convertImage(fileSrc, dir_name)
+
             filename = str(Path(filename).stem)+'.webp'
         else:
-            webp_src = os.path.join(dir_name, filename) 
+            webp_src = os.path.join(dir_name, filename)
             file.save(webp_src)
+        print(webp_src)
+        print(webp_src)
+        print(webp_src)
         image = ImagesController.add(
             filename=filename,
             src=webp_src)
