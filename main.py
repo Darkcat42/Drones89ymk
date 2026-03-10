@@ -3,12 +3,8 @@ from functools import cached_property
 class App_contorller():
     """класс для функций и данных приложения"""
     def __init__(self):
-        # self._rootDir = __file__
         self._tempImg = [r'static', r'temp', r'img']
         self._webpImg = [r'static', r'webp'] 
-    # @cached_property
-    # def rootDir(self):
-    #     return os.path.dirname(os.path.realpath(__file__))
     @cached_property
     def tempImg(self):
         """геттер пути temp для картинок"""
@@ -30,7 +26,7 @@ class App_contorller():
         """проверка директории, если таковой нет то создает ее"""
         try:
             if os.path.isdir(src) != True:
-                os.mkdir(src)
+                os.mkdir(src) # переделать под Path(src).mkdir(parents=True, exist_ok=True)
             return src
         except:
             print('ошибка создания папки')
@@ -39,7 +35,7 @@ class App_contorller():
         # """проверка директории, если таковой нет то создает ее"""
         try:
             if os.path.isdir(src) != True:
-                os.makedirs(src)
+                os.makedirs(src, exist_ok=True)
             return src    
         except:
             print('ошибка создания рекурсивно несколько папок')

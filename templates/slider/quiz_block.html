@@ -4,7 +4,7 @@
         <!-- блок слайдера -->
         <div class="col-lg-7">
             <div id="carousel" data-bs-ride="carousel" class="carousel slide">
-                <div class="carousel-inner" style="margin: 10% 0;">
+                <div class="carousel-inner" style="margin: 10% 0 0 0;">
                     <!-- элемент слайдера -->
                     <div class="carousel-item active">
                         <div class="mb-3" style="max-width: 80%; margin: 0 15%;">
@@ -12,17 +12,17 @@
                         </div>
                     </div>
                     <!-- элемент слайдера -->
-                    <div class="carousel-item">
+                    <!-- <div class="carousel-item">
                         <div class=" mb-3" style="max-width: 80%; margin: 0 15%;">
                             <img src="/static/img/news/news_placeholder.jpg" style="max-height: 350px" class="card-img-top my_card_img" alt="...">     
                         </div>
-                    </div>
+                    </div> -->
                     <!-- элемент слайдера -->
-                    <div class="carousel-item">
+                    <!-- <div class="carousel-item">
                         <div class=" mb-3" style="max-width: 80%; margin: 0 15%;">
                             <img src="/static/img/news/news_placeholder.jpg" style="max-height: 350px" class="card-img-top" alt="...">  
                         </div>
-                    </div> 
+                    </div>  -->
                 </div>
                 <!-- кнопки назад \ вперед слайдера -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -33,7 +33,13 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Следующий</span>
                 </button>
+                
             </div>
+            {% if current_user.is_authenticated == True %}
+                <div class="edit_tools">
+                    <a class="" href="">изменить слайдер</a> 
+                </div>
+                {% endif %}
         </div>
         <!-- блок текста с приветствием и опросом -->
         <div class="col-lg-5" id="content" data-id="">

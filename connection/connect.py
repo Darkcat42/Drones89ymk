@@ -7,20 +7,20 @@ from peewee import *
 #         password='sakjdfhkjsadfhkjsdfs',
 #         host='127.0.0.1',
 #         port=3306)
-# def connect_db():
-#     return MySQLDatabase(
-#         'drones',
-#         user='drones',
-#         password='dsfkjlhgsdflkgl90890',
-#         host='192.168.0.102',
-#         port=3306)
 def connect_db():
     return MySQLDatabase(
-        'OnVisp2_drones',
-        user='OnVisp2',
-        password='OnVisp2',
-        host='10.11.13.115',
+        'drones',
+        user='drones',
+        password='dsfkjlhgsdflkgl90890',
+        host='192.168.0.102',
         port=3306)
+# def connect_db():
+#     return MySQLDatabase(
+#         'OnVisp2_drones',
+#         user='OnVisp2',
+#         password='OnVisp2',
+#         host='10.11.13.115',
+#         port=3306)
 # def connect_db():
 #     return MySQLDatabase(
 #         'OnVisp2_drones',

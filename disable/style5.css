@@ -1,414 +1,3 @@
-/* стили для тестирования */
-.b_test, .b_test>*, .b_test>*>*, .b_test>*>*>*, .b_test>*>*>*>*{
-    outline: 1px solid red;
-}
-/* общие стили по тегам*/
-html {scroll-behavior: auto !important;}
-a {
-    text-decoration: none;
-    color: white;
-}
-body {    padding: 0 !important;    margin: 0 !important;}
-/* универсальные стили */
-.none_border{
-    border-left: 1px solid transparent;
-    background-color: red;
-    visibility: hidden;
-}
-.static_h {
-    min-height: 86vh;
-    color: white;
-}
-.db_none {display: none !important;}
-.pos_absolute {position: absolute;}
-.pos_relative {
-    position: relative;
-    text-align: right;
-}
-#img_close {display: none;}
-.basic_bg { 
-    background: url("../img/bg.svg") center no-repeat;}
-/* стили кнопок */
-.edit_tools{
-    display: flex;
-    justify-content: center;
-    /* align-items: top; */
-    z-index: 5;
-    /* position: absolute; */
-    
-}
-/* .media_tools{
-    position: absolute;
-    transform: translateX(100%);
-    top: 5%;
-    width: 50%;
-} */
-/* .media_tools > * {
-    margin-top: 5%;
-    margin: 0 5%;
-    padding: 0;
-} */
-.basis_close_btn {
-    background: url('/static/svg/icon_exit_darkPurple.svg');
-    width: 30px;
-    height: 30px;
-    margin-top: 5%;
-    margin-left: 15px;
-}
-.basis_edit_btn {
-    background: url('/static/svg/icon_edit_darkPurple.svg');
-    width: 30px;
-    height: 30px;
-    margin-top: 5px;  
-}
-.replace_edit_btn {
-    background: url('/static/svg/replaceIcon.svg');
-    width: 30px;
-    height: 30px;
-    margin-top: 5px; 
-}
-.basis_close_btn, 
-.basis_edit_btn,
-.replace_edit_btn {
-    cursor: pointer;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: none;
-}
-/* блок слайдера с опросом  quiz_block.html */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* header - верхнее меню */
-.header_section{
-    display: flex;
-    background-color: #31123C;
-    height: 6vh;
-    padding: 0 5vw;
-}
-.header_section>div{
-    margin: 0;
-    padding: 0;
-}
-.header_section>div>div.row{
-    width: 90vw;
-    margin: 0;
-    padding: 0;
-}
-.drone_logo {
-    width: 60px;
-    height: 30px;
-}
-.title_logo {
-        justify-content: center;
-        width: fit-content;
-    }
-/* верхнее меню при админ панеле */
-.admin_header, .footer_item{
-    filter: hue-rotate(60deg);
-}
-/* блок с преподавателями */
-#teacher{
-    padding: 120px 0;
-    margin: 0;
-    background-color: #2C133E;
-    color: white;  
-}
-div.card{
-    border: none;
-    font-size: 1.2em;
-}
-div.card h2{font-size: 1.8em;}
-.image_teacher{transform: translateX(-15px);}
-.teacher_base_card{
-    background: white;
-    width: 100%;
-    border-radius: 12px;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid white;
-    margin-bottom: 2%;
-}
-
-/* инструменты редактирования и удаления */
-/* медиа на главной */
-/* новости */
-.news_edit_tools {
-    display: flex; 
-    justify-content: end;
-    align-items: baseline;
-}
-.news_edit_tools > * { filter: opacity(100%) !important;}
-/* стили страниц */
-/*Слайдер*/
-#slider {background: url("../img/bg.svg") center no-repeat;}
-.pad_section_slider {padding: 5% 0;}
-/*медиа блок*/
-#media {padding: 120px 0;}
-/* Расписание */
-#schedule {
-    padding: 100px 0;
-    /* background-color: #2C133E; */
-    background-color: none;
-    color: white;
-}
-.schedule{
-    color: white;
-    font-size: 1.5em;
-    height: 86vh;
-}
-.galleryEvent{height: 86vh;}
-/*страница новости */
-#news div.d-flex > div.row{
-    margin: 1%;
-    padding: 1%; 
-    color: black;
-    border: 1px solid white;
-    box-shadow: 3px 1px 15px 1px #4b2067 ;
-    filter: brightness(90%) blur(0px);
-    border-radius: 12px;
-    background: white;
-}
-.news_image{
-    padding: 0;
-    margin: 0;
-    max-height: 170px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    border-radius: 6px;    
-    border: 1px solid white;
-}
-.news_image img {
-    min-width: 300px;
-    object-fit: cover;
-    object-position: center; 
-}
-#news div.d-flex > div.row:hover{
-    background: #4b2067;
-    border: 1px solid white;
-    color: white;
-}
-#news div.d-flex > div.row:hover .basis_close_btn {
-    background: url('/static/svg/exit_icon_light.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-#news div.d-flex > div.row:hover .basis_edit_btn {
-    background: url('/static/svg/icon_edit.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.news_date{
-    border: 1px solid black; 
-    width: fit-content; 
-    padding: 0 20px;
-}
-/*форма новой новость */
-#news_create_form{
-    color: white;
-}
-/*форма изменить новость */
-#news_create_form{
-    color: white;
-}
-/* последняя новость блок */
-.purple_gradient{
-    background: linear-gradient(to top, #4b2067, #331648, #2C133E)
-}
-.lastNews { 
-    background-color: none;
-    padding: 1%;
-    color: white;
-}
-.lastNews>*{margin: 0 auto;}
-.lastNews_date{
-    border: 1px solid black;
-    width: fit-content;
-    padding: 0 20px;
-    background: white;
-    color: black;
-}
-.lastNews img.img-fluid{
-    /* width: 200px; */
-    height: 120%;
-    border-radius: 6px;
-}
-/*вопросы блок*/
-#faq {padding: 120px 0;}
-
-.webpage_name{margin-left: 15%;}
-
-.header_color {color: white !important;}
-#navbarNavAltMarkup .navbar-nav a:hover {
-    color: #e3be5b !important;
-}
-.nav_links{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
-.header_section:hover .basic_edit_btn{
-    filter: opacity(100);
-}
-/* страница форма авторизации */
-#login_form{
-    text-align: center;
-    color: white;
-    padding-top: 10%; 
-}
-#login_form input:not(#login_form input:last-child){ 
-    margin-bottom: 2%;
-    width: 50%;
-    padding: 10px;
-    font-size: 1.5em;
-    border-radius: 12px;
-    border: none;
-}
-#login_form input:last-child{
-    margin-top: 5%;  
-    width: 20%;
-    letter-spacing: 5px;
-    font-size: 1.5em;
-    border: none;
-    box-shadow: 1px 1px 5px 1px #2C133E;
-}
-#login_form input{
-    margin: auto;
-    box-shadow: 1px 1px 5px 1px #2C133E;
-}
-#login_form input:hover{
-    box-shadow: 1px 1px 15px 5px #2C133E;
-    transform: scale(1.1, 1.1);
-}
-#login_form input:focus{
-    transform: scale(1.1, 1.1);
-}
-/* сообщения пользователю */
-.login_msg, /* авторизация */
-.actionNews_msg{ /* страница новости */
-    color: rgb(211, 218, 1);    
-    width: auto;
-    height: 50px;
-    margin: 2% auto;
-}
-/* страница новости */
-/* создание новости */
-td.td_hover{
-    opacity: 40%;
-    background-color: #491c5a;
-    transform: translateX(10px);
-    font-weight: 200; 
-}
-#table:hover td.td_hover{
-    opacity: 100%;
-    cursor: pointer;
-    box-shadow: 3px 3px 8px 4px #200c27;
-    transform:scale(0.9, 0.9) translateX(20px);
-}
-td.td_hover:hover{filter: brightness(2);}
-td.td_hover:active{background: #380505;}
-/* меню кнопок для админ панели */
-.admin_tools{
-    position: fixed;
-    margin-bottom: 20px;
-    height: 50px;
-    margin: 20px;
-}
-#news > .container{padding-top: 50px;}
-.my_add_btn_static{
-    border: 1px solid transparent!important;
-    background-color: #491c5a;
-    color: white !important;
-    font-weight: 200;
-    letter-spacing: 2px;
-    width: 10%
-}
-.my_add_btn_dynamic{
-    border: 1px solid transparent!important;
-    opacity: 40%;
-    background-color: #491c5a;
-    color: white;
-    transform: scale(0.89, 1);
-    font-weight: 200;
-    letter-spacing: 4px;
-    margin-top: 2%;
-    padding: 1%;
-    width: 50%
-}
-#table:hover button.my_add_btn_dynamic{
-    box-shadow: 3px 3px 8px 4px #200c27;
-    transform:scale(1.01, 1.01) ;
-    opacity: 100%;
-    cursor: pointer;
-}
-button.my_add_btn_dynamic:hover, button.my_add_btn_static:hover{
-    filter: brightness(2);
-}
-button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
-    background: #380505!important;
-}
-.none_border_left_top_bottom{
-    border: 1px solid transparent!important;
-    width: 50px;
-    border-right: 1px solid white!important;
-}
-.none_border_right_top_bottom{
-    border: 1px solid transparent!important;
-    width: 50px;
-    border-left: 1px solid white!important;
-}
-.editor_hover{
-    border: 1px solid transparent;
-    margin-right: 5%;
-}
- .editor_hover:hover{
-    box-shadow: 3px 3px 8px 4px #200c27;
-    border-radius: 6px;
-    transform:scale(1.01, 1.01);
-    text-shadow: 4px 4px 6px black;
-    border: 1px solid #4c1f5e;
-}
-
-
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* ################################################## */
-/* STYLE5 */
-/* STYLE5 */
-/* STYLE5 */
 #info-vid {
     background: url("../img/bg-number2.png") center no-repeat;
     background-size: cover;
@@ -436,6 +25,8 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     color: white;
     align-items: center;
 }
+
+
 .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
@@ -465,6 +56,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
         transform: translateY(-10px);
     }
 }
+
 .custom_btn {
     width: 100%;
     border: 1px solid white;
@@ -521,6 +113,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 .fix-h-3 {
     height:580px;
 }
+
 .img_diplom {
     height: 26%;
     /*width: 100%;*/
@@ -531,6 +124,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     z-index: 9999;
     text-align: center;
 }
+
 .modal-dialog {
     max-width: none;
 }
@@ -691,6 +285,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
         height:420px;
     }
 }
+
 @media (max-width: 992px) {
     body {
         background-size: auto;
@@ -718,6 +313,8 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     .navbar-toggler {
         margin-left: 10px;
     }
+
+
 }
 @media (max-width: 575px) {
     .fix-mar {
@@ -750,6 +347,8 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
         margin-left: 2px;
     }
 }
+
+
 .table_rasp {
     display: flex;
     justify-content: center;
@@ -779,6 +378,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 #galerry {
     padding: 60px 5%;
 }
+
 .photos div{
     padding-bottom:20px;
 }
@@ -858,6 +458,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     text-decoration: underline;
     color: #2C133E;
 }
+
 .info_build_drone table tbody tr th, .info_build_drone table tbody tr td {
     text-align: center;
     vertical-align: middle;
@@ -872,6 +473,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     background-color: #2C133E !important;
     color: white !important;
 }
+
 @media (max-width: 700px) {
     .scroll_x {
         display: block;
@@ -890,6 +492,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     top: 15px;
     right: 15px;
 }
+
 .dropmen {
     position: relative;
 }
@@ -924,6 +527,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     margin-bottom: 0;
 }
 /* Стрница Сборки */
+
 /* Страница Документы */
 #sol {
     padding: 60px 0;
@@ -963,14 +567,17 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 #doc {
     padding: 60px 5%;
 }
+
 .type-document{
     width:100%;
     margin-bottom:20px;
 }
+
 .tabs-panel .panel-body {
   padding: 20px 15px 15px 15px;
   font-size: 14px;
 }
+
 .tab-content {
   background-color: #fff;
   border-radius: 4px;
@@ -978,6 +585,8 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
   border-top-left-radius: 0;
   border-top: none;
 }
+
+
 .document {
   float: left;
   width: calc(33% - 20px);
@@ -986,26 +595,31 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
   border-radius: 3px;
   border: 1px solid #dce2e9;
 }
+
 .document .document-body {
   height: 130px;
   text-align: center;
   border-radius: 3px 3px 0 0;
   background-color: #fdfdfe;
 }
+
 .document .document-body i {
   font-size: 45px;
   line-height: 120px;
 }
+
 .document .document-body img {
   width: 100%;
   height: 100%;
 }
+
 .document .document-footer {
   border-top: 1px solid #ebf1f5;
   height: 46px;;
   padding: 5px 12px;
   border-radius: 0 0 2px 2px;
 }
+
 .document .document-footer .document-name {
   display: block;
   margin-bottom: 0;
@@ -1017,6 +631,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .document .document-footer .document-description {
   display: block;
   margin-top: -1px;
@@ -1029,23 +644,29 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .document.word .document-footer >*, .document.excel .document-footer >*,
 .document.power .document-footer >*, .document.pdf .document-footer >*,
 .document.other .document-footer >* {
   color: #fff;
 }
+
 .document.word .document-footer, .icon-name .word {
   background-color: #2da9e9;
 }
+
 .document.excel .document-footer, .icon-name .excel {
   background-color: #0ec8a2;
 }
+
 .document.power .document-footer, .icon-name .power {
   background-color: #ff9e2a;
 }
+
 .document.pdf .document-footer, .icon-name .pdf{
   background-color: #f95858;
 }
+
 .document.other .document-footer, .icon-name .other{
   background-color: #314557;
 }
@@ -1074,6 +695,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     max-width: none;
   }
 }
+
 .bg_show {
     box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
 }
@@ -1083,6 +705,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 .show {
     display: block !important;
 }
+
 #doc .container .row .col-sm-4 .panel .panel-body .nav .nav-link{
     color: #212529;
     text-align: start;
@@ -1091,6 +714,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     background-color: #31123C !important;
     color: white;
 }
+
 @media screen and (max-width: 575px) {
     .fix_pd  {
       padding: 0 !important;
@@ -1100,9 +724,12 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
   width: 50px;
   height: 50px;
 }
+
+
 .documents .panel-body .tab-pane a:hover .document{
     transform: scale(0.9);
 }
+
 .telegram_header a{
     background-color: white !important;
     padding: 5px;

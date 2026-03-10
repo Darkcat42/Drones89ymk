@@ -76,7 +76,6 @@ def index():
     return render_template(
         'main/index.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
-        # scheduleInfo=SectionsController.get_section_info('schedule'),
         scheduleInfo='[расписание]',
         lastNews=NewsController.getLast_dict()
         )
@@ -86,7 +85,6 @@ def admin_panel():
     return render_template(
         'main/admin_panel.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
-        # scheduleInfo=SectionsController.get_section_info('schedule'),
         scheduleInfo='расписание',
         lastNews=NewsController.getLast_dict()
         )
@@ -634,3 +632,4 @@ def deleteBuilds_action(id):
 if __name__ == '__main__':
     appСontorller = App_contorller()
     app.run(debug=True)
+
