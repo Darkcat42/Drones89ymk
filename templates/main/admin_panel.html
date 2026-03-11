@@ -4,8 +4,14 @@
     {% extends 'base/base.html' %}
 {% endif %}
 {% block content %}
+{% if current_user.is_authenticated %}
+<div class="admin_tools">
+    <button class="my_add_btn_static" ><a href="/admin/">войти в админ панель</a></button>
+</div>
+{% endif %}
 <!--1 Секция опросни и слайдер-->
 {% include 'slider/quiz_block.html' %}
+
 <div class="purple_gradient">
 <!--2 Секция последняя новость-->
 {% include 'news/last_news.html' %}

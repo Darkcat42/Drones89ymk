@@ -40,7 +40,9 @@ body {    padding: 0 !important;    margin: 0 !important;}
 .edit_tools{
     display: flex;
     justify-content: center;
+    flex-direction: column;
     z-index: 5; 
+    position: fixed;
 }
 .blackBasisBtn{
     background-color: rgba(0, 0, 0, 0.5);
@@ -235,6 +237,7 @@ td.td_hover:active{background: #380505;}
     margin-bottom: 20px;
     height: 50px;
     margin: 20px;
+    display: block;
 }
 
 .my_add_btn_static{

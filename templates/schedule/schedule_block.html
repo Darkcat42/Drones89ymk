@@ -27,13 +27,11 @@
                 <td id="scheduleEnd">{{day['end']}}</td>
                 <td colspan="2" id="scheduleLocation">{{day['location']}} </td>
                 {% if current_user.is_authenticated %} <!-- инстурменты редактирования для данного блока -->
-                <td class="none_border_right_top_bottom td_hover"><a href="/updateSchedule_page/{{day['id']}}">ред</a></td>
-                <td class="none_border_right_top_bottom td_hover"><a href="/deleteScheduleDay/{{day['id']}}">дел</a></td>
+                <td class="none_border_right_top_bottom td_hover"><a href="/updateSchedule_page/{{day['id']}}"></a></td>
+                <td class="none_border_right_top_bottom td_hover"><a href="/deleteScheduleDay/{{day['id']}}"></a></td>
                 {% endif %}
             </tr>
         {% endfor %}
-
-
           <tr>
             <td colspan="6" class="fix_bord"></td>
           </tr>
@@ -43,9 +41,8 @@
         </table>
         {% endif %}
           {% if current_user.is_authenticated %}
-               <a class="" href="/createSchedule_page">добавить день</a>
+               <a class="" href="/admin/schedule/">изменить расписание</a>
           {% endif %}
-
       </div>
   </div>
 </section>

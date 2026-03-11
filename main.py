@@ -13,16 +13,34 @@ from Models.Schedule import *
 from Models.Sections import *
 from Models.Users import *
 from Models.Videos import *
-from Models.Webpages import *
-
-# импортирование flask_admin переопределений моделей  
+# from Models.Webpages import *
+# импортирование блюпринтов
+from blueprints.builds import builds_blueprint
+from blueprints.gallary import gallery_blueprint
+from blueprints.hardwares import hardwares_blueprint
+from blueprints.index import index_blueprint
+from blueprints.login import login_blueprint
+from blueprints.news import news_blueprint
+from blueprints.persons import persons_blueprint
+from blueprints.schedule import schedule_blueprint
+# импортирование flask_admin переопределений моделей 
+from Models.ModelView.Builds_admin import Builds_admin 
+from Models.ModelView.Builds_hardwares_admin import Builds_hardwares_admin
 from Models.ModelView.Builds_authors_admin import Builds_authors_admin
+from Models.ModelView.GalleryEvents_admin import GalleryEvents_admin
+from Models.ModelView.GalleryEvents_images_admin import GalleryEvents_images_admin
+from Models.ModelView.Hardwares_admin import Hardwares_admin
+from Models.ModelView.Images_admin import Images_admin
+from Models.ModelView.News_admin import News_admin
+from Models.ModelView.Persons_admin import Persons_admin
+from Models.ModelView.Persons_types_admin import Persons_types_admin
+from Models.ModelView.Roles_admin import Roles_admin
+from Models.ModelView.Schedule_admin import Schedule_admin
+from Models.ModelView.Sections_admin import Sections_admin
+from Models.ModelView.Users_admin import Users_admin
 
 import os, datetime
 from functools import cached_property
-import peewee
-from flask_admin.contrib.peewee import ModelView
-
 class App_contorller():
     """класс для функций и данных приложения"""
     def __init__(self):
@@ -77,8 +95,31 @@ class App_contorller():
         # для моделей без класс представления flask-admin необходима оболочка
         #  [ModelView(model) for model in models] 
         return [
-            Builds_authors_admin(Builds_authors)
+            Builds_admin(Builds),
+            Builds_hardwares_admin(Builds_hardwares),
+            Builds_authors_admin(Builds_authors),
+            GalleryEvents_admin(GalleryEvents),
+            GalleryEvents_images_admin(GalleryEvents_images),
+            Hardwares_admin(Hardwares),
+            Images_admin(Images),
+            News_admin(News),
+            Persons_admin(Persons),
+            Persons_types_admin(Persons_types),
+            Roles_admin(Roles),
+            Schedule_admin(Schedule),
+            Sections_admin(Sections),
+            Users_admin(Users)
         ]
+    @staticmethod
+    def registerAll_blueprints(app):
+        app.register_blueprint(builds_blueprint)
+        app.register_blueprint(gallery_blueprint)
+        app.register_blueprint(hardwares_blueprint)
+        app.register_blueprint(index_blueprint)
+        app.register_blueprint(login_blueprint)
+        app.register_blueprint(news_blueprint)
+        app.register_blueprint(persons_blueprint)
+        app.register_blueprint(schedule_blueprint)
         
             
 

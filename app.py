@@ -1,22 +1,13 @@
 # импорты системных библиотек
 from flask_login import LoginManager
 from flask_admin import Admin
+from flask_babel import Babel
 from flask import Flask
 from flask import redirect as flask_redirect
 # импорт классов приложения
 from Controllers.UserController import UsersController
 from main import App_contorller
-# импортирование блюпринтов
-from blueprints.builds import builds_blueprint
-from blueprints.gallary import gallery_blueprint
-from blueprints.hardwares import hardwares_blueprint
-from blueprints.index import index_blueprint
-from blueprints.login import login_blueprint
-from blueprints.news import news_blueprint
-from blueprints.persons import persons_blueprint
-from blueprints.schedule import schedule_blueprint
 
-# from Models.Builds_authors import Builds_authors
 # создание и настройка приложения
 """
 логика маршрутизации:
@@ -25,22 +16,18 @@ from blueprints.schedule import schedule_blueprint
 """
 # настройка flask
 app = Flask(__name__) 
+# определения языка приложения
+def get_locale():
+    return 'ru'
+babel = Babel(app, locale_selector=get_locale) # аргумент требует функцию
 app.appСontorller = App_contorller() # добавляем свой класс с данными в приложение
 # регистрация блюпринтов
-app.register_blueprint(builds_blueprint)
-app.register_blueprint(gallery_blueprint)
-app.register_blueprint(hardwares_blueprint)
-app.register_blueprint(index_blueprint)
-app.register_blueprint(login_blueprint)
-app.register_blueprint(news_blueprint)
-app.register_blueprint(persons_blueprint)
-app.register_blueprint(schedule_blueprint)
+app.appСontorller.registerAll_blueprints(app)
 # настройка flask_admin
 flask_admin = Admin(app, name='Панель администратора')
 flask_admin.base_template ='flask_admin/master.html'
 modelsWithView = app.appСontorller.models_importer()
 flask_admin.add_views(*modelsWithView)
-# flask_admin.add_views()
 # настройка flask_login
 login_manager = LoginManager()
 login_manager.init_app(app)
