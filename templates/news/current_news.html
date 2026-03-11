@@ -9,7 +9,7 @@
     {% if current_user.is_authenticated %}
     <!--инстурменты администратора для данного блока-->
     <div class="admin_tools">
-        <button class="longBasisBtn"><a href="/news/create/msg">добавить новость</a></button>
+        <button class="my_add_btn_static"><a href="/actions_news/create/msg">добавить новость</a></button>
     </div>
     {% endif %}
     <div class="container">
@@ -17,18 +17,18 @@
             {% for new in news %}
             <div class="row" data-new_id="{{new['id']}}">
                 <div class="news_image col-4">
-                    <img src="/{{new['image_src']}}" alt="...">
+                    <img src="{{new['image_src']}}" alt="...">
                 </div>
                 <div class="col">
                     <h5 class="card-title">{{new['title']}}</h5>
                     <p class="card-text">{{new['news_desc']}}</p>
                     <p class="news_date">{{new['date']}}</p>
-                    <a href="/news/more/{{new['id']}}" class="btn btn-light">Узнать больше</a>
+                    <a href="/news" class="btn btn-light">Узнать больше</a>
                 </div>
                 {% if current_user.is_authenticated == True %}
                 <div class="col news_edit_tools">
-                    <a class="basis_edit_btn" href="/news/update/msg/{{new['id']}}"></a> 
-                    <a class="basis_close_btn" href="/news/delete/{{new['id']}}"></a>
+                    <a class="basis_edit_btn" href="/actions_news/update/msg/{{new['id']}}"></a> 
+                    <a class="basis_close_btn" href="/actions_news/delete/{{new['id']}}"></a>
                 </div>
                 {% endif %}
             </div>

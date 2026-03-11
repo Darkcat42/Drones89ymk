@@ -11,18 +11,6 @@
                             <img src="/static/img/news/news_placeholder.jpg" style="max-height: 350px" class="card-img-top my_card_img" alt="...">
                         </div>
                     </div>
-                    <!-- элемент слайдера -->
-                    <!-- <div class="carousel-item">
-                        <div class=" mb-3" style="max-width: 80%; margin: 0 15%;">
-                            <img src="/static/img/news/news_placeholder.jpg" style="max-height: 350px" class="card-img-top my_card_img" alt="...">     
-                        </div>
-                    </div> -->
-                    <!-- элемент слайдера -->
-                    <!-- <div class="carousel-item">
-                        <div class=" mb-3" style="max-width: 80%; margin: 0 15%;">
-                            <img src="/static/img/news/news_placeholder.jpg" style="max-height: 350px" class="card-img-top" alt="...">  
-                        </div>
-                    </div>  -->
                 </div>
                 <!-- кнопки назад \ вперед слайдера -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -32,20 +20,18 @@
                 <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Следующий</span>
-                </button>
-                
+                </button> 
             </div>
             {% if current_user.is_authenticated == True %}
-                <div class="edit_tools">
-                    <a class="" href="">изменить слайдер</a> 
+                <div class="edit_tools ">
+                    <a class="longBasisBtn" href="">изменить слайдер</a> 
                 </div>
-                {% endif %}
+            {% endif %}
         </div>
         <!-- блок текста с приветствием и опросом -->
         <div class="col-lg-5" id="content" data-id="">
           <div class="card_right">
             <h2 class="mb-4">Рады тебя видеть!</h2>
-            <p></p>
             <p>Ямальский многопрофильный колледж открывает направление FPV-дронов</p>
             <p>Тема FPV-дронов достаточно актуальна на сегоднейший день, мы хотим попробывать дать нашим студентам навыки и скиллы, которые в будущем будут им полезны</p>
             <p>Пожалуйста, пройди опрос по кнопке ниже</p>

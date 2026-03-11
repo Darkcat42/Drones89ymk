@@ -2,7 +2,7 @@
 {% block content %}
 <div class="static_h basic_bg">
     <div class="container">
-            <form id="news_create_form" action="/actions_news/create/submit" method="post" enctype="multipart/form-data">
+            <form id="news_create_form" action="/news/create/submit" method="post" enctype="multipart/form-data">
                 <h1>Создание новой новости</h1>
                 {% if msg == 'msg' %}
                 <h2 class="actionNews_msg"></h2>
@@ -24,9 +24,7 @@
                             <textarea  id="" class="col" name="news_text"></textarea>
                         </div>
                     </div>
-                    <!-- <div id="images_preview" class="flex-row mb-3 d-flex ">
-                        <img id="news_placeholder" src="/static/img/placeholders/news_placeholder.jpg" alt="">
-                    </div> -->
+                    
                 </div>
                 <div class="d-flex justify-content-center">
                     <input class="modal_submit" type="submit" value="Создать">

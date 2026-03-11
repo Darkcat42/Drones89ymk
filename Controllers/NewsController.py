@@ -20,10 +20,9 @@ class NewsController():
     def delete(cls, id):
         return News.delete().where(News.id == id).execute()
     @classmethod
-    def getNews(cls, getter_result):
-        news = getter_result
+    def getNews(cls):
         news_list = []
-        for new in news:
+        for new in cls.get():
             new_dict = {}
             new_dict['id'] = new.id
             new_dict['title'] = new.title

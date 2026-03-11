@@ -28,26 +28,30 @@ body {    padding: 0 !important;    margin: 0 !important;}
 #img_close {display: none;}
 .basic_bg { 
     background: url("../img/bg.svg") center no-repeat;}
-/* стили кнопок */
+/* стили универсальных кнопок */
+.basis_close_btn, 
+.basis_edit_btn,
+.replace_edit_btn {
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+}
 .edit_tools{
     display: flex;
     justify-content: center;
-    /* align-items: top; */
-    z-index: 5;
-    /* position: absolute; */
-    
+    z-index: 5; 
 }
-/* .media_tools{
-    position: absolute;
-    transform: translateX(100%);
-    top: 5%;
-    width: 50%;
-} */
-/* .media_tools > * {
-    margin-top: 5%;
-    margin: 0 5%;
-    padding: 0;
-} */
+.longBasisBtn{
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 1.2em;
+    border: 1px solid white;
+    /* border-radius: 12px; */
+    width: fit-content;
+    padding: 2%;
+    color: white;
+}
+
 .basis_close_btn {
     background: url('/static/svg/icon_exit_darkPurple.svg');
     width: 30px;
@@ -66,14 +70,6 @@ body {    padding: 0 !important;    margin: 0 !important;}
     width: 30px;
     height: 30px;
     margin-top: 5px; 
-}
-.basis_close_btn, 
-.basis_edit_btn,
-.replace_edit_btn {
-    cursor: pointer;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: none;
 }
 /* блок слайдера с опросом  quiz_block.html */
 
