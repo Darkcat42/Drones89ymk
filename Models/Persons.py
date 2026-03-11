@@ -13,6 +13,9 @@ class Persons(Base):
     firstName = CharField()
     lastName = CharField()
     person_desc = TextField()
+
+    def __str__(self):
+        return self.firstName +' '+ self.lastName
     
 if __name__ == '__main__':
     connect_db().create_tables([Persons, Persons_types, Images])

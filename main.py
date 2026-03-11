@@ -14,10 +14,15 @@ from Models.Sections import *
 from Models.Users import *
 from Models.Videos import *
 from Models.Webpages import *
+
+# импортирование flask_admin переопределений моделей  
+from Models.ModelView.Builds_authors_admin import Builds_authors_admin
+
 import os, datetime
 from functools import cached_property
 import peewee
 from flask_admin.contrib.peewee import ModelView
+
 class App_contorller():
     """класс для функций и данных приложения"""
     def __init__(self):
@@ -69,26 +74,12 @@ class App_contorller():
         return self.make_Dir(os.path.join(savePath, cur_dir_name))
     @staticmethod
     def models_importer():
-        models = [
-            Builds_authors,
-            Builds_hardwares,
-            Builds,
-            GalleryEvents_images,
-            GalleryEvents,
-            Hardwares,
-            Images,
-            News,
-            Persons_types,
-            Persons,
-            Roles, 
-            Schedule,
-            Sections,
-            Users,
-            Videos,
-            Webpages
+        # для моделей без класс представления flask-admin необходима оболочка
+        #  [ModelView(model) for model in models] 
+        return [
+            Builds_authors_admin(Builds_authors)
         ]
-        # для моделей необходима оболочка
-        return [ModelView(model) for model in models] 
+        
             
 
     
