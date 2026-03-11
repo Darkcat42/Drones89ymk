@@ -5,7 +5,7 @@ from flask import render_template, request, Blueprint, current_app
 from Controllers.UserController import UsersController
 
 
-login_blueprint = Blueprint('login', __name__)
+login_blueprint = Blueprint('login_bluep', __name__)
 # авторизация в приложении
 @login_blueprint.route('/login', methods=['GET']) 
 def login_redirect():

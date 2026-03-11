@@ -10,7 +10,7 @@ from Controllers.Builds_authorsController import Builds_authorsController
 from Controllers.ImagesController import ImagesController
 from pathlib import Path
 
-builds_blueprint = Blueprint('builds', __name__) 
+builds_blueprint = Blueprint('builds_bluep', __name__) 
 
 
 # маршруты для страницы сборок

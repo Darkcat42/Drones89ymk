@@ -4,7 +4,7 @@ from flask_login import login_required
 from flask import render_template, request, Blueprint, current_app
 from Controllers.ScheduleController import ScheduleController
 
-schedule_blueprint = Blueprint('schedule', __name__)
+schedule_blueprint = Blueprint('schedule_bluep', __name__)
 # маршруты для блока расписания главной страницы
 @schedule_blueprint.route('/updateSchedule_page/<id>', methods=['GET'])
 @login_required

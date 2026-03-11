@@ -1,5 +1,6 @@
 # импорты системных библиотек
 from flask_login import LoginManager
+from flask_admin import Admin
 from flask import Flask
 from flask import redirect as flask_redirect
 # импорт классов приложения
@@ -32,6 +33,10 @@ app.register_blueprint(login_blueprint)
 app.register_blueprint(news_blueprint)
 app.register_blueprint(persons_blueprint)
 app.register_blueprint(schedule_blueprint)
+# настройка flask_admin
+flask_admin = Admin(app, name='Apmin panel')
+modelsWithView = app.appСontorller.models_importer()
+flask_admin.add_views(*modelsWithView)
 # настройка flask_login
 login_manager = LoginManager()
 login_manager.init_app(app)

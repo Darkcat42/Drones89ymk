@@ -9,7 +9,9 @@
                 <div class="col-1">
                     <h5 class="card-title">{{lastNews['title']}}</h5>
                     <p class="lastNews_date">{{lastNews['date']}}</p>
-                    <a href="/news" class="btn btn-light">Узнать больше</a>
+                    <a href="/news" class="btn btn-light">больше новостей</a>
+                    <a href="/news/more/{{lastNews['id']}}" class="btn btn-light">Узнать больше</a>
+                    
                 </div>
                 <div class="col-5">
                     <p class="card-text">{{lastNews['news_desc']}}</p>

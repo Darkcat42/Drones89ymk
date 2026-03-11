@@ -7,7 +7,7 @@ from Controllers.GalleryEvents_imagesController import GalleryEvents_imagesContr
 from Controllers.ImagesController import ImagesController
 from pathlib import Path
 
-gallery_blueprint = Blueprint('gallery', __name__) 
+gallery_blueprint = Blueprint('gallery_bluep', __name__) 
 
 # маршруты для страницы галерея
 @gallery_blueprint.route('/gallery') 

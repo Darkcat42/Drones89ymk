@@ -7,13 +7,15 @@
 <!--Секция новости-->
 <section id="news" class="static_h basic_bg"> 
     {% if current_user.is_authenticated %}
-    <!--инстурменты администратора для данного блока-->
-    <div class="admin_tools">
-        <button class="longBasisBtn"><a href="/news/create/msg">добавить новость</a></button>
+    <div class="admin_tools"> <!--инстурменты администратора для данного блока-->
+        <button class="blackBasisBtn"><a href="/news/create/msg">добавить новость</a></button>
     </div>
     {% endif %}
     <div class="container">
         <div class="d-flex flex-column">
+            {% if not news %}
+                <h1>Новостей нет, добавьте новость</h1>
+            {% else %}
             {% for new in news %}
             <div class="row" data-new_id="{{new['id']}}">
                 <div class="news_image col-4">
@@ -33,6 +35,7 @@
                 {% endif %}
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
   </section>

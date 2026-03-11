@@ -1,0 +1,102 @@
+/*страница новости */
+#news div.d-flex > div.row{
+    margin: 1%;
+    padding: 1%; 
+    color: black;
+    border: 1px solid white;
+    box-shadow: 3px 1px 15px 1px #4b2067 ;
+    filter: brightness(90%) blur(0px);
+    border-radius: 12px;
+    background: white;
+}
+#news div.d-flex > div.row:hover{
+    background: #4b2067;
+    border: 1px solid white;
+    color: white;
+}
+#news div.d-flex > div.row:hover .basis_close_btn {
+    background: url('/static/svg/exit_icon_light.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#news div.d-flex > div.row:hover .basis_edit_btn {
+    background: url('/static/svg/icon_edit.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+/*форма новой новость */
+#news_create_form{
+    color: white;
+}
+/*форма изменить новость */
+#news_create_form{
+    color: white;
+}
+#news > .container{padding-top: 50px;}
+.news_image{
+    padding: 0;
+    margin: 0;
+    max-height: 170px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    border-radius: 6px;    
+    border: 1px solid white;
+}
+.news_image img {
+    min-width: 300px;
+    object-fit: cover;
+    object-position: center; 
+}
+/* новости */
+.news_edit_tools {
+    display: flex; 
+    justify-content: end;
+    align-items: baseline;
+}
+.news_edit_tools > * { filter: opacity(100%) !important;}
+
+.actionNews_msg{ /* страница новости */
+    color: rgb(211, 218, 1);    
+    width: auto;
+    height: 50px;
+    margin: 2% auto;
+}
+/* страница новости */
+/* последняя новость блок */
+.purple_gradient{
+    background: linear-gradient(to top, #4b2067, #331648, #2C133E)
+}
+.lastNews { 
+    background-color: none;
+    padding: 1%;
+    color: white;
+}
+.lastNews>*{margin: 0 auto;}
+.lastNews_date{
+    border: 1px solid black;
+    width: fit-content;
+    padding: 0 20px;
+    background: white;
+    color: black;
+}
+.lastNews img.img-fluid{
+    /* width: 200px; */
+    height: 120%;
+    border-radius: 6px;
+}
+.news_date{
+    border: 1px solid black; 
+    width: fit-content; 
+    padding: 0 20px;
+}
+
+
+
+
+
+
+
+

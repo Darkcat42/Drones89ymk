@@ -5,7 +5,7 @@ from flask import render_template, request, Blueprint, current_app
 from Controllers.ScheduleController import ScheduleController
 from Controllers.NewsController import NewsController
 
-index_blueprint = Blueprint('index_blueprint', __name__)
+index_blueprint = Blueprint('index_bluep', __name__)
 @index_blueprint.route('/') 
 def index():
     """маршрут на главную"""
@@ -24,6 +24,10 @@ def admin_panel():
         scheduleInfo='расписание',
         lastNews=NewsController.getLast_dict()
         )
+@index_blueprint.route('/flask_admin/')
+@login_required
+def flask_admin():
+    return flask.redirect('/admin/')
 # маршруты для страницы документов с правилами
 @index_blueprint.route('/doc')
 def doc():

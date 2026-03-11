@@ -6,33 +6,14 @@
 {% block content %}
 <!--Секция новости-->
 <section id="news" class="static_h basic_bg"> 
-    {% if current_user.is_authenticated %}
-    <!--инстурменты администратора для данного блока-->
-    <div class="admin_tools">
-        <button class="my_add_btn_static"><a href="/actions_news/create/msg">добавить новость</a></button>
-    </div>
-    {% endif %}
     <div class="container">
         <div class="d-flex flex-column">
-            {% for new in news %}
-            <div class="row" data-new_id="{{new['id']}}">
-                <div class="news_image col-4">
-                    <img src="{{new['image_src']}}" alt="...">
-                </div>
-                <div class="col">
-                    <h5 class="card-title">{{new['title']}}</h5>
-                    <p class="card-text">{{new['news_desc']}}</p>
-                    <p class="news_date">{{new['date']}}</p>
-                    <a href="/news" class="btn btn-light">Узнать больше</a>
-                </div>
-                {% if current_user.is_authenticated == True %}
-                <div class="col news_edit_tools">
-                    <a class="basis_edit_btn" href="/actions_news/update/msg/{{new['id']}}"></a> 
-                    <a class="basis_close_btn" href="/actions_news/delete/{{new['id']}}"></a>
-                </div>
-                {% endif %}
+            <div class="news_image col-4">
+                    <img src="/{{current_news['image_src']}}" alt="...">
             </div>
-            {% endfor %}
+            <h1 class="">{{current_news['title']}}</h5>
+            <p class="">{{current_news['news_desc']}}</p>
+            <p class="news_date">{{current_news['date']}}</p>
         </div>
     </div>
   </section>

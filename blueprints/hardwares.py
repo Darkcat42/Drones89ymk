@@ -5,7 +5,7 @@ from flask import render_template, request, Blueprint, current_app
 from Controllers.HardwaresController import HardwaresController
 from pathlib import Path
 
-hardwares_blueprint = Blueprint('hardwares', __name__) 
+hardwares_blueprint = Blueprint('hardwares_bluep', __name__) 
 
 
 # маршруты для страницы оборудования

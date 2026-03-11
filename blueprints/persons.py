@@ -6,7 +6,7 @@ from Controllers.PersonsController import PersonsController
 from Controllers.ImagesController import ImagesController
 from pathlib import Path
 
-persons_blueprint = Blueprint('persons', __name__) 
+persons_blueprint = Blueprint('persons_bluep', __name__) 
 
 # маршруты для страницы персон
 @persons_blueprint.route('/persons')
