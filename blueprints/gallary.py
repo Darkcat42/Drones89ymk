@@ -14,7 +14,7 @@ gallery_blueprint = Blueprint('gallery_bluep', __name__)
 def gallery():
     """маршрут на страницу с галереей"""
     return render_template(
-        'gallery/gallery.html',
+        'webpages/gallery/gallery.html',
         list_of_gallerys = GalleryEvents_imagesController.get_all_gallerys()
         )
 @gallery_blueprint.route('/deleteGalleryEvent_page/<id>', methods=['GET']) 
@@ -27,7 +27,7 @@ def deleteGalleryEvent_page(id):
 @login_required
 def createGalleryEvent_page():
     return flask.render_template(
-            'gallery/createGallery_page.html'
+            'webpages/gallery/createGallery_page.html'
         )
 @gallery_blueprint.route('/createGalleryEvent_action', methods=['POST']) 
 @login_required
@@ -63,7 +63,7 @@ def createGalleryEvent_action():
 @login_required
 def updateGalleryEvent_page(id):
     return flask.render_template(
-            'gallery/updateGalleryEvent_page.html',
+            'webpages/gallery/updateGalleryEvent_page.html',
             gallery = GalleryEvents_imagesController.get_cur_gallery(id)
         )
 @gallery_blueprint.route('/updateImage_action/<GalleryEvents_images>', methods=['POST']) 

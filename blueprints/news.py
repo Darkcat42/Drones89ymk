@@ -13,7 +13,7 @@ def news():
     """переход на страницу c новостями"""
     news = NewsController.getNews()
     return render_template(
-        'news/news.html',
+        'webpages/news/news.html',
         news=news,
         )
 @news_blueprint.route('/news/more/<id>')
@@ -21,14 +21,14 @@ def current_news(id):
     """переход на страницу новости"""
     current_news = NewsController.getNew_dict(id)
     return render_template(
-        'news/current_news.html',
+        'webpages/news/current_news.html',
         current_news=current_news,
         )
 @news_blueprint.route('/news/create/<msg>', methods=['GET']) 
 @login_required
 def createNews_page(msg):
         return flask.render_template(
-            'news/add_news.html',
+            'webpages/news/add_news.html',
             msg = msg
         )
 @news_blueprint.route('/news/delete/<id>')
@@ -76,7 +76,7 @@ def addNews_action():
 @login_required
 def updateNews_page(id, msg):
         return flask.render_template(
-            'news/update_news.html',
+            'webpages/news/update_news.html',
             news = NewsController.getNew_dict(id),
             msg = msg
         )

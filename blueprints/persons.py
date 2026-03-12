@@ -13,14 +13,14 @@ persons_blueprint = Blueprint('persons_bluep', __name__)
 def persons():
     """маршрут на страницу """
     return render_template(
-        'persons/persons.html',
+        'webpages/persons/persons.html',
         persons = PersonsController.getPersons()
         )
 @persons_blueprint.route('/createPersons_page', methods=['GET']) 
 @login_required
 def createPerson_page():
     return flask.render_template(
-        'persons/createPersons_page.html'
+        'webpages/persons/createPersons_page.html'
         )
 @persons_blueprint.route('/createPersons_action', methods=['POST']) 
 @login_required
@@ -95,7 +95,7 @@ def updatePersons_action(id):
 @login_required
 def updatePerson_page(id):
     return flask.render_template(
-        'persons/updatePersons_page.html',
+        'webpages/persons/updatePersons_page.html',
         person = PersonsController.get_cur_Person(id)
         )
 @persons_blueprint.route('/deletePersons_action/<id>', methods=['GET']) 

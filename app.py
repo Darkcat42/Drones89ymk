@@ -4,10 +4,11 @@ from flask_admin import Admin
 from flask_babel import Babel
 from flask import Flask
 from flask import redirect as flask_redirect
+
+
 # импорт классов приложения
 from Controllers.UserController import UsersController
 from main import App_contorller
-
 # создание и настройка приложения
 """
 логика маршрутизации:
@@ -25,7 +26,7 @@ app.appСontorller = App_contorller() # добавляем свой класс �
 app.appСontorller.registerAll_blueprints(app)
 # настройка flask_admin
 flask_admin = Admin(app, name='Панель администратора')
-flask_admin.base_template ='flask_admin/master.html'
+# flask_admin.base_template ='flask_admin/master.html' - не требуется, главное создать сам файл а фреймворк его найдет
 modelsWithView = app.appСontorller.models_importer()
 flask_admin.add_views(*modelsWithView)
 # настройка flask_login
@@ -47,5 +48,6 @@ def fav_pass():
     return 'favicon'
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 

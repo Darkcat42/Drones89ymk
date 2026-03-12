@@ -13,7 +13,7 @@ def login_redirect():
 @login_blueprint.route('/login_page/<msg>', methods=['GET'])
 def login_page_msg(msg = ''):
     return flask.render_template(
-        'login/login.html',
+        'webpages/login/login.html',
         msg = msg)
 @login_blueprint.route('/login_action', methods=['POST'])
 def login():

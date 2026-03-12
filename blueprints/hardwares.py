@@ -14,15 +14,14 @@ hardwares_blueprint = Blueprint('hardwares_bluep', __name__)
 def hardwares():
     """маршрут на страницу """
     return render_template(
-        'hardwares/hardwares.html',
+        'webpages/hardwares/hardwares.html',
         hardwares = HardwaresController.get_hardwares()
         )
 @hardwares_blueprint.route('/createHardwares_page', methods=['GET']) 
 @login_required
 def createHardwares_page():
     return flask.render_template(
-        'hardwares/createHardwares_page.html',
-       
+        'webpages/hardwares/createHardwares_page.html'
         )
 @hardwares_blueprint.route('/createHardwares_action', methods=['POST']) 
 @login_required
@@ -67,7 +66,7 @@ def updateHardwares_action(id):
 @login_required
 def updateHardwares_page(id):
     return flask.render_template(
-        'hardwares/updateHardwares_page.html',
+        'webpages/hardwares/updateHardwares_page.html',
         hardware = HardwaresController.get_cur_hardware(id)
         )
 @hardwares_blueprint.route('/deleteHardwares_action/<id>', methods=['GET']) 

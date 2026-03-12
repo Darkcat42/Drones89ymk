@@ -18,7 +18,7 @@ builds_blueprint = Blueprint('builds_bluep', __name__)
 def build():
     """маршрут на страницу сборок с дронами"""
     return render_template(
-        'builds/build.html',
+        'webpages/builds/build.html',
         builds = BuildController.getBuilds()
         )
 @builds_blueprint.route('/createBuilds_page', methods=['GET']) 
@@ -32,7 +32,7 @@ def createBuilds_page():
     hardwares.append(['Расходники', HardwaresController.get_hardwaresCategoty('consumables')])
     hardwares.append(['Программное обеспечение', HardwaresController.get_hardwaresCategoty('software')])
     return flask.render_template(
-        'builds/createBuilds_page.html',
+        'webpages/builds/createBuilds_page.html',
         hardwares = hardwares,
         persons = PersonsController.getPersons(),
         )
@@ -114,7 +114,7 @@ def updateBuilds_action(id):
 @login_required
 def updateBuilds_page(id):
     return flask.render_template(
-        'builds/updateBuilds_page.html',
+        'webpages/builds/updateBuilds_page.html',
         hardware = HardwaresController.get_cur_hardware(id)
         )
 @builds_blueprint.route('/deleteBuilds_action/<id>', methods=['GET']) 

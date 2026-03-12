@@ -10,7 +10,7 @@ schedule_blueprint = Blueprint('schedule_bluep', __name__)
 @login_required
 def updateSchedule_page(id):
         return flask.render_template(
-            'schedule/updateSchedule_action.html',
+            'webpages/schedule/updateSchedule_action.html',
             day = ScheduleController.get_currentScheduleDay(id)
         )
 @schedule_blueprint.route('/updateSchedule_action/<id>', methods=['POST'])
@@ -35,7 +35,7 @@ def redirect_to_createSchedule_page():
 @login_required
 def createSchedule_page(msg):
         return flask.render_template(
-            'schedule/createSchedule_action.html',
+            'webpages/schedule/createSchedule_action.html',
             edit_schedule = False,
             day = None,
             msg = msg
