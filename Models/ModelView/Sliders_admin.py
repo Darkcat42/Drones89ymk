@@ -6,8 +6,16 @@ class Sliders_admin(ModelView):
         if 'name' not in kwargs:
             kwargs['name'] = 'Слайдеры'
         super().__init__(model, *args, **kwargs)
-#     id = PrimaryKeyField()
-#     image_id = ForeignKeyField(Images, backref='image_id')
+    def _image_formatter(view, context, model, name):
+        image_src = model.image_id.src
+        if not image_src:
+            return ""
+        return Markup(f'<img src="../../{image_src}" class="img-fluid fsi lazy" alt="...">')
+    # форматируем сами столбцы
+    column_labels = {
+        'image_id' : 'картинка',
+    }
+    column_formatters = {
+        'image_id': _image_formatter,
+    }
 
-# if __name__ == '__main__':
-#     connect_db().create_tables([Sliders, Images])

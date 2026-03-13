@@ -6,6 +6,17 @@ class Hardwares_admin(ModelView):
         if 'name' not in kwargs:
             kwargs['name'] = 'Оборудование'
         super().__init__(model, *args, **kwargs)
+    column_labels = {
+        
+        'galleryEvent_id' : 'галерея',
+        'image_id' : 'картинка',
+        'category': 'категория',
+        'name': 'название',
+        'count': 'количество',
+        'cost': 'цена',
+        'sourceName': 'источник',
+        'sourceUrl': 'ссылка на источник',
+    }
 #     """
 #     модель 
 #     """

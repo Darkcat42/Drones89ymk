@@ -1,5 +1,6 @@
 from flask_admin.contrib.peewee import ModelView
 class Schedule_admin(ModelView):
+    # переопределяем страницу
     list_template = 'admin/templates_admin/schedule.html'
     # загружаем в объект представления flask-admin данные для меню панели администраора
     def __init__(self, model, *args, **kwargs):

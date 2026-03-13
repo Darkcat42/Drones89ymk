@@ -6,6 +6,10 @@ class Builds_hardwares_admin(ModelView):
         if 'name' not in kwargs:
             kwargs['name'] = 'Сборки и оборудование'
         super().__init__(model, *args, **kwargs)
+    column_labels = {
+        'Hardwares_id' : 'оборудование',
+        'builds_id' : 'сборка',
+    }
 #     """
 #     модель 
 #     """

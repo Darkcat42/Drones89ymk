@@ -13,8 +13,6 @@ from Models.Schedule import *
 from Models.Sections import *
 from Models.Users import *
 from Models.Sliders import *
-
-# from Models.Webpages import *
 # импортирование блюпринтов
 from blueprints.builds import builds_blueprint
 from blueprints.gallary import gallery_blueprint

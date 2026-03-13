@@ -4,8 +4,6 @@ from flask_admin import Admin
 from flask_babel import Babel
 from flask import Flask
 from flask import redirect as flask_redirect
-
-
 # импорт классов приложения
 from Controllers.UserController import UsersController
 from main import App_contorller

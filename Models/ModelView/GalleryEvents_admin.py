@@ -6,6 +6,10 @@ class GalleryEvents_admin(ModelView):
         if 'name' not in kwargs:
             kwargs['name'] = 'Галереи'
         super().__init__(model, *args, **kwargs)
+    column_labels = {
+        'date' : 'дата',
+        'title' : 'заголовок',
+    }
 #     """
 #     модель 
 #     """

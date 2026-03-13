@@ -7,13 +7,134 @@
   {{ super() }}
   <style>
     /* Скрываем стандартную верхнюю навигацию Flask-Admin */
-    #admin-navbar-collapse, .navbar-dark {
-        display: none !important;
-    }
+    #admin-navbar-collapse, .navbar-dark {display: none !important;}
+    *{margin: 0 !important;}
+    header{padding: 0 !important;}
     body {
         background: url("/static/img/bg.svg") center no-repeat !important; 
-        min-height: 80vh !important;
+        min-height: 100vh !important;
+        /* background: linear-gradient(180deg,#2b1130 0%, #54225e 100% ) !important; */
+        background-attachment: fixed; /* Чтобы фон не прерывался при скролле */
+        /* overflow: hidden !important; */
+        margin: 0 4% !important;
+        box-shadow: 0px 0px 25px 5px #371344;
     }
+    /* body > div > div.container{
+        overflow: auto !important;
+        margin-left: 1% !important;
+    } */
+    body > div > div.row{
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+ 
+    }
+    body > div div.container{
+        background-color: #31123C;
+        min-height: 86vh !important;
+        max-height: 86vh !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: auto !important;
+        max-width: 102% !important;
+        min-width: 102% !important;
+    }
+     
+    body div.col-10, body div.col-2 {padding: 0 !important;}
+    ul{background-color: #1c0823; border-top-right-radius: 6px; margin-top: 50px;} 
+    ul>li>a{color: white !important; font-size: 1.1em !important;}
+    ul>li>a.active{color: black !important;}
+    ul>li.show>a{color: black !important;}
+    ul>li:hover{
+        transform: translateY(-5px) ;
+        transition-duration: 100ms;
+        transition-property: all;
+    }
+    label{color: white !important;}
+    fieldset{width: 50%;margin: auto;}
+    input[name='_continue_editing']{display: none;}
+    div.form-group:last-child{width: 100% !important;}
+    div.form-group:last-child *{
+        width: 100% !important;
+        padding: 0;
+        margin: auto;
+    }
+    div.form-group:last-child input, div.form-group:last-child a{
+        margin-bottom: 2%;
+        font-size: 1.3vw;
+        border: 1 px solid red !important;
+        outline: none;
+    }
+    table > thead > tr > th:nth-child(2){
+        width: 130px;
+        text-align: center;   
+    }
+    table {
+        border: 1px solid silver !important;
+        position: relative;
+    }
+    table > thead > tr > th{
+        background-color: #31123C !important;
+        color: silver;
+        border: none !important;
+    }
+    table > thead > tr > th a{color: silver;}
+    table > thead > tr > th:nth-child(2)::before {
+            content: "Действия";
+            color: silver;
+        }
+    table > tbody > tr > td:first-child:hover input{
+        transform: scale(2) translateY(3px);
+        transition-duration: 150ms;
+        transition-property: all;   
+    }
+    table > tbody > tr > td:first-child input{transform: scale(1.5) translateY(3px);}
+    table > tbody > tr > td:first-child input:checked{transform: scale(2) translateY(3px);}
+    .list-buttons-column {font-size: 1.5em;padding-top: 1% !important;}
+    .list-buttons-column a:first-child{margin-right: 20px;padding-left: 5px;}
+    .list-buttons-column a:hover span, .list-buttons-column form:hover span{
+        transform: scale(1.4, 1.4);
+        transition-duration: 150ms;
+        transition-property: all;
+    }
+    td.col-inch{font-size: 2em;text-align: center;}
+    td.col-build_image_id, td.col-prev{
+        width: 15%;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    td img{width: 200px !important;height: 150px !important;}
+    td, th{
+        text-align: center;
+        vertical-align: middle !important;
+    }
+    thead{position: static; width: 100%; z-index: 5; top: 0; height: 20px !important;}
+    li.dropdown{z-index: 6;}
+    /* стили для меню выбора таблицы */
+    .master_link{
+        margin: 2% 0;
+    }
+    .admin_master_tools{
+        background-color: #1c0823 !important;
+        max-width: 15% !important;
+        overflow: auto !important;
+        min-height: 86vh !important;
+        max-height: 86vh !important
+    }
+    .admin_master_tools > * {
+        margin: 2% !important;
+        border: 1px solid silver;
+    }
+    .admin_master_tools > a:hover{
+        transform: translateX(15px);
+        z-index: 5;
+        transition-duration: 100ms;
+        transition-property: all;
+    }
+    
+    footer{background-color: #1c0823 !important;}
+    footer p{text-align: center; transform: translateX(30%);}
     </style>
 {% endblock %} 
 {% block page_body  %}
@@ -44,9 +165,7 @@
                 </a> 
                 <button onclick="HeaderFull()" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <div id="bg_close">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    
                     </div>
                     <img src="{{url_for('static', filename='img/close_square.svg')}}" alt="" id="img_close">
                 </button>
@@ -55,7 +174,6 @@
                     <div class="navbar-nav">
                         <a class="nav-link header_color" href="/admin/">главная</a>
                         <a class="nav-link header_color" href="/admin_panel">вернуться в просмотр сайта</a>
-                        
                         <a class="nav-link header_color" href="/logout">выход из аккаунта</a>
                     </div>
                 <div class="db_nao db_yes telegram_header">
@@ -69,28 +187,34 @@
             </div>
         </nav>
         </div>
-        <!-- <div class="col-lg-3 col-sm-1 icons_social db132">
+        <div class="col-lg-3 col-sm-1 icons_social db132">
             <a href="https://t.me/+YMLvPOIS-YxlNWRi">
             <img src="img/telegram.svg" alt="" width="30px" height="auto">
             </a>
-        </div> -->
+        </div>
         </div>
     </div>
     </header>
     {% if current_user.is_authenticated %}
-<div class="edit_tools">
-    {% for item in admin_view.admin.menu() %}
-        {% if item.get_url() != '/admin/' %}
-        <a class="nav-link header_color" href="{{ item.get_url() }}">{{ item.name }}</a>
-        {% endif %}
-    {% endfor %}
-</div>
 {% endif %}
-    {{ super() }}
-    <h1 style="text-align: center; color: white;">Панель администрирования сайта</h1>
-    <!-- <footer class="footer_item">
-    <div class="container flex_footer_cen">
+    <div class="">
+        <div class="row">
+       <div class="admin_master_tools col-2">
+        {% for item in admin_view.admin.menu() %}
+            {% if item.get_url() != '/admin/' %}
+            <a class="nav-link header_color master_link" href="{{ item.get_url() }}">{{ item.name }}</a>
+            {% endif %}
+        {% endfor %}
+        </div> 
+        <div class="col-10">
+            {{ super() }}
+        </div>
+    </div>
+    </div>
+    <footer class="footer_item">
+    <div class="container">
         <p>© ГБПОУ ЯНАО «Ямальский многопрофильный колледж». Все права защищены. <a href="/policy" class="link_policy">Пользовательское соглашение</a></p>
     </div>
-    </footer> -->
+    </footer>
+
 {% endblock %}
