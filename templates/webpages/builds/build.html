@@ -4,18 +4,19 @@
     {% extends 'base/base.html' %}
 {% endif %}
 {% block content %}
-<section id="build" class="static_h basic_bg">
-        <div class="container">
-            {% if current_user.is_authenticated %}
+{% if current_user.is_authenticated %}
             <!--инстурменты администратора для данного блока-->
-            <div class="row">
-                <!-- <button class="my_add_btn_static"><a href="/createHardwares_page">добавить оборудование</a></button> -->
-                <button class="my_add_btn_static"><a href="/hardwares">оборудование</a></button>
-                <!-- <button class="my_add_btn_static"><a href="/createPersons_page">добавить автора</a></button> -->
-                <button class="my_add_btn_static"><a href="/persons"> авторы</a></button>
-                <button class="my_add_btn_static"><a href="/createBuilds_page">создать новую сборку</a></button>
+            <div class="edit_tools">
+               
+              <a href="/hardwares">оборудование</a>
+                
+              <a href="/persons"> авторы</a>
+                <a href="/createBuilds_page">создать новую сборку</a>
             </div>
             {% endif %}
+<section id="build" class="static_h basic_bg">
+        <div class="container">
+            
             <div class="info_build">
                     <p>Добро пожаловать на страницу по сборке дронов. Данный раздел предназначен для предоставления элементов деталей для конструирования своего собственного FPV-дрона. Здесь вы найдете для себя идея и элементы оборудования для готовых сборок себе в копилку, в том числе примерный ценовой диапозон и магазины покупки деталей</p>
             </div>

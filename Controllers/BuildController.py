@@ -1,28 +1,11 @@
-from Models.Builds import *
-from Controllers.ImagesController import *
-from Controllers.Builds_hardwaresController import *
-from Controllers.Builds_authorsController import *
-class BuildController():
+from Models.Builds import Builds
+from Controllers.ImagesController import ImagesController
+from Controllers.Builds_hardwaresController import Builds_hardwaresController
+from Controllers.Builds_authorsController import Builds_authorsController
+from Controllers.ModelsController import ModelsController
+class BuildController(ModelsController):
+    model = Builds
     """управление данными cборок с дронами"""
-    @classmethod
-    def get(cls):
-        return Builds.select()
-    @classmethod
-    def add(cls, **kwargs):
-        return Builds.create(**kwargs)
-    # def add(cls, inch, build_desc, build_image_id):
-    #     return Builds.create(
-    #         inch=inch,
-    #         build_desc=build_desc,
-    #         build_image_id=build_image_id
-    #     )
-    @classmethod
-    def delete(cls, id):
-        return BuildController.delete().where(BuildController.id == id).execute()
-    @classmethod
-    def update(cls, id, **filds):
-        for key, value in filds.items():
-            BuildController.update({key:value}).where(BuildController.id == id).execute()
     @classmethod
     def getBuilds(cls):
         builds = BuildController.get()

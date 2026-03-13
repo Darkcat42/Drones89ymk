@@ -9,13 +9,13 @@ class ConverterWeb():
     3. method: выбор - качеством или скоростью (0 = быстро, 6 = медленнее-лучше). По умолчанию 4.
     4. exact: True - сохраняет значения прозрачного RGB. В противном случае отбрасывает невидимые значения RGB для лучшего сжатия. по умолчанию False. Требуется libwebp 0.5.0
     """
-    @classmethod
+    
     # def convertImage(cls, img_src, quality=80, method=4, lossless=False, exact=False):
     #     output = 'str(self.output) + '/' + str(Path(file).stem) + '.webp' # строка куда сохранить'
     #     file_path = self.input_dir + '/' + file # строка что открыть
     #     image = Image.open(file_path) # метод бибы PIL (pillow) - открываем картину 
     #     image.save(output, 'webp')     # метод бибы PIL - закрываем в формате веба
-
+    @classmethod
     def convertImage(cls, img_src, dir_name, quality=80, method=4, lossless=False, exact=False):
         file = Path(img_src).stem+'.webp'
         output = f'{dir_name}/{file}'

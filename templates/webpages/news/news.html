@@ -7,8 +7,8 @@
 <!--Секция новости-->
 <section id="news" class="static_h basic_bg"> 
     {% if current_user.is_authenticated %}
-    <div class="admin_tools"> <!--инстурменты администратора для данного блока-->
-        <button class="blackBasisBtn"><a href="/news/create/msg">добавить новость</a></button>
+    <div class="edit_tools"> <!--инстурменты администратора для данного блока-->
+        <a href="/news/create/msg">добавить новость</a>
     </div>
     {% endif %}
     <div class="container">

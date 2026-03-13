@@ -13,7 +13,6 @@ class Builds_admin(ModelView):
             'label' : 'оборудование'
         } )
         )
-    
     # загружаем в объект представления flask-admin данные для меню панели администраора
     def __init__(self, model, *args, **kwargs):
         if 'name' not in kwargs:

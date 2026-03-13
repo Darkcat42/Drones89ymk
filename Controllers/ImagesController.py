@@ -1,24 +1,9 @@
-from Models.Images import *
+from Models.Images import Images
 from Controllers.converterWeb import ConverterWeb
-class ImagesController(ConverterWeb):
+from Controllers.ModelsController import ModelsController
+class ImagesController(ConverterWeb, ModelsController):
+    model = Images
     """управление картинками"""
-    @classmethod
-    def get(cls):
-        return Images.select()
-    @classmethod
-    def add(cls, filename, src, alt='' ):
-        return Images.create(
-            filename=filename,
-            src=src,
-            alt=alt
-        )
-    @classmethod
-    def delete(cls, id):
-        return Images.delete().where(Images.id == id).execute()
-    @classmethod
-    def update(cls, id, **filds):
-        for key, value in filds.items():
-            Images.update({key:value}).where(Images.id == id).execute()
     @classmethod
     def show(cls, filename):
         return Images.get_or_none(Images.filename == filename)

@@ -4,13 +4,14 @@
     {% extends 'base/base.html' %}
 {% endif %}
 {% block content %}
-  <section class="static_h basic_bg">
-        {% if current_user.is_authenticated %}
+{% if current_user.is_authenticated %}
             <!--инстурменты администратора для данного блока-->
-            <div class="row">
-                <button class="my_add_btn_static"><a href="/createHardwares_page">добавить оборудование</a></button>
+            <div class="edit_tools">
+                <a href="/createHardwares_page">добавить оборудование</a>
             </div>
             {% endif %}
+  <section class="static_h basic_bg">
+        
        <div class="row">
         <!-- тут начало карточки дрона -->
         <div class="col-sm-10 col-md-10 col-lg-4">

@@ -1,10 +1,9 @@
-from Models.News import *
+from Models.News import News
+from Controllers.ModelsController import ModelsController
 import datetime
-class NewsController():
+class NewsController(ModelsController):
     """управление данными новостей"""
-    @classmethod
-    def get(cls):
-        return News.select()
+    model = News
     @classmethod
     def getDesc(cls):
         return News.select(News.id.desc())
@@ -16,9 +15,6 @@ class NewsController():
             date=date,
             image_id=image_id
         )
-    @classmethod
-    def delete(cls, id):
-        return News.delete().where(News.id == id).execute()
     @classmethod
     def getNews(cls):
         news_list = []
@@ -32,10 +28,6 @@ class NewsController():
             news_list.append(new_dict)
         return news_list
     @classmethod
-    def update(cls, id, **filds):
-        for key, value in filds.items():
-            News.update({key:value}).where(News.id == id).execute()
-    @classmethod
     def getNew_dict(cls, id):
         new = NewsController.show(id)
         new_dict = {}
@@ -46,9 +38,6 @@ class NewsController():
         new_dict['image_src'] = new.image_id.src
         new_dict['image_id'] = new.image_id
         return new_dict
-    @classmethod
-    def show(cls, id):
-        return News.get_or_none(News.id == id)
     @classmethod
     def getLast_dict(cls):
         new = News.select().order_by(News.id.desc())

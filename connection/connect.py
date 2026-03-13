@@ -29,7 +29,7 @@ def connect_db():
 #         host='10.11.13.118',
 #         port=3306)
 if __name__ == '__main__':
-    connect_db().connect()
+    print(connect_db().connect())
 
 
     # drones

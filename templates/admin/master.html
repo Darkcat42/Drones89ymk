@@ -80,10 +80,10 @@
     {% if current_user.is_authenticated %}
 <div class="edit_tools">
     {% for item in admin_view.admin.menu() %}
-                            {% if item.get_url() != '/admin/' %}
-                            <a class="nav-link header_color" href="{{ item.get_url() }}">{{ item.name }}</a>
-                            {% endif %}
-                        {% endfor %}
+        {% if item.get_url() != '/admin/' %}
+        <a class="nav-link header_color" href="{{ item.get_url() }}">{{ item.name }}</a>
+        {% endif %}
+    {% endfor %}
 </div>
 {% endif %}
     {{ super() }}

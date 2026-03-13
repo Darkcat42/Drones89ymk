@@ -5,14 +5,15 @@
 {% endif %}
 {% block content %}
 <!--Секция новости-->
+{% if current_user.is_authenticated %}
+            <!--инстурменты администратора для данного блока-->
+            <div class="edit_tools">
+               
+              <a href="/createPersons_page">добавить автора</a>
+            </div>
+            {% endif %}
 <section id="" class="static_h basic_bg"> 
     <div class="container">
-        {% if current_user.is_authenticated %}
-        <!--инстурменты администратора для данного блока-->
-        <div class="row">
-            <button class="my_add_btn_static"><a href="/createPersons_page">добавить автора</a></button>
-        </div>
-        {% endif %}
         <div class="d-flex flex-column">
             {% for person in persons %}
             <div class="row d-flex align-items-center teacher_base_card flex-row">

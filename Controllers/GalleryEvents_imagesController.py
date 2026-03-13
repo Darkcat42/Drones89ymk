@@ -1,29 +1,16 @@
-from Models.GalleryEvents import *
-from Models.Images import *
-from Models.GalleryEvents_images import *
+# from Models.GalleryEvents import GalleryEvents
+# from Models.Images import Images
+from Models.GalleryEvents_images import GalleryEvents_images
 from Controllers.ImagesController import ImagesController
 from Controllers.GalleryEventsController import GalleryEventsController
-class GalleryEvents_imagesController():
+from Controllers.ModelsController import ModelsController
+class GalleryEvents_imagesController(ModelsController):
+    model = GalleryEvents_images
     """управление наборами картинок для конкретной галереи (каждой галереи)"""
-    @classmethod
-    def get(cls):
-        return GalleryEvents_images.select()
     @classmethod
     def show_gallery_images(cls, id):
         return GalleryEvents_images.get_or_none(GalleryEvents_images.galleryEvent_id == id)
-    @classmethod
-    def delete(cls, id):
-        return GalleryEvents_images.delete().where(GalleryEvents_images.galleryEvent_id == id).execute()
-    @classmethod
-    def add(cls, **kwargs):
-        return GalleryEvents_images.create(**kwargs)
-    @classmethod
-    def update(cls, id, **kwargs):
-        GalleryEvents_images.update(**kwargs).where(GalleryEvents_images.id == id).execute()
-    # @classmethod
-    # def update(cls, id, **kwargs):
-    #     for key, value in kwargs.items():
-    #         GalleryEvents_images.update({key:value}).where(GalleryEvents_images.id == id).execute()
+
     @classmethod
     def get_cur_gallery(cls, id):
         galleryEvents = GalleryEventsController.show(id)

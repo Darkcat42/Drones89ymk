@@ -12,7 +12,8 @@ from Models.Roles import *
 from Models.Schedule import *
 from Models.Sections import *
 from Models.Users import *
-from Models.Videos import *
+from Models.Sliders import *
+
 # from Models.Webpages import *
 # импортирование блюпринтов
 from blueprints.builds import builds_blueprint
@@ -38,6 +39,7 @@ from Models.ModelView.Roles_admin import Roles_admin
 from Models.ModelView.Schedule_admin import Schedule_admin
 from Models.ModelView.Sections_admin import Sections_admin
 from Models.ModelView.Users_admin import Users_admin
+from Models.ModelView.Sliders_admin import Sliders_admin
 
 import os, datetime
 from functools import cached_property
@@ -108,7 +110,8 @@ class App_contorller():
             Roles_admin(Roles),
             Schedule_admin(Schedule),
             Sections_admin(Sections),
-            Users_admin(Users)
+            Users_admin(Users),
+            Sliders_admin(Sliders)
         ]
     @staticmethod
     def registerAll_blueprints(app):

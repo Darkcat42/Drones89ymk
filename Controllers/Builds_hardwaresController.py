@@ -1,32 +1,16 @@
-from Models.Builds import *
-from Models.Hardwares import *
-from Models.Builds_hardwares import *
-from Controllers.HardwaresController import *
-class Builds_hardwaresController():
+# from Models.Builds import Builds
+# from Models.Hardwares import Hardwares
+from Models.Builds_hardwares import Builds_hardwares
+from Controllers.HardwaresController import HardwaresController
+from Controllers.ModelsController import ModelsController
+class Builds_hardwaresController(ModelsController):
     """управление набором оборудования для конкретной сборки (каждой сборки)"""
-    @classmethod
-    def get(cls):
-        return Builds_hardwares.select()
-    @classmethod
-    def add(cls, **kwargs):
-        Builds_hardwares.create(**kwargs)
-    # @classmethod
-    # def add(cls, Hardwares_id, builds_id):
-    #     Builds_hardwares.create(
-    #         Hardwares_id = Hardwares_id,
-    #         builds_id = builds_id 
-    #     )
+    model = Builds_hardwares
     @classmethod
     def get_by_build_id(cls, builds_id):
         hardwares_list = []
         for builds_hardware in Builds_hardwares.select().where(Builds_hardwares.builds_id == builds_id):
             hardwares_list.append(HardwaresController.get_cur_hardware(builds_hardware.Hardwares_id))
         return hardwares_list
-    @classmethod
-    def delete(cls, id):
-        return Builds_hardwares.delete().where(Builds_hardwares.id == id).execute()
-    @classmethod
-    def update(cls, id, **kwargs):
-        for key, value in kwargs.items():
-            Builds_hardwares.update({key:value}).where(Builds_hardwares.id == id).execute()
+
     
