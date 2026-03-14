@@ -2,24 +2,31 @@
     <div class="container pad_section_slider">
       <div class="row fix-mar">
         <!-- блок слайдера -->
-         {% if current_user.is_authenticated == True %}
-            <div>
-                <a class="" href="admin/sliders/">изменить слайдер</a> 
-            </div>
-        {% endif %}
-        <div class="col-lg-7">
+        
+        <div class="col-lg-7 ">
             <div id="carousel" data-bs-ride="carousel" class="carousel slide">
-                <div class="carousel-inner" style="margin: 10% 0 0 0;">
+                <div class="carousel-inner" >
                     <!-- элемент слайдера -->
                     <div class="carousel-item active">
-                        <div class="mb-3" style="max-width: 80%; margin: 0 15%;">
-                            <img src="{{ sliders_imgs[0] }}" style="max-height: 350px; min-height: 350px;" class="card-img-top my_card_img" alt="...">
+                        <div class="mb-3 ">
+                            {% if current_user.is_authenticated == True %}
+                            <div class="edit_tools"> 
+                                <a class="replace_edit_btn" href="admin/sliders/">Изменить слайдер</a> 
+                            </div>
+                            {% endif %}
+                            <img src="{{ sliders_imgs[0] }}"  class="card-img-top my_card_img" alt="...">
                         </div>
                     </div>
+                    
                      {% for slider_img in sliders_imgs[1:] %}
                     <div class="carousel-item">
-                        <div class="mb-3" style="max-width: 80%; margin: 0 15%;">
-                            <img src="{{ slider_img }}" style="max-height: 350px; min-height: 350px;" class="card-img-top my_card_img" alt="...">
+                        <div class="mb-3" >
+                            {% if current_user.is_authenticated == True %}
+                            <div class="edit_tools">
+                                <a class="replace_edit_btn" href="admin/sliders/">Изменить слайдер</a> 
+                            </div>
+                            {% endif %}
+                            <img src="{{ slider_img }}" class="card-img-top my_card_img" alt="...">
                         </div>
                     </div>
                     {% endfor %}
@@ -32,6 +39,7 @@
                 <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Следующий</span>
+                    
                 </button> 
             </div>
         </div>

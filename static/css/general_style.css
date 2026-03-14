@@ -32,18 +32,39 @@ body {    padding: 0 !important;    margin: 0 !important;}
 .basis_close_btn, 
 .basis_edit_btn,
 .replace_edit_btn {
-    cursor: pointer;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: none;
+    cursor: pointer !important;
+    background-size: 90% !important;
+    background-repeat: no-repeat !important;
+    border: none !important;
+}
+
+.carousel-item img{
+    max-height: 450px !important;
+    min-height: 450px !important;
+    /* margin: 0 !important; */
+}
+.carousel-item{
+    margin-top: 10% !important;
+}
+.carousel-item>div{
+    max-width: 60% !important;
+    margin-left: 21% !important;
 }
 .edit_tools{
     display: flex;
-    justify-content: center;
-    flex-direction: column;
     z-index: 5; 
-    position: fixed;
 }
+.replace_edit_btn {
+    width: 50% !important;
+    background-color: #1c0823 !important;
+    text-align: center;
+    margin: 0 auto !important;
+    padding: 2% 0 !important;
+    border: 1px solid silver !important;
+
+     
+}
+
 .blackBasisBtn{
     background-color: rgba(0, 0, 0, 0.5);
     font-size: 1.2em;
@@ -67,12 +88,7 @@ body {    padding: 0 !important;    margin: 0 !important;}
     height: 30px;
     margin-top: 5px;  
 }
-.replace_edit_btn {
-    background: url('/static/svg/replaceIcon.svg');
-    width: 30px;
-    height: 30px;
-    margin-top: 5px; 
-}
+
 /* блок слайдера с опросом  quiz_block.html */
 
 

@@ -2,6 +2,9 @@ from flask_admin.contrib.peewee import ModelView
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
 from flask import url_for
 class Images_admin(ModelView):
+    page_size = 20
+
+    can_set_page_size = True
     def __init__(self, model, *args, **kwargs):
             if 'name' not in kwargs:
                 kwargs['name'] = 'Картинки'
@@ -10,7 +13,11 @@ class Images_admin(ModelView):
         image_src = model.src
         if not image_src:
             return ""
-        return Markup(f'<img src="../../{image_src}" class="img-fluid fsi lazy" alt="...">')
+        image_src = image_src.replace('static\\', '')
+        image_src = image_src.replace('\\', '/')
+        src = url_for('static', filename=image_src)
+        # return Markup(f'<img data-src="../../{image_src}" class="img-fluid fsi lazy" alt="...">')
+        return Markup(f'<img src="{src}" class="w-100 lazy" loading="lazy" alt="..."> ')
     # форматируем сами столбцы
     column_labels = {
         'filename' : 'файл',
@@ -28,6 +35,10 @@ class Images_admin(ModelView):
         'alt',
         
     }
+    column_searchable_list = [
+        'filename',
+        'src',
+        'alt',]
 #     """
 #     модель таблицы изображения
 #     """

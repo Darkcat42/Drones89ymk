@@ -2,6 +2,7 @@ from flask_admin.contrib.peewee import ModelView
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
 from flask import url_for
 class News_admin(ModelView):
+
     def __init__(self, model, *args, **kwargs):
             if 'name' not in kwargs:
                 kwargs['name'] = 'Новости'

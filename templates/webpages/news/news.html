@@ -4,7 +4,7 @@
 <section id="news" class="static_h basic_bg"> 
     {% if current_user.is_authenticated %}
     <div class="edit_tools"> <!--инстурменты администратора для данного блока-->
-        <a href="/news/create/msg">добавить новость</a>
+        <a href="/admin/news/new/?url=/news/">добавить новость</a>
     </div>
     {% endif %}
     <div class="container">
@@ -25,7 +25,7 @@
                 </div>
                 {% if current_user.is_authenticated == True %}
                 <div class="col news_edit_tools">
-                    <a class="basis_edit_btn" href="/news/update/msg/{{new['id']}}"></a> 
+                    <a class="basis_edit_btn" href="/admin/news/edit/?id={{new['id']}}&url=/news/"></a> 
                     <a class="basis_close_btn" href="/news/delete/{{new['id']}}"></a>
                 </div>
                 {% endif %}
