@@ -31,7 +31,7 @@ def login():
                         role_name = current_user.role_id.role
                         if role_name == 'administrator':
                             """маршрут на главную с функционалом администратора"""
-                            return flask.redirect('/admin_panel')
+                            return flask.redirect('/')
                     else:
                         return flask.redirect(f'/login_page/неверный логин или пароль') 
     return flask.redirect(f'/login_page/неверный логин или пароль')

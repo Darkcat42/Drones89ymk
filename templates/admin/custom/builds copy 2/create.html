@@ -1,14 +1,4 @@
 {% extends 'admin/model/create.html' %}
-{% block head_css %}
-{{ super() }}
-<style>
-    body{
-        background-color: red !important;
-    }
-    
-</style>
-
-{% endblock %}
 {% block body %}
     <h1 style="color: red;">Тестовая страница создания (кастомный шаблон)</h1>
     {{ super() }}

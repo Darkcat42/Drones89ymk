@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<!--1 Секция опросник слайдер-->
+{% include 'index/index_blocks/slider.html' %}
+<div class="purple_gradient">
+<!--2 Секция последняя новость-->
+{% include 'index/index_blocks/last_news.html' %}
+<!--3 Секция расписание-->
+{% include 'index/index_blocks/schedule.html' %}
+</div>
+<!--4 Секция медиа-->
+{% include 'index/index_blocks/media.html' %}
+<!--5 Секция преподователи-->
+{% include 'index/index_blocks/teachers.html' %} 
+<!--6 Секция faq-->
+{% include 'index/index_blocks/faq.html' %}
+<!--7 Секция join-->
+{% include 'index/index_blocks/join.html' %}
+{% endblock %}
+
+

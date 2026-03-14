@@ -1,6 +1,8 @@
 from flask_admin.contrib.peewee import ModelView
+from flask_admin.model import InlineFormAdmin
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
 from flask import url_for
+
 class Builds_authors_admin(ModelView):
     # загружаем в объект представления flask-admin данные для меню панели администраора
     def __init__(self, model, *args, **kwargs):

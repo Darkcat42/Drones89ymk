@@ -113,9 +113,9 @@ body {    padding: 0 !important;    margin: 0 !important;}
         width: fit-content;
     }
 /* верхнее меню при админ панеле */
-.admin_header, .footer_item{
+/* .admin_header, .footer_item{
     filter: hue-rotate(60deg);
-}
+} */
 /* блок с преподавателями */
 #teacher{
     padding: 120px 0;

@@ -7,7 +7,7 @@ class Builds_authors(Base):
     модель 
     """
     id = PrimaryKeyField()
-    persons_id = ForeignKeyField(Persons)
+    persons_id = ForeignKeyField(Persons, backref='builds')
     builds_id = ForeignKeyField(Builds)
     
 if __name__ == '__main__':

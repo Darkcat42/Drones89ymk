@@ -1,8 +1,4 @@
-{% if current_user.is_authenticated %}
-    {% extends 'base/admin_base.html' %}
-{% else %}
-    {% extends 'base/base.html' %}
-{% endif %}
+{% extends 'base/base.html' %}
 {% block content %}
 <!--Секция галерея-->
 <section class="galleryEvent basic_bg w-100">

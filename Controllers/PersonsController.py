@@ -14,7 +14,7 @@ class PersonsController(ModelsController):
             persons_dict = {}
             persons_dict['id'] = person.id
             persons_dict['persons_types_id'] = person.persons_types_id
-            persons_dict['images_src'] = ImagesController.show_id(person.images_id).src
+            persons_dict['images_src'] = ImagesController.show(person.images_id).src
             persons_dict['firstName'] = person.firstName
             persons_dict['lastName'] = person.lastName
             persons_dict['person_desc'] = person.person_desc

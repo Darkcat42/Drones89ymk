@@ -7,14 +7,14 @@ class NewsController(ModelsController):
     @classmethod
     def getDesc(cls):
         return News.select(News.id.desc())
-    @classmethod
-    def addNews(cls, title, news_desc, date, image_id):
-        News.create(
-            title=title,
-            news_desc=news_desc,
-            date=date,
-            image_id=image_id
-        )
+    # @classmethod
+    # def addNews(cls, title, news_desc, date, image_id):
+    #     News.create(
+    #         title=title,
+    #         news_desc=news_desc,
+    #         date=date,
+    #         image_id=image_id
+    #     )
     @classmethod
     def getNews(cls):
         news_list = []

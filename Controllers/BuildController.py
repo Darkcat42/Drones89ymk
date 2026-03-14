@@ -15,7 +15,7 @@ class BuildController(ModelsController):
             builds_dict['id'] = build.id
             builds_dict['inch'] = build.inch
             builds_dict['build_desc'] = build.build_desc
-            builds_dict['build_image_src'] = ImagesController.show_id(build.build_image_id).src
+            builds_dict['build_image_src'] = ImagesController.show(build.build_image_id).src
             builds_dict['author'] = Builds_authorsController.get_by_build_id(build.id)
             builds_dict['hardwares_list'] = Builds_hardwaresController.get_by_build_id(build.id)
             builds_list.append(builds_dict)

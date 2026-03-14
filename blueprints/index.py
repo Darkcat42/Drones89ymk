@@ -11,22 +11,22 @@ index_blueprint = Blueprint('index_bluep', __name__)
 def index():
     """маршрут на главную"""
     return render_template(
-        'main/index.html',
+        'index/index.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
         scheduleInfo='[расписание]',
         lastNews=NewsController.getLast_dict(),
         sliders_imgs = SlidersController.get_listSlidersImages()
         )
-@index_blueprint.route('/admin_panel')
-@login_required
-def admin_panel():
-    return render_template(
-        'main/admin_panel.html',
-        scheduleDays=ScheduleController.get_ScheduleDays(),
-        scheduleInfo='расписание',
-        lastNews=NewsController.getLast_dict(),
-        sliders_imgs = SlidersController.get_listSlidersImages()
-        )
+# @index_blueprint.route('/admin_panel')
+# @login_required
+# def admin_panel():
+#     return render_template(
+#         'main/admin_panel.html',
+#         scheduleDays=ScheduleController.get_ScheduleDays(),
+#         scheduleInfo='расписание',
+#         lastNews=NewsController.getLast_dict(),
+#         sliders_imgs = SlidersController.get_listSlidersImages()
+#         )
 @index_blueprint.route('/flask_admin/')
 @login_required
 def flask_admin():

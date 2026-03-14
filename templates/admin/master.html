@@ -19,10 +19,7 @@
         margin: 0 4% !important;
         box-shadow: 0px 0px 25px 5px #371344;
     }
-    /* body > div > div.container{
-        overflow: auto !important;
-        margin-left: 1% !important;
-    } */
+
     body > div > div.row{
         padding: 0 !important;
         margin: 0 !important;
@@ -31,7 +28,8 @@
  
     }
     body > div div.container{
-        background-color: #31123C;
+        /* background-color: #31123C; */
+        background-color: #1c0823 !important;
         min-height: 86vh !important;
         max-height: 86vh !important;
         padding: 0 !important;
@@ -133,12 +131,12 @@
         transition-property: all;
     }
     
-    footer{background-color: #1c0823 !important;}
+    /* footer{background-color: #1c0823 !important;} */
     footer p{text-align: center; transform: translateX(30%);}
     </style>
 {% endblock %} 
 {% block page_body  %}
-    <header class="header_section admin_header" id="header">
+    <header class="header_section" id="header">
     <div class="container">
         <div class="row justify-content-center">
         <div class="col-lg-1 col-sm-1 col-m title_logo db132">
@@ -173,7 +171,7 @@
                 <div class="collapse navbar-collapse showfillmy" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link header_color" href="/admin/">главная</a>
-                        <a class="nav-link header_color" href="/admin_panel">вернуться в просмотр сайта</a>
+                        <a class="nav-link header_color" href="/">вернуться в просмотр сайта</a>
                         <a class="nav-link header_color" href="/logout">выход из аккаунта</a>
                     </div>
                 <div class="db_nao db_yes telegram_header">
