@@ -1,0 +1,30 @@
+{% extends 'admin/model/create.html' %}
+{% import 'admin/lib.html' as lib with context %}
+{% block create_form %}
+    
+    {# Можно переопределить как рендерится конкретное поле по его ID #}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% if form.csrf_token %}
+            {{ form.csrf_token }}
+        {% endif %}
+        
+        {% for field in form %}
+            {% if field.name == 'src' %}
+                <div class="custom-class">
+                    <label>{{ field.label }}</label>
+                    {{ field(class="", placeholder="") }}
+                </div>
+            {% else %}
+                {{ lib.render_field(form, field, {}) }}
+            {% endif %}
+        {% endfor %}
+        {{ lib.render_form_buttons(return_url, save_buttons)}}
+        
+        <!-- <input type="submit" value="Save"> -->
+    </form>
+    
+{% endblock %}
+{% block body %}
+    <h1 style="color: red;">Тестовая страница создания (кастомный шаблон)</h1>
+    {{ super() }}
+{% endblock %}
