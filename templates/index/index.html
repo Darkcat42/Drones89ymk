@@ -1,12 +1,33 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <!--1 Секция опросник слайдер-->
+
 {% include 'index/index_blocks/slider.html' %}
-<div class="purple_gradient">
+<div class="purple_gradient ">
+{% if current_user.is_authenticated == True %}
+<div class="py-4">
+    <section class="container">
+        <div class="row ">
+            <div class="fs-5 col-lg-3 col-md-3 col-xs-12 replace_edit_btn manage_btns"> 
+                <a class="" href="admin/news/">Управлять новостями</a> 
+            </div>
+            <div class="fs-5 col-lg-3 col-md-3 col-xs-12 replace_edit_btn manage_btns"> 
+                <a class="" href="admin/schedule/">Управлять расписанием</a> 
+            </div>
+            <div class="fs-5 col-lg-3 col-md-3 col-xs-12 replace_edit_btn manage_btns"> 
+                <a class="" href="admin/sliders/">Управлять слайдерами</a> 
+            </div>
+        </div>
+        
+    </section>
+</div>
+{% endif %}
 <!--2 Секция последняя новость-->
 {% include 'index/index_blocks/last_news.html' %}
+
 <!--3 Секция расписание-->
 {% include 'index/index_blocks/schedule.html' %}
+
 </div>
 <!--4 Секция медиа-->
 {% include 'index/index_blocks/media.html' %}

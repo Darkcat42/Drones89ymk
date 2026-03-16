@@ -1,0 +1,28 @@
+/*Слайдер*/
+#slider {
+    background: url("../../../img/bg.svg") center no-repeat;
+    background-size: cover;
+}
+.pad_section_slider {padding: 10% 0;}
+.carousel-item{
+    margin-top: 0% !important;
+}
+.carousel-item>div{
+    max-width: 70% !important;
+    margin-left: 17% !important;
+}
+#slider div.replace_edit_btn{
+    bottom: 5%;
+}
+@media (min-width: 1400px) { 
+    #slider>div{
+    transform: translateX(-5%);
+}
+ #slider .custom_btn{
+        transform: translateX(-55%) translateY(35%);
+        padding: 3% 0;
+    }
+ #slider .card_right>div{
+        transform: translateY(25%);
+    }
+ }

@@ -1,0 +1,9 @@
+.lastNews{
+    min-height: 25vh !important;
+    max-height: 25vh !important;
+    background-color: transparent;
+}
+div.index_news_img_div {
+    max-height: 120px;
+    min-height: 120px;
+}

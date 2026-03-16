@@ -37,32 +37,26 @@ body {    padding: 0 !important;    margin: 0 !important;}
     background-repeat: no-repeat !important;
     border: none !important;
 }
-
-.carousel-item img{
-    max-height: 450px !important;
-    min-height: 450px !important;
-    /* margin: 0 !important; */
-}
-.carousel-item{
-    margin-top: 10% !important;
-}
-.carousel-item>div{
-    max-width: 60% !important;
-    margin-left: 21% !important;
-}
 .edit_tools{
     display: flex;
     z-index: 5; 
 }
 .replace_edit_btn {
-    width: 50% !important;
+    /* width: 50% !important; */
     background-color: #1c0823 !important;
     text-align: center;
     margin: 0 auto !important;
     padding: 2% 0 !important;
     border: 1px solid silver !important;
+}
 
-     
+.manage_btns{
+    margin: 2% auto !important;
+    padding: 1% 0 !important;
+}
+.manage_btns a{
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .blackBasisBtn{
@@ -89,7 +83,13 @@ body {    padding: 0 !important;    margin: 0 !important;}
     margin-top: 5px;  
 }
 
-/* блок слайдера с опросом  quiz_block.html */
+
+
+@media (min-width: 1400px) { 
+    .manage_btns{
+    margin: 0% auto !important;
+}
+ }
 
 
 
@@ -105,33 +105,56 @@ body {    padding: 0 !important;    margin: 0 !important;}
 
 
 /* header - верхнее меню */
+.nav-link{
+    color: white !important;
+    
+}
+li.nav-item{
+    margin: 1% 2% !important;
+}
+.navbar-brand{
+    color: white !important;
+}
 .header_section{
-    display: flex;
     background-color: #31123C;
-    height: 6vh;
-    padding: 0 5vw;
 }
-.header_section>div{
-    margin: 0;
-    padding: 0;
-}
-.header_section>div>div.row{
-    width: 90vw;
-    margin: 0;
-    padding: 0;
+.header_section * {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 .drone_logo {
     width: 60px;
     height: 30px;
 }
-.title_logo {
-        justify-content: center;
-        width: fit-content;
-    }
-/* верхнее меню при админ панеле */
-/* .admin_header, .footer_item{
-    filter: hue-rotate(60deg);
+.header_admin_p_btn{
+    margin-left: 15px !important;
+    /* padding: 0 10px !important; */
+    font-size: 0.9em !important;
+    border-radius: 6px;
+}
+.header_profil{
+    background-color: #1c0823;
+    border-radius: 12px;
+    color: silver  !important;
+}
+/* .telegram_header a{
+    background-color: white !important;
+    padding: 5px;
+    display: flex;
+    margin-top: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+}
+.telegram_header a img{
+   margin-right: 5px;
+   width: 18px;
+   height: auto;
 } */
+
 /* блок с преподавателями */
 #teacher{
     padding: 120px 0;
@@ -159,9 +182,7 @@ div.card h2{font-size: 1.8em;}
 /* медиа на главной */
 
 /* стили страниц */
-/*Слайдер*/
-#slider {background: url("../img/bg.svg") center no-repeat;}
-.pad_section_slider {padding: 5% 0;}
+
 /*медиа блок*/
 #media {padding: 120px 0;}
 /* Расписание */
@@ -183,18 +204,8 @@ div.card h2{font-size: 1.8em;}
 
 .webpage_name{margin-left: 15%;}
 
-.header_color {color: white !important;}
-#navbarNavAltMarkup .navbar-nav a:hover {
-    color: #e3be5b !important;
-}
-.nav_links{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
-.header_section:hover .basic_edit_btn{
-    filter: opacity(100);
-}
+
+
 /* страница форма авторизации */
 #login_form{
     text-align: center;
@@ -1029,21 +1040,4 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 }
 .documents .panel-body .tab-pane a:hover .document{
     transform: scale(0.9);
-}
-.telegram_header a{
-    background-color: white !important;
-    padding: 5px;
-    display: flex;
-    margin-top: 50px;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: black;
-    border-radius: 5px;
-}
-.telegram_header a img{
-   margin-right: 5px;
-   width: 18px;
-   height: auto;
 }

@@ -1,32 +1,22 @@
 <section  id="slider">
     <div class="container pad_section_slider">
-      <div class="row fix-mar">
+      <div class="row d-flex position-relative ">
         <!-- блок слайдера -->
-        
-        <div class="col-lg-7 ">
+        <div class="col-12 col-xxl-7 position-relative">
             <div id="carousel" data-bs-ride="carousel" class="carousel slide">
-                <div class="carousel-inner" >
+                <div class="carousel-inner">
                     <!-- элемент слайдера -->
                     <div class="carousel-item active">
-                        <div class="mb-3 ">
-                            {% if current_user.is_authenticated == True %}
-                            <div class="edit_tools"> 
-                                <a class="replace_edit_btn" href="admin/sliders/">Изменить слайдер</a> 
-                            </div>
-                            {% endif %}
-                            <img src="{{ sliders_imgs[0] }}"  class="card-img-top my_card_img" alt="...">
+                        <div class=" position-relative">
+                            
+                            <img src="{{ sliders_imgs[0] }}"  class="card-img-top" alt="...">
                         </div>
                     </div>
-                    
-                     {% for slider_img in sliders_imgs[1:] %}
+                    {% for slider_img in sliders_imgs[1:] %}
                     <div class="carousel-item">
-                        <div class="mb-3" >
-                            {% if current_user.is_authenticated == True %}
-                            <div class="edit_tools">
-                                <a class="replace_edit_btn" href="admin/sliders/">Изменить слайдер</a> 
-                            </div>
-                            {% endif %}
-                            <img src="{{ slider_img }}" class="card-img-top my_card_img" alt="...">
+                        <div class=" position-relative">
+                            
+                            <img src="{{ slider_img }}" class="card-img-top" alt="...">
                         </div>
                     </div>
                     {% endfor %}
@@ -39,19 +29,23 @@
                 <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Следующий</span>
-                    
                 </button> 
             </div>
         </div>
         <!-- блок текста с приветствием и опросом -->
-        <div class="col-lg-5" id="content" data-id="">
-          <div class="card_right">
-            <h2 class="mb-4">Рады тебя видеть!</h2>
-            <p>Ямальский многопрофильный колледж открывает направление FPV-дронов</p>
-            <p>Тема FPV-дронов достаточно актуальна на сегоднейший день, мы хотим попробывать дать нашим студентам навыки и скиллы, которые в будущем будут им полезны</p>
-            <p>Пожалуйста, пройди опрос по кнопке ниже</p>
+        <div class="col-12 order-first col-xxl-5 order-xxl-last" id="content" data-id="">
+          <div class="card_right mb-5 row"> 
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xxl-10 col-xxl-12 mx-sm-auto">
+            <h2 class="mb-4 h2">Рады тебя видеть!</h2>
+
+                <p class="mb-2 h5 fw-light">Ямальский многопрофильный колледж открывает направление FPV-дронов</p>
+                <p class="mb-2 h5 fw-light">Тема FPV-дронов достаточно актуальна на сегоднейший день, мы хотим попробывать дать нашим студентам навыки и скиллы, которые в будущем будут им полезны</p>
+                <p class="mb-2 h5 fw-light">Пожалуйста, пройди опрос по кнопке ниже</p>
             </div>
-          <button type="button" class="custom_btn" onclick="alert('затычка - нужно сделать форму для опраса')">Пройти короткий опрос</button>
+            </div>
+          <div class="col-12 col-sm-12 col-lg-8 mx-xs-0 mx-sm-auto mx-0 col-xxl-12">
+            <button type="button" class="custom_btn ">Пройти короткий опрос</button>
+          </div>
         </div>
           </div>
         </div>

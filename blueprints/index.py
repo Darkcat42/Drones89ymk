@@ -14,7 +14,7 @@ def index():
         'index/index.html',
         scheduleDays=ScheduleController.get_ScheduleDays(),
         scheduleInfo='[расписание]',
-        lastNews=NewsController.getLast_dict(),
+        lastNews=NewsController.getNews(),
         sliders_imgs = SlidersController.get_listSlidersImages()
         )
 # @index_blueprint.route('/admin_panel')
