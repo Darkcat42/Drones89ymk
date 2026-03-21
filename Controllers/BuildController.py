@@ -2,8 +2,8 @@ from Models.Builds import Builds
 from Controllers.ImagesController import ImagesController
 from Controllers.Builds_hardwaresController import Builds_hardwaresController
 from Controllers.Builds_authorsController import Builds_authorsController
-from Controllers.ModelsController import ModelsController
-class BuildController(ModelsController):
+from Controllers.BaseController import BaseController
+class BuildController(BaseController):
     model = Builds
     """управление данными cборок с дронами"""
     @classmethod

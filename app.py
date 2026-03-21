@@ -35,7 +35,7 @@ app.secret_key = 'jksdhf l;lkj&*~19273l;kaszdfop['
 @login_manager.user_loader
 def load_user(user_id): 
    """функция загрузки пользователя для flask_login"""
-   return UsersController.show(int(user_id))
+   return UsersController.show_id(int(user_id))
 @login_manager.unauthorized_handler
 def anon():
     """функция анонимного пользователя""" 

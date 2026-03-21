@@ -2,8 +2,8 @@
 # from Models.Hardwares import Hardwares
 from Models.Builds_hardwares import Builds_hardwares
 from Controllers.HardwaresController import HardwaresController
-from Controllers.ModelsController import ModelsController
-class Builds_hardwaresController(ModelsController):
+from Controllers.BaseController import BaseController
+class Builds_hardwaresController(BaseController):
     """управление набором оборудования для конкретной сборки (каждой сборки)"""
     model = Builds_hardwares
     @classmethod

@@ -12,9 +12,11 @@ class Images_admin(ModelView):
         file = form.src.data
         alt = form.alt.data
 
+        
+
 
         filename = form.filename.data
-        dir_name = current_app.appСontorller.make_categoryDir('news')
+        dir_name = current_app.appСontorller.make_categoryDir('images')
         if Path(filename).suffix != '.webp':
             fileSrc = os.path.join(current_app.appСontorller.tempImg, filename)
             current_app.appСontorller.make_recurDirs(current_app.appСontorller.tempImg)

@@ -3,9 +3,13 @@
     background: url("../../../img/bg.svg") center no-repeat;
     background-size: cover;
 }
-.pad_section_slider {padding: 10% 0;}
+.pad_section_slider {padding: 10% 0; margin-left: 7%; }
 .carousel-item{
     margin-top: 0% !important;
+    
+}
+.carousel_fix{
+    margin: 15% 0;
 }
 .carousel-item>div{
     max-width: 70% !important;
@@ -25,4 +29,12 @@
  #slider .card_right>div{
         transform: translateY(25%);
     }
+ .carousel_fix{
+         margin: 25% 0;
+    }
+
  }
+
+@media (min-width: 1500px){
+    .pad_section_slider {margin-left: auto; }
+}

@@ -3,9 +3,7 @@ from flask_login import UserMixin
 from Models.Base import *
 from Models.Roles import Roles
 class Users(Base, UserMixin):
-    """
-    модель пользователей системы
-    """
+    """модель пользователей системы"""
     id = PrimaryKeyField()
     FIO = CharField()
     login = CharField()

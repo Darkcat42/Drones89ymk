@@ -10,7 +10,6 @@ from Models.Persons_types import *
 from Models.Persons import *
 from Models.Roles import *
 from Models.Schedule import *
-from Models.Sections import *
 from Models.Users import *
 from Models.Sliders import *
 # импортирование блюпринтов

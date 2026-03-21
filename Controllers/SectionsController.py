@@ -1,14 +1,5 @@
-from Models.Sections import Sections
-from Controllers.ModelsController import ModelsController
-class SectionsController(ModelsController):
+from disable.Sections import Sections
+from Controllers.BaseController import BaseController
+class SectionsController(BaseController):
+    """класс прослойка - управление данными секций для api и переопределение методов"""
     model = Sections
-    """управление данными секций"""
-    @classmethod
-    def get_section_info(cls, section):
-        sectionInfo = Sections.get_or_none(Sections.sectionName == section)
-        return {
-        'sectionName' : sectionInfo.sectionName,
-        'sectionTitle' : sectionInfo.sectionTitle,
-        'sectionDesc' : sectionInfo.sectionDesc,
-        'sectionReq' : sectionInfo.sectionReq
-        }

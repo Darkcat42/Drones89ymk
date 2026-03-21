@@ -24,7 +24,7 @@ def login():
             if login_form == '' and passwd_form == '':
                 return flask.redirect('/login_page/Заполните форму!') 
             else:
-                user = UsersController.get_by_login(login_form)
+                user = UsersController.get_by_attr('login', login_form)
                 if user != None:
                     if passwd_form == user.password:
                         flask_login.login_user(user)

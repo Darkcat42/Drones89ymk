@@ -2,9 +2,7 @@ from peewee import PrimaryKeyField, CharField
 from Models.Base import *
 from Models.Images import *
 class Builds(Base):
-    """
-    модель 
-    """
+    """модель для сборок"""
     id = PrimaryKeyField()
     build_name = CharField()
     inch = CharField()

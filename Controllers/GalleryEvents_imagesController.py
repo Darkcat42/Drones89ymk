@@ -3,8 +3,8 @@
 from Models.GalleryEvents_images import GalleryEvents_images
 from Controllers.ImagesController import ImagesController
 from Controllers.GalleryEventsController import GalleryEventsController
-from Controllers.ModelsController import ModelsController
-class GalleryEvents_imagesController(ModelsController):
+from Controllers.BaseController import BaseController
+class GalleryEvents_imagesController(BaseController):
     model = GalleryEvents_images
     """управление наборами картинок для конкретной галереи (каждой галереи)"""
     @classmethod

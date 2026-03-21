@@ -10,23 +10,17 @@ index_blueprint = Blueprint('index_bluep', __name__)
 @index_blueprint.route('/') 
 def index():
     """маршрут на главную"""
+    try:
+        slider = SlidersController.get_by_attr('name', 'drones')
+    except:
+        slider = None
     return render_template(
         'index/index.html',
-        scheduleDays=ScheduleController.get_ScheduleDays(),
+        scheduleDays=ScheduleController.get(),
         scheduleInfo='[расписание]',
-        lastNews=NewsController.getNews(),
-        sliders_imgs = SlidersController.get_listSlidersImages()
+        news=NewsController.get_desc(),
+        slider = slider
         )
-# @index_blueprint.route('/admin_panel')
-# @login_required
-# def admin_panel():
-#     return render_template(
-#         'main/admin_panel.html',
-#         scheduleDays=ScheduleController.get_ScheduleDays(),
-#         scheduleInfo='расписание',
-#         lastNews=NewsController.getLast_dict(),
-#         sliders_imgs = SlidersController.get_listSlidersImages()
-#         )
 @index_blueprint.route('/flask_admin/')
 @login_required
 def flask_admin():

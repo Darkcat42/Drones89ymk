@@ -1,6 +1,6 @@
 from Models.GalleryEvents import GalleryEvents
-from Controllers.ModelsController import ModelsController
-class GalleryEventsController(ModelsController):
+from Controllers.BaseController import BaseController
+class GalleryEventsController(BaseController):
     model = GalleryEvents
     """управление галереями"""
     @classmethod

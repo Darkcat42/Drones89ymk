@@ -1,10 +1,7 @@
 from Models.Faq import *
-from Controllers.ModelsController import ModelsController
-class FaqController(ModelsController):
+from Controllers.BaseController import BaseController
+class FaqController(BaseController):
     model = Faq
-    @classmethod
-    def get_listFaq(cls):
-        pass
         
 
 

@@ -1,17 +1,24 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <!--Секция новости-->
-<section id="news" class="static_h basic_bg"> 
+{% if not news %}
+<section id="news" class="static_h basic_bg">
     {% if current_user.is_authenticated %}
     <div class="edit_tools"> <!--инстурменты администратора для данного блока-->
+        <h1>Новостей нет, добавьте новость</h1>
         <a href="/admin/news/new/?url=/news/">добавить новость</a>
     </div>
+    {% else %}
+    <h1>Здесь будут все наши новости!</h1>
     {% endif %}
+    
+</section>
+{% else %}
+<section id="news" class="static_h basic_bg"> 
+    
     <div class="container">
         <div class="d-flex flex-column">
-            {% if not news %}
-                <h1>Новостей нет, добавьте новость</h1>
-            {% else %}
+            
             {% for new in news %}
             <div class="row" data-new_id="{{new['id']}}">
                 <div class="news_image col-4">
@@ -31,8 +38,9 @@
                 {% endif %}
             </div>
             {% endfor %}
-            {% endif %}
+            
         </div>
     </div>
   </section>
+{% endif %}
 {% endblock %}

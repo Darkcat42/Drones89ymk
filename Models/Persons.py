@@ -3,9 +3,7 @@ from Models.Base import *
 from Models.Persons_types import Persons_types
 from Models.Images import Images
 class Persons(Base):
-    """
-    модель 
-    """
+    """модель для персон"""
     id = PrimaryKeyField()
     persons_types_id = ForeignKeyField(Persons_types, backref='persons_types_id')
     images_id = ForeignKeyField(Images)

@@ -11,26 +11,27 @@ news_blueprint = Blueprint('news_bluep', __name__)
 @news_blueprint.route('/news/')
 def news():
     """переход на страницу c новостями"""
-    news = NewsController.getNews()
     return render_template(
         'webpages/news/news.html',
-        news=news,
+        news = NewsController.get_desc(),
         )
 @news_blueprint.route('/news/more/<id>')
 def current_news(id):
+    current_news = NewsController.show_id(id = id)
+    if not current_news:
+        return flask.redirect('/news/') 
     """переход на страницу новости"""
-    current_news = NewsController.getNew_dict(id)
     return render_template(
         'webpages/news/current_news.html',
-        current_news=current_news,
+        current_news = current_news
         )
-@news_blueprint.route('/news/create/<msg>', methods=['GET']) 
-@login_required
-def createNews_page(msg):
-        return flask.render_template(
-            'webpages/news/add_news.html',
-            msg = msg
-        )
+# @news_blueprint.route('/news/create/<msg>', methods=['GET']) 
+# @login_required
+# def createNews_page(msg):
+#         return flask.render_template(
+#             'webpages/news/add_news.html',
+#             msg = msg
+#         )
 @news_blueprint.route('/news/delete/<id>')
 @login_required
 def deleteNews_action(id):
@@ -72,14 +73,14 @@ def addNews_action():
             image_id=image_id,
         )
         return flask.redirect('/news')
-@news_blueprint.route('/news/update/<msg>/<id>', methods=['GET', 'POST'])
-@login_required
-def updateNews_page(id, msg):
-        return flask.render_template(
-            'webpages/news/update_news.html',
-            news = NewsController.getNew_dict(id),
-            msg = msg
-        )
+# @news_blueprint.route('/news/update/<msg>/<id>', methods=['GET', 'POST'])
+# @login_required
+# def updateNews_page(id, msg):
+#         return flask.render_template(
+#             'webpages/news/update_news.html',
+#             news = NewsController.getNew_dict(id),
+#             msg = msg
+#         )
 @news_blueprint.route('/news/update/submit/<id>', methods=['POST'])
 @login_required
 def updateNews_action(id):

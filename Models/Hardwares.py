@@ -1,9 +1,7 @@
 from peewee import PrimaryKeyField, CharField
 from Models.Base import *
 class Hardwares(Base):
-    """
-    модель 
-    """
+    """модель для оборудования"""
     id = PrimaryKeyField()
     category = CharField()
     name = CharField()

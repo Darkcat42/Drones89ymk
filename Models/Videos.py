@@ -1,9 +1,7 @@
 from peewee import PrimaryKeyField, IntegerField, CharField, TextField
 from Models.Base import *
 class Videos(Base):
-    """
-    модель таблицы изображения
-    """
+    """модель для видеозаписей"""
     id = PrimaryKeyField()
     src = TextField()
 if __name__ == '__main__':

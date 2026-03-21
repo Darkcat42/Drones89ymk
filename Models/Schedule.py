@@ -1,12 +1,7 @@
-from peewee import PrimaryKeyField, IntegerField, CharField, TextField
+from peewee import PrimaryKeyField, CharField
 from Models.Base import *
-
-
-
 class Schedule(Base):
-    """
-    модель таблицы расписания
-    """
+    """модель для расписания"""
     id = PrimaryKeyField()
     location = CharField()
     day = CharField()

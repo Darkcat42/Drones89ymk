@@ -1,6 +1,6 @@
 from Models.Hardwares import Hardwares
-from Controllers.ModelsController import ModelsController
-class HardwaresController(ModelsController):
+from Controllers.BaseController import BaseController
+class HardwaresController(BaseController):
     """управление данными оборудования"""
     model = Hardwares
     @classmethod

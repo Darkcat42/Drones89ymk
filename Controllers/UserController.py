@@ -1,12 +1,9 @@
 from Models.Users import Users
-from Controllers.ModelsController import ModelsController
-class UsersController(ModelsController):
+from Controllers.BaseController import BaseController
+class UsersController(BaseController):
+    """класс прослойка - управление данными пользователей для api и переопределение методов"""
     model = Users
-    """управление пользователями"""
-    @classmethod
-    def get_by_login(cls, search_login):
-        return Users.get_or_none(Users.login == search_login)
-
+    
 
 
 

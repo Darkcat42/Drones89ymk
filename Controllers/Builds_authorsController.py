@@ -2,8 +2,8 @@
 # from Models.Hardwares import Hardwares
 from Models.Builds_authors import Builds_authors
 from Controllers.PersonsController import PersonsController
-from Controllers.ModelsController import ModelsController
-class Builds_authorsController(ModelsController):
+from Controllers.BaseController import BaseController
+class Builds_authorsController(BaseController):
     """управление данными персон"""
     model = Builds_authors
     @classmethod
