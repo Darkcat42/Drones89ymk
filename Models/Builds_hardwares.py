@@ -4,10 +4,11 @@ from Models.Hardwares import Hardwares
 from Models.Builds import Builds
 class Builds_hardwares(Base):
     """модель многие ко многим для сборок и оборудования"""
+
     id = PrimaryKeyField()
     Hardwares_id = ForeignKeyField(Hardwares)
     # backref используется для обратной связи внешних ключей
     builds_id = ForeignKeyField(Builds, backref='hardwares')
+
     
-if __name__ == '__main__':
-    connect_db().create_tables([Builds_hardwares, Hardwares, Builds])
+    

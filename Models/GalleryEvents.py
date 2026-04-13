@@ -5,5 +5,3 @@ class GalleryEvents(Base):
     id = PrimaryKeyField()
     date = DateField()
     title = CharField()
-if __name__ == '__main__':
-    connect_db().create_tables([GalleryEvents])

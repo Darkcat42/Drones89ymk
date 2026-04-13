@@ -1,12 +1,11 @@
-from flask_admin.contrib.peewee import ModelView
-class Schedule_admin(ModelView):
-    # переопределяем страницу
-    # list_template = 'admin/templates_admin/schedule.html'
-    # загружаем в объект представления flask-admin данные для меню панели администраора
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Расписание'
-        super().__init__(model, *args, **kwargs)
+# импорты
+from Models.ModelView.BaseModelView import BaseModelView
+class Schedule_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Расписание'
+    uses_upload = False
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
     # форматируем сами столбцы
     column_labels = {
         'location' : 'Локация',

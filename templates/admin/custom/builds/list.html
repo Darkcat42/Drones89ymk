@@ -1,6 +1,44 @@
 {% extends 'admin/model/list.html' %}
-
 {% block body %}
-    <h1 style="color: red;">Тестовая страница показа (кастомный шаблон)</h1>
+<h1 class="text-white p-2 mb-3">Сборки, их авторы и оборудование</h1>
+<input type="checkbox" name="rowtoggle" class="action-rowtoggle" title="Выбрать все записи">
     {{ super() }}
+{% endblock %}
+{% block model_list_table %}
+
+<div class="custom-blocks">
+    {% for row in data %}
+    <div class="item text-black bg-white border p-3">
+        <h2>{{ row.build_name }}</h2>
+        <div class="d-flex flex-column p-3 ">
+            <span>дюймов: {{ row.inch }}</span>
+            <span>описание: {{ row.build_desc }}</span>
+            <span>изображение: {{ row.build_image_id }}</span>
+            <a href="{{ admin_view.get_url('.edit_view', id=row.id, url=request.url) }}" class="">Изменить</a>
+            <input type="checkbox" name="rowid" class="action-checkbox" value="{{ get_pk_value(row) }}">
+            <form method="POST" action="{{ admin_view.get_url('.delete_view', id=row.id, url=request.url) }}" style="display:inline;">
+                
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Удалить?')">Удалить</button>
+        </form>
+        
+            <div class="border p-3 bg-black text-white">
+                <h3>Авторы</h3>
+                {# Доступ к связанным авторам #}
+                {% for author in row.authors %}
+                <span>{{ author.persons_id.firstName }}</span>
+                {% endfor %}
+            </div>
+            {# Доступ к связанному оборудованию #}
+            <div class="border p-3">
+                <h3>Оборудование</h3>
+                {% for hw in row.hardwares %}
+                {{ hw.Hardwares_id.category }}  {# если Hardwares_id - это поле в Builds_hardwares #}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="">  
+        </div>    
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

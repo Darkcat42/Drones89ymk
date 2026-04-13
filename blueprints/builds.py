@@ -9,7 +9,8 @@ from Controllers.Builds_hardwaresController import Builds_hardwaresController
 from Controllers.Builds_authorsController import Builds_authorsController
 from Controllers.ImagesController import ImagesController
 from pathlib import Path
-
+from connection.connect import db
+from peewee import SqliteDatabase
 builds_blueprint = Blueprint('builds_bluep', __name__) 
 
 

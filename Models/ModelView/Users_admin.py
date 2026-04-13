@@ -1,18 +1,16 @@
-from flask_admin.contrib.peewee import ModelView
-from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
-from flask import url_for
-class Users_admin(ModelView):
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Пользователи'
-        super().__init__(model, *args, **kwargs)
-#     """
-#     модель пользователей системы
-#     """
-#     id = PrimaryKeyField()
-#     FIO = CharField()
-#     login = CharField()
-#     password = CharField()
-#     role_id = ForeignKeyField(Roles, backref='role_id')
-# if __name__ == '__main__':
-#     connect_db().create_tables([Users, Roles])
+# импорты
+from Models.ModelView.BaseModelView import BaseModelView
+class Users_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Пользователи'
+    uses_upload = False
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
+    # список форматирований, порядок функций важен относительно столбцов 
+    formatter_list = []
+     # форматируем столбцы из данных модели и обратных связей
+    column_labels = {
+        'FIO' : 'ФИО',
+        'login' : 'Логин',
+        'password' : 'Пароль',
+        'role_id' : 'Роль'}

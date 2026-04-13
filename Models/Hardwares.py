@@ -9,5 +9,6 @@ class Hardwares(Base):
     cost = IntegerField()
     sourceName = TextField()
     sourceUrl = CharField()
-if __name__ == '__main__':
-    connect_db().create_tables([Hardwares])
+
+    def __str__(self):
+        return self.name

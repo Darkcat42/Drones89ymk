@@ -4,5 +4,3 @@ class Videos(Base):
     """модель для видеозаписей"""
     id = PrimaryKeyField()
     src = TextField()
-if __name__ == '__main__':
-    connect_db().create_tables([Videos])

@@ -22,4 +22,11 @@ class ConverterWeb():
         image = Image.open(img_src) # метод бибы PIL (pillow) - открываем картину 
         image.save(output, 'webp')     # метод бибы PIL - закрываем в формате веба
         return output
+    @classmethod
+    def convertDataImage(cls, data, quality=80, method=4, lossless=False, exact=False):
+        # file = Path(img_src).stem+'.webp'
+        # output = f'{dir_name}/{file}'
+        image = Image.open(data) # метод бибы PIL (pillow) - открываем картину 
+        # image.save(output, 'webp')     # метод бибы PIL - закрываем в формате веба
+        return image
 # При вызове метода 

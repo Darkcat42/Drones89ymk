@@ -26,7 +26,7 @@
                 </div>
                 <div class="col">
                     <h5 class="card-title">{{new['title']}}</h5>
-                    <p class="card-text">{{new['news_desc']}}</p>
+                    <p class="card-text">{{ new['news_desc']|truncate(150, True, '...') }}</p>
                     <p class="news_date">{{new['date']}}</p>
                     <a href="/news/more/{{new['id']}}" class="btn btn-light">Узнать больше</a>
                 </div>

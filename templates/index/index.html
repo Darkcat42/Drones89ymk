@@ -1,7 +1,10 @@
 {% extends 'base/base.html' %}
 {% block content %}
+{# блок для подключения базы данных #}
+    {% if db_is_fake %}
+        {% include 'index/index_blocks/db_is_fake.html' %}
+    {% endif %}
 <!--1 Секция опросник слайдер-->
-
 {% include 'index/index_blocks/slider.html' %}
 <div class="purple_gradient ">
 
@@ -29,13 +32,15 @@
 {% include 'index/index_blocks/schedule.html' %}
 
 </div>
-<!--4 Секция медиа-->
+<!--4 Секция инфо-->
+{% include 'index/index_blocks/statistics.html' %}
+<!--5 Секция медиа-->
 {% include 'index/index_blocks/media.html' %}
-<!--5 Секция преподователи-->
+<!--6 Секция преподователи-->
 {% include 'index/index_blocks/teachers.html' %} 
-<!--6 Секция faq-->
+<!--7 Секция faq-->
 {% include 'index/index_blocks/faq.html' %}
-<!--7 Секция join-->
+<!--8 Секция join-->
 {% include 'index/index_blocks/join.html' %}
 {% endblock %}
 

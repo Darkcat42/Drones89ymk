@@ -1,11 +1,13 @@
-from flask_admin.contrib.peewee import ModelView
+# импорты
+from Models.ModelView.BaseModelView import BaseModelView
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
-from flask import url_for
-class GalleryEvents_images_admin(ModelView):
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Галереи и картинки'
-        super().__init__(model, *args, **kwargs)
+
+class GalleryEvents_images_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Галереи и картинки'
+    uses_upload = False
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
     def _image_formatter(view, context, model, name):
         image_src = model.image_id.src
         if not image_src:
@@ -16,21 +18,13 @@ class GalleryEvents_images_admin(ModelView):
         if not galleryEvent_title:
             return ""
         return Markup(f'<a href="/admin/galleryevents/">{galleryEvent_title}</a>')
-    column_formatters = {
-        'galleryEvent_id': _galleryEvent_title_formatter,
-        'image_id': _image_formatter,
-    }
-    column_labels = {
-        
+    # форматируем сами столбцы
+    column_labels = {   
         'galleryEvent_id' : 'галерея',
         'image_id' : 'картинка',
     }
-#     """
-#     модель таблицы изображения
-#     """
-#     id = PrimaryKeyField()
-#     image_id = ForeignKeyField(Images, backref='image_id')
-#     galleryEvent_id = ForeignKeyField(GalleryEvents, backref='galleryEvent_id')
+    # форматируем значения в таблице, если нет то None для логики генератора словаря
+    formatter_list = [
+        _galleryEvent_title_formatter,
+        _image_formatter]
 
-# if __name__ == '__main__':
-#     connect_db().create_tables([GalleryEvents_images, Images, GalleryEvents])

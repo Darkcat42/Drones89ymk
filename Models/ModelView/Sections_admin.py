@@ -1,21 +1,11 @@
-from flask_admin.contrib.peewee import ModelView
-from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
-from flask import url_for
-class Sections_admin(ModelView):
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Секции'
-        super().__init__(model, *args, **kwargs)
-#     """
-#     модель таблиц в системе
-#     """
-#     id = PrimaryKeyField()
-#     sectionName = CharField()
-#     sectionTitle = CharField()
-#     sectionDesc = TextField()
-#     sectionReq = CharField()
-# if __name__ == '__main__':
-#     connect_db().create_tables([Sections])
+# импорты
+from Models.ModelView.BaseModelView import BaseModelView
+class Sections_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Секции'
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
+
 
     
 

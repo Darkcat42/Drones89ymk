@@ -1,26 +1,27 @@
+from wtforms import SelectMultipleField
+from flask_admin.form import Select2TagsWidget
+
+from Models.Hardwares import Hardwares
+
 from Models.Builds_authors import Builds_authors
-
 from Models.Builds_hardwares import Builds_hardwares
-from flask_admin.contrib.peewee import ModelView
-
+from Models.ModelView.BaseModelView import BaseModelView
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
-from flask import url_for
-class Builds_admin(ModelView):
-    # переопределяем страницу
-    list_template = 'admin/custom/builds/list.html'
-    edit_template = 'admin/custom/builds/edit.html'
-    create_template = 'admin/custom/builds/create.html'
-    # указываем какие модели необходимо дополнитель добавить при создании записи сборок
+class Builds_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Сборки'
+    uses_upload = True
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
 
-    inline_models = (
-        (Builds_authors),
-        (Builds_hardwares )
-        )
+    # переопределение страниц форм
+    list_template = 'admin/custom/builds/list.html'
+    # edit_template = 'admin/custom/builds/edit.html'
+    # create_template = 'admin/custom/builds/create.html'
+    # указываем какие модели необходимо дополнительно добавить при создании записи сборок
+    inline_models = ((Builds_authors), (Builds_hardwares)) 
+    
     # загружаем в объект представления flask-admin данные для меню панели администраора
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Сборки'
-        super().__init__(model, *args, **kwargs)
     def _build_image_id_img_formatter(view, context, model, name):
         build_image_src = model.build_image_id.src
         if not build_image_src:
@@ -28,50 +29,33 @@ class Builds_admin(ModelView):
         if not build_image_src: 
             return ""
         return Markup(f'<img src="../../{build_image_src}" class="img-fluid" alt="...">')
-    def _build_hardwares_formatter(view, context, model, name):
-        hardwares_names = []
-        for relation in model.hardwares:
-            hardwares_names.append(relation.Hardwares_id.category)
-        return Markup(f'<p>f{hardwares_names}</p>')
-    def _builds_authors_formatter(view, context, model, name):
-        persons_names = []
-        for relation in model.builds:
-            persons_names.append(relation.persons_id.firstName)
-        return Markup(f'<p>f{persons_names}</p>')
+    # данные методы переопределяют данные в столбцах
+    def _hardwares_formatter(view, context, model, name):
+        return [relation.Hardwares_id.category for relation in model.hardwares]
+    def _authors_formatter(view, context, model, name):
+        return [relation.persons_id.firstName for relation in model.authors]
     
-    # форматируем сами столбцы
+    # список форматирований, порядок функций важен относительно столбцов 
+    # !!! для пустых только None т.к сбивается логака фласк-админ 
+    formatter_list = [
+        None,
+        None,
+        _hardwares_formatter,
+        _authors_formatter,
+        None,
+        _build_image_id_img_formatter]
+    # форматируем столбцы из данных модели и обратных связей
     column_labels = {
         'build_name' : 'название сборки',
-        'inch' : 'размер дюймах',
-        'hardwares': 'Оборудование',
-        # 'persons': 'Автор',
+        'inch' : 'дюйм',
+        'hardwares' : 'Оборудование',
+        'authors' : 'Авторы',
         'build_desc' : 'описание сборки',
-        'build_image_id' : 'изображение сборки',
+        'build_image_id' : 'изображение сборки'}
 
-    }
-    form_args = {
-        'build_name' : {'label' : 'Название сборки'} , 
-        'inch' : {'label' : 'Размер дюймах'} ,
-        'hardwares': {'label' : Markup('<a href=''>Оборудование</a>')} ,
-        # 'persons': 'Автор',
-        'build_desc' : {'label' : 'Описание сборки'} ,
-        'build_image_id' : {'label' : 'Изображение сборки'} ,
-
-    }
-    # настройка порядка столбоцев (почему то не работает)
-    column_list = {
-        'build_name',
-        'inch',
-        'build_desc',
-        'hardwares',
-        # 'persons',
-        'build_image_id',
-
-    }
-    # форматируем значения в столбцах
-    column_formatters = {
-        'build_image_id': _build_image_id_img_formatter,
-        'hardwares': _build_hardwares_formatter,
-        # 'persons': _builds_authors_formatter,
-    }
+    
+    
+    
+    
+    
     

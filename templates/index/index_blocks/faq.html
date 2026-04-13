@@ -6,29 +6,33 @@
       <p class="mb-5 custom_p">Здесь мы собрали самые популярные вопросы студентов Ямальского многопрофильного колледжа, на которые даем ответы. Все получится!</p>
     </div>
     <div class="accordion" id="accordionExample">
+    {% for answ_que in faq %}
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Какой опыт или предварительная подготовка требуются для обучения пилотированию дронов FPV в колледже?
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
+            {{answ_que.question}}
           </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div id="collapse{{loop.index}}" class="accordion-collapse collapse show" aria-labelledby="heading{{loop.index}}" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            Для обучения пилотированию дронов FPV в колледже не требуется никакого предварительного опыта или подготовки. Наши преподаватели постараются, чтобы студенты могли начать с нуля и приобрести все необходимые навыки и знания.
+            {{answ_que.answer}} 
           </div>
         </div>
       </div>
-
+    {% endfor %}
+      {% if current_user.is_authenticated %}
+        <a href="/admin/faq/new/?url=/#faq" class="text-black">добавить вопрос-ответ</a>
+        {% endif %}
 
 <!--      <div class="accordion-item">-->
 <!--        <h2 class="accordion-header">-->
 <!--          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">-->
-<!--            Какие основные навыки и знания студенты получат во время курсов обучения пилотированию дронов FPV в колледже?-->
+<!--            -->
 <!--          </button>-->
 <!--        </h2>-->
 <!--        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">-->
 <!--          <div class="accordion-body">-->
-<!--            Во время курсов обучения пилотированию дронов FPV студенты будут осваивать разнообразные навыки и получать обширные знания. Они изучат основы пилотирования дронов FPV, включая управление и навигацию, безопасность полетов и правила воздушного движения. Они также получат практический опыт полетов и смогут развить свои навыки пилотирования в различных сценариях и условиях.-->
+<!--            -->
 <!--          </div>-->
 <!--        </div>-->
 <!--      </div>-->
@@ -36,16 +40,13 @@
 <!--      <div class="accordion-item">-->
 <!--        <h2 class="accordion-header">-->
 <!--          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">-->
-<!--            Какой резон мне учиться на пилотирование FPV-дрона, ради диплома?-->
+<!--            -->
 <!--          </button>-->
 <!--        </h2>-->
 <!--        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">-->
 <!--          <div class="accordion-body">-->
 <!--            Только отчасти.-->
-<!--            <br><br> Во-первых, пилотирование FPV является захватывающим хобби, которое может стать страстным увлечением. Имея навыки пилотирования FPV, вы сможете в полной мере наслаждаться полетами и исследованием новых, захватывающих мест, которые обычно недоступны другим видам пилотирования.-->
-<!--            <br><br> Во-вторых, пилотирование FPV может быть полезным навыком для различных профессиональных областей. Например, в сфере фото- и видеосъемки пилотирование FPV открывает возможности для создания уникальных и захватывающих кадров, которые обычно не могут быть достигнуты с помощью традиционных методов.-->
-<!--            <br><br> В-третих, пилотирование FPV поможет вам встать на путь получения военной учетной специальности в армии по управению боевыми дронами.-->
-<!--            <br><br> Наконец, обучение на пилотирование FPV поможет вам развить навыки в области дронотехнологий и авиации, что может быть полезным для дальнейшей карьеры в этих сферах.-->
+<!--            -->
 <!--          </div>-->
 <!--        </div>-->
 <!--      </div>-->

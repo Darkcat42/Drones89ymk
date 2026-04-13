@@ -1,102 +1,103 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
+    <meta charset="UTF-8">
+    <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>FPV | YMK</title>
-  <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/general_style.css')}}">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/index/index_blocks/news.css')}}">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/index/index_blocks/last_news.css')}}">
-  <link rel="stylesheet" href="{{url_for('static', filename='css/index/index_blocks/slider.css')}}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FPV | YMK</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/general_style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index/index_blocks/news.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index/index_blocks/last_news.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index/index_blocks/slider.css')}}">
 </head>
 <body>
     <header class="header_section navbar navbar-expand-lg" id="header">
         <div class="container-fluid">
-            <!-- <div class="row d-flex"> -->
-                <div class="col-2 d-flex">
-                <a href="/" class="navbar-brand d-flex align-items-center"><img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo ">ЯМК</a>
-                <!-- Кнопка "Бургер" (появляется только на мобильных < 992px) -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                </div>
-                <!-- Обертка меню (схлопывается на мобильных) -->
-                <div class="col-8 collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item"><a class="nav-link" href="/news">Новости</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#lastNews">Расписание</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#teacher">Преподаватели</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#media">Медиа</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="/#media">Медиа и контакты</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="/#faq">FAQ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/#info">Присоединиться</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/gallery">Галерея</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/build">Сборки</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/doc">Документы</a></li>
-                            {% if current_user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="/logout">выход</a></li>
-                            {% else %}
-                            <li class="nav-item"><a class="nav-link" href="/login">вход</a></li>
-                            {% endif %}
+            <div class="col-2 d-flex">
+            <a href="/" class="navbar-brand d-flex align-items-center"><img src="{{url_for('static', filename='img/drone-logo.svg')}}" class="drone_logo ">ЯМК</a>
+            {# Кнопка "Бургер" (появляется только на мобильных < 992px) #}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>
+            {# Обертка меню (схлопывается на мобильных) #}
+            <div class="col-8 collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ">
+                    <li class="nav-item"><a class="nav-link" href="/news">Новости</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#lastNews">Расписание</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#teacher">Преподаватели</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#media">Медиа</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#info">Присоединиться</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery">Галерея</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/build">Сборки</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/doc">Документы</a></li>
+                    {% if current_user.is_authenticated %}
+                    <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Управление
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item h5" href="/admin/news/?tab_page=base">Новости</a></li>
+                        <li><a class="dropdown-item h5" href="/admin/statistics/?tab_page=base">Статистика</a></li>
+                        <li><a class="dropdown-item h5" href="/admin/schedule/?tab_page=base">Расписание</a></li>
+                        <li><a class="dropdown-item h5" href="/admin/builds/?tab_page=base">Сборки</a></li>
+                        <li><a class="dropdown-item h5" href="/admin/persons/?tab_page=base">Преподаватели</a></li>
+                        <li><a class="dropdown-item h5" href="/admin/faq/?tab_page=base">FAQ</a></li>
+                        <li><a class="dropdown-item h5" href="/logout">выйти</a></li>
+                       
                     </ul>
-                </div>
-                {% if current_user.is_authenticated %}
-                <div class="col-1">
-                    <a  href="/admin/">{{current_user.login}}</a>
-                </div>
-                {% endif %}
+                    </div>
+                    {% else %}
+                        {% if init_db_status %}
+                        <li class="nav-item"><a class="nav-link" href="/login">вход</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="/admin">Развертывание Сайта</a></li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+            {% if current_user.is_authenticated %}
+            <div class="col-1">
+                <a  href="/admin/?tab_page=base">Админ панель</a>
+            </div>
+            {% endif %}
         </div>        
         {% if current_user.is_authenticated %}
             <a class="replace_edit_btn d-md-none d-block" href="/admin/">Войти в панель2222</a>
         {% endif %}
     </header>
+    {# проверка что база данных пуста для моделей#}
+    {% if db_is_fake %}
+        {% set news = [] %}
+    {% endif %}
     {% block content %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--основаная часть страницы-->
+    {# основаная часть страницы #}
+    
     {% endblock %}
     <footer class="footer_item">
         <div class="container flex_footer_cen">
             <p>© ГБПОУ ЯНАО «Ямальский многопрофильный колледж». Все права защищены. <a href="/policy" class="link_policy">Пользовательское соглашение</a></p>
         </div>
     </footer>
-    <!-- Модальное окно -->
+    {# Модальное окно #}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-body" id="linkJsImg">
         </div>
         </div>
     </div>
-    <!-- Модальное окно -->
-    <!--Кнопка наверх-->
+    {# Кнопка наверх #}
     <button type="button" class="btn btn-lg" id="btn-back-to-top">
         <img src="{{url_for('static', filename='img/arrow-up.svg')}}" alt="">
     </button>
-    <!--Кнопка наверх-->
-    <!--Значок телеграмма-->
+    {# Значок телеграмма #}
     <a href="https://t.me/+YMLvPOIS-YxlNWRi" class="telega_down">
         <img src="img/telegram.svg" alt="" width="30px" height="auto">
     </a>
-    <!--Значок телеграмма-->
-    <!-- <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script> -->
     <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/myscript1.js')}}"></script>
 </body>

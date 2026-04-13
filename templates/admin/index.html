@@ -1,0 +1,16 @@
+{% extends 'admin/master.html' %}
+{% block body %} 
+
+    <div class="container-fluid">
+        <h1 class="text-white">Добро пожаловать {{current_user.login}}</h1>
+        <h2 class="text-white">в панель администратора</h2>
+    </div>
+    <div class="text-white">
+        <h2>подключение к базе данных SQL</h2>
+        <p>{{db_data['name']}}</p>
+        <p>{{db_data['ip']}}</p>
+        <p>{{db_data['port']}}</p>
+    </div>
+    <a href="/add_sql">Настроить базу данных</a>
+  
+{% endblock %}

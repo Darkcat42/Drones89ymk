@@ -9,5 +9,3 @@ class Users(Base, UserMixin):
     login = CharField()
     password = CharField()
     role_id = ForeignKeyField(Roles, backref='role_id')
-if __name__ == '__main__':
-    connect_db().create_tables([Users, Roles])

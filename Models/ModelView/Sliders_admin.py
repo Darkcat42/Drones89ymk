@@ -1,11 +1,13 @@
-from flask_admin.contrib.peewee import ModelView
+# импорты
+from Models.ModelView.BaseModelView import BaseModelView
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
-from flask import url_for
-class Sliders_admin(ModelView):
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Слайдеры'
-        super().__init__(model, *args, **kwargs)
+
+class Sliders_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Слайдеры'
+    uses_upload = True
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
     def _image_formatter(view, context, model, name):
         image_src = model.image_id.src
         if not image_src:
@@ -14,8 +16,10 @@ class Sliders_admin(ModelView):
     # форматируем сами столбцы
     column_labels = {
         'image_id' : 'картинка',
+        'name' : 'Название слайдера',
     }
     column_formatters = {
         'image_id': _image_formatter,
     }
+    
 

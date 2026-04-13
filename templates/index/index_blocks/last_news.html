@@ -24,11 +24,14 @@
                                     <p class="lastNews_date col-2">{{news[0]['date']}}</p>
                                 </div>
                                 <div class="row">
-                                    <p class="col-8">{{news[0]['news_desc']}}</p>
+                                    <p class="col-8">{{news[0]['news_desc']|truncate(140, True, '...') }}</p>
                                 </div>
                                 <div class="row">
                                     <div class="col-2"><a href="/news" class="btn-light ">больше новостей</a></div>
                                     <div class="col-2"><a href="/news/more/{{news[0]['id']}}" class="btn-light">Узнать больше</a></div>
+                                    {% if current_user.is_authenticated %}
+                                    <a href="/news">управлять новостями</a>
+                                    {% endif %}
                                 </div>
                             </div>
                             </div>
@@ -47,7 +50,7 @@
                                         <p class="lastNews_date col-2">{{new['date']}}</p>
                                     </div>
                                     <div class="row">
-                                        <p class="col-8">{{new['news_desc']}}</p>
+                                        <p class="col-8">{{new['news_desc']|truncate(140, True, '...')}}</p>
                                     </div>
                                     <div class="row">
                                         <div class="col-2"><a href="/news" class="btn-light ">больше новостей</a></div>

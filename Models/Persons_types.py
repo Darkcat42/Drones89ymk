@@ -5,5 +5,3 @@ class Persons_types(Base):
     id = PrimaryKeyField()
     type = CharField()
     
-if __name__ == '__main__':
-    connect_db().create_tables([Persons_types])

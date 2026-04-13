@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="static_h basic_bg">
+        <h1 class="text-center ">подключение базы данных SQL</h1>
+        <form action="/connect_sql" class="d-flex flex-column align-items-center m-5" method="POST">
+            <input class="m-1 p-2 h3 text-black" type="text" name="name" value="drones" placeholder="название БД">
+            <input class="m-1 p-2 h3 text-black" type="text" name="login" value="drones" placeholder="логин">
+            <input class="m-1 p-2 h3 text-black" type="text" name="passwd" value="dsfkjlhgsdflkgl90890" placeholder="пароль">
+            <input class="m-1 p-2 h3 text-black" type="text" name="ip" value="192.168.0.102" placeholder="адресс сервера">
+            <input class="m-1 p-2 h3 text-black" type="text" name="port" value="3306" placeholder="порт сервера">
+            <input class="m-1 p-2 h3 text-black" type="submit" value="Подключить">
+        </form>
+    </div>
+    
+{% endblock %}

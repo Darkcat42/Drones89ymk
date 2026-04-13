@@ -9,5 +9,3 @@ class Builds(Base):
     build_desc = TextField()
     build_image_id = ForeignKeyField(Images)
     
-if __name__ == '__main__':
-    connect_db().create_tables([Builds])

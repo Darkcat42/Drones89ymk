@@ -1,39 +1,44 @@
 """модуль для подлючения к базе данных"""
 from peewee import *
-# def connect_db():
-#     return MySQLDatabase(
-#         'drones',
-#         user='drones207',
-#         password='sakjdfhkjsadfhkjsdfs',
-#         host='127.0.0.1',
-#         port=3306)
-def connect_db():
-    return MySQLDatabase(
-        'drones',
-        user='drones',
-        password='dsfkjlhgsdflkgl90890',
-        host='192.168.0.102',
-        port=3306)
-# def connect_db():
-#     return MySQLDatabase(
-#         'OnVisp2_drones',
-#         user='OnVisp2',
-#         password='OnVisp2',
-#         host='10.11.13.115',
-#         port=3306)
-# def connect_db():
-#     return MySQLDatabase(
-#         'OnVisp2_drones',
-#         user='OnVisp2_drones',
-#         password='111111',
-#         host='10.11.13.118',
-#         port=3306)
+import os
+from dotenv import load_dotenv
+db = Proxy()
+db.initialize(SqliteDatabase(':memory:'))  # Заглушка на случай отсутствия MySQL
+db_is_ready = False
+def init_db():
+    global db_is_ready
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    env_path = os.path.join(root, 'static', 'config', 'db.env')
+    load_dotenv(env_path, override=True)
+    try:
+        global db_is_ready
+        # Пытаемся создать объект базы
+        new_db = MySQLDatabase(
+            os.getenv('name'),
+            user=os.getenv('login'),
+            password=os.getenv('passwd'),
+            host=os.getenv('ip'),
+            port=int(os.getenv('port', 3306)),
+            connect_timeout=3 # СТАВИМ ТАЙМАУТ 3 секунды, чтобы не висело вечно
+        )
+        # Проверяем соединение перед присвоением прокси
+        conn = new_db.connection()
+        conn.close()
+        db.initialize(new_db)
+        db_is_ready = True
+        return True
+    except:
+        print(f"Ошибка подключения к БД")
+        db.initialize(SqliteDatabase(':memory:'))
+        db_is_ready = False
+        return False
 
-
-
-    # drones
-    # dsfkjlhgsdflkgl90890
-    # drones207
-    # sakjdfhkjsadfhkjsdfs
+def reload_db():
+    """Переподключение после обновления .env (вызывается из формы)."""
+    global db, db_is_ready
+    if not db.is_closed():
+        db.close()
+    db.initialize(SqliteDatabase(':memory:'))
+    return init_db()
 
 

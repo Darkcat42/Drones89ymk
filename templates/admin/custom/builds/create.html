@@ -1,15 +1,23 @@
 {% extends 'admin/model/create.html' %}
-{% block head_css %}
-{{ super() }}
-<style>
-    body{
-        background-color: red !important;
-    }
-    
-</style>
 
-{% endblock %}
 {% block body %}
-    <h1 style="color: red;">Тестовая страница создания (кастомный шаблон)</h1>
-    {{ super() }}
+    <h1 class="text-white p-2 mb-3">Создание новой сборки</h1>
+    {% for field in form if field.name %}
+    {% if field.id != 'authors' and field.id != 'hardwares'%}
+    <div>
+        {{ field.label }} 
+    </div>
+    <div>
+        {{ field }}
+        {{ field.id }}
+        {{ field.name }}
+    </div>
+    <div>
+
+    </div>
+    {% endif %}
+    {% endfor %}
+    
 {% endblock %}
+
+ 

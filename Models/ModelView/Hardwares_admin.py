@@ -1,13 +1,13 @@
-from flask_admin.contrib.peewee import ModelView
-from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
-from flask import url_for
-class Hardwares_admin(ModelView):
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Оборудование'
-        super().__init__(model, *args, **kwargs)
+# импорты
+from Models.ModelView.BaseModelView import BaseModelView
+class Hardwares_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Оборудование'
+    uses_upload = True
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
+    # форматируем сами столбцы
     column_labels = {
-        
         'galleryEvent_id' : 'галерея',
         'image_id' : 'картинка',
         'category': 'категория',
@@ -15,17 +15,6 @@ class Hardwares_admin(ModelView):
         'count': 'количество',
         'cost': 'цена',
         'sourceName': 'источник',
-        'sourceUrl': 'ссылка на источник',
+        'sourceUrl': 'ссылка на источник'
     }
-#     """
-#     модель 
-#     """
-#     id = PrimaryKeyField()
-#     category = CharField()
-#     name = CharField()
-#     count = IntegerField()
-#     cost = IntegerField()
-#     sourceName = TextField()
-#     sourceUrl = CharField()
-# if __name__ == '__main__':
-#     connect_db().create_tables([Hardwares])
+   

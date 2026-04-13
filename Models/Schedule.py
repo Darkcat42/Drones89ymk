@@ -7,5 +7,3 @@ class Schedule(Base):
     day = CharField()
     start = CharField()
     end = CharField()
-if __name__ == '__main__':
-    connect_db().create_tables([Schedule])

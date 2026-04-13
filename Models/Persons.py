@@ -6,7 +6,7 @@ class Persons(Base):
     """модель для персон"""
     id = PrimaryKeyField()
     persons_types_id = ForeignKeyField(Persons_types, backref='persons_types_id')
-    images_id = ForeignKeyField(Images)
+    image_id = ForeignKeyField(Images)
     firstName = CharField()
     lastName = CharField()
     person_desc = TextField()
@@ -14,5 +14,3 @@ class Persons(Base):
     def __str__(self):
         return self.firstName +' '+ self.lastName
     
-if __name__ == '__main__':
-    connect_db().create_tables([Persons, Persons_types, Images])

@@ -1,0 +1,36 @@
+{       "base": {
+            "label": "Базовые",
+            "urls": [
+                "/admin/statistics/", "/admin/builds/", "/admin/galleryevents/", 
+                "/admin/hardwares/", "/admin/images/", "/admin/news/", 
+                "/admin/persons/", "/admin/schedule/", "/admin/users/", 
+                "/admin/sliders/", "/admin/persons_types/", "/admin/roles/",
+                "/admin/sections/", "/admin/faq/"
+            ]
+        },
+        "more": {
+            "label": "Промежуточные",
+            "urls": [
+                "/admin/builds_hardwares/", "/admin/builds_authors/", 
+                "/admin/galleryevents_images/"
+            ]
+        },
+        "simple": {
+            "label": "Простые",
+            "urls": [
+                "/admin/statistics/", "/admin/schedule/", "/admin/persons_types/",
+                "/admin/roles/", "/admin/faq/", "/admin/galleryevents/", 
+                "/admin/hardwares/", "/admin/images/", "/admin/sliders/"
+            ]
+        },
+        "complex": {
+            "label": "Составные",
+            "urls": [
+                "/admin/builds/", "/admin/news/", "/admin/persons/", "/admin/users/"
+            ]
+        },
+        "all": {
+            "label": "Все",
+            "urls": [] 
+            }
+        }

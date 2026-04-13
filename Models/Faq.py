@@ -6,6 +6,3 @@ class Faq(Base):
     id = PrimaryKeyField()
     question = CharField()
     answer = CharField()
-    
-if __name__ == '__main__':
-    connect_db().create_tables([Faq])

@@ -8,5 +8,3 @@ class GalleryEvents_images(Base):
     image_id = ForeignKeyField(Images, backref='image_id')
     galleryEvent_id = ForeignKeyField(GalleryEvents, backref='galleryEvent_id')
 
-if __name__ == '__main__':
-    connect_db().create_tables([GalleryEvents_images, Images, GalleryEvents])

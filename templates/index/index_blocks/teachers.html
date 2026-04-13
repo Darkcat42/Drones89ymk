@@ -1,13 +1,11 @@
 <section id="teacher">
       <div class="container d-flex flex-column">
-        
         <div class="text-center">
             <h2 class="mb-3">Преподаватели</h2>
             <hr class="hr-line">
             <p class="mb-5 custom_p">Наши профессиональные инструкторы будут рядом с вами, чтобы помочь вам освоить основы управления дронами.
                 <br> Они имеют богатый опыт в полетах на FPV-дронах и готовы поделиться своими знаниями и секретами</p>
         </div>
-
         <div class="row d-flex align-items-center teacher_base_card flex-row">
             <div class="col-3 image_teacher">
                 <img  data-src="{{url_for('static', filename='img/teacher1.webp')}}" alt="a snow-capped mountain range" class="img-fluid fsi lazy"/>
@@ -24,7 +22,10 @@
                 <img data-src="{{url_for('static', filename='img/diplom1.webp')}}" alt="" class="img-fluid fsi lazy" onclick="LinkFull(this.src)" data-bs-toggle="modal" data-bs-target="#exampleModal">   
             </div>
         </div>
-        <div class="row d-flex align-items-center teacher_base_card flex-row">
+        {% if current_user.is_authenticated %}
+        <a href="/admin/persons/new/?url=/#teacher&tab_page=close">добавить преподавателя</a>
+        {% endif %}
+        <!-- <div class="row d-flex align-items-center teacher_base_card flex-row">
             <div class="col-3 image_teacher">
                 <img  data-src="{{url_for('static', filename='img/teacher1.webp')}}" alt="a snow-capped mountain range" class="img-fluid fsi lazy"/>
             </div>
@@ -39,10 +40,7 @@
             <div class="col-4">
                 <img data-src="{{url_for('static', filename='img/diplom1.webp')}}" alt="" class="img-fluid fsi lazy" onclick="LinkFull(this.src)" data-bs-toggle="modal" data-bs-target="#exampleModal">   
             </div>
-        </div>
-        
-        
-          
+        </div> -->
           <!-- <div class="row" style="margin: 1%; border: 1px solid black;">
             <div class="col" data-image_id="" >
                 <img src="" class="" alt="..." width="300px">

@@ -1,11 +1,12 @@
 # импорты системных библиотек
-import flask, os, datetime
+import flask
 from flask_login import login_required
-from flask import render_template, request, Blueprint, current_app
+from flask import render_template, Blueprint
 from Controllers.ScheduleController import ScheduleController
 from Controllers.NewsController import NewsController
 from Controllers.SlidersController import SlidersController
-
+from Controllers.StatisticsController import StatisticsController
+from Controllers.FaqController import FaqController
 index_blueprint = Blueprint('index_bluep', __name__)
 @index_blueprint.route('/') 
 def index():
@@ -19,7 +20,9 @@ def index():
         scheduleDays=ScheduleController.get(),
         scheduleInfo='[расписание]',
         news=NewsController.get_desc(),
-        slider = slider
+        slider = slider,
+        statistics = StatisticsController.get(),
+        faq = FaqController.get()
         )
 @index_blueprint.route('/flask_admin/')
 @login_required
@@ -29,10 +32,10 @@ def flask_admin():
 @index_blueprint.route('/doc')
 def doc():
     """маршрут страницу документов"""
-    return render_template('doc.html')
+    return render_template('/webpages/doc.html')
 # маршруты для страницы политики обработки персональных данных
 @index_blueprint.route('/policy')
 def policy():
     """маршрут policy.html"""
-    return render_template('policy.html')
+    return render_template('/webpages/policy.html')
 

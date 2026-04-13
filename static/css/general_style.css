@@ -15,6 +15,7 @@ body {    padding: 0 !important;    margin: 0 !important;}
     background-color: red;
     visibility: hidden;
 }
+
 .static_h {
     min-height: 86vh;
     color: white;
@@ -105,6 +106,16 @@ body {    padding: 0 !important;    margin: 0 !important;}
 
 
 /* header - верхнее меню */
+.dropdown button{
+    background-color: transparent;
+    color: white;
+    border: none;
+    transform: translateY(32%) translateX(15%);
+}
+.dropdown li{
+    margin: 10px !important;
+}
+
 .nav-link{
     color: white !important;
     

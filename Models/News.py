@@ -7,6 +7,4 @@ class News(Base):
     title = CharField()
     news_desc = CharField()
     date = CharField()
-    image_id = ForeignKeyField(Images)
-if __name__ == '__main__':
-    connect_db().create_tables([News, Images])
+    image_id = ForeignKeyField(Images, backref='news')

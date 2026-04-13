@@ -6,7 +6,5 @@ class Builds_authors(Base):
     """модель многие ко многим для сборок и авторов"""
     id = PrimaryKeyField()
     persons_id = ForeignKeyField(Persons, backref='builds')
-    builds_id = ForeignKeyField(Builds)
+    builds_id = ForeignKeyField(Builds, backref='authors')
     
-if __name__ == '__main__':
-    connect_db().create_tables([Builds_authors, Persons, Builds])

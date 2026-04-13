@@ -1,37 +1,32 @@
-from flask_admin.contrib.peewee import ModelView
-from flask_admin.model import InlineFormAdmin
+# импорты
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
 from flask import url_for
+from Models.ModelView.BaseModelView import BaseModelView
+class Builds_authors_admin(BaseModelView):
+    # название модели в списке админ панели
+    modelTableName = 'Сборки и авторы'
+    uses_upload = False
+    def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
+        super().__init__(model, modelTableName, *args, **kwargs)
 
-class Builds_authors_admin(ModelView):
-    # загружаем в объект представления flask-admin данные для меню панели администраора
-    def __init__(self, model, *args, **kwargs):
-        if 'name' not in kwargs:
-            kwargs['name'] = 'Сборки и Авторы'
-        super().__init__(model, *args, **kwargs)
     def _persons_link_formatter(view, context, model, name):
         person = model.persons_id
-        if not person:
-            return ""
         full_name = f"{person.firstName} {person.lastName}"
         url = url_for('persons.index_view') # есть также edit_view delete_view и тп
         return Markup(f'<a href="{url}">{full_name}</a>')
     def _builds_link_formatter(view, context, model, name):
         build = model.builds_id
-        if not build:
-            return ""
         build_name = str(build.build_name) 
         url = url_for('builds.index_view') # есть также edit_view delete_view и тп
         if not build_name:
             return Markup(f'<a href="{url}">К сборкам</a>')
         return Markup(f'<a href="{url}">{build_name}</a>')
-    # форматируем значения в столбцах
-    column_formatters = {
-        'persons_id': _persons_link_formatter,
-        'builds_id' : _builds_link_formatter
-    }
     # форматируем сами столбцы
     column_labels = {
-        'persons_id' : 'персоны',
-        'builds_id' : 'сборки'
-    }
+        'persons_id' : 'персоны', 
+        'builds_id' : 'сборки'}
+    # форматируем значения в таблице, если нет то None для логики генератора словаря
+    formatter_list = [
+        _persons_link_formatter,
+        _builds_link_formatter]
+   
