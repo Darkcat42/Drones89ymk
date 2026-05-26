@@ -12,7 +12,6 @@
             {% endif %}
 <section id="build" class="static_h basic_bg">
         <div class="container">
-            
             <div class="info_build">
                     <p>Добро пожаловать на страницу по сборке дронов. Данный раздел предназначен для предоставления элементов деталей для конструирования своего собственного FPV-дрона. Здесь вы найдете для себя идея и элементы оборудования для готовых сборок себе в копилку, в том числе примерный ценовой диапозон и магазины покупки деталей</p>
             </div>
@@ -32,7 +31,14 @@
                         <span class="arrow"></span>
                     </div>
                     </div> -->
-                    <img src="{{build['build_image_src']}}" alt="" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)">
+                    {% if build['build_image_src'] %}
+                        {% if file_exists(build['build_image_src']) %}
+                                <img src="{{build['build_image_src']}}" alt="" data-bs-target="#exampleModal" data-bs-toggle="modal" onclick="LinkFull(this.src)">
+                        {% endif %}
+                    {% else %}
+                        <div class="img_plug"></div>
+                    {% endif %}
+                    
                     <table class="table table-bordered scroll_x">
                     <!-- заголовки таблицы -->
                     <thead>

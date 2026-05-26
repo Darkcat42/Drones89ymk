@@ -1,7 +1,15 @@
 # это базовый класс для всех моделей системы
 from connection.connect import *
-
+from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
 class Base(Model):
+    def __getattribute__(self, name):
+        try:
+            # Вызываем стандартный механизм получения атрибута
+            return super().__getattribute__(name)
+        except DoesNotExist:
+            # Если Peewee не нашел запись в связанной таблице — возвращаем None
+            # Вместо того, чтобы ронять всё приложение
+            return Markup('<p data-Peewee-Attr-Error=true>ошибка атрибута модели БД</p>')
     """базовый класс для моделей базы данных"""
     @classmethod
     def create_tables_db(cls):

@@ -5,13 +5,17 @@ from flask import url_for
 class Persons_admin(BaseModelView):
     # название модели в списке админ панели
     modelTableName = 'Персоны'
-    uses_upload = True
+    uses_upload = False
     def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
         super().__init__(model, modelTableName, *args, **kwargs)
     def _image_formatter(view, context, model, name):
-        image_src = model.image_id.src
-        src = url_for('static', filename='webp/' + str(image_src))
-        return Markup(f'<img src="{src}" class="w-100 lazy" loading="lazy" alt="...">')
+        src = ' '
+        tag = Markup(f'<img src="{src}" class="img-fluid" alt="...">')
+        if not model.image_id:
+            tag = Markup(f'<p>Ошибка внешнего ключа изображения</p>')
+        else:
+            src = model.image_id
+        return tag
     def _personType_formatter(view, context, model, name):
         persons_type = model.persons_types_id.type
         if not persons_type:
@@ -29,6 +33,6 @@ class Persons_admin(BaseModelView):
         _image_formatter,
     ]
     # # Скрываем стандартное поле связи с изображением
-    form_excluded_columns = ('image_id')
+    # form_excluded_columns = ('image_id')
     
 

@@ -10,17 +10,23 @@ class Builds_authors_admin(BaseModelView):
         super().__init__(model, modelTableName, *args, **kwargs)
 
     def _persons_link_formatter(view, context, model, name):
-        person = model.persons_id
-        full_name = f"{person.firstName} {person.lastName}"
-        url = url_for('persons.index_view') # есть также edit_view delete_view и тп
-        return Markup(f'<a href="{url}">{full_name}</a>')
+        try:
+            person = model.persons_id
+            full_name = f"{person.firstName} {person.lastName}"
+            url = url_for('persons.index_view') # есть также edit_view delete_view и тп
+            return Markup(f'<a href="{url}">{full_name}</a>')
+        except:
+            return Markup(f'<p>Ошибка внешнего ключа</p>')
     def _builds_link_formatter(view, context, model, name):
-        build = model.builds_id
-        build_name = str(build.build_name) 
-        url = url_for('builds.index_view') # есть также edit_view delete_view и тп
-        if not build_name:
-            return Markup(f'<a href="{url}">К сборкам</a>')
-        return Markup(f'<a href="{url}">{build_name}</a>')
+        try:
+            build = model.builds_id
+            build_name = str(build.build_name) 
+            url = url_for('builds.index_view') # есть также edit_view delete_view и тп
+            if not build_name:
+                return Markup(f'<a href="{url}">К сборкам</a>')
+            return Markup(f'<a href="{url}">{build_name}</a>')
+        except:
+            return Markup(f'<p>Ошибка внешнего ключа</p>')
     # форматируем сами столбцы
     column_labels = {
         'persons_id' : 'персоны', 

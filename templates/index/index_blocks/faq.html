@@ -6,6 +6,20 @@
       <p class="mb-5 custom_p">Здесь мы собрали самые популярные вопросы студентов Ямальского многопрофильного колледжа, на которые даем ответы. Все получится!</p>
     </div>
     <div class="accordion" id="accordionExample">
+    {% if not faq %}
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="true" aria-controls="collapse">
+            Вопрос
+          </button>
+        </h2>
+        <div id="collapse" class="accordion-collapse collapse show" aria-labelledby="heading" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            Ответ
+          </div>
+        </div>
+      </div>
+    {% else %}
     {% for answ_que in faq %}
       <div class="accordion-item">
         <h2 class="accordion-header">
@@ -20,6 +34,7 @@
         </div>
       </div>
     {% endfor %}
+    {% endif %}
       {% if current_user.is_authenticated %}
         <a href="/admin/faq/new/?url=/#faq" class="text-black">добавить вопрос-ответ</a>
         {% endif %}

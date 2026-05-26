@@ -1,0 +1,25 @@
+/* страница форма авторизации */
+#login_form{
+    text-align: center;
+    color: white;
+    padding-top: 10%; 
+}
+#login_form input:not(#login_form input:last-child){ 
+    margin-bottom: 2%;
+    width: 50%;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 12px;
+    border: none;
+}
+#login_form input:last-child{
+    margin-top: 5%;  
+    width: 20%;
+    letter-spacing: 5px;
+    font-size: 1.5em;
+    border: none;
+    box-shadow: 1px 1px 5px 1px #2C133E;
+}
+#login_form input{margin: auto; box-shadow: 1px 1px 5px 1px #2C133E;}
+#login_form input:hover{box-shadow: 1px 1px 15px 5px #2C133E; transform: scale(1.1, 1.1);}
+#login_form input:focus{transform: scale(1.1, 1.1); }

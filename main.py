@@ -5,6 +5,7 @@ from flask_babel import Babel
 from dotenv import load_dotenv
 from peewee import OperationalError
 from flask import redirect
+from peewee import OperationalError
 # импорт моделей
 from Models.Builds_authors import *
 from Models.Builds_hardwares import *
@@ -14,6 +15,7 @@ from Models.GalleryEvents import *
 from Models.Hardwares import *
 from Models.Faq import *
 from Models.Images import *
+from Models.images_models import *
 from Models.News import *
 from Models.Persons_types import *
 from Models.Persons import *
@@ -31,7 +33,8 @@ from Models.ModelView.GalleryEvents_images_admin import *
 from Models.ModelView.Hardwares_admin import *
 from Models.ModelView.Faq_admin import *
 from Models.ModelView.Images_admin import *
-from Models.ModelView.News_admin import *
+from Models.ModelView.images_models_admin import *
+from Models.ModelView.news.News_admin import *
 from Models.ModelView.Persons_admin import *
 from Models.ModelView.Persons_types_admin import *
 from Models.ModelView.Roles_admin import *
@@ -64,14 +67,15 @@ class App_controller():
             schedule_blueprint
             ]
     root = os.path.dirname(__file__)
+    webp = os.path.join(*[r'static', r'webp'])
     """класс для функций и данных приложения"""
     def __init__(self):
-        self._tempImg = [r'static', r'temp', r'img']
+        # self._tempImg = [r'static', r'temp', r'img']
         self._webpImg = [r'static', r'webp'] 
-    @cached_property
-    def tempImg(self):
-        """геттер пути temp для картинок"""
-        return os.path.join(*self._tempImg)
+    # @cached_property
+    # def tempImg(self):
+    #     """геттер пути temp для картинок"""
+    #     return os.path.join(*self._tempImg)
     @cached_property
     def webpImg(self):
         """геттер пути webp для веб-картинок"""
@@ -131,12 +135,12 @@ class App_controller():
             Hardwares_admin(Hardwares),
             Faq_admin(Faq),
             Images_admin(Images),
+            Images_models_admin(Images_models),
             News_admin(News),
             Persons_admin(Persons),
             Persons_types_admin(Persons_types),
             Roles_admin(Roles),
             Schedule_admin(Schedule),
-            
             Statistics_admin(Statistics),
             Users_admin(Users),
             Sliders_admin(Sliders)
@@ -147,9 +151,10 @@ class App_controller():
             app.register_blueprint(blueprint)   
 
 if __name__ == '__main__':
+    App_controller.make_Dir(App_controller.webp) # проверяет и создает каталог картинок
     app = App_controller.get_flaskApp()
     app.secret_key = 'jksdhf l;lkj&*~19273l;kaszdfop['
-    
+    app.get
     # определения языка приложения
     def get_locale():
         return 'ru'
@@ -184,7 +189,7 @@ if __name__ == '__main__':
     #     global db_is_ready
     #     return {'init_db_status' : db_is_ready}
      
-    from peewee import OperationalError
+    
     @app.errorhandler(OperationalError)
     def handle_db_error(e):
         # При ошибке БД перенаправляем в админку (где обычно показывается форма подключения)

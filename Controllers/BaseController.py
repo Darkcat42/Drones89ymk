@@ -91,8 +91,6 @@ class BaseController():
             return cls.model.create(**kwargs)
         except:
             return False
-        
-    
     @classmethod
     def show(cls):
         if db.obj is None:
@@ -120,7 +118,6 @@ class BaseController():
                 cls.model.update({key:value}).where(cls.model.id == id).execute()
         except:
             return False
-        
     @classmethod
     def delete(cls, id):
         if db.obj is None:

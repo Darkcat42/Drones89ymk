@@ -1,46 +1,61 @@
 {% extends 'base/base.html' %}
 {% block content %}
+{% set userLogin = current_user.is_authenticated %}
 <!--Секция новости-->
 {% if not news %}
-<section id="news" class="static_h basic_bg">
-    {% if current_user.is_authenticated %}
-    <div class="edit_tools"> <!--инстурменты администратора для данного блока-->
-        <h1>Новостей нет, добавьте новость</h1>
-        <a href="/admin/news/new/?url=/news/">добавить новость</a>
-    </div>
+<section id="news" class="static_h basic_bg ">
+    {% if userLogin %}
+    <h1>Новостей нет, добавьте новость</h1>
+    <a href="/admin/news/new/?url=/news/">добавить новость</a>
     {% else %}
     <h1>Здесь будут все наши новости!</h1>
     {% endif %}
-    
 </section>
 {% else %}
 <section id="news" class="static_h basic_bg"> 
-    
-    <div class="container">
-        <div class="d-flex flex-column">
-            
-            {% for new in news %}
-            <div class="row" data-new_id="{{new['id']}}">
-                <div class="news_image col-4">
-                    <img src="/{{new['image_src']}}" alt="...">
-                </div>
-                <div class="col">
-                    <h5 class="card-title">{{new['title']}}</h5>
-                    <p class="card-text">{{ new['news_desc']|truncate(150, True, '...') }}</p>
-                    <p class="news_date">{{new['date']}}</p>
-                    <a href="/news/more/{{new['id']}}" class="btn btn-light">Узнать больше</a>
-                </div>
-                {% if current_user.is_authenticated == True %}
-                <div class="col news_edit_tools">
-                    <a class="basis_edit_btn" href="/admin/news/edit/?id={{new['id']}}&url=/news/"></a> 
-                    <a class="basis_close_btn" href="/news/delete/{{new['id']}}"></a>
-                </div>
-                {% endif %}
-            </div>
-            {% endfor %}
-            
-        </div>
+  <div class="container d-flex flex-column">
+    {% if userLogin %}
+    <div class="edit_tools"> {# инстурменты администратора для данного блока #}
+        <a href="/admin/news/new/?url=/news/">добавить новость</a>
     </div>
-  </section>
+    {% endif %}    
+    {% for new in news %}
+    <div class="row flex-nowrap" data-new_id="{{new['id']}}"> 
+        <div class="flex-nowrap row {{ 'col-11' if userLogin else 'col-12' }}">   
+            <div class="news_image col-4"> {# блок картинки #}
+            {% if new['image_id'].src %}
+                {% set image_path = 'static/' ~ new['image_id'].src %}
+                {% if file_exists(image_path) %}
+                    <img src="/static/{{new['image_id'].src}}" alt="...">
+                {% endif %}
+            {% else %}
+                <div class="img_plug">{{new['image_id'].src}}</div>
+            {% endif %}
+            </div>
+            <div class="col-7">
+                <div class="col d-flex flex-column h-100">
+                    <h3 class="card-title pb-2">{{new['title']}}</h3>
+                    <div class="col d-flex mx-3">
+                            <div class="col-3"> {# блок заголовка новости #} 
+                                <p class="news_date">{{new['date']}}</p>
+                                <a href="/news/more/{{new['id']}}" class="btn btn-light mt-auto">Узнать больше</a>
+                            </div>
+                        <div class="col-10">
+                            <p class="card-text ">{{ new['news_desc']|truncate(260, True, '...') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if userLogin %}
+        <div class="col-1 news_edit_tools"> {# блок инструментов редактора #}
+            <a class="text-black" href="/admin/news/edit/?id={{new['id']}}&url=/news/">ред </a> 
+            <a class="text-black" href="/news/delete/{{new['id']}}">дел</a>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
 {% endif %}
 {% endblock %}

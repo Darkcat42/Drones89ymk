@@ -1,0 +1,43 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<div class="row">
+    <!-- Левая форма: Build -->
+    <div class="col-md-6">
+        <h3>Создать сборку</h3>
+        <form method="POST">
+            {% for field in build_form %}
+                <div class="form-group">
+                    {{ field.label(class="control-label") }}
+                    {{ field(class="form-control") }}
+                    {% if field.errors %}
+                        <span class="help-block text-danger">{{ field.errors[0] }}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" name="submit_build" class="btn btn-primary">
+                Сохранить сборку
+            </button>
+        </form>
+    </div>
+
+    <!-- Правая форма: Hardware -->
+    <div class="col-md-6">
+        <h3>Создать оборудование</h3>
+        <form method="POST">
+            {% for field in hardware_form %}
+                <div class="form-group">
+                    {{ field.label(class="control-label") }}
+                    {{ field(class="form-control") }}
+                    {% if field.errors %}
+                        <span class="help-block text-danger">{{ field.errors[0] }}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" name="submit_hardware" class="btn btn-primary">
+                Сохранить оборудование
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

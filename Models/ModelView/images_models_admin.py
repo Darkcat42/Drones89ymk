@@ -2,25 +2,26 @@
 from Models.ModelView.BaseModelView import BaseModelView
 from markupsafe import Markup # для шаблонизатора, обозначение безопасного html
 from flask import url_for
-class Images_admin(BaseModelView):
+class Images_models_admin(BaseModelView):
     # название модели в списке админ панели
-    modelTableName = 'Картинки'
-    uses_upload = True
+    modelTableName = 'Картинки и модели'
+    # uses_upload = True
+    #     id = PrimaryKeyField()
+    # model_name = CharField(null=True)
+    # image_id = ForeignKeyField(Images, null=True)
+    # row_id = IntegerField(null=True)
     
     def __init__(self, model, modelTableName = modelTableName, *args, **kwargs):
         super().__init__(model, modelTableName, *args, **kwargs)       
-    def _image_formatter(view, context, model, name):
-        src = url_for('static', filename=model.src)
-        return Markup(f'<img src="{src}" class="w-100 lazy" loading="lazy" alt="...">')
+
     # форматируем сами столбцы
     column_labels = {
-        'src' : 'файл',
-        'category' : 'категория',
-        'alt' : 'подпись картинки',
-        'prev' : 'картинка',
+        'model_name' : 'название модели',
+        'image_id' : 'id картинки',
+        'row_id' : 'id записи'
     }
     formatter_list = [
         None,
         None,
-        _image_formatter
+        None
     ]

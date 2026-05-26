@@ -7,4 +7,5 @@ class News(Base):
     title = CharField()
     news_desc = CharField()
     date = CharField()
-    image_id = ForeignKeyField(Images, backref='news')
+    image_id = ForeignKeyField(Images, backref='Images', null=True)
+

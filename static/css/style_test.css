@@ -1,0 +1,7 @@
+/* стили для тестирования */
+.b_test, .b_test>*, .b_test>*>*, .b_test>*>*>*, .b_test>*>*>*>*{
+    outline: 1px solid red;
+}
+.b_test_div, .b_test_div>div, .b_test_div>div>div, .b_test_div>div>div>div, .b_test_div>div>div>div>div{
+    outline: 2px solid green;
+}

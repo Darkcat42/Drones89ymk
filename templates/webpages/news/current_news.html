@@ -5,7 +5,13 @@
     <div class="container">
         <div class="d-flex flex-column">
             <div class="news_image col-4">
-                    <img src="/{{current_news['image_src']}}" alt="...">
+                {% if current_news['image_src'] %}
+                    {% if file_exists(current_news['image_src']) %}
+                            <img src="/{{current_news['image_src']}}" alt="...">
+                    {% endif %}
+                {% else %}
+                    <div class="img_plug"></div>
+                {% endif %}
             </div>
             <h1 class="">{{current_news['title']}}</h5>
             <p class="">{{current_news['news_desc']}}</p>

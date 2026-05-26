@@ -1,34 +1,22 @@
-/* стили для тестирования */
-.b_test, .b_test>*, .b_test>*>*, .b_test>*>*>*, .b_test>*>*>*>*{
-    outline: 1px solid red;
-}
 /* общие стили по тегам*/
-html {scroll-behavior: auto !important;}
-a {
-    text-decoration: none;
-    color: white;
+* {
+    scrollbar-color: #888888 transparent;
 }
-body {    padding: 0 !important;    margin: 0 !important;}
+html {scroll-behavior: auto !important;}
+body {padding: 0 !important; margin: 0 !important;}
+a {text-decoration: none;color: white;}
 /* универсальные стили */
 .none_border{
     border-left: 1px solid transparent;
-    background-color: red;
     visibility: hidden;
 }
 
-.static_h {
-    min-height: 86vh;
-    color: white;
-}
+.static_h {min-height: 86vh;color: white;}
 .db_none {display: none !important;}
 .pos_absolute {position: absolute;}
-.pos_relative {
-    position: relative;
-    text-align: right;
-}
+.pos_relative {position: relative;text-align: right;}
 #img_close {display: none;}
-.basic_bg { 
-    background: url("../img/bg.svg") center no-repeat;}
+.basic_bg { background: url("../img/bg.svg") center no-repeat;}
 /* стили универсальных кнопок */
 .basis_close_btn, 
 .basis_edit_btn,
@@ -38,38 +26,24 @@ body {    padding: 0 !important;    margin: 0 !important;}
     background-repeat: no-repeat !important;
     border: none !important;
 }
-.edit_tools{
-    display: flex;
-    z-index: 5; 
-}
+.edit_tools{display: flex;z-index: 5;}
 .replace_edit_btn {
-    /* width: 50% !important; */
     background-color: #1c0823 !important;
     text-align: center;
     margin: 0 auto !important;
     padding: 2% 0 !important;
     border: 1px solid silver !important;
 }
-
-.manage_btns{
-    margin: 2% auto !important;
-    padding: 1% 0 !important;
-}
-.manage_btns a{
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
+.manage_btns{margin: 2% auto !important;padding: 1% 0 !important;}
+.manage_btns a{padding: 0 !important;margin: 0 !important;}
 .blackBasisBtn{
     background-color: rgba(0, 0, 0, 0.5);
     font-size: 1.2em;
     border: 1px solid white;
-    /* border-radius: 12px; */
     width: fit-content;
     padding: 2%;
     color: white;
 }
-
 .basis_close_btn {
     background: url('/static/svg/icon_exit_darkPurple.svg');
     width: 30px;
@@ -83,89 +57,10 @@ body {    padding: 0 !important;    margin: 0 !important;}
     height: 30px;
     margin-top: 5px;  
 }
+@media (min-width: 1400px) { .manage_btns{margin: 0% auto !important;} }
 
 
-
-@media (min-width: 1400px) { 
-    .manage_btns{
-    margin: 0% auto !important;
-}
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* header - верхнее меню */
-.dropdown button{
-    background-color: transparent;
-    color: white;
-    border: none;
-    transform: translateY(32%) translateX(15%);
-}
-.dropdown li{
-    margin: 10px !important;
-}
-
-.nav-link{
-    color: white !important;
-    
-}
-li.nav-item{
-    margin: 1% 2% !important;
-}
-.navbar-brand{
-    color: white !important;
-}
-.header_section{
-    background-color: #31123C;
-}
-.header_section * {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-.drone_logo {
-    width: 60px;
-    height: 30px;
-}
-.header_admin_p_btn{
-    margin-left: 15px !important;
-    /* padding: 0 10px !important; */
-    font-size: 0.9em !important;
-    border-radius: 6px;
-}
-.header_profil{
-    background-color: #1c0823;
-    border-radius: 12px;
-    color: silver  !important;
-}
-/* .telegram_header a{
-    background-color: white !important;
-    padding: 5px;
-    display: flex;
-    margin-top: 50px;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: black;
-    border-radius: 5px;
-}
-.telegram_header a img{
-   margin-right: 5px;
-   width: 18px;
-   height: auto;
-} */
-
+/* стили блоков главной страницы */
 /* блок с преподавателями */
 #teacher{
     padding: 120px 0;
@@ -173,10 +68,7 @@ li.nav-item{
     background-color: #2C133E;
     color: white;  
 }
-div.card{
-    border: none;
-    font-size: 1.2em;
-}
+div.card{ border: none; font-size: 1.2em;}
 div.card h2{font-size: 1.8em;}
 .image_teacher{transform: translateX(-15px);}
 .teacher_base_card{
@@ -188,14 +80,7 @@ div.card h2{font-size: 1.8em;}
     border: 1px solid white;
     margin-bottom: 2%;
 }
-
 /* инструменты редактирования и удаления */
-/* медиа на главной */
-
-/* стили страниц */
-
-/*медиа блок*/
-#media {padding: 120px 0;}
 /* Расписание */
 #schedule {
     padding: 100px 0;
@@ -208,53 +93,44 @@ div.card h2{font-size: 1.8em;}
     font-size: 1.5em;
     height: 86vh;
 }
-.galleryEvent{height: 86vh;}
+/*медиа блок*/
+#media {padding: 120px 0;}
 
+.galleryEvent{height: 86vh;}
 /*вопросы блок*/
 #faq {padding: 120px 0;}
-
 .webpage_name{margin-left: 15%;}
 
 
 
-/* страница форма авторизации */
-#login_form{
-    text-align: center;
+/* header - верхнее меню */
+.dropdown button{
+    background-color: transparent;
     color: white;
-    padding-top: 10%; 
-}
-#login_form input:not(#login_form input:last-child){ 
-    margin-bottom: 2%;
-    width: 50%;
-    padding: 10px;
-    font-size: 1.5em;
-    border-radius: 12px;
     border: none;
+    transform: translateY(32%) translateX(15%);
 }
-#login_form input:last-child{
-    margin-top: 5%;  
-    width: 20%;
-    letter-spacing: 5px;
-    font-size: 1.5em;
-    border: none;
-    box-shadow: 1px 1px 5px 1px #2C133E;
+.dropdown li{margin: 10px !important;}
+.nav-link{color: white !important;}
+li.nav-item{margin: 1% 2% !important;}
+.navbar-brand{color: white !important;}
+.header_section{background-color: #31123C;}
+.header_section * {padding: 0 !important; margin: 0 !important;}
+.drone_logo {width: 60px; height: 30px;}
+.header_admin_p_btn{
+    margin-left: 15px !important;
+    /* padding: 0 10px !important; */
+    font-size: 0.9em !important;
+    border-radius: 6px;
 }
-#login_form input{
-    margin: auto;
-    box-shadow: 1px 1px 5px 1px #2C133E;
-}
-#login_form input:hover{
-    box-shadow: 1px 1px 15px 5px #2C133E;
-    transform: scale(1.1, 1.1);
-}
-#login_form input:focus{
-    transform: scale(1.1, 1.1);
-}
+.header_profil{background-color: #1c0823; border-radius: 12px; color: silver  !important; }
+
+
+
 /* сообщения пользователю */
 .login_msg, /* авторизация */
-
 /* страница новости */
-/* создание новости */
+    /* создание новости */
 td.td_hover{
     opacity: 40%;
     background-color: #491c5a;
@@ -267,8 +143,8 @@ td.td_hover{
     box-shadow: 3px 3px 8px 4px #200c27;
     transform:scale(0.9, 0.9) translateX(20px);
 }
-td.td_hover:hover{filter: brightness(2);}
-td.td_hover:active{background: #380505;}
+/* td.td_hover:hover{filter: brightness(2);} */
+/* td.td_hover:active{background: #380505;} */
 /* меню кнопок для админ панели */
 .admin_tools{
     position: fixed;
@@ -277,7 +153,6 @@ td.td_hover:active{background: #380505;}
     margin: 20px;
     display: block;
 }
-
 .my_add_btn_static{
     border: 1px solid transparent!important;
     background-color: #491c5a;
@@ -310,6 +185,8 @@ button.my_add_btn_dynamic:hover, button.my_add_btn_static:hover{
 button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     background: #380505!important;
 }
+
+
 .none_border_left_top_bottom{
     border: 1px solid transparent!important;
     width: 50px;
@@ -324,15 +201,25 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     border: 1px solid transparent;
     margin-right: 5%;
 }
- .editor_hover:hover{
+ /* .editor_hover:hover{
     box-shadow: 3px 3px 8px 4px #200c27;
     border-radius: 6px;
     transform:scale(1.01, 1.01);
     text-shadow: 4px 4px 6px black;
     border: 1px solid #4c1f5e;
+} */
+[data-Peewee-Attr-Error=true]{
+    font-size: 1.2em;
+    color: darkred;
 }
-
-
+.img_plug{
+    background: url('/static/png/img_plug.png');
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
 /* ################################################## */
 /* ################################################## */
 /* ################################################## */
@@ -409,7 +296,6 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     0% {
         transform: translateY(10px);
     }
-
     100% {
         transform: translateY(-10px);
     }
@@ -424,18 +310,9 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     color: white;
     transition: 0.8s;
 }
-.custom_btn:hover {
-    background-color: white;
-    color: #131313;
-}
-#form {
-    display: none;
-    border-radius: 20px;
-}
-.form_yandex {
-    width: 100%;
-    height: 100%;
-}
+.custom_btn:hover {background-color: white; color: #131313;}
+#form {display: none; border-radius: 20px;}
+.form_yandex {width: 100%; height: 100%;}
 /*Слайдер*/
 .hr-line {
     margin: 20px auto;
@@ -445,17 +322,9 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     border: none;
     border-top: 2px solid #ff0000;
 }
-.custom_p {
-    font-size: 13pt;
-}
-.fix-h {
-    margin-bottom: 0;
-    border-radius: 20px;
-}
-.video-container {
-    padding-bottom: 1.5rem!important;
-    height: 100%;
-}
+.custom_p {font-size: 13pt; }
+.fix-h { margin-bottom: 0; border-radius: 20px;}
+.video-container {padding-bottom: 1.5rem!important; height: 100%;}
 .video-container video{
     width: auto;
     height:100%;
@@ -464,32 +333,18 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     object-fit: cover;
     background: #242025;
 }
-.fix-h-2 {
-    height: 460px !important;
-}
-.fix-h-3 {
-    height:580px;
-}
+.fix-h-2 {height: 460px !important;}
+.fix-h-3 {height:580px;}
 .img_diplom {
     height: 26%;
     /*width: 100%;*/
     border-radius: 10px;
     margin-bottom: 20px;
 }
-#exampleModal {
-    z-index: 9999;
-    text-align: center;
-}
-.modal-dialog {
-    max-width: none;
-}
-.modal-backdrop {
-    z-index: 9997;
-    --bs-backdrop-opacity: 0.9;
-}
-.card_fix_body {
-    height: 210px !important;
-}
+#exampleModal {z-index: 9999; text-align: center;}
+.modal-dialog {max-width: none;}
+.modal-backdrop {z-index: 9997;--bs-backdrop-opacity: 0.9;}
+.card_fix_body {height: 210px !important;}
 .card_widget_info {
     color: white;
     background-color: transparent !important;
@@ -517,9 +372,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     border-radius: 10px;
     font-size: 10pt;
 }
-.mb_item_ol li{
-    margin-bottom: 8px;
-}
+.mb_item_ol li{margin-bottom: 8px;}
 .footer_item {
     background-color: #2C133E;
     color: white;
@@ -531,20 +384,12 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     align-items: center;
     justify-content: center;
 }
-.flex_footer_cen p{
-    margin-bottom: 0;
-}
-.bg-body-tertiary {
-    background-color: unset !important;
-}
-#navbarNavAltMarkup {
-    justify-content: flex-end;
-}
+.flex_footer_cen p{margin-bottom: 0;}
+.bg-body-tertiary {background-color: unset !important;}
+#navbarNavAltMarkup {justify-content: flex-end;}
 .navbar-toggler {
     border: 1px solid white !important;
     padding: 8px;
-    /*padding: 6px;*/
-    /*background-color: white;*/
 }
 .navbar-toggler span {
     display: block;
@@ -554,27 +399,15 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     /*background-color: #2C133E;*/
     margin-bottom: 5px;
 }
-.navbar-toggler span:last-child {
-    margin-bottom: 0;
-}
-.navbar-toggler-icon {
-    height: 10px;
-}
+.navbar-toggler span:last-child {margin-bottom: 0;}
+.navbar-toggler-icon {height: 10px;}
 .navbar {
     --bs-navbar-toggler-icon-bg: url(../img/burger_white.svg);
 }
-.db_nao {
-    display: none;
-}
-.navbar-toggler:focus {
-    box-shadow: none;
-}
-.accordion-body {
-    border: 1px solid #2C133E;
-}
-.policy_check p {
-    margin-left: 15px;
-}
+.db_nao {display: none;}
+.navbar-toggler:focus {box-shadow: none;}
+.accordion-body {border: 1px solid #2C133E;}
+.policy_check p {margin-left: 15px;}
 .table_policy tr td{
     border: 1px solid black;
     padding: 10px;
@@ -583,9 +416,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     color: #e3be5b;
     text-decoration: none;
 }
-.link_policy:hover {
-    text-decoration: underline;
-}
+.link_policy:hover {text-decoration: underline;}
 .link_policy_back {
     border: 1px solid #e3be5b;
     padding: 10px;
@@ -715,9 +546,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     padding: 8px;
     border: 1px solid white;
    }
-.fix_bord {
-    border: 0 !important;
-}
+.fix_bord {border: 0 !important;}
 .info_rasp_dop {
     background-color: white;
     color: #2C133E;
@@ -725,12 +554,8 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 }
 /* Расписание */
 /* Стрница Галерии */
-#galerry {
-    padding: 60px 5%;
-}
-.photos div{
-    padding-bottom:20px;
-}
+#galerry {padding: 60px 5%;}
+.photos div{padding-bottom:20px;}
 .photos div img{
     object-fit: cover;
     width: 100%;
@@ -748,9 +573,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 }
 /* Стрница Галерии */
 /* Стрница Сборки */
-#build {
-    padding: 60px 5%;
-}
+#build {padding: 60px 5%;}
 .info_build {
     padding: 20px;
     width: 100%;
@@ -759,9 +582,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     background-color: #2C133E;
     margin-bottom: 30px;
 }
-.info_build p{
-    margin: 0;
-}
+.info_build p{margin: 0;}
 .info_build_drone {
     padding: 3%;
     width: 100%;
@@ -803,20 +624,16 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     text-decoration: none;
     color: #131313;
 }
-.link_det:hover {
+/* .link_det:hover {
     text-decoration: underline;
     color: #2C133E;
-}
+} */
 .info_build_drone table tbody tr th, .info_build_drone table tbody tr td {
     text-align: center;
     vertical-align: middle;
 }
-.c{
-    text-align: center !important;
-}
-.cv {
-    text-align: start !important;
-}
+.c{text-align: center !important;}
+.cv {text-align: start !important;}
 .sum_bg th{
     background-color: #2C133E !important;
     color: white !important;
@@ -839,9 +656,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     top: 15px;
     right: 15px;
 }
-.dropmen {
-    position: relative;
-}
+.dropmen {position: relative;}
 .tooltip-text {
     background-color: white;
     padding: 7px;
@@ -863,15 +678,9 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     top: -10px;
     right: 15px;
 }
-.dropmen:hover .tooltip-text {
-    display: flex;
-}
-.dropmen:hover .arrow {
-    display: block;
-}
-.authors_build {
-    margin-bottom: 0;
-}
+.dropmen:hover .tooltip-text {display: flex;}
+.dropmen:hover .arrow {display: block;}
+.authors_build {margin-bottom: 0;}
 /* Стрница Сборки */
 /* Страница Документы */
 #sol {
@@ -879,10 +688,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     background-color: #2C133E;
     color: white;
 }
-.photo_rz_cards img {
-    display: none ;
-    border-radius: 20px;
-}
+.photo_rz_cards img {display: none ;border-radius: 20px;}
 .test2 {
     display: flex;
     align-items: center;
@@ -909,17 +715,9 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     border-radius: 10px;
     text-align: center;
 }
-#doc {
-    padding: 60px 5%;
-}
-.type-document{
-    width:100%;
-    margin-bottom:20px;
-}
-.tabs-panel .panel-body {
-  padding: 20px 15px 15px 15px;
-  font-size: 14px;
-}
+#doc {padding: 60px 5%;}
+.type-document{width:100%;margin-bottom:20px;}
+.tabs-panel .panel-body {padding: 20px 15px 15px 15px;font-size: 14px;}
 .tab-content {
   background-color: #fff;
   border-radius: 4px;
@@ -941,14 +739,8 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
   border-radius: 3px 3px 0 0;
   background-color: #fdfdfe;
 }
-.document .document-body i {
-  font-size: 45px;
-  line-height: 120px;
-}
-.document .document-body img {
-  width: 100%;
-  height: 100%;
-}
+.document .document-body i {font-size: 45px;line-height: 120px;}
+.document .document-body img {width: 100%;height: 100%;}
 .document .document-footer {
   border-top: 1px solid #ebf1f5;
   height: 46px;;
@@ -980,42 +772,18 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
 }
 .document.word .document-footer >*, .document.excel .document-footer >*,
 .document.power .document-footer >*, .document.pdf .document-footer >*,
-.document.other .document-footer >* {
-  color: #fff;
-}
-.document.word .document-footer, .icon-name .word {
-  background-color: #2da9e9;
-}
-.document.excel .document-footer, .icon-name .excel {
-  background-color: #0ec8a2;
-}
-.document.power .document-footer, .icon-name .power {
-  background-color: #ff9e2a;
-}
-.document.pdf .document-footer, .icon-name .pdf{
-  background-color: #f95858;
-}
-.document.other .document-footer, .icon-name .other{
-  background-color: #314557;
-}
-.bi-file-earmark-pdf {
-    color: #f95858;
-}
-.bi-file-earmark-word {
-    color: #2da9e9;
-}
-.bi-file-earmark-ppt {
-    color: #ff9e2a;
-}
-.bi-file-earmark-excel {
-    color: #0ec8a2;
-}
-.bi-file-earmark {
-    color: #314557;
-}
-#doc .container .row .tach {
-    padding: 20px !important;
-  }
+.document.other .document-footer >* {color: #fff;}
+.document.word .document-footer, .icon-name .word {  background-color: #2da9e9;}
+.document.excel .document-footer, .icon-name .excel {background-color: #0ec8a2;}
+.document.power .document-footer, .icon-name .power {background-color: #ff9e2a;}
+.document.pdf .document-footer, .icon-name .pdf{background-color: #f95858;}
+.document.other .document-footer, .icon-name .other{background-color: #314557;}
+.bi-file-earmark-pdf {color: #f95858;}
+.bi-file-earmark-word {color: #2da9e9;}
+.bi-file-earmark-ppt {color: #ff9e2a;}
+.bi-file-earmark-excel {color: #0ec8a2;}
+.bi-file-earmark {color: #314557;}
+#doc .container .row .tach {padding: 20px !important;}
 @media screen and (max-width: 770px) {
   .document  {
     width: 100%;
@@ -1023,15 +791,9 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
     max-width: none;
   }
 }
-.bg_show {
-    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
-}
-.db_none_doc {
-    display: none;
-}
-.show {
-    display: block !important;
-}
+.bg_show {box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);}
+.db_none_doc {display: none;}
+.show {display: block !important;}
 #doc .container .row .col-sm-4 .panel .panel-body .nav .nav-link{
     color: #212529;
     text-align: start;
@@ -1045,10 +807,7 @@ button.my_add_btn_dynamic:active, button.my_add_btn_static:active{
       padding: 0 !important;
     }
 }
-.goof {
-  width: 50px;
-  height: 50px;
-}
+.goof {width: 50px;height: 50px;}
 .documents .panel-body .tab-pane a:hover .document{
     transform: scale(0.9);
 }

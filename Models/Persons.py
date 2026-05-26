@@ -11,6 +11,15 @@ class Persons(Base):
     lastName = CharField()
     person_desc = TextField()
 
+    @property
+    def safe_image_id(self):
+        try:
+            return self.image_id.src
+        except:
+            return False
+        
     def __str__(self):
         return self.firstName +' '+ self.lastName
+    
+    
     

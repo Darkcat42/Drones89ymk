@@ -1,6 +1,6 @@
 
 /*страница новости */
-#news div.d-flex > div.row{
+#news .row>div.row{
     margin: 1%;
     padding: 1%; 
     color: black;
@@ -10,28 +10,11 @@
     border-radius: 12px;
     background: white;
 }
-#news div.d-flex > div.row:hover{
-    background: #4b2067;
-    border: 1px solid white;
-    color: white;
-}
-#news div.d-flex > div.row:hover .basis_close_btn {
-    background: url('/static/svg/exit_icon_light.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-#news div.d-flex > div.row:hover .basis_edit_btn {
-    background: url('/static/svg/icon_edit.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-/*форма новой новость */
-#news_create_form{
-    color: white;
-}
-/*форма изменить новость */
-#news_create_form{
-    color: white;
+/* #news h3{
+    ma
+} */
+#news .card-text{
+    width: 100% !important;
 }
 #news > .container{padding-top: 50px;}
 .news_image{
@@ -51,48 +34,36 @@
     object-fit: cover;
     object-position: center; 
 }
-/* новости */
-.news_edit_tools {
-    display: flex; 
-    justify-content: end;
-    align-items: baseline;
-}
-.news_edit_tools > * { filter: opacity(100%) !important;}
-
-.actionNews_msg{ /* страница новости */
-    color: rgb(211, 218, 1);    
-    width: auto;
-    height: 50px;
-    margin: 2% auto;
-}
-/* страница новости */
-/* последняя новость блок */
-.purple_gradient{
-    background: linear-gradient(to top, #4b2067, #331648, #2C133E)
-}
-.lastNews { 
-    background-color: none;
-    padding: 1%;
-    color: white;
-}
-.lastNews>*{margin: 0 auto;}
-.lastNews_date{
+.news_date{
     border: 1px solid black;
     width: fit-content;
     padding: 0 20px;
     background: white;
     color: black;
 }
-.lastNews img.img-fluid{
-    /* width: 200px; */
+
+
+/* страница новости */
+/* последняя новость блок */
+/* .purple_gradient{
+    background: linear-gradient(to top, #4b2067, #331648, #2C133E)
+} */
+/* .lastNews { 
+    background-color: none;
+    padding: 1%;
+    color: white;
+} */
+/* .lastNews>*{margin: 0 auto;} */
+
+/* .lastNews img.img-fluid{
     height: 120%;
     border-radius: 6px;
-}
-.news_date{
+} */
+/* .news_date{
     border: 1px solid black; 
     width: fit-content; 
     padding: 0 20px;
-}
+} */
 
 
 

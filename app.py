@@ -27,6 +27,10 @@ def create_flaskApp():
     def db_is_ready_context():
         global db_is_ready
         return {'init_db_status' : init_db_status}
+    @app.context_processor
+    def inject_os_functions():
+        # Теперь функция file_exists доступна во всех шаблонах проекта
+        return dict(file_exists=os.path.exists)
 
     @login_manager.user_loader
     def load_user(user_id): 

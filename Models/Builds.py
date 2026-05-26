@@ -7,5 +7,12 @@ class Builds(Base):
     build_name = CharField()
     inch = CharField()
     build_desc = TextField()
-    build_image_id = ForeignKeyField(Images)
+    image_id = ForeignKeyField(Images) 
+    @property
+    def safe_image_id(self):
+        try:
+            return self.image_id.src
+        except:
+            return False
+        
     
